@@ -186,8 +186,90 @@ These framework components automatically configure themselves from the active sc
 | Component | Schema Fields Used |
 |-----------|-------------------|
 | Prompt Composer | `learner_profile`, `vocabulary_matrix`, `environment.npc_roster` |
-| Tier Manager | `environment.tier_2`, `environment.tier_3`, `evaluation` |
+| Tier Manager | `environment.tier_2`, `environment.tier_3`, `evaluation`, `environment.adaptive_pressure` |
 | Vocabulary Engine | `vocabulary_matrix` |
 | Retention System | `retention_profile` |
 | Forward Injector | `vocabulary_matrix.priority_domains` |
 | Companion Agent | `companion`, `learner_profile` |
+| CQ Model | `environment.tier_2.cultural_norms`, `evaluation.cultural_intelligence_weight` |
+| NPC Authenticity Engine | `npc_roster[].personality_model`, `npc_roster[].consistency_constraints` |
+| Pressure Calibrator | `environment.adaptive_pressure` |
+| Evaluation Engine | `evaluation.lexical_availability_tracking`, `evaluation.cultural_intelligence_weight` |
+
+---
+
+## v2.0.0 Additions
+
+Schema version `2.0.0` adds the following optional sections:
+
+### NPC Personality Model
+
+Each NPC can now define Big Five personality traits and cultural overlays:
+
+```yaml
+npc_roster:
+  - id: cafe-owner
+    personality_model:
+      openness: 0.7
+      conscientiousness: 0.5
+      extraversion: 0.9
+      agreeableness: 0.8
+      neuroticism: 0.3
+      cultural_overlay:
+        communicative_directness: 0.8
+        formality_default: 0.3
+        power_distance_sensitivity: 0.2
+        emotional_expressiveness: 0.9
+    consistency_constraints:
+      verbal_tics: ["Allora...", "Eh, senti..."]
+      prohibited_behaviors: ["refuse to serve a customer"]
+      mandatory_behaviors: ["greet every visitor"]
+```
+
+### Cultural Norms
+
+Cultural norms are enforced by NPCs and feed the CQ model:
+
+```yaml
+cultural_norms:
+  - id: greeting-kiss
+    domain: greeting
+    appropriate_behavior: "Cheek kiss (left-right) for acquaintances; handshake for first meeting"
+    common_violations:
+      - l1_culture: en-US
+        violation: "Handshake for all occasions"
+        frequency: common
+    reputation_impact: -0.05
+    applicable_tiers: [2, 3]
+```
+
+### Adaptive Pressure Configuration
+
+Per-tier pressure calibration:
+
+```yaml
+adaptive_pressure:
+  tier_1:
+    enabled: true
+    target_range: { min: 0.1, max: 0.3 }
+    adjustment_speed: gradual
+    use_affective_data: true
+  tier_2:
+    enabled: true
+    target_range: { min: 0.3, max: 0.6 }
+    adjustment_speed: responsive
+    use_affective_data: true
+  tier_3:
+    enabled: true
+    target_range: { min: 0.6, max: 0.85 }
+    adjustment_speed: aggressive
+    use_affective_data: true
+```
+
+### Evaluation Enhancements
+
+```yaml
+evaluation:
+  cultural_intelligence_weight: 0.15    # CQ contribution to overall score
+  lexical_availability_tracking: true   # Track vocabulary retrieval speed
+```

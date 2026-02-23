@@ -12,7 +12,8 @@
     "schema_version": {
       "type": "string",
       "enum": [
-        "1.0.0"
+        "1.0.0",
+        "2.0.0"
       ],
       "description": "Schema version — must match a registered version in migrations.ts"
     },
@@ -193,6 +194,13 @@
                 },
                 "cultural_parameters": {
                   "$ref": "#/definitions/cultural_parameters"
+                },
+                "cultural_norms": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/cultural_norm"
+                  },
+                  "description": "Cultural norms enforced by NPCs with reputation consequences"
                 }
               }
             },
@@ -211,6 +219,21 @@
                   "description": "High-stakes scenarios with authority dynamics"
                 }
               }
+            },
+            "adaptive_pressure": {
+              "type": "object",
+              "properties": {
+                "tier_1": {
+                  "$ref": "#/definitions/adaptive_pressure_config"
+                },
+                "tier_2": {
+                  "$ref": "#/definitions/adaptive_pressure_config"
+                },
+                "tier_3": {
+                  "$ref": "#/definitions/adaptive_pressure_config"
+                }
+              },
+              "description": "Per-tier communicative pressure calibration configuration"
             }
           }
         },
@@ -270,6 +293,18 @@
                 "$ref": "#/definitions/evaluation_rubric"
               },
               "description": "Custom evaluation rubrics for Tier 3 scenarios"
+            },
+            "cultural_intelligence_weight": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.15,
+              "description": "Weight of CQ assessment in overall evaluation (0.0-1.0)"
+            },
+            "lexical_availability_tracking": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether to track vocabulary retrieval speed as a fluency metric"
             }
           }
         }
@@ -467,6 +502,36 @@
           "type": "boolean",
           "default": false,
           "description": "Whether this NPC uses the Tier 3 openness mechanic"
+        },
+        "personality_model": {
+          "$ref": "#/definitions/npc_personality_model",
+          "description": "Big Five personality traits and cultural overlay for behavioral authenticity"
+        },
+        "consistency_constraints": {
+          "type": "object",
+          "properties": {
+            "verbal_tics": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Speech patterns that persist regardless of mood"
+            },
+            "prohibited_behaviors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Actions this NPC would never take"
+            },
+            "mandatory_behaviors": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Actions this NPC always performs"
+            }
+          }
         }
       }
     },
@@ -667,6 +732,175 @@
         "gesture_appropriateness": {
           "type": "string",
           "description": "Notes on physical gesture norms"
+        }
+      }
+    },
+    "npc_personality_model": {
+      "type": "object",
+      "properties": {
+        "openness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Curiosity, willingness to engage unusual topics"
+        },
+        "conscientiousness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Reliability, attention to detail"
+        },
+        "extraversion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Talkativeness, social energy"
+        },
+        "agreeableness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Patience, helpfulness, error tolerance"
+        },
+        "neuroticism": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Emotional reactivity, social friction sensitivity"
+        },
+        "cultural_overlay": {
+          "type": "object",
+          "properties": {
+            "communicative_directness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "formality_default": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "power_distance_sensitivity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "emotional_expressiveness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        }
+      }
+    },
+    "cultural_norm": {
+      "type": "object",
+      "required": [
+        "id",
+        "domain",
+        "appropriate_behavior"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "greeting",
+            "dining",
+            "business",
+            "social",
+            "religious",
+            "family",
+            "public-space",
+            "gift-giving",
+            "conversation-topic"
+          ],
+          "description": "Cultural domain this norm belongs to"
+        },
+        "appropriate_behavior": {
+          "type": "string",
+          "description": "Description of the culturally appropriate behavior"
+        },
+        "common_violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "l1_culture": {
+                "type": "string"
+              },
+              "violation": {
+                "type": "string"
+              },
+              "frequency": {
+                "type": "string",
+                "enum": [
+                  "common",
+                  "occasional",
+                  "rare"
+                ]
+              }
+            }
+          },
+          "description": "Common violations by L1 culture"
+        },
+        "reputation_impact": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 0,
+          "description": "Reputation delta upon violation (always negative)"
+        },
+        "applicable_tiers": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "enum": [
+              1,
+              2,
+              3
+            ]
+          }
+        }
+      }
+    },
+    "adaptive_pressure_config": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "target_range": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "adjustment_speed": {
+          "type": "string",
+          "enum": [
+            "gradual",
+            "responsive",
+            "aggressive"
+          ]
+        },
+        "use_affective_data": {
+          "type": "boolean",
+          "default": true
         }
       }
     }

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] — Documentation, Integration & Patent Specification (2026-02-23)
+
+### Added
+
+- `architecture.md` expanded: 4 new module rows, IHE pipeline diagram, Affective State signal flow, Cross-Module Integration Map, expanded 5-Stage Data Flow, updated Persistence Layer schemas
+- ADR-006: Interlanguage Hypothesis Engine
+- ADR-007: Anti-Fossilization Engine
+- ADR-008: Cultural Intelligence Model
+- ADR-009: Affective State Inference
+- ADR-010: NPC Behavioral Authenticity
+- `integration/types.ts` — 10 cross-module contract types (IHE→FI, IHE→AFE, AFE→NPC, Affect→Pressure, CQ→Reputation, Repair→IHE, Pressure→Tier, Collab→FI, NPC Behavior Resolution, Transfer Resolution)
+- `patent-claims.md` — 10 provisional patent claims covering all `@patentCritical` mechanisms
+- `persona.schema.json` bumped to v2.0.0 with: NPC personality model, consistency constraints, cultural norms, adaptive pressure config, CQ weight, LAI tracking
+- `persona-schema-guide.md` updated with v2.0.0 documentation and examples
+
 ## [0.3.0] — Patent-Grade Enhancement (2026-02-23)
 
 ### Added
