@@ -140,6 +140,11 @@ persona:
 | [`premier-league`](schemas/examples/premier-league.yaml) | ES → EN | Professional football |
 | [`mediterranean-yacht`](schemas/examples/mediterranean-yacht.yaml) | Any → FR/IT/ES/GR/TR | Maritime hospitality |
 | [`medical-migration`](schemas/examples/medical-migration.yaml) | Any → EN/DE | Healthcare professionals |
+| [`heritage-recovery`](schemas/examples/heritage-recovery.yaml) | EN → KO | Heritage language recovery |
+| [`tech-hub`](schemas/examples/tech-hub.yaml) | Any → EN | Tech industry professionals |
+| [`university-admissions`](schemas/examples/university-admissions.yaml) | Any → EN | University admissions |
+| [`historical-immersion`](schemas/examples/historical-immersion.yaml) | EN → IT | History through time travel |
+| [`hospitality-professional`](schemas/examples/hospitality-professional.yaml) | ES → EN | Hotel / flight / yacht crew |
 
 → **[Persona Schema JSON Schema](schemas/persona.schema.json)** · **[ADR-003: Why schema-driven?](docs/adr/003-persona-schema-system.md)**
 
@@ -209,64 +214,51 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 ```
 aapm-framework/
 ├── .cursorrules                        # AI coding context — the AAPM Bible
+├── .github/workflows/ci.yml            # CI: typecheck + test + schema validation
 ├── docs/
 │   ├── aapm-full.md                    # Complete AAPM specification
 │   ├── architecture.md                 # System architecture overview
-│   ├── glossary.md                     # AAPM terminology
+│   ├── glossary.md                     # AAPM terminology (35+ terms)
 │   ├── three-tiers.md                  # Tier architecture detail
-│   ├── interaction-loop.md             # 7 state machines (NEW)
-│   ├── session-lifecycle.md            # Typed session contracts (NEW)
-│   ├── security-privacy.md             # GDPR/COPPA/CCPA compliance (NEW)
-│   ├── evaluation-framework.md         # 8 metrics + A/B testing (NEW)
-│   └── adr/                            # Architecture Decision Records (NEW)
-│       ├── 001-three-tier-architecture.md
-│       ├── 002-recursive-feedback-engine.md
-│       ├── 003-persona-schema-system.md
-│       ├── 004-tri-refraction-interface.md
-│       └── 005-social-reputation-persistence.md
+│   ├── feedback-engine.md              # Recursive Feedback Engine spec
+│   ├── interaction-loop.md             # 7 state machines
+│   ├── session-lifecycle.md            # Typed session contracts
+│   ├── security-privacy.md             # GDPR/COPPA/CCPA compliance
+│   ├── evaluation-framework.md         # 8 metrics + A/B testing
+│   ├── patent-claims.md                # 12 provisional patent claims
+│   ├── business-model.md               # Revenue streams + pricing
+│   ├── investor-brief.md               # TAM, moat, funding ask
+│   ├── persona-schema-guide.md         # How to create your own schema
+│   ├── soft-landing-protocol.md        # Graceful recalibration protocol
+│   ├── negotiation-collapse-recovery.md # Tier 3 failure recovery
+│   ├── schema-marketplace.md           # Community schema ecosystem
+│   ├── model-substitution.md           # LLM provider agnosticism
+│   ├── language-expansion-checklist.md  # Adding new L1-L2 pairs
+│   ├── pilot-study-protocol.md         # IRB-ready validation study
+│   ├── transparency-layer.md           # Explainability architecture
+│   └── adr/                            # 11 Architecture Decision Records
+│       ├── 001 → 005                   # Foundation ADRs
+│       ├── 006 → 010                   # Engine + IP ADRs
+│       └── 011-l1-l2-transfer-format   # L1-L2 transfer spec
 ├── schemas/
-│   ├── persona.schema.json             # JSON Schema (expanded)
-│   └── examples/                       # Pre-built persona schemas
+│   ├── persona.schema.json             # JSON Schema v2.0.0
+│   └── examples/                       # 8 pre-built persona schemas
 ├── packages/
-│   └── core/                           # @aapm/core engine
-│       ├── tsconfig.json               # TypeScript strict mode (NEW)
-│       └── src/
-│           ├── feedback-engine/        # Recursive Feedback Engine
-│           │   ├── types.ts            # Data models (NEW)
-│           │   └── pipeline.ts         # 5-phase Macro-Loop (NEW)
-│           ├── persistence/            # Memory & reputation
-│           │   └── types.ts            # Data models (NEW)
-│           ├── phoneme-engine/         # Pronunciation analysis
-│           │   └── types.ts            # PAE pipeline types (NEW)
-│           ├── tier-manager/           # Three-tier state machine
-│           │   └── types.ts            # Tier types (NEW)
-│           ├── retention/              # Axis Z engagement
-│           │   └── types.ts            # 5 profiles (NEW)
-│           ├── refraction/             # Tri-Refraction Interface
-│           │   └── types.ts            # Refraction types (NEW)
-│           ├── evaluation/             # Outcome measurement
-│           │   ├── types.ts            # Metrics + A/B types (NEW)
-│           │   └── metrics.ts          # Metric calculations (NEW)
-│           └── schema-loader/          # Schema validation
-│               ├── validator.ts        # Runtime validator (NEW)
-│               └── migrations.ts       # Version migration (NEW)
+│   ├── core/                           # @aapm/core — engine modules
+│   │   └── src/                        # 12 modules with types + barrel exports
+│   ├── ui/                             # @aapm/ui — component library
+│   └── cli/                            # @aapm/cli — schema validation tool
 ├── prompts/                            # Prompt engineering library
-│   ├── system/                         # NPC system prompts
-│   │   ├── tier1-companion.md
-│   │   ├── tier2-immersion-npc.md
-│   │   └── tier3-authority.md
-│   ├── curriculum/                     # Feedback pipeline prompts
-│   │   ├── friction-analysis.md
-│   │   └── micro-curriculum-generator.md  (NEW)
-│   ├── refraction/
-│   │   └── tri-refraction.md
-│   ├── npc/
-│   │   └── forward-injection-briefing.md  (NEW)
-│   └── evaluation/
-│       └── register-classifier.md         (NEW)
+│   ├── system/                         #   tier1, tier2, tier3 base prompts
+│   ├── curriculum/                     #   friction analysis, curriculum gen
+│   ├── refraction/                     #   tri-refraction generator
+│   ├── npc/                            #   forward injection briefing
+│   └── evaluation/                     #   register classifier
 ├── recipes/                            # Vibecoding step-by-step guides
-
-└── examples/                           # Complete reference apps
+├── ROADMAP.md                          # v0.4 → v1.0 milestones
+├── CHANGELOG.md                        # Keep a Changelog format
+├── CONTRIBUTING.md                     # CLA + contribution guide
+└── SECURITY.md                         # Responsible disclosure policy
 ```
 
 ---
@@ -286,16 +278,45 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 
 ## Documentation
 
+### Reference
+
 | Document | Description |
 |----------|-------------|
 | [Full AAPM Specification](docs/aapm-full.md) | The complete pedagogical framework |
 | [Architecture Overview](docs/architecture.md) | System architecture and components |
+| [Three-Tier System](docs/three-tiers.md) | Tier architecture deep dive |
+| [Feedback Engine](docs/feedback-engine.md) | Recursive Feedback Engine specification |
 | [Interaction Loop](docs/interaction-loop.md) | 7 state machines — onboarding through async engagement |
 | [Session Lifecycle](docs/session-lifecycle.md) | Typed contracts for all session phases |
-| [Evaluation Framework](docs/evaluation-framework.md) | 8 quantitative metrics and A/B testing methodology |
+| [Evaluation Framework](docs/evaluation-framework.md) | 8 quantitative metrics + A/B testing |
 | [Security & Privacy](docs/security-privacy.md) | GDPR, COPPA, CCPA compliance architecture |
-| [Glossary](docs/glossary.md) | AAPM-specific terminology |
+| [Glossary](docs/glossary.md) | AAPM-specific terminology (35+ terms) |
 | [Persona Schema Guide](docs/persona-schema-guide.md) | How to create your own schema |
+
+### IP & Business
+
+| Document | Description |
+|----------|-------------|
+| [Patent Claims](docs/patent-claims.md) | 12 provisional patent claims with pseudocode |
+| [Business Model](docs/business-model.md) | Revenue streams, pricing tiers, unit economics |
+| [Investor Brief](docs/investor-brief.md) | TAM, competitive moat, funding ask |
+
+### Protocols
+
+| Document | Description |
+|----------|-------------|
+| [Soft Landing Protocol](docs/soft-landing-protocol.md) | Graceful proficiency recalibration |
+| [Negotiation Collapse Recovery](docs/negotiation-collapse-recovery.md) | Tier 3 failure recovery sequences |
+| [Pilot Study Protocol](docs/pilot-study-protocol.md) | IRB-ready mixed-methods validation study |
+
+### Strategic
+
+| Document | Description |
+|----------|-------------|
+| [Schema Marketplace](docs/schema-marketplace.md) | Community-driven persona schema ecosystem |
+| [Model Substitution](docs/model-substitution.md) | LLM provider agnosticism + cost benchmarks |
+| [Language Expansion](docs/language-expansion-checklist.md) | Checklist for adding new L1-L2 pairs |
+| [Transparency Layer](docs/transparency-layer.md) | Explainability for learners, educators, auditors |
 
 ### Architecture Decision Records
 
@@ -306,6 +327,12 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 | [003](docs/adr/003-persona-schema-system.md) | Persona Schema System |
 | [004](docs/adr/004-tri-refraction-interface.md) | Tri-Refraction Interface |
 | [005](docs/adr/005-social-reputation-persistence.md) | Social Reputation Persistence |
+| [006](docs/adr/006-interlanguage-hypothesis-engine.md) | Interlanguage Hypothesis Engine |
+| [007](docs/adr/007-anti-fossilization-engine.md) | Anti-Fossilization Engine |
+| [008](docs/adr/008-cultural-intelligence-model.md) | Cultural Intelligence Model |
+| [009](docs/adr/009-affective-state-inference.md) | Affective State Inference |
+| [010](docs/adr/010-npc-behavioral-authenticity.md) | NPC Behavioral Authenticity |
+| [011](docs/adr/011-l1-l2-transfer-format.md) | L1-L2 Transfer Format |
 
 ---
 

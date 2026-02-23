@@ -17,10 +17,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ADR-008: Cultural Intelligence Model
 - ADR-009: Affective State Inference
 - ADR-010: NPC Behavioral Authenticity
+- ADR-011: L1-L2 Transfer Format
 - `integration/types.ts` — 10 cross-module contract types (IHE→FI, IHE→AFE, AFE→NPC, Affect→Pressure, CQ→Reputation, Repair→IHE, Pressure→Tier, Collab→FI, NPC Behavior Resolution, Transfer Resolution)
-- `patent-claims.md` — 10 provisional patent claims covering all `@patentCritical` mechanisms
+- `patent-claims.md` — 12 provisional patent claims covering all `@patentCritical` mechanisms
 - `persona.schema.json` bumped to v2.0.0 with: NPC personality model, consistency constraints, cultural norms, adaptive pressure config, CQ weight, LAI tracking
 - `persona-schema-guide.md` updated with v2.0.0 documentation and examples
+- `negotiation-collapse-recovery.md` — Tier 3 failure handling protocol
+- `soft-landing-protocol.md` — Graceful proficiency recalibration
+- `schema-marketplace.md` — Community schema ecosystem architecture (S1)
+- `model-substitution.md` — LLM provider agnosticism and cost benchmarks (S2)
+- `language-expansion-checklist.md` — 4-phase process for new L1-L2 pairs (S3)
+- `pilot-study-protocol.md` — IRB-ready mixed-methods validation study (S4)
+- `transparency-layer.md` — Explainability for learners, educators, auditors (S5)
+- `business-model.md` — Revenue streams, pricing tiers, unit economics
+- `investor-brief.md` — TAM, competitive moat, funding ask
+- `ROADMAP.md` — Product milestones from v0.4 to v1.0
+- `.github/workflows/ci.yml` — CI pipeline (typecheck + test + schema validation)
+- `vitest.config.ts` — Monorepo-aware test configuration
+- 27 unit tests across CLI validator (10) and pipeline types (17)
+- 5 new persona schemas: `heritage-recovery`, `tech-hub`, `university-admissions`, `historical-immersion`, `hospitality-professional`
+- `@aapm/ui` package with 6 component stubs
+- `@aapm/cli` package with `validate-schema` command
+- Barrel exports (`index.ts`) for all 8 core modules
+- `recipes/new-tier2-environment.md` build guide
+- ADR cross-reference sections
 
 ## [0.3.0] — Patent-Grade Enhancement (2026-02-23)
 
@@ -48,12 +68,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - README broken links to non-existent files
 - Glossary expanded with 7 evaluation metric terms
 - CHANGELOG updated for Phase E
-
-### Added
-
-- Barrel exports (`index.ts`) for all 8 core modules
-- `recipes/new-tier2-environment.md` build guide
-- ADR cross-reference sections
 
 ## [0.2.0] — 2025-02-23
 
@@ -108,6 +122,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `README.md` with project overview and architecture diagram
 - `package.json` with monorepo workspace configuration
 
-[Unreleased]: https://github.com/cliff-eagle/aapm-framework/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/cliff-eagle/aapm-framework/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/cliff-eagle/aapm-framework/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/cliff-eagle/aapm-framework/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/cliff-eagle/aapm-framework/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/cliff-eagle/aapm-framework/releases/tag/v0.1.0

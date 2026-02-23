@@ -4,7 +4,7 @@
 
 ---
 
-## Current: v0.4.0 (February 2025)
+## Current: v0.4.0 (February 2026)
 
 **Theme: Foundation & IP**
 
@@ -13,14 +13,16 @@
 - ✅ Pipeline vertical slice (Phases 1-3 implemented)
 - ✅ 6 UI component stubs with full TypeScript interfaces
 - ✅ CLI validate-schema tool
-- ✅ 6 example persona schemas
+- ✅ 8 example persona schemas
 - ✅ 11 Architecture Decision Records
 - ✅ Business model, investor brief, security/privacy policy
 - ✅ Soft landing protocol, negotiation collapse recovery
+- ✅ CI/CD pipeline (GitHub Actions) + 27 unit tests
+- ✅ Strategic items: schema marketplace, model substitution, language expansion, pilot study, transparency layer
 
 ---
 
-## v0.5.0 — "First Session" (Q2 2025)
+## v0.5.0 — "First Session" (Q2 2026)
 
 **Theme: End-to-end Tier 1 playable**
 
@@ -42,7 +44,7 @@
 
 ---
 
-## v0.6.0 — "Social World" (Q3 2025)
+## v0.6.0 — "Social World" (Q3 2026)
 
 **Theme: Tier 2 immersion environment**
 
@@ -64,7 +66,7 @@
 
 ---
 
-## v0.7.0 — "High Stakes" (Q4 2025)
+## v0.7.0 — "High Stakes" (Q4 2026)
 
 **Theme: Tier 3 negotiation + full pipeline**
 
@@ -86,7 +88,7 @@
 
 ---
 
-## v0.8.0 — "Sound" (Q1 2026)
+## v0.8.0 — "Sound" (Q1 2027)
 
 **Theme: Voice integration + PAE**
 
@@ -107,7 +109,7 @@
 
 ---
 
-## v0.9.0 — "Scale" (Q2 2026)
+## v0.9.0 — "Scale" (Q2 2027)
 
 **Theme: Multi-user + institutional deployment**
 
@@ -128,7 +130,7 @@
 
 ---
 
-## v1.0.0 — "Launch" (Q3 2026)
+## v1.0.0 — "Launch" (Q3 2027)
 
 **Theme: Production-ready**
 
