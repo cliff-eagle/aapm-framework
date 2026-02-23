@@ -71,6 +71,9 @@ export interface LearnerProfile {
 
     /** Onboarding completion state */
     onboardingState: OnboardingState;
+
+    /** AI provider configuration — selected providers, keys, and model routing */
+    aiProviderConfig: import('../ai-providers/types').AIProviderConfig;
 }
 
 /**

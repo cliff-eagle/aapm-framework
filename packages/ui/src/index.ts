@@ -10,7 +10,7 @@
 
 // ─── Core Session Components ────────────────────────────────────
 export { CompanionChat } from './components/CompanionChat';
-export type { CompanionChatProps } from './components/CompanionChat';
+export type { CompanionChatProps, ChatMessage } from './components/CompanionChat';
 
 export { RefractionPanel } from './components/RefractionPanel';
 export type { RefractionPanelProps } from './components/RefractionPanel';
@@ -28,6 +28,13 @@ export type { MicroCurriculumProps } from './components/MicroCurriculum';
 export { TierProgress } from './components/TierProgress';
 export type { TierProgressProps } from './components/TierProgress';
 
+// ─── Onboarding & Settings ─────────────────────────────────────
+export { OnboardingWizard } from './components/OnboardingWizard';
+export type { OnboardingWizardProps, OnboardingData } from './components/OnboardingWizard';
+
+export { AIProviderSettings } from './components/AIProviderSettings';
+export type { AIProviderSettingsProps } from './components/AIProviderSettings';
+
 // ─── Shared Types ───────────────────────────────────────────────
 export type {
     RefractionLevel,
@@ -35,3 +42,4 @@ export type {
     CurriculumCard,
     TierState,
 } from './types';
+
