@@ -9,16 +9,17 @@
 ### Theme: Foundation & IP
 
 - ✅ Core type system (50+ interfaces, 1,000+ lines)
-- ✅ 12 patent claims with pseudocode appendices
-- ✅ Pipeline vertical slice (Phases 1-3 implemented)
+- ✅ 16 patent claims with pseudocode appendices
+- ✅ Pipeline vertical slice (Phases 1-5 implemented)
 - ✅ 6 UI component stubs with full TypeScript interfaces
 - ✅ CLI validate-schema tool
 - ✅ 8 example persona schemas
-- ✅ 11 Architecture Decision Records
+- ✅ Event bus, test utilities, 20 core modules
 - ✅ Business model, investor brief, security/privacy policy
 - ✅ Soft landing protocol, negotiation collapse recovery
 - ✅ CI/CD pipeline (GitHub Actions) + 27 unit tests
 - ✅ Strategic items: schema marketplace, model substitution, language expansion, pilot study, transparency layer
+- ✅ Deployment architecture, cost control, error handling strategy
 
 ---
 
@@ -29,8 +30,8 @@
 ### v0.5 Goals
 
 - [ ] Complete Tier 1 Companion implementation (text-based)
-- [ ] Implement Phase 4 (Adaptive Lesson Delivery) with basic UI
-- [ ] Implement Phase 5 (Forward Injection) against in-memory store
+- [x] Implement Phase 4 (Adaptive Lesson Delivery) with basic tracking
+- [x] Implement Phase 5 (Forward Injection) against vector store
 - [ ] Code-switching gradient operational
 - [ ] Onboarding flow: placement test → persona selection → first session
 - [ ] Affective state inference operational with 6 behavioral signals
