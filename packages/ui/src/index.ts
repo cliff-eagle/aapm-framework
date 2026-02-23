@@ -28,6 +28,21 @@ export type { MicroCurriculumProps } from './components/MicroCurriculum';
 export { TierProgress } from './components/TierProgress';
 export type { TierProgressProps } from './components/TierProgress';
 
+// ─── GTA-Mode Scene Components ─────────────────────────────────
+export { SceneRenderer } from './components/SceneRenderer';
+export type {
+    SceneRendererProps,
+    SceneLocation,
+    SceneNPC,
+    NavigableLocation,
+} from './components/SceneRenderer';
+
+export { NPCPresence } from './components/NPCPresence';
+export type { NPCPresenceProps } from './components/NPCPresence';
+
+export { DialogueScene } from './components/DialogueScene';
+export type { DialogueSceneProps } from './components/DialogueScene';
+
 // ─── Onboarding & Settings ─────────────────────────────────────
 export { OnboardingWizard } from './components/OnboardingWizard';
 export type { OnboardingWizardProps, OnboardingData } from './components/OnboardingWizard';

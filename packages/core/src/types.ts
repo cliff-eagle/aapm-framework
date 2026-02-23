@@ -137,6 +137,29 @@ export interface NPCConfig {
     register: string;
     personality: string;
     vocabulary_focus: string[];
+    /** Big Five personality profile [0.0, 1.0] per trait — drives NPC behavioral variation */
+    big_five?: BigFiveTraits;
+    /** Cultural communication defaults — drives register enforcement and directness */
+    cultural_overlay?: CulturalOverlayTraits;
+    /** Base patience level [0.0, 1.0] — time before NPC escalates or re-prompts */
+    patience_level?: number;
+}
+
+/** Big Five personality model — each trait is [0.0, 1.0] */
+export interface BigFiveTraits {
+    openness: number;
+    conscientiousness: number;
+    extraversion: number;
+    agreeableness: number;
+    neuroticism: number;
+}
+
+/** Cultural overlay — modifies NPC communication defaults */
+export interface CulturalOverlayTraits {
+    communicative_directness: number;
+    formality_default: number;
+    power_distance_sensitivity: number;
+    emotional_expressiveness: number;
 }
 
 // ─── Prompt System ───────────────────────────────────────────

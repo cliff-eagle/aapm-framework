@@ -116,6 +116,25 @@ export interface NPCDefinition {
     personality: string;
     defaultRegister: string;
     locationIds: string[];
+    /** Big Five personality traits (all [0.0, 1.0]) */
+    big_five?: {
+        openness: number;
+        conscientiousness: number;
+        extraversion: number;
+        agreeableness: number;
+        neuroticism: number;
+    };
+    /** Cultural communication overlay */
+    cultural_overlay?: {
+        communicative_directness: number;
+        formality_default: number;
+        power_distance_sensitivity: number;
+        emotional_expressiveness: number;
+    };
+    /** Base patience level [0.0, 1.0] */
+    patience_level?: number;
+    /** Vocabulary focus domains */
+    vocabulary_focus?: string[];
 }
 
 /**
@@ -266,6 +285,72 @@ export function validatePersonaSchema(schema: Record<string, unknown>): Validati
         });
     }
 
+    // 8. Connection graph integrity — all connection targets must exist
+    const connections = extractLocationConnections(schema);
+    for (const [locId, connIds] of Object.entries(connections)) {
+        for (const connId of connIds) {
+            if (!locationIds.has(connId)) {
+                errors.push({
+                    path: `locations.${locId}.connections`,
+                    code: 'INVALID_CONNECTION_TARGET',
+                    message: `Location "${locId}" has connection to "${connId}" which does not exist`,
+                    suggestion: `Add location "${connId}" or remove the connection`,
+                });
+            }
+        }
+    }
+
+    // 9. Time system schedule integrity — all NPC/location IDs must exist
+    const timeSchedule = getPath(schema, 'persona', 'environment', 'time_system', 'schedule') as unknown[] | undefined;
+    if (Array.isArray(timeSchedule)) {
+        for (const slot of timeSchedule) {
+            const npcAvail = getPath(slot as Record<string, unknown>, 'npc_availability') as Record<string, boolean> | undefined;
+            if (npcAvail) {
+                for (const npcId of Object.keys(npcAvail)) {
+                    if (!npcIds.has(npcId)) {
+                        warnings.push({
+                            path: 'time_system.schedule.npc_availability',
+                            code: 'UNKNOWN_NPC_IN_SCHEDULE',
+                            message: `Time schedule references NPC "${npcId}" not found in roster`,
+                        });
+                    }
+                }
+            }
+            const locAccess = getPath(slot as Record<string, unknown>, 'location_accessibility') as Record<string, boolean> | undefined;
+            if (locAccess) {
+                for (const locId of Object.keys(locAccess)) {
+                    if (!locationIds.has(locId)) {
+                        warnings.push({
+                            path: 'time_system.schedule.location_accessibility',
+                            code: 'UNKNOWN_LOCATION_IN_SCHEDULE',
+                            message: `Time schedule references location "${locId}" not found in locations`,
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    // 10. Big Five trait bounds — all values must be [0.0, 1.0]
+    const roster = getPath(schema, 'persona', 'environment', 'tier_2', 'npc_roster') as unknown[];
+    if (Array.isArray(roster)) {
+        for (const npc of roster) {
+            const bigFive = getPath(npc as Record<string, unknown>, 'big_five') as Record<string, number> | undefined;
+            if (bigFive) {
+                for (const [trait, value] of Object.entries(bigFive)) {
+                    if (typeof value === 'number' && (value < 0 || value > 1)) {
+                        errors.push({
+                            path: `npc_roster.${(npc as Record<string, unknown>).id}.big_five.${trait}`,
+                            code: 'TRAIT_OUT_OF_BOUNDS',
+                            message: `Big Five trait "${trait}" = ${value} is outside [0.0, 1.0]`,
+                            suggestion: `Set to a value between 0.0 and 1.0`,
+                        });
+                    }
+                }
+            }
+        }
+    }
+
     const schemaVersion = extractSchemaVersion(schema);
 
     return {
@@ -341,6 +426,26 @@ function extractLocationNpcReferences(schema: Record<string, unknown>): Record<s
         }
     }
     return refs;
+}
+
+/**
+ * Extract connection graph from locations.
+ * Returns a map of locationId → connected location IDs.
+ */
+function extractLocationConnections(schema: Record<string, unknown>): Record<string, string[]> {
+    const connections: Record<string, string[]> = {};
+    const locations = getPath(schema, 'persona', 'environment', 'tier_2', 'locations');
+    if (Array.isArray(locations)) {
+        for (const loc of locations) {
+            if (loc && typeof loc === 'object' && 'id' in loc && typeof loc.id === 'string') {
+                const conns = (loc as Record<string, unknown>).connections;
+                if (Array.isArray(conns)) {
+                    connections[loc.id] = conns.filter((c): c is string => typeof c === 'string');
+                }
+            }
+        }
+    }
+    return connections;
 }
 
 /**

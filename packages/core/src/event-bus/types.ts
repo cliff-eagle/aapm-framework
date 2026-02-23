@@ -45,6 +45,8 @@ export type AAPMModuleId =
     | 'collaboration'
     | 'runtime-customization'
     | 'world-engine'
+    | 'dialogue-engine'
+    | 'session-orchestrator'
     | 'multimodal-router'
     | 'curriculum-delivery-router';
 
