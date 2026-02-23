@@ -1,0 +1,322 @@
+# Hospitality Professional — Persona Schema
+# A hospitality worker learning English for international service roles
+
+persona:
+  id: "hospitality-professional"
+  name: "Hospitality Professional — International Service"
+  description: >
+    A hospitality worker (hotel receptionist, flight attendant, yacht crew)
+    who needs operational English for international guests. Must master
+    service-specific vocabulary, cultural sensitivity across guest
+    nationalities, crisis communication, and the delicate register of
+    "warm professionalism" — neither too casual nor too stiff.
+
+  learner_profile:
+    native_language: "es"
+    target_languages: ["en"]
+    proficiency_baseline: "B1"
+    domain: "hospitality-service"
+    objective: >
+      Develop fluent, confident English for front-of-house hospitality
+      roles across hotel reception, flight service, and maritime crew
+      contexts. Move from scripted phrases to natural, adaptive
+      communication that handles complaints, emergencies, and VIP
+      service with cultural intelligence.
+
+  vocabulary_matrix:
+    priority_domains:
+      - check-in-checkout        # reservation, key card, deposit, upgrade, late checkout
+      - room-service-amenities   # turndown, minibar, concierge, housekeeping, laundry
+      - flight-operations        # boarding, turbulence, overhead bin, duty-free, descent
+      - safety-emergency         # evacuation, life vest, muster station, medical emergency
+      - food-beverage-service    # dietary restrictions, sommelier, à la carte, tasting menu
+      - complaint-resolution     # inconvenience, compensation, escalate, resolve, apology
+      - yacht-maritime           # port, starboard, tender, anchorage, gangway, provisioning
+      - cultural-sensitivity     # guest preferences, religious observances, privacy, formality
+      - vip-luxury-service       # discretion, anticipatory service, private transfers, butler
+    cefr_annotations: true
+    excluded_generic:
+      - academic-english
+      - slang-informal
+
+  environment:
+    tier_1:
+      setting: "Staff break room and training sessions"
+      companion_context: >
+        The Companion is a senior crew member from the Philippines —
+        a veteran of luxury hospitality who learned English on the job.
+        Bilingual in the learner's L1. Warm, practical, full of
+        real-world tips and "war stories" from years of service.
+
+      example_interactions:
+        - context: "First shift nerves — learner worries about making mistakes"
+          companion_says: >
+            "Mira, yo también tenía miedo al principio. My first guest asked
+            for a 'wake-up call' and I brought them coffee! Haha. But listen —
+            the key phrase is 'How may I assist you?' Repeat it until it
+            feels natural. Not 'How can I help' — that's fine but 'assist'
+            sounds more premium. Los huéspedes notan la diferencia."
+          learner_opportunity: >
+            Low-pressure vocabulary building with humor. The Companion
+            introduces register-appropriate alternatives (assist vs help)
+            with L1 scaffolding.
+
+        - context: "After a difficult guest interaction in Tier 2"
+          companion_says: >
+            "Uff, ese huésped fue difícil. But you handled it! When they
+            said 'This is unacceptable' — that's their way of saying 'fix it
+            NOW'. The magic response is: 'I completely understand your
+            frustration. Let me resolve this for you immediately.' Say it
+            with me... The word 'immediately' — eso es lo que quieren oír."
+          learner_opportunity: >
+            Post-session debrief teaching complaint-response formulae.
+            The Companion explains the pragmatics — WHY certain phrases
+            work, not just what to say.
+
+        - context: "Preparing for flight service training"
+          companion_says: >
+            "Okay, el avión es diferente del hotel. Todo es más rápido.
+            No tienes tiempo para pensar. So we practice: 'Chicken or fish?'
+            'Would you like still or sparkling?' 'We're experiencing some
+            turbulence — please return to your seat and fasten your seatbelt.'
+            Repeat that last one — in an emergency, you CANNOT hesitate."
+          learner_opportunity: >
+            High-repetition drills for safety-critical phrases. The Companion
+            emphasizes that some hospitality English is memorized, not
+            improvised — building the automaticity needed for real service.
+
+    tier_2:
+      setting: "A luxury hotel, international flight, and private yacht"
+      locations:
+        - name: hotel-reception
+          description: "Front desk of a 5-star Mediterranean hotel"
+          npcs: [business-guest, honeymooners, elderly-couple, travel-agent-caller]
+          typical_tasks:
+            - check-in-guest-with-special-requests
+            - handle-room-upgrade-negotiation
+            - explain-local-attractions-and-dining
+            - manage-overbooking-situation
+        - name: hotel-concierge
+          description: "Concierge desk — restaurant reservations, tours, transportation"
+          npcs: [luxury-guest, family-with-children, solo-traveler]
+          typical_tasks:
+            - recommend-restaurants-matching-preferences
+            - arrange-private-transportation
+            - handle-lost-item-report
+            - coordinate-surprise-arrangement
+        - name: hotel-restaurant
+          description: "Fine dining restaurant within the hotel"
+          npcs: [food-critic, anniversary-couple, allergic-guest]
+          typical_tasks:
+            - present-menu-and-wine-pairings
+            - handle-dietary-restrictions
+            - manage-complaint-about-food-quality
+            - coordinate-surprise-dessert-presentation
+        - name: airplane-cabin
+          description: "Business class cabin on a transatlantic flight"
+          npcs: [nervous-flyer, demanding-businessman, unaccompanied-minor, sleeping-passenger]
+          typical_tasks:
+            - deliver-safety-briefing-clearly
+            - manage-in-flight-service
+            - calm-anxious-passenger-during-turbulence
+            - handle-medical-situation
+        - name: yacht-deck
+          description: "Crew service on a chartered superyacht in the Mediterranean"
+          npcs: [yacht-owner, owner-spouse, celebrity-guest, charter-broker]
+          typical_tasks:
+            - serve-breakfast-on-deck
+            - coordinate-water-sport-activities
+            - manage-guest-itinerary-preferences
+            - handle-seasickness-situation
+
+      npc_roster:
+        - role: business-guest
+          count: 1
+          register: efficient-professional
+          personality: "Time-pressured, expects instant service, speaks in short directives. Not rude — just busy."
+          vocabulary_focus: [check-in-checkout, vip-luxury-service]
+        - role: honeymooners
+          count: 2
+          register: warm-excited
+          personality: "Happy, chatty, want recommendations for romantic experiences. Easy but time-consuming."
+          vocabulary_focus: [room-service-amenities, cultural-sensitivity]
+        - role: elderly-couple
+          count: 2
+          register: gentle-patient
+          personality: "Speak slowly, may have hearing difficulties, very appreciative of personal attention."
+          vocabulary_focus: [room-service-amenities, complaint-resolution]
+        - role: food-critic
+          count: 1
+          register: formal-evaluative
+          personality: "Asks detailed questions about ingredients, preparation, and provenance. Tests knowledge."
+          vocabulary_focus: [food-beverage-service]
+        - role: allergic-guest
+          count: 1
+          register: anxious-precise
+          personality: "Has severe nut allergy. Needs 100% clear confirmation of ingredient safety. Life-or-death precision."
+          vocabulary_focus: [food-beverage-service, safety-emergency]
+        - role: nervous-flyer
+          count: 1
+          register: anxious-seeking-reassurance
+          personality: "White-knuckled during turbulence, asks repeatedly if everything is okay. Needs calming authority."
+          vocabulary_focus: [flight-operations, safety-emergency]
+        - role: demanding-businessman
+          count: 1
+          register: curt-entitled
+          personality: "Expects first-class treatment, complains about minor things, uses threatening language ('I'll speak to your manager')."
+          vocabulary_focus: [complaint-resolution, vip-luxury-service]
+        - role: yacht-owner
+          count: 1
+          register: casual-but-expectations
+          personality: "Relaxed demeanor but expects perfection. Addresses crew by first name but fires for incompetence."
+          vocabulary_focus: [yacht-maritime, vip-luxury-service, food-beverage-service]
+        - role: celebrity-guest
+          count: 1
+          register: guarded-private
+          personality: "Needs absolute discretion. Tests whether crew can be trusted with privacy. Minimal conversation."
+          vocabulary_focus: [vip-luxury-service, cultural-sensitivity]
+
+      example_interactions:
+        - context: "Hotel reception — business guest arrives late, tired, reservation issue"
+          npc_says: >
+            "I had a reservation under Thompson. Thomas Thompson. You
+            don't see it? I've been traveling for 14 hours. I need my room."
+          learner_opportunity: >
+            Manage a stressful check-in: verify reservation, acknowledge
+            frustration, offer solutions. Must use professional register
+            without sounding robotic. Key phrase: "I sincerely apologize
+            for the inconvenience, Mr. Thompson. Let me look into this
+            right away."
+          friction_potential: >
+            If learner uses informal language ('No worries, let me check'),
+            the business guest registers dissatisfaction — calibrated social
+            friction proportional to register violation.
+
+        - context: "Flight — turbulence hits during meal service"
+          npc_says: >
+            "[Nervous flyer grabs learner's arm] Oh my god, is this normal?
+            Are we going to be okay? Should I be worried?"
+          learner_opportunity: >
+            Calm a frightened passenger while maintaining authority.
+            Must project confidence ("This is perfectly normal, ma'am.
+            We experience this kind of turbulence regularly. You're
+            completely safe.") and simultaneously secure cabin safety.
+          friction_potential: >
+            Hesitation or filler words ('umm... I think we're fine?')
+            increases the passenger's anxiety — communicative consequence
+            is immediately visible.
+
+        - context: "Yacht — owner asks about anchorage options for tomorrow"
+          npc_says: >
+            "We're thinking about Capri tomorrow, or maybe Positano.
+            What do you think? What's the water like this time of year?
+            And can you have the tender ready by 9? Oh — and my wife
+            wants that granita she had last time."
+          learner_opportunity: >
+            Multi-request handling — must process 4 implicit tasks
+            (recommend anchorage, assess conditions, prepare tender,
+            source granita). Uses maritime vocabulary ('tender', 'anchorage')
+            and demonstrates anticipatory service.
+
+      cultural_parameters:
+        greeting_norms: "Warm but professional. 'Good morning/afternoon/evening, [title + surname].' First names only if guest requests."
+        formality_level: "Always default to formal. Only casualize if guest explicitly signals."
+        taboo_topics:
+          - personal-opinions
+          - politics-or-religion
+          - commenting-on-guest-appearance
+          - discussing-other-guests
+
+    tier_3:
+      scenarios:
+        - type: vip-complaint-escalation
+          description: >
+            A VIP guest (frequent visitor, $10,000/night suite) is furious
+            about a noise complaint that was not addressed. They demand
+            to speak to the manager — but the manager is unavailable and
+            the learner must resolve the situation alone. Must offer
+            compensation, maintain dignity, and prevent the guest from
+            leaving a negative review — all while following hotel policy.
+          authority: vip-guest
+          stakes: reputation-and-revenue
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: in-flight-medical-emergency
+          description: >
+            A passenger collapses mid-flight. The learner must make a
+            PA announcement asking for medical professionals, coordinate
+            with the cockpit, manage surrounding passengers, communicate
+            with a doctor who comes forward, and prepare for possible
+            diversion — all in clear, calm, authoritative English.
+          authority: captain-via-intercom
+          stakes: passenger-safety
+          evaluation_weight:
+            linguistic_accuracy: 0.30
+            pragmatic_appropriateness: 0.20
+            register_alignment: 0.20
+            cultural_intelligence: 0.30
+
+        - type: yacht-charter-crisis
+          description: >
+            The charter broker calls to inform that the yacht owner's
+            business partner (arriving tomorrow) has specific requirements
+            the crew hasn't prepared for — halal food, a private prayer
+            space, and no alcohol in common areas during their stay.
+            The learner must negotiate with the owner about modifying
+            the yacht's service protocol, explain the requirements
+            diplomatically, and coordinate with the galley — all while
+            respecting both parties' cultural sensitivities.
+          authority: yacht-owner
+          stakes: charter-contract
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.35
+            register_alignment: 0.15
+            cultural_intelligence: 0.35
+
+  companion:
+    personality: >
+      A veteran hospitality professional from Manila who has worked
+      hotels in Dubai, cruise ships in the Caribbean, and private yachts
+      in the Med. Speaks English, Spanish, and Tagalog. Grounded,
+      practical, with a gift for reading people. Has infinite patience
+      and a repertoire of real stories: the time a guest demanded a
+      helicopter at 3am, the wedding proposal that went wrong, the
+      emergency landing that went right. Teaching style: "The words
+      are easy — it's the timing and the tone that make hospitality."
+    shared_interests:
+      - travel-and-destinations
+      - service-excellence-philosophy
+      - multi-cultural-guest-stories
+      - career-advancement-in-hospitality
+    cultural_bridge: >
+      Explains the unwritten rules of luxury service — why Americans
+      want to be called by first name but British guests prefer titles,
+      why Middle Eastern guests value privacy differently, why Japanese
+      guests rarely complain directly. Teaches the learner to "read the
+      room" across cultures, which is the highest-level hospitality skill.
+
+  retention_profile:
+    default_style: "professional-urgency"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Service tip of the day or guest scenario quiz"
+      - type: npc-message
+        sender: business-guest
+        frequency: twice-weekly
+        trigger: "Follow-up request or new booking"
+      - type: scenario-drill
+        sender: system
+        frequency: weekly
+        trigger: "Emergency drill (fire, medical, security) — timed response"
+
+  evaluation:
+    tier_2_success: "Handle 3 consecutive guest interactions across hotel, flight, and yacht with register accuracy > 80%"
+    tier_3_success: "Resolve the VIP complaint escalation without management intervention or guest departure"
+    primary_metric: "service-fluency-score"

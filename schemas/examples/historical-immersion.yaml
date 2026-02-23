@@ -1,0 +1,289 @@
+# Historical Immersion — Persona Schema
+# A history enthusiast learning language through past civilizations and living history
+
+persona:
+  id: "historical-immersion"
+  name: "Historical Immersion — Ancient Rome"
+  description: >
+    A history-obsessed adult who wants to learn Italian by living through
+    reconstructed historical periods. Instead of modern cafe conversations,
+    the learner navigates ancient Roman markets, Renaissance courts, and
+    WWII-era villages. The language evolves with each era — from Latin-inflected
+    archaic Italian to modern standard. Historical accuracy drives engagement.
+
+  learner_profile:
+    native_language: "en"
+    target_languages: ["it"]
+    proficiency_baseline: "A2"
+    domain: "historical-immersion"
+    objective: >
+      Acquire Italian through historically contextualized scenarios that
+      combine language learning with deep cultural immersion. Progress
+      through eras — each teaching different registers, vocabulary domains,
+      and cultural norms while building toward modern conversational fluency.
+
+  vocabulary_matrix:
+    priority_domains:
+      - ancient-daily-life       # mercato, forno, oliva, vino, toga, denarius
+      - architecture-monuments   # colonna, arco, tempio, basilica, cupola, affresco
+      - food-history             # garum, pane, formaggio, polenta, banchetto
+      - renaissance-art          # bottega, maestro, apprendista, committente, pigmento
+      - politics-power           # senato, console, doge, signoria, papa, imperatore
+      - religion-spirituality    # chiesa, messa, confessione, pellegrino, reliquia
+      - warfare-conflict         # legione, scudo, partigiano, resistenza, armistizio
+      - modern-italian           # daily conversation, directions, shopping, social
+    cefr_annotations: true
+    excluded_generic:
+      - business-italian
+      - tech-startup-italian
+
+  environment:
+    tier_1:
+      setting: "A time-travel research station"
+      companion_context: >
+        The Companion is a fellow time-travel researcher — a bilingual
+        Italian historian from Bologna who guides the learner through
+        each era, explaining both the language and the historical context.
+
+      example_interactions:
+        - context: "First day at the station, preparing for Ancient Rome trip"
+          companion_says: >
+            "Allora, domani andiamo a Roma... ma non la Roma che conosci! 44 BC.
+            Cesare è ancora vivo. Ready? Devi sapere alcune parole base —
+            'salve' per salutare, 'quanti denarii?' per il mercato..."
+          learner_opportunity: >
+            Learn basic greetings and market vocabulary with L1 scaffolding.
+            The Companion code-switches freely, building confidence before
+            immersion.
+
+        - context: "After returning from a tough Tier 2 session in the Forum"
+          companion_says: >
+            "Eh, il senatore era un po' arrogante, no? Ma hai fatto bene!
+            Quando hai detto 'il prezzo è troppo alto' — perfetto! Solo...
+            con un senatore devi usare 'Voi' non 'tu'. Come in inglese —
+            you wouldn't say 'hey dude' to a senator!"
+          learner_opportunity: >
+            Post-session debrief where the Companion explains register
+            violations in culturally grounded terms the learner understands.
+
+        - context: "Preparing for a Renaissance era mission"
+          companion_says: >
+            "Il Rinascimento è diverso — la lingua è più formale. I Medici
+            parlano come... come i politici oggi, ma con più poesia.
+            Ti insegno tre modi per dire la stessa cosa: basic, come parlano
+            al mercato... native, come parlano tra amici... e formal,
+            come devi parlare con Lorenzo il Magnifico."
+          learner_opportunity: >
+            Tri-Refraction preview — the Companion introduces how to adjust
+            register across social contexts before entering the simulation.
+
+    tier_2:
+      setting: "Historically reconstructed Italian environments across eras"
+      locations:
+        - name: roman-market
+          description: "The Forum Boarium — Rome's ancient livestock and goods market, 44 BC"
+          npcs: [merchant, fishmonger, bread-seller]
+          typical_tasks:
+            - negotiate-prices-for-supplies
+            - ask-merchant-about-product-origins
+            - navigate-a-crowded-market-in-italian
+        - name: roman-tavern
+          description: "A thermopolium (Roman fast-food counter) near the Colosseum"
+          npcs: [tavern-keeper, fellow-diner, off-duty-soldier]
+          typical_tasks:
+            - order-food-and-wine
+            - make-small-talk-with-strangers
+            - hear-and-retell-gossip
+        - name: renaissance-bottega
+          description: "A Renaissance art workshop in Florence, 1490"
+          npcs: [master-painter, fellow-apprentice, merchant-patron]
+          typical_tasks:
+            - follow-instructions-for-mixing-pigments
+            - discuss-commission-details-with-patron
+            - debate-artistic-technique-with-peer
+        - name: medici-garden
+          description: "The Palazzo Medici gardens during a gathering of intellectuals"
+          npcs: [philosopher, poet, noblewoman]
+          typical_tasks:
+            - participate-in-philosophical-discussion
+            - recite-or-discuss-poetry
+            - use-formal-courtly-register
+        - name: wartime-village
+          description: "A Tuscan village during WWII, 1943 — under German occupation"
+          npcs: [village-elder, partisan-contact, displaced-family]
+          typical_tasks:
+            - communicate-urgently-under-pressure
+            - use-coded-language-and-euphemisms
+            - provide-comfort-and-solidarity
+
+      npc_roster:
+        - role: merchant
+          count: 1
+          register: casual-transactional
+          personality: "Shrewd, fast-talking, uses regional expressions. Will haggle aggressively."
+          vocabulary_focus: [ancient-daily-life, food-history]
+        - role: tavern-keeper
+          count: 1
+          register: informal-jovial
+          personality: "Loud, welcoming, loves to gossip. Speaks in simple but rapid Italian."
+          vocabulary_focus: [food-history, ancient-daily-life]
+        - role: off-duty-soldier
+          count: 1
+          register: casual-masculine
+          personality: "Boastful, rough speech, tells war stories. Uses military slang."
+          vocabulary_focus: [warfare-conflict, ancient-daily-life]
+        - role: master-painter
+          count: 1
+          register: formal-pedagogical
+          personality: "Demanding perfectionist. Expects precision in language as in art."
+          vocabulary_focus: [renaissance-art, architecture-monuments]
+        - role: fellow-apprentice
+          count: 1
+          register: casual-peer
+          personality: "Friendly rival. Helpful but competitive. Uses workshop jargon."
+          vocabulary_focus: [renaissance-art]
+        - role: philosopher
+          count: 1
+          register: formal-intellectual
+          personality: "Socratic questioner. Forces the learner to articulate complex ideas in Italian."
+          vocabulary_focus: [politics-power, religion-spirituality]
+        - role: village-elder
+          count: 1
+          register: dialect-informal
+          personality: "Suspicious of strangers but protective of community. Speaks Tuscan dialect."
+          vocabulary_focus: [warfare-conflict, modern-italian]
+        - role: partisan-contact
+          count: 1
+          register: urgent-coded
+          personality: "Terse, uses euphemisms, tests trustworthiness through linguistic cues."
+          vocabulary_focus: [warfare-conflict]
+
+      example_interactions:
+        - context: "Roman market — buying olives from a merchant"
+          npc_says: >
+            "Salve! Olive? Le migliori di tutta Roma! Per te, amico,
+            dieci denarii al chilo. Ma se compri due chili..."
+          learner_opportunity: >
+            Negotiate price, use numbers and quantity expressions, experience
+            transactional Italian in a low-stakes social context.
+          friction_potential: >
+            If learner hesitates too long, the merchant loses interest and
+            turns to the next customer — social friction via lost opportunity.
+
+        - context: "Renaissance bottega — master painter corrects technique"
+          npc_says: >
+            "No! Il blu — l'oltremare — costa più dell'oro! Non sprecarlo così.
+            Guarda come faccio io. Lentamente. Capisci la differenza?"
+          learner_opportunity: >
+            Follow technical instructions under pressure, use
+            comprehension-check vocabulary, practice obedience register
+            (accepting correction from authority).
+          friction_potential: >
+            Using informal register ('sì sì ok') with the master triggers
+            social friction — he expects 'Sì, Maestro. Ho capito.'
+
+        - context: "WWII village — partisan contact tests trust"
+          npc_says: >
+            "Chi ti ha mandato? ... Sì, conosco quel nome. Ascolta bene,
+            non ripeto. Stasera, alle dieci, al ponte vecchio. Porta solo
+            quello che puoi portare. Nient'altro. Capito?"
+          learner_opportunity: >
+            Comprehension under pressure. Must demonstrate understanding
+            of rapid, coded instructions without asking for repetition
+            (which would signal untrustworthiness).
+
+      cultural_parameters:
+        greeting_norms: "Era-specific: 'Salve' (Roman), bow+formal address (Renaissance), nod+handshake (WWII)"
+        formality_level: "Highly variable by era and social rank"
+        taboo_topics:
+          - criticizing-the-emperor (Roman era)
+          - insulting-the-patron (Renaissance)
+          - revealing-partisan-connections (WWII)
+
+    tier_3:
+      scenarios:
+        - type: senate-address
+          description: >
+            The learner must present a petition to a Roman senator,
+            arguing for reduced taxes on imported grain. Must use
+            formal oratorical register, construct logical arguments
+            in Italian, and navigate the senator's adversarial
+            questioning without losing composure.
+          authority: senator
+          stakes: civic-petition
+          evaluation_weight:
+            linguistic_accuracy: 0.25
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.30
+            cultural_intelligence: 0.20
+
+        - type: medici-commission
+          description: >
+            Lorenzo de' Medici is considering commissioning a work of art.
+            The learner, as a workshop representative, must pitch the
+            master's capabilities, negotiate terms, and respond to
+            Lorenzo's probing questions about artistic philosophy —
+            all in formal Renaissance Italian.
+          authority: lorenzo-de-medici
+          stakes: workshop-livelihood
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: partisan-interrogation
+          description: >
+            A German officer (speaking Italian) interrogates the learner
+            about suspected partisan activity in the village. Must
+            maintain composure, provide convincing answers, and protect
+            the network — all while the officer tests for linguistic
+            tells (hesitation, inconsistency, code words).
+          authority: german-officer
+          stakes: community-safety
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.20
+            cultural_intelligence: 0.35
+
+  companion:
+    personality: >
+      A passionate Italian history professor from Rome who treats every
+      era like a beloved friend. Switches effortlessly between modern
+      Italian and historical context. Has a contagious enthusiasm that
+      makes even mundane vocabulary feel like unlocking a secret code.
+      Uses historical anecdotes to explain grammar ("The Romans didn't
+      have articles — ecco perché Latin influence makes Italian articles
+      tricky for anglophones!").
+    shared_interests:
+      - roman-history-and-archaeology
+      - renaissance-art-and-architecture
+      - italian-cuisine-through-the-ages
+      - world-war-ii-resistance-history
+    cultural_bridge: >
+      Connects historical language to modern usage — shows how Roman
+      market slang evolved into modern idioms, how Renaissance courtesy
+      influenced formal Italian, and how WWII resistance language
+      created new slang still used today.
+
+  retention_profile:
+    default_style: "intrinsic-mastery"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Historical fact connecting today's Italian to a past era"
+      - type: scenario-unlock
+        sender: system
+        frequency: weekly
+        trigger: "New historical era or location becomes available"
+      - type: npc-message
+        sender: fellow-apprentice
+        frequency: twice-weekly
+        trigger: "Workshop gossip or art technique challenge"
+
+  evaluation:
+    tier_2_success: "Complete multi-turn transactions in era-appropriate register across 3 historical periods"
+    tier_3_success: "Successfully navigate the Medici commission negotiation with register accuracy > 75%"
+    primary_metric: "era-versatility-score"
