@@ -111,7 +111,8 @@ export interface NPCDefinition {
     id: string;
     name: string;
     role: string;
-    tier: 1 | 2 | 3;
+    /** Primary tier — 2 or 3 only; companion (Tier 1) is separate */
+    tier: 2 | 3;
     personality: string;
     defaultRegister: string;
     locationIds: string[];
@@ -119,10 +120,14 @@ export interface NPCDefinition {
 
 /**
  * Location definition from the schema.
+ *
+ * Note: `tier` is inferred from the location's position in the schema
+ * (under `environment.tier_2.locations`) rather than an explicit field.
  */
 export interface LocationDefinition {
     id: string;
     name: string;
+    /** Inferred from position in the schema structure */
     tier: 2 | 3;
     description: string;
     npcIds: string[];
@@ -272,37 +277,122 @@ export function validatePersonaSchema(schema: Record<string, unknown>): Validati
     };
 }
 
-// ─── Helper Functions (stubs) ────────────────────────────────
+// ─── Helper Functions ────────────────────────────────────────
 
+/**
+ * Safely access a nested path in an unknown object.
+ */
+function getPath(obj: unknown, ...keys: string[]): unknown {
+    let current: unknown = obj;
+    for (const key of keys) {
+        if (current == null || typeof current !== 'object') return undefined;
+        current = (current as Record<string, unknown>)[key];
+    }
+    return current;
+}
+
+/**
+ * Extract all NPC IDs from the persona schema's NPC roster.
+ */
 function extractNpcIds(schema: Record<string, unknown>): Set<string> {
-    // Implementation: traverse schema.npcs and collect all IDs
-    return new Set();
+    const ids = new Set<string>();
+    const roster = getPath(schema, 'persona', 'environment', 'tier_2', 'npc_roster');
+    if (Array.isArray(roster)) {
+        for (const npc of roster) {
+            if (npc && typeof npc === 'object' && 'id' in npc && typeof npc.id === 'string') {
+                ids.add(npc.id);
+            }
+        }
+    }
+    return ids;
 }
 
+/**
+ * Extract all location IDs from the persona schema.
+ */
 function extractLocationIds(schema: Record<string, unknown>): Set<string> {
-    return new Set();
+    const ids = new Set<string>();
+    const locations = getPath(schema, 'persona', 'environment', 'tier_2', 'locations');
+    if (Array.isArray(locations)) {
+        for (const loc of locations) {
+            if (loc && typeof loc === 'object' && 'id' in loc && typeof loc.id === 'string') {
+                ids.add(loc.id);
+            }
+        }
+    }
+    return ids;
 }
 
+/**
+ * Extract NPC references from each location.
+ * Returns a map of locationId → referenced NPC IDs.
+ */
 function extractLocationNpcReferences(schema: Record<string, unknown>): Record<string, string[]> {
-    return {};
+    const refs: Record<string, string[]> = {};
+    const locations = getPath(schema, 'persona', 'environment', 'tier_2', 'locations');
+    if (Array.isArray(locations)) {
+        for (const loc of locations) {
+            if (loc && typeof loc === 'object' && 'id' in loc && typeof loc.id === 'string') {
+                const npcIds = (loc as Record<string, unknown>).npc_ids;
+                if (Array.isArray(npcIds)) {
+                    refs[loc.id] = npcIds.filter((id): id is string => typeof id === 'string');
+                }
+            }
+        }
+    }
+    return refs;
 }
 
+/**
+ * Extract NPC references from each Tier 3 scenario.
+ * Returns a map of scenarioId → referenced NPC IDs.
+ */
 function extractScenarioNpcReferences(schema: Record<string, unknown>): Record<string, string[]> {
-    return {};
+    const refs: Record<string, string[]> = {};
+    const scenarios = getPath(schema, 'persona', 'environment', 'tier_3', 'scenarios');
+    if (Array.isArray(scenarios)) {
+        for (const s of scenarios) {
+            if (s && typeof s === 'object' && 'id' in s && typeof s.id === 'string') {
+                const npcId = (s as Record<string, unknown>).authority_npc_id;
+                if (typeof npcId === 'string') {
+                    refs[s.id] = [npcId];
+                }
+            }
+        }
+    }
+    return refs;
 }
 
+/**
+ * Count locations assigned to a specific tier.
+ */
 function countTierLocations(schema: Record<string, unknown>, tier: number): number {
+    if (tier === 2) {
+        const locations = getPath(schema, 'persona', 'environment', 'tier_2', 'locations');
+        return Array.isArray(locations) ? locations.length : 0;
+    }
     return 0;
 }
 
+/**
+ * Count Tier 3 scenarios.
+ */
 function countScenarios(schema: Record<string, unknown>): number {
-    return 0;
+    const scenarios = getPath(schema, 'persona', 'environment', 'tier_3', 'scenarios');
+    return Array.isArray(scenarios) ? scenarios.length : 0;
 }
 
+/**
+ * Count vocabulary domains in the vocabulary matrix.
+ */
 function countVocabularyDomains(schema: Record<string, unknown>): number {
-    return 0;
+    const domains = getPath(schema, 'persona', 'vocabulary_matrix', 'domains');
+    return Array.isArray(domains) ? domains.length : 0;
 }
 
+/**
+ * Extract the schema version string.
+ */
 function extractSchemaVersion(schema: Record<string, unknown>): string {
     return (schema as { schema_version?: string }).schema_version || '1.0.0';
 }

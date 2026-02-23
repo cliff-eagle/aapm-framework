@@ -164,6 +164,55 @@ export function calculateForwardInjectionHitRate(
     return successful / total;
 }
 
+/**
+ * Calculate Social Reputation Trajectory for a session.
+ *
+ * SRT = mean(reputationDeltas)
+ *
+ * Measures the net direction of the learner's social relationships.
+ * Positive SRT indicates the learner is building social capital through
+ * appropriate communicative behavior. Negative SRT indicates social
+ * friction events and register violations are damaging relationships.
+ *
+ * @param session - Session record containing reputation deltas
+ * @returns SRT as a value between -1.0 and 1.0, or null if no Tier 2 activity
+ */
+export function calculateSocialReputationTrajectory(session: SessionRecord): number | null {
+    const deltas = session.reputationDeltas;
+
+    if (deltas.length === 0) return null;
+
+    const totalDelta = deltas.reduce((sum, d) => sum + d.delta, 0);
+    return Math.max(-1, Math.min(1, totalDelta / deltas.length));
+}
+
+/**
+ * Calculate Negotiation Success Rate for a session.
+ *
+ * NSR = successfulNegotiations / totalNegotiations
+ *
+ * A Tier 3 negotiation is "successful" when the learner achieves their
+ * communicative objective (e.g., gets the contract terms they wanted,
+ * answers press questions satisfactorily). Partial success counts as 0.5.
+ *
+ * This metric captures the ultimate goal of the AAPM: functional
+ * communicative competence under real-world pressure.
+ *
+ * @param session - Session record containing Tier 3 conversations
+ * @returns NSR between 0.0 and 1.0, or null if no Tier 3 activity
+ */
+export function calculateNegotiationSuccessRate(session: SessionRecord): number | null {
+    const tier3Conversations = session.conversations.filter(c => c.tier === 3);
+
+    if (tier3Conversations.length === 0) return null;
+
+    const successful = tier3Conversations.filter(
+        c => c.outcome === 'completed-successfully',
+    ).length;
+
+    return successful / tier3Conversations.length;
+}
+
 // ─── Report Generation ───────────────────────────────────────
 
 /**

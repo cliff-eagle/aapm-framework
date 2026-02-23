@@ -46,6 +46,10 @@ A persistent, bilingual AI agent whose primary function is Affective Filter redu
 
 A probabilistic score modeling the likelihood that a native speaker would understand the learner's production without difficulty. Distinct from phonemic accuracy — good comprehensibility can coexist with accent; poor comprehensibility can occur despite few phonemic errors (due to prosodic issues).
 
+### Code-Switch Reduction Rate (CSRR)
+
+A quantitative metric measuring the learner's progress toward L2 independence. Formula: `CSRR = 1 - (currentL1Ratio / baselineL1Ratio)`. A value of 0.5 means the learner uses half as much L1 as at baseline. Primary progress indicator for Tier 1.
+
 ---
 
 ## D
@@ -74,9 +78,17 @@ The systematic divergence between measured linguistic competence (test scores) a
 
 The process by which micro-curriculum learning targets are embedded into the next simulation session. NPCs are programmatically "briefed" to create natural communicative opportunities for target material. The learner doesn't know this is happening.
 
+### Forward Injection Hit Rate (FIHR)
+
+A system effectiveness metric. Formula: `FIHR = successfulInjections / totalInjections`. An injection is "successful" when the NPC created a natural opportunity AND the learner used the target form. Measures whether the Macro-Loop's output actually reaches the learner.
+
 ### Friction Point
 
 Any moment of communicative difficulty during an interaction: hesitations, topic abandonment, L1 intrusions, grammar errors, pronunciation failures, register mismatches, pragmatic failures.
+
+### Friction Point Recurrence Rate (FPRR)
+
+A learning progress metric. Formula: `FPRR = recurringFriction / totalFriction`. A friction point is "recurring" if the same target form was identified in a previous session. Decreasing FPRR indicates the feedback loop is successfully resolving patterns.
 
 ---
 
@@ -117,6 +129,10 @@ The real-time feedback loop operating within a conversation. Monitors interlangu
 ---
 
 ## N
+
+### Negotiation Success Rate (NSR)
+
+The Tier 3 outcome metric. Formula: `NSR = successfulNegotiations / totalNegotiations`. A negotiation is "successful" when the learner achieves their communicative objective under real-world pressure (e.g., contract terms, press conference, dispute resolution).
 
 ### NPC (Non-Player Character)
 
@@ -170,6 +186,10 @@ Three simultaneous alternative formulations of a learner's intended message: BAS
 
 The level of formality/informality in language use, calibrated to social context, relationship dynamics, and cultural norms. Register accuracy is evaluated in Tier 2 and Tier 3.
 
+### Register Accuracy Score (RAS)
+
+The Tier 3 primary metric. Formula: `RAS = registerAppropriateTurns / totalTurns`. Each learner turn is classified by the LLM register classifier as appropriate or inappropriate for the current social context. Target: 85%+ for Tier 3 readiness.
+
 ### Retention Profile
 
 See Axis Z — Psychological Retention.
@@ -186,6 +206,10 @@ A Tier 2 failure mode: a consequence of communicative breakdown that persists an
 
 A persistent, multi-dimensional scoring model tracking the learner's social standing within simulated environments. Not a gamification score — an invisible, NPC-internal metric governing responsiveness, warmth, and willingness to help.
 
+### Social Reputation Trajectory (SRT)
+
+A Tier 2 social competence metric. Formula: `SRT = mean(reputationDeltas)`. Measures the net direction of the learner's social relationships. Positive SRT indicates the learner is building social capital through appropriate communicative behavior.
+
 ---
 
 ## T
@@ -193,6 +217,10 @@ A persistent, multi-dimensional scoring model tracking the learner's social stan
 ### Three-Tier Hierarchy
 
 Tier 1 (Companion) → Tier 2 (Immersion) → Tier 3 (Negotiation). Each tier is a qualitatively distinct social environment, not merely a difficulty level.
+
+### Task Completion Rate (TCR)
+
+The Tier 2 primary metric. Formula: `TCR = completedTasks / attemptedTasks`. A "task" is a communicative objective (e.g., ordering food, giving directions). A task is "completed" if the learner achieved the communicative goal, regardless of linguistic accuracy.
 
 ---
 

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- 2 missing metric calculations (`socialReputationTrajectory`, `negotiationSuccessRate`)
+- 7 validator helper stubs implemented with real schema traversal
+- `NPCDefinition.tier` corrected to `2 | 3` (companion is separate)
+- README broken links to non-existent files
+- Glossary expanded with 7 evaluation metric terms
+- CHANGELOG updated for Phase E
+
+### Added
+
+- Barrel exports (`index.ts`) for all 8 core modules
+- `recipes/new-tier2-environment.md` build guide
+- ADR cross-reference sections
+
+## [0.2.0] — 2025-02-23
+
 ### Added
 
 - Patent-critical data models with JSDoc across all core modules
@@ -58,5 +75,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `README.md` with project overview and architecture diagram
 - `package.json` with monorepo workspace configuration
 
-[Unreleased]: https://github.com/cliff-eagle/aapm-framework/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/cliff-eagle/aapm-framework/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/cliff-eagle/aapm-framework/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/cliff-eagle/aapm-framework/releases/tag/v0.1.0

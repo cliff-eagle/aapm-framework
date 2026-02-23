@@ -98,7 +98,7 @@ Tier 3: THE NEGOTIATION    → High-stakes professional encounters with power dy
 │                                                  │
 ├─────────────────────────────────────────────────┤
 │     examples/ — Complete reference apps          │
-│     templates/ — Starter kits                    │
+│     recipes/ — Step-by-step build guides         │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -265,7 +265,7 @@ aapm-framework/
 │   └── evaluation/
 │       └── register-classifier.md         (NEW)
 ├── recipes/                            # Vibecoding step-by-step guides
-├── templates/                          # Starter app templates
+
 └── examples/                           # Complete reference apps
 ```
 
