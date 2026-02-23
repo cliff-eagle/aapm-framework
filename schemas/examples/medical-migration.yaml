@@ -1,0 +1,175 @@
+# Medical Migration — Persona Schema
+# A healthcare professional relocating to an English or German-speaking country
+
+persona:
+  id: "medical-migration"
+  name: "Medical Professional Migration"
+  description: >
+    A qualified physician, nurse, or specialist from a non-English speaking
+    country who is relocating to work in the UK, US, Germany, or similar
+    healthcare system. Must pass credential interviews, communicate with
+    patients and colleagues, and navigate clinical team dynamics in L2.
+
+  learner_profile:
+    native_language: "ar"
+    target_languages: ["en"]
+    proficiency_baseline: "B1"
+    domain: "healthcare-professional"
+    objective: >
+      Functional clinical communication — patient history-taking, team
+      handovers, multidisciplinary meetings, and credential/ethics interviews.
+      Must achieve OET (Occupational English Test) requirements.
+
+  vocabulary_matrix:
+    priority_domains:
+      - clinical-terminology        # diagnosis, prognosis, contraindication, differential
+      - patient-communication       # symptoms, pain scale, consent, reassurance
+      - team-handover               # SBAR format, critical values, escalation
+      - emergency-protocols          # resuscitation, triage, crash call, airway
+      - clinical-documentation       # discharge summary, referral letter, prescription
+      - workplace-social             # break room conversation, shift patterns, NHS culture
+    cefr_annotations: true
+    excluded_generic:
+      - leisure-vocabulary
+      - academic-literary
+
+  environment:
+    tier_2:
+      setting: "UK National Health Service hospital"
+      locations:
+        - name: ward
+          description: "General medical ward with patients, nurses, and junior doctors"
+          npcs: [patient, nurse, junior-doctor]
+          typical_tasks:
+            - take-patient-history
+            - explain-treatment-plan
+            - coordinate-with-nursing-staff
+        - name: emergency-department
+          description: "A&E reception and treatment areas"
+          npcs: [triage-nurse, patient, paramedic]
+          typical_tasks:
+            - triage-assessment
+            - rapid-history-in-emergency
+            - communicate-with-paramedic-handover
+        - name: clinical-meeting-room
+          description: "Where multidisciplinary team meetings occur"
+          npcs: [consultant, specialist, social-worker]
+          typical_tasks:
+            - present-patient-case
+            - discuss-differential-diagnosis
+            - coordinate-discharge-planning
+        - name: staff-room
+          description: "Break room for informal staff interaction"
+          npcs: [colleagues]
+          typical_tasks:
+            - casual-conversation
+            - discuss-shift-patterns
+            - navigate-workplace-culture
+
+      npc_roster:
+        - role: patient
+          count: 3
+          register: varied-colloquial
+          personality: "Range from cooperative to anxious to confused elderly. Various accents and education levels."
+          vocabulary_focus: [patient-communication]
+        - role: nurse
+          count: 2
+          register: professional-clinical
+          personality: "Experienced, efficient, uses clinical shorthand. Friendly but busy."
+          vocabulary_focus: [clinical-terminology, team-handover]
+        - role: consultant
+          count: 1
+          register: formal-academic-clinical
+          personality: "Senior, expects precise clinical language. Asks challenging questions."
+          vocabulary_focus: [clinical-terminology, clinical-documentation]
+        - role: junior-doctor
+          count: 1
+          register: informal-clinical
+          personality: "Peer-level, uses medical slang, helpful for navigating hospital culture."
+          vocabulary_focus: [workplace-social, clinical-terminology]
+
+      cultural_parameters:
+        greeting_norms: "First name basis with colleagues, title + surname with patients initially"
+        formality_level: "Clinical precision expected in professional contexts, casual in break room"
+        taboo_topics:
+          - commenting-on-patient-lifestyle-choices
+          - comparing-healthcare-systems-negatively
+          - discussing-patient-details-in-public-areas
+
+    tier_3:
+      scenarios:
+        - type: credential-interview
+          description: >
+            Interview with the medical licensing board to credential foreign
+            qualifications. Must demonstrate clinical knowledge, communication
+            skills, and understanding of local medical ethics and standards.
+          authority: licensing-panel
+          stakes: career-defining
+          evaluation_weight:
+            linguistic_accuracy: 0.30
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.25
+            cultural_intelligence: 0.20
+
+        - type: ethics-board
+          description: >
+            Present a clinical ethics case to the hospital ethics committee.
+            Involves a complex scenario with competing patient autonomy,
+            family wishes, and clinical judgment. Must argue position clearly.
+          authority: ethics-committee
+          stakes: professional-reputation
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.20
+            cultural_intelligence: 0.30
+
+        - type: mdt-case-presentation
+          description: >
+            Lead a multidisciplinary team meeting, presenting a complex
+            patient case to specialists from different departments.
+            Must synthesize information clearly and facilitate discussion.
+          authority: senior-consultant
+          stakes: clinical-credibility
+          evaluation_weight:
+            linguistic_accuracy: 0.30
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.25
+            cultural_intelligence: 0.20
+
+  companion:
+    personality: >
+      A bilingual (Arabic/English) doctor who successfully navigated the same
+      migration process five years ago. Warm, understanding of cultural
+      adjustment challenges. Shares practical tips on NHS culture, medical
+      English idioms, and UK workplace norms. Empathetic about imposter syndrome.
+    shared_interests:
+      - medicine-and-clinical-cases
+      - cultural-adjustment
+      - family-relocation-challenges
+      - professional-development
+    cultural_bridge: >
+      Explains NHS-specific culture — why consultants communicate differently
+      than in the home country's hierarchy, how to build trust with nursing
+      staff, why informal communication in break rooms matters for career.
+
+  retention_profile:
+    default_style: "professional-urgency"
+    async_triggers:
+      - type: scenario-reminder
+        sender: system
+        frequency: daily
+        trigger: "OET preparation checkpoint"
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Clinical term of the day with context"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Credential interview practice session"
+
+  evaluation:
+    tier_2_success: "80% successful patient interactions + accurate SBAR handovers across 10 sessions"
+    tier_3_success: "Credential interview passed with register score > 85% and clinical clarity > 90%"
+    primary_metric: "comprehensibility-score"

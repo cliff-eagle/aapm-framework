@@ -1,0 +1,186 @@
+# Premier League Footballer — Persona Schema
+# A Latin American footballer adjusting to life in English football
+
+persona:
+  id: "premier-league-footballer"
+  name: "Premier League Athlete"
+  description: >
+    A Latin American professional footballer who has transferred to an English
+    Premier League club. Needs to communicate with English-speaking teammates,
+    coaching staff, medical personnel, and media — while navigating the cultural
+    expectations of English professional football.
+
+  learner_profile:
+    native_language: "es"
+    target_languages: ["en"]
+    proficiency_baseline: "A2"
+    domain: "professional-sports"
+    objective: >
+      Full integration into English-speaking football environment — locker room
+      banter, tactical discussions, press conferences, and contract negotiations.
+
+  vocabulary_matrix:
+    priority_domains:
+      - football-tactics         # offside, counterattack, set piece, pressing, through ball
+      - training-communication   # warm-up, drill, reps, physio, recovery
+      - locker-room-social       # banter, slang, nicknames, humor patterns
+      - contract-law             # buyout clause, agent, transfer window, image rights
+      - media-communication      # press conference, soundbite, interview, no comment
+      - daily-life-uk            # driving, housing, weather small talk, pub culture
+    cefr_annotations: true
+    excluded_generic:
+      - academic-vocabulary
+      - literary-language
+
+  environment:
+    tier_2:
+      setting: "Premier League training ground complex and surrounding areas"
+      locations:
+        - name: training-pitch
+          description: "Main training facility where tactical sessions and drills occur"
+          npcs: [coach, teammates]
+          typical_tasks:
+            - understand-tactical-instructions
+            - communicate-with-partner-during-drills
+            - ask-for-clarification-on-set-pieces
+        - name: locker-room
+          description: "Team changing room — center of social bonding and banter"
+          npcs: [teammates]
+          typical_tasks:
+            - participate-in-banter
+            - discuss-last-match
+            - make-plans-with-teammates
+        - name: physio-room
+          description: "Medical and physiotherapy facility"
+          npcs: [physio, team-doctor]
+          typical_tasks:
+            - describe-injury-symptoms
+            - understand-recovery-plan
+            - schedule-treatment
+        - name: press-facility
+          description: "Media room for press conferences and interviews"
+          npcs: [journalists]
+          typical_tasks:
+            - answer-post-match-questions
+            - deliver-prepared-statements
+            - handle-difficult-questions
+        - name: team-cafeteria
+          description: "Staff and player dining area"
+          npcs: [teammates, staff]
+          typical_tasks:
+            - casual-conversation-over-meals
+            - discuss-weekend-plans
+            - navigate-dietary-requirements
+
+      npc_roster:
+        - role: teammate
+          count: 4
+          register: casual-athletic
+          personality: "Mix of supportive and teasing. Uses extensive slang and banter."
+          vocabulary_focus: [football-tactics, locker-room-social]
+        - role: coach
+          count: 1
+          register: authoritative-supportive
+          personality: "Direct, tactical-minded. Expects quick understanding. Patient but firm."
+          vocabulary_focus: [football-tactics, training-communication]
+        - role: physio
+          count: 1
+          register: clinical-friendly
+          personality: "Professional but warm. Uses medical terminology mixed with casual English."
+          vocabulary_focus: [training-communication, daily-life-uk]
+        - role: journalist
+          count: 2
+          register: professional-probing
+          personality: "One supportive club journalist, one aggressive tabloid reporter."
+          vocabulary_focus: [media-communication, football-tactics]
+        - role: staff
+          count: 1
+          register: casual-friendly
+          personality: "Kit manager or cafeteria staff. Chatty, local accent, good for small talk."
+          vocabulary_focus: [daily-life-uk, locker-room-social]
+
+      cultural_parameters:
+        greeting_norms: "Handshake or fist bump with teammates. 'Alright?' as greeting (doesn't require real answer)."
+        formality_level: "Very informal among players and staff. More formal with media."
+        taboo_topics:
+          - salary-comparisons
+          - transfer-rumors-about-present-teammates
+          - political-opinions-in-media
+
+    tier_3:
+      scenarios:
+        - type: contract-negotiation
+          description: >
+            Negotiate a contract extension or new terms with the club director.
+            Must advocate for image rights, release clause terms, and salary
+            while maintaining professional relationship.
+          authority: club-director
+          stakes: career-defining
+          evaluation_weight:
+            linguistic_accuracy: 0.2
+            pragmatic_appropriateness: 0.3
+            register_alignment: 0.3
+            cultural_intelligence: 0.2
+
+        - type: press-conference
+          description: >
+            Handle a hostile post-match press conference after a controversial
+            incident. Must provide measured responses, avoid inflammatory
+            statements, and protect team reputation.
+          authority: media-panel
+          stakes: public-reputation
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.35
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: disciplinary-hearing
+          description: >
+            FA disciplinary hearing for an on-pitch incident. Must present
+            a formal defense, respond to panel questions, and demonstrate
+            understanding of the rules in formal English.
+          authority: fa-panel
+          stakes: career-threatening
+          evaluation_weight:
+            linguistic_accuracy: 0.25
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.30
+            cultural_intelligence: 0.20
+
+  companion:
+    personality: >
+      A bilingual (Spanish/English) former player who went through the same
+      experience — transferred from South America to Europe. Warm, humorous,
+      encouraging. Shares personal stories of language struggles and victories.
+      Uses Mexican/Spanish humor to keep things light.
+    shared_interests:
+      - football-tactics
+      - life-abroad-adjustment
+      - latin-music-and-culture
+      - fitness-and-nutrition
+    cultural_bridge: >
+      Explains the unwritten rules of English football culture — why teammates
+      tease you (it's affection), why the coach communicates differently than
+      in South America, what British media expects from foreign players.
+
+  retention_profile:
+    default_style: "professional-urgency"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Check-in about upcoming training or match preparation"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Press conference simulation upcoming"
+      - type: npc-message
+        sender: teammate
+        frequency: twice-weekly
+        trigger: "Casual message about plans or banter"
+
+  evaluation:
+    tier_2_success: "80% task completion across 10 sessions in training ground environments"
+    tier_3_success: "Contract negotiation objective achieved with cumulative register score > 85%"
+    primary_metric: "comprehensibility-score"

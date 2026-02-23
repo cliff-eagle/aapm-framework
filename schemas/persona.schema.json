@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aapm-framework.dev/schemas/persona.schema.json",
+  "title": "AAPM Persona Schema",
+  "description": "Defines a complete domain-specific deployment for the Autonomous Adaptive Pedagogical Matrix",
+  "type": "object",
+  "required": ["persona"],
+  "properties": {
+    "persona": {
+      "type": "object",
+      "required": ["id", "name", "learner_profile", "environment", "evaluation"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique kebab-case identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable persona name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the domain and target learner"
+        },
+        "learner_profile": {
+          "type": "object",
+          "required": ["native_language", "target_languages", "proficiency_baseline", "domain", "objective"],
+          "properties": {
+            "native_language": {
+              "type": "string",
+              "description": "ISO 639-1 language code"
+            },
+            "target_languages": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 1,
+              "description": "Target languages (ISO 639-1 codes)"
+            },
+            "proficiency_baseline": {
+              "type": "string",
+              "enum": ["A1", "A2", "B1", "B2", "C1", "C2"],
+              "description": "Starting CEFR proficiency level"
+            },
+            "domain": {
+              "type": "string",
+              "description": "Professional or lifestyle domain"
+            },
+            "objective": {
+              "type": "string",
+              "description": "What fluency means for this learner"
+            }
+          }
+        },
+        "vocabulary_matrix": {
+          "type": "object",
+          "properties": {
+            "priority_domains": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Domain-specific vocabulary categories, ordered by priority"
+            },
+            "cefr_annotations": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether vocabulary items include CEFR level annotations"
+            },
+            "excluded_generic": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Generic vocabulary categories to deprioritize"
+            }
+          }
+        },
+        "environment": {
+          "type": "object",
+          "required": ["tier_2", "tier_3"],
+          "properties": {
+            "tier_2": {
+              "type": "object",
+              "required": ["setting", "locations"],
+              "properties": {
+                "setting": {
+                  "type": "string",
+                  "description": "Description of the Tier 2 world"
+                },
+                "locations": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      { "type": "string" },
+                      {
+                        "type": "object",
+                        "required": ["name"],
+                        "properties": {
+                          "name": { "type": "string" },
+                          "description": { "type": "string" },
+                          "npcs": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          },
+                          "typical_tasks": {
+                            "type": "array",
+                            "items": { "type": "string" }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "minItems": 1
+                },
+                "npc_roster": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["role", "register"],
+                    "properties": {
+                      "role": { "type": "string" },
+                      "count": { "type": "integer", "minimum": 1, "default": 1 },
+                      "register": { "type": "string" },
+                      "personality": { "type": "string" },
+                      "vocabulary_focus": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    }
+                  }
+                },
+                "cultural_parameters": {
+                  "type": "object",
+                  "properties": {
+                    "greeting_norms": { "type": "string" },
+                    "formality_level": { "type": "string" },
+                    "taboo_topics": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "tier_3": {
+              "type": "object",
+              "required": ["scenarios"],
+              "properties": {
+                "scenarios": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["type", "authority", "stakes"],
+                    "properties": {
+                      "type": { "type": "string" },
+                      "description": { "type": "string" },
+                      "authority": { "type": "string" },
+                      "stakes": { "type": "string" },
+                      "evaluation_weight": {
+                        "type": "object",
+                        "properties": {
+                          "linguistic_accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+                          "pragmatic_appropriateness": { "type": "number", "minimum": 0, "maximum": 1 },
+                          "register_alignment": { "type": "number", "minimum": 0, "maximum": 1 },
+                          "cultural_intelligence": { "type": "number", "minimum": 0, "maximum": 1 }
+                        }
+                      }
+                    }
+                  },
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        },
+        "companion": {
+          "type": "object",
+          "properties": {
+            "personality": { "type": "string" },
+            "shared_interests": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "cultural_bridge": { "type": "string" }
+          }
+        },
+        "retention_profile": {
+          "type": "object",
+          "properties": {
+            "default_style": {
+              "type": "string",
+              "enum": [
+                "gamified-coercion",
+                "organic-social",
+                "professional-urgency",
+                "intrinsic-mastery",
+                "social-accountability"
+              ]
+            },
+            "async_triggers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["type"],
+                "properties": {
+                  "type": { "type": "string" },
+                  "sender": { "type": "string" },
+                  "frequency": { "type": "string" },
+                  "trigger": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "evaluation": {
+          "type": "object",
+          "required": ["tier_2_success", "tier_3_success", "primary_metric"],
+          "properties": {
+            "tier_2_success": { "type": "string" },
+            "tier_3_success": { "type": "string" },
+            "primary_metric": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

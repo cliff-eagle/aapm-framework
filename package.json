@@ -1,0 +1,26 @@
+{
+    "name": "aapm-framework",
+    "version": "0.1.0",
+    "description": "The Autonomous Adaptive Pedagogical Matrix — A meta-framework for vibecoding infinite custom edtech lifesim solutions",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "validate-schema": "node packages/cli/src/validate-schema.js"
+    },
+    "keywords": [
+        "aapm",
+        "language-learning",
+        "edtech",
+        "lifesim",
+        "ai-education",
+        "sla",
+        "persona-schema"
+    ],
+    "author": "",
+    "license": "MIT"
+}

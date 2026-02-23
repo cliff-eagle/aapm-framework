@@ -1,0 +1,195 @@
+# Mediterranean Yachting — Persona Schema
+# A multilingual service professional in the Mediterranean maritime industry
+
+persona:
+  id: "mediterranean-yacht"
+  name: "Mediterranean Yachting Professional"
+  description: >
+    A yacht crew member (steward/ess, deckhand, or chef) working on superyachts
+    in the Mediterranean. Must navigate multiple languages across ports in France,
+    Italy, Spain, Greece, and Turkey — while managing high-net-worth guests and
+    complex provisioning logistics.
+
+  learner_profile:
+    native_language: "en"
+    target_languages: ["fr", "it", "es", "el", "tr"]
+    proficiency_baseline: "A1"
+    domain: "maritime-hospitality"
+    objective: >
+      Functional multilingual communication across Mediterranean ports — provisioning,
+      port authority interactions, guest service in multiple languages, and conflict
+      resolution with yacht owners.
+
+  vocabulary_matrix:
+    priority_domains:
+      - maritime-terminology       # bow, stern, tender, anchor, berth, fender
+      - provisioning-shopping      # market haggling, quality, freshness, quantities
+      - guest-service              # dining service, excursion planning, preferences
+      - port-authority             # customs, immigration, documentation, fees
+      - emergency-safety           # man overboard, fire, medical emergency, mayday
+      - social-crew-life           # crew quarters, shifts, shore leave, tips
+    cefr_annotations: true
+    excluded_generic:
+      - academic-vocabulary
+      - political-language
+
+  environment:
+    tier_2:
+      setting: "Mediterranean marina and port town"
+      locations:
+        - name: marina-dock
+          description: "Superyacht berth — interactions with harbor master and neighboring crews"
+          npcs: [harbor-master, neighboring-crew]
+          typical_tasks:
+            - check-in-with-harbor-master
+            - request-berth-services
+            - coordinate-with-other-vessels
+        - name: provisions-market
+          description: "Local market for fresh provisions — fish, produce, specialty items"
+          npcs: [fishmonger, produce-vendor, specialty-vendor]
+          typical_tasks:
+            - negotiate-prices
+            - specify-quality-requirements
+            - arrange-delivery-to-dock
+        - name: port-authority-office
+          description: "Customs and immigration office"
+          npcs: [customs-officer]
+          typical_tasks:
+            - submit-crew-documentation
+            - clear-customs
+            - handle-inspection-questions
+        - name: crew-mess
+          description: "Below-deck crew dining and social area"
+          npcs: [fellow-crew]
+          typical_tasks:
+            - coordinate-shift-schedules
+            - discuss-guest-preferences
+            - plan-shore-leave
+        - name: guest-deck
+          description: "Main deck and salon where guests are served"
+          npcs: [guests]
+          typical_tasks:
+            - take-dining-preferences
+            - explain-excursion-options
+            - handle-special-requests
+
+      npc_roster:
+        - role: harbor-master
+          count: 1
+          register: official-local
+          personality: "Bureaucratic but fair. Speaks in local language with some maritime English."
+          vocabulary_focus: [maritime-terminology, port-authority]
+        - role: fishmonger
+          count: 1
+          register: casual-market
+          personality: "Loud, animated, negotiation-loving. Respects knowledgeable buyers."
+          vocabulary_focus: [provisioning-shopping]
+        - role: produce-vendor
+          count: 1
+          register: casual-friendly
+          personality: "Warm, family-business pride. Happy to teach food vocabulary."
+          vocabulary_focus: [provisioning-shopping]
+        - role: customs-officer
+          count: 1
+          register: formal-bureaucratic
+          personality: "Strict, procedural. No patience for language confusion in documentation."
+          vocabulary_focus: [port-authority]
+        - role: fellow-crew
+          count: 2
+          register: casual-professional
+          personality: "Mix of nationalities. Code-switches between languages."
+          vocabulary_focus: [maritime-terminology, social-crew-life]
+        - role: guests
+          count: 2
+          register: high-status-casual
+          personality: "Wealthy, expectant of premium service. Multilingual but prefer native language."
+          vocabulary_focus: [guest-service]
+
+      cultural_parameters:
+        greeting_norms: "Varies by port — cheek kisses in France/Italy, handshake in Turkey, nod in Greece"
+        formality_level: "Formal with port authority, warm-casual in markets, professional-deferential with guests"
+        taboo_topics:
+          - guest-finances
+          - crew-salary-comparisons
+          - criticizing-local-customs
+
+    tier_3:
+      scenarios:
+        - type: owner-conflict-resolution
+          description: >
+            The yacht owner is unhappy with the quality of provisioning and is
+            threatening to dock crew pay. Must diplomatically resolve the conflict,
+            explain the supply constraints at the current port, and propose
+            alternatives — all in the owner's preferred language.
+          authority: yacht-owner
+          stakes: employment-threatening
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.35
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: charter-dispute
+          description: >
+            A charter guest is demanding a refund for weather-cancelled excursions.
+            Must navigate the dispute professionally, explain maritime weather
+            policies, and offer satisfactory alternatives while maintaining
+            the charter company's position.
+          authority: charter-guest
+          stakes: professional-reputation
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.30
+            cultural_intelligence: 0.25
+
+        - type: port-authority-inspection
+          description: >
+            Unexpected port authority inspection of safety equipment and crew
+            documentation. Must respond to detailed questions about safety
+            procedures, present documentation correctly, and handle any
+            discrepancies diplomatically — in the local language.
+          authority: port-inspector
+          stakes: vessel-clearance
+          evaluation_weight:
+            linguistic_accuracy: 0.30
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.25
+            cultural_intelligence: 0.20
+
+  companion:
+    personality: >
+      A seasoned multilingual chief stewardess who has worked Mediterranean
+      yachts for 15 years. Speaks five languages imperfectly but confidently.
+      Encouraging, practical, full of stories about cultural misunderstandings
+      that turned into funny memories. Teaches survival phrases for each port.
+    shared_interests:
+      - travel-stories
+      - food-and-wine
+      - port-city-culture
+      - maritime-traditions
+    cultural_bridge: >
+      Explains the unspoken rules of each port culture — how to earn respect
+      at the fish market, what customs officers actually care about, how to
+      read the room with different nationalities of guests.
+
+  retention_profile:
+    default_style: "organic-social"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Port update — approaching new port, language shift needed"
+      - type: npc-message
+        sender: fellow-crew
+        frequency: daily
+        trigger: "Shift coordination or social planning"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Guest dinner service in French upcoming"
+
+  evaluation:
+    tier_2_success: "80% task completion across provisioning, port authority, and guest service scenarios"
+    tier_3_success: "Owner conflict resolved with register score > 80% and relationship preserved"
+    primary_metric: "task-completion-rate"
