@@ -6,7 +6,7 @@
 
 ## Current: v0.4.0 (February 2026)
 
-**Theme: Foundation & IP**
+### Theme: Foundation & IP
 
 - ✅ Core type system (50+ interfaces, 1,000+ lines)
 - ✅ 12 patent claims with pseudocode appendices
@@ -24,9 +24,9 @@
 
 ## v0.5.0 — "First Session" (Q2 2026)
 
-**Theme: End-to-end Tier 1 playable**
+### Theme: End-to-end Tier 1 playable
 
-### Goals
+### v0.5 Goals
 
 - [ ] Complete Tier 1 Companion implementation (text-based)
 - [ ] Implement Phase 4 (Adaptive Lesson Delivery) with basic UI
@@ -36,7 +36,7 @@
 - [ ] Affective state inference operational with 6 behavioral signals
 - [ ] Session persistence (save/resume)
 
-### Deliverables
+### v0.5 Deliverables
 
 - [ ] Working demo: 30-minute Tier 1 session with Companion
 - [ ] Friction detected and curriculum generated post-session
@@ -46,9 +46,9 @@
 
 ## v0.6.0 — "Social World" (Q3 2026)
 
-**Theme: Tier 2 immersion environment**
+### Theme: Tier 2 immersion environment
 
-### Goals
+### v0.6 Goals
 
 - [ ] NPC behavioral authenticity system operational
 - [ ] Social reputation system with persistence
@@ -58,7 +58,7 @@
 - [ ] 3+ NPCs with distinct personalities per schema
 - [ ] Location-based scenario triggers
 
-### Deliverables
+### v0.6 Deliverables
 
 - [ ] Working demo: Tier 2 interactions with reputation consequences
 - [ ] NPC behavior visibly changes based on reputation
@@ -68,9 +68,9 @@
 
 ## v0.7.0 — "High Stakes" (Q4 2026)
 
-**Theme: Tier 3 negotiation + full pipeline**
+### Theme: Tier 3 negotiation + full pipeline
 
-### Goals
+### v0.7 Goals
 
 - [ ] Tier 3 authority NPC interactions
 - [ ] Communicative pressure calibration operational
@@ -80,7 +80,7 @@
 - [ ] Cross-Schema Transfer Engine
 - [ ] Full pipeline end-to-end (all 5 phases)
 
-### Deliverables
+### v0.7 Deliverables
 
 - [ ] Working demo: Tier 3 negotiation with collapse recovery
 - [ ] Fossilized patterns detected and intervention strategies escalated
@@ -90,9 +90,9 @@
 
 ## v0.8.0 — "Sound" (Q1 2027)
 
-**Theme: Voice integration + PAE**
+### Theme: Voice integration + PAE
 
-### Goals
+### v0.8 Goals
 
 - [ ] Speech-to-text integration (Whisper / Deepgram)
 - [ ] Text-to-speech for NPC voices
@@ -101,7 +101,7 @@
 - [ ] Pronunciation-specific curriculum generation
 - [ ] Voice-based Companion interaction
 
-### Deliverables
+### v0.8 Deliverables
 
 - [ ] Voice input/output in all tiers
 - [ ] Per-phoneme pronunciation feedback with articulatory guidance
@@ -111,9 +111,9 @@
 
 ## v0.9.0 — "Scale" (Q2 2027)
 
-**Theme: Multi-user + institutional deployment**
+### Theme: Multi-user + institutional deployment
 
-### Goals
+### v0.9 Goals
 
 - [ ] Educator dashboard (cohort management, progress analytics)
 - [ ] Schema Marketplace MVP (upload, validate, distribute)
@@ -122,7 +122,7 @@
 - [ ] Privacy architecture enforced (GDPR, FERPA compliance)
 - [ ] API rate limiting and cost controls
 
-### Deliverables
+### v0.9 Deliverables
 
 - [ ] Institutional pilot with 30+ learners (see pilot study protocol)
 - [ ] Schema marketplace with 10+ community schemas
@@ -132,9 +132,9 @@
 
 ## v1.0.0 — "Launch" (Q3 2027)
 
-**Theme: Production-ready**
+### Theme: Production-ready
 
-### Goals
+### v1.0 Goals
 
 - [ ] All 12 patent claims demonstrable in code
 - [ ] Performance benchmarks published

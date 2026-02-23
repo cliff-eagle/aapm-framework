@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] — Documentation, Integration & Patent Specification (2026-02-23)
 
-### Added
+### Added in 0.4.0
 
 - `architecture.md` expanded: 4 new module rows, IHE pipeline diagram, Affective State signal flow, Cross-Module Integration Map, expanded 5-Stage Data Flow, updated Persistence Layer schemas
 - ADR-006: Interlanguage Hypothesis Engine
@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0] — Patent-Grade Enhancement (2026-02-23)
 
-### Added
+### Added in 0.3.0
 
 - **Interlanguage Hypothesis Engine** — Computational interlanguage model with probabilistic rules, developmental stage mapping, L1 transfer profiling, learning frontier identification, and predictive error detection
 - **Anti-Fossilization Engine** — Three-strategy intervention system (Varied Context Exposure, Contrastive Minimal Pairs, NPC Correction Sequences) with fossilization detection and progress tracking
@@ -60,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 12 new glossary terms
 - Barrel exports for all 4 new modules
 
-### Fixed
+### Fixed in 0.3.0
 
 - 2 missing metric calculations (`socialReputationTrajectory`, `negotiationSuccessRate`)
 - 7 validator helper stubs implemented with real schema traversal
@@ -71,7 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] — 2025-02-23
 
-### Added
+### Added in 0.2.0
 
 - Patent-critical data models with JSDoc across all core modules
 - Complete user interaction loop state machines (7 lifecycle flows)
@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CONTRIBUTING.md with Contributor License Agreement
 - SECURITY.md with responsible disclosure policy
 
-### Changed
+### Changed in 0.2.0
 
 - License changed from MIT to Business Source License 1.1
 - Expanded `persona.schema.json` with strict validation and inter-field rules
@@ -91,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] — 2025-02-23
 
-### Added
+### Added in 0.1.0
 
 - Initial repository structure with monorepo workspace configuration
 - `.cursorrules` — AI coding context with full AAPM philosophy

@@ -37,14 +37,14 @@ Current language learning tools (Duolingo, Babbel, Rosetta Stone) all share the 
 Instead of lessons, the AAPM creates **living social worlds** where learners exist as participants. The framework is built on three pillars:
 
 | Pillar | What It Means |
-|--------|---------------|
+| -------- | --------------- |
 | **Krashen's Affective Filter** | Anxiety blocks learning — the system must feel safe |
 | **Vygotsky's Zone of Proximal Development** | Every interaction is calibrated to what the learner can *almost* do |
 | **Sociolinguistic Competence** | It's not enough to be grammatically correct — you must be culturally appropriate |
 
 ### The Three-Tier Architecture
 
-```
+```text
 Tier 1: THE COMPANION     → Bilingual AI friend who builds your confidence
          ↓
 Tier 2: THE IMMERSION      → Monolingual world where you must communicate to survive
@@ -58,7 +58,7 @@ Tier 3: THE NEGOTIATION    → High-stakes professional encounters with power dy
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │                 .cursorrules                     │
 │         (AI Context — The AAPM Bible)            │
@@ -136,7 +136,7 @@ persona:
 ### Available Schemas
 
 | Schema | Languages | Domain |
-|--------|-----------|--------|
+| -------- | ----------- | -------- |
 | [`premier-league`](schemas/examples/premier-league.yaml) | ES → EN | Professional football |
 | [`mediterranean-yacht`](schemas/examples/mediterranean-yacht.yaml) | Any → FR/IT/ES/GR/TR | Maritime hospitality |
 | [`medical-migration`](schemas/examples/medical-migration.yaml) | Any → EN/DE | Healthcare professionals |
@@ -154,7 +154,7 @@ persona:
 
 The core innovation: every interaction generates data that improves the next interaction.
 
-```
+```text
 Session → Friction Extraction → Pattern Classification → Micro-Curriculum → Forward Injection → Next Session
 ```
 
@@ -171,7 +171,7 @@ Three temporal loops:
 ## Key Innovations
 
 | Innovation | Description | ADR |
-|------------|-------------|-----|
+| ------------ | ------------- | ----- |
 | **Tri-Refraction Interface** | Every learner input refracted into Basic / Native / Formal with metalinguistic explanation | [ADR-004](docs/adr/004-tri-refraction-interface.md) |
 | **Social Reputation System** | Invisible NPC reputation scores that govern behavior — learner reads social cues, not numbers | [ADR-005](docs/adr/005-social-reputation-persistence.md) |
 | **Phoneme Alignment Engine** | 5-stage pronunciation pipeline producing comprehensibility scores + articulatory guidance | — |
@@ -199,7 +199,7 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 ### Key Files for AI Tools
 
 | File | What AI Tools Learn From It |
-|------|---------------------------|
+| ------ | ----------------------------- |
 | `.cursorrules` | AAPM philosophy, architecture patterns, design constraints |
 | `docs/glossary.md` | Every AAPM-specific term |
 | `schemas/*.schema.json` | Valid configuration shapes |
@@ -211,7 +211,7 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 
 ## Repository Structure
 
-```
+```text
 aapm-framework/
 ├── .cursorrules                        # AI coding context — the AAPM Bible
 ├── .github/workflows/ci.yml            # CI: typecheck + test + schema validation
@@ -281,7 +281,7 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 ### Reference
 
 | Document | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | [Full AAPM Specification](docs/aapm-full.md) | The complete pedagogical framework |
 | [Architecture Overview](docs/architecture.md) | System architecture and components |
 | [Three-Tier System](docs/three-tiers.md) | Tier architecture deep dive |
@@ -296,7 +296,7 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 ### IP & Business
 
 | Document | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | [Patent Claims](docs/patent-claims.md) | 12 provisional patent claims with pseudocode |
 | [Business Model](docs/business-model.md) | Revenue streams, pricing tiers, unit economics |
 | [Investor Brief](docs/investor-brief.md) | TAM, competitive moat, funding ask |
@@ -304,7 +304,7 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 ### Protocols
 
 | Document | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | [Soft Landing Protocol](docs/soft-landing-protocol.md) | Graceful proficiency recalibration |
 | [Negotiation Collapse Recovery](docs/negotiation-collapse-recovery.md) | Tier 3 failure recovery sequences |
 | [Pilot Study Protocol](docs/pilot-study-protocol.md) | IRB-ready mixed-methods validation study |
@@ -312,7 +312,7 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 ### Strategic
 
 | Document | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | [Schema Marketplace](docs/schema-marketplace.md) | Community-driven persona schema ecosystem |
 | [Model Substitution](docs/model-substitution.md) | LLM provider agnosticism + cost benchmarks |
 | [Language Expansion](docs/language-expansion-checklist.md) | Checklist for adding new L1-L2 pairs |
@@ -321,7 +321,7 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 ### Architecture Decision Records
 
 | ADR | Decision |
-|-----|----------|
+| ----- | ---------- |
 | [001](docs/adr/001-three-tier-architecture.md) | Three-Tier Architecture |
 | [002](docs/adr/002-recursive-feedback-engine.md) | Recursive Feedback Engine |
 | [003](docs/adr/003-persona-schema-system.md) | Persona Schema System |
