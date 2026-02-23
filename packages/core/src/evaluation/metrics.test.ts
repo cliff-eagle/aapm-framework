@@ -63,7 +63,7 @@ describe('calculateTaskCompletionRate', () => {
                 { npcId: 'a', tier: 2, turnCount: 5, outcome: 'completed-successfully', frictionCount: 0 },
                 { npcId: 'b', tier: 3, turnCount: 8, outcome: 'completed-successfully', frictionCount: 1 },
             ],
-        } as Partial<SessionRecord>);
+        } as any);
         expect(calculateTaskCompletionRate(session)).toBe(1.0);
     });
 
@@ -73,7 +73,7 @@ describe('calculateTaskCompletionRate', () => {
                 { npcId: 'a', tier: 2, turnCount: 5, outcome: 'completed-successfully', frictionCount: 0 },
                 { npcId: 'b', tier: 2, turnCount: 5, outcome: 'abandoned', frictionCount: 3 },
             ],
-        } as Partial<SessionRecord>);
+        } as any);
         expect(calculateTaskCompletionRate(session)).toBe(0.5);
     });
 
@@ -82,7 +82,7 @@ describe('calculateTaskCompletionRate', () => {
             conversations: [
                 { npcId: 'a', tier: 1, turnCount: 5, outcome: 'completed-successfully', frictionCount: 0 },
             ],
-        } as Partial<SessionRecord>);
+        } as any);
         expect(calculateTaskCompletionRate(session)).toBe(1.0);
     });
 });

@@ -10,14 +10,18 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AAPMEventBus } from './index';
-import type { AAPMEventType, AAPMEventEnvelope } from './types';
+import type { AAPMEventType, AAPMModuleId } from './types';
 
 // ── Helpers ──────────────────────────────────────────────────
 
-function emitTestEvent(bus: AAPMEventBus, type: AAPMEventType = 'friction-detected', payload = {}) {
+const FRICTION: AAPMEventType = 'FRICTION_DETECTED';
+const CURRICULUM: AAPMEventType = 'CURRICULUM_GENERATED';
+const SOURCE: AAPMModuleId = 'feedback-engine';
+
+function emitTestEvent(bus: AAPMEventBus, type: AAPMEventType = FRICTION, payload = {}) {
     return bus.emit({
         type,
-        source: 'feedback-engine',
+        source: SOURCE,
         learnerId: 'learner-001',
         sessionId: 'session-001',
         correlationId: 'corr-001',
@@ -37,18 +41,18 @@ describe('AAPMEventBus', () => {
     describe('subscribe and emit', () => {
         it('handler receives emitted events', async () => {
             const handler = vi.fn();
-            bus.on('friction-detected', handler);
-            await emitTestEvent(bus, 'friction-detected', { form: 'test' });
+            bus.on(FRICTION, handler);
+            await emitTestEvent(bus, FRICTION, { form: 'test' });
             expect(handler).toHaveBeenCalledOnce();
         });
 
         it('handler receives full event envelope', async () => {
             const handler = vi.fn();
-            bus.on('friction-detected', handler);
-            await emitTestEvent(bus, 'friction-detected', { form: 'test' });
-            const envelope: AAPMEventEnvelope = handler.mock.calls[0][0];
-            expect(envelope.type).toBe('friction-detected');
-            expect(envelope.source).toBe('feedback-engine');
+            bus.on(FRICTION, handler);
+            await emitTestEvent(bus, FRICTION, { form: 'test' });
+            const envelope = handler.mock.calls[0][0];
+            expect(envelope.type).toBe(FRICTION);
+            expect(envelope.source).toBe(SOURCE);
             expect(envelope.learnerId).toBe('learner-001');
             expect(envelope.eventId).toBeDefined();
             expect(envelope.emittedAt).toBeDefined();
@@ -58,9 +62,9 @@ describe('AAPMEventBus', () => {
         it('only fires handlers registered for the event type', async () => {
             const frictionHandler = vi.fn();
             const curriculumHandler = vi.fn();
-            bus.on('friction-detected', frictionHandler);
-            bus.on('curriculum-generated', curriculumHandler);
-            await emitTestEvent(bus, 'friction-detected');
+            bus.on(FRICTION, frictionHandler);
+            bus.on(CURRICULUM, curriculumHandler);
+            await emitTestEvent(bus, FRICTION);
             expect(frictionHandler).toHaveBeenCalledOnce();
             expect(curriculumHandler).not.toHaveBeenCalled();
         });
@@ -68,8 +72,8 @@ describe('AAPMEventBus', () => {
         it('supports multiple handlers for same event', async () => {
             const handler1 = vi.fn();
             const handler2 = vi.fn();
-            bus.on('friction-detected', handler1);
-            bus.on('friction-detected', handler2);
+            bus.on(FRICTION, handler1);
+            bus.on(FRICTION, handler2);
             await emitTestEvent(bus);
             expect(handler1).toHaveBeenCalledOnce();
             expect(handler2).toHaveBeenCalledOnce();
@@ -79,7 +83,7 @@ describe('AAPMEventBus', () => {
     describe('unsubscribe', () => {
         it('on() returns unsubscribe function', async () => {
             const handler = vi.fn();
-            const unsub = bus.on('friction-detected', handler);
+            const unsub = bus.on(FRICTION, handler);
             unsub();
             await emitTestEvent(bus);
             expect(handler).not.toHaveBeenCalled();
@@ -88,9 +92,9 @@ describe('AAPMEventBus', () => {
         it('off() removes all handlers for a type', async () => {
             const handler1 = vi.fn();
             const handler2 = vi.fn();
-            bus.on('friction-detected', handler1);
-            bus.on('friction-detected', handler2);
-            bus.off('friction-detected');
+            bus.on(FRICTION, handler1);
+            bus.on(FRICTION, handler2);
+            bus.off(FRICTION);
             await emitTestEvent(bus);
             expect(handler1).not.toHaveBeenCalled();
             expect(handler2).not.toHaveBeenCalled();
@@ -99,17 +103,17 @@ describe('AAPMEventBus', () => {
 
     describe('inspection utilities', () => {
         it('getEmitted returns all events', async () => {
-            await emitTestEvent(bus, 'friction-detected');
-            await emitTestEvent(bus, 'curriculum-generated');
+            await emitTestEvent(bus, FRICTION);
+            await emitTestEvent(bus, CURRICULUM);
             expect(bus.getEmitted()).toHaveLength(2);
         });
 
         it('getEmitted filters by type', async () => {
-            await emitTestEvent(bus, 'friction-detected');
-            await emitTestEvent(bus, 'curriculum-generated');
-            await emitTestEvent(bus, 'friction-detected');
-            expect(bus.getEmitted('friction-detected')).toHaveLength(2);
-            expect(bus.getEmitted('curriculum-generated')).toHaveLength(1);
+            await emitTestEvent(bus, FRICTION);
+            await emitTestEvent(bus, CURRICULUM);
+            await emitTestEvent(bus, FRICTION);
+            expect(bus.getEmitted(FRICTION)).toHaveLength(2);
+            expect(bus.getEmitted(CURRICULUM)).toHaveLength(1);
         });
 
         it('getEmittedCount returns count', async () => {
@@ -125,20 +129,20 @@ describe('AAPMEventBus', () => {
         });
 
         it('getHandlerCount returns handler count', () => {
-            bus.on('friction-detected', vi.fn());
-            bus.on('friction-detected', vi.fn());
-            bus.on('curriculum-generated', vi.fn());
-            expect(bus.getHandlerCount('friction-detected')).toBe(2);
-            expect(bus.getHandlerCount('curriculum-generated')).toBe(1);
+            bus.on(FRICTION, vi.fn());
+            bus.on(FRICTION, vi.fn());
+            bus.on(CURRICULUM, vi.fn());
+            expect(bus.getHandlerCount(FRICTION)).toBe(2);
+            expect(bus.getHandlerCount(CURRICULUM)).toBe(1);
         });
 
         it('reset clears handlers and events', async () => {
             const handler = vi.fn();
-            bus.on('friction-detected', handler);
+            bus.on(FRICTION, handler);
             await emitTestEvent(bus);
             bus.reset();
             expect(bus.getEmitted()).toHaveLength(0);
-            expect(bus.getHandlerCount('friction-detected')).toBe(0);
+            expect(bus.getHandlerCount(FRICTION)).toBe(0);
         });
     });
 
@@ -157,8 +161,8 @@ describe('AAPMEventBus', () => {
         it('one handler failure does not block others', async () => {
             const failHandler = vi.fn().mockRejectedValue(new Error('boom'));
             const okHandler = vi.fn();
-            bus.on('friction-detected', failHandler);
-            bus.on('friction-detected', okHandler);
+            bus.on(FRICTION, failHandler);
+            bus.on(FRICTION, okHandler);
             await emitTestEvent(bus);
             expect(failHandler).toHaveBeenCalledOnce();
             expect(okHandler).toHaveBeenCalledOnce();
