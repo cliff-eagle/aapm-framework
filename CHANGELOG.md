@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `IMPLEMENTATION_MASTERCLASS.md` — 10-chapter production engineering standards (contract-first, event bus, DI, testing, observability, LLM standards, runtime customization)
+- `packages/core/src/event-bus/types.ts` — Canonical event envelope with 14 event types + typed payloads
+- `packages/core/src/event-bus/index.ts` — Concrete `AAPMEventBus` implementation with subscribe/emit/unsubscribe and test inspection
+- `packages/core/src/test-utils/index.ts` — Shared test fixtures (sessions, friction, injection) + `buildMockDeps()` mock builder
+- `docs/implementation-checklist.md` — Per-module binary quality gate (pre-impl, impl, test, docs)
+- `VIBECODE_ENTRY.md` updated with Ch.10 Implementation Standards instruction block
+- `persona.schema.json` bumped to v3.0.0 with multimodal input, world state, character control, curriculum delivery
+- `docs/aam-charter.md` — AAM philosophy + event bus specification
+- `docs/world-state-contract.md` — Tier 2 world state contract
+- `docs/character-control-spec.md` — NPC character control taxonomy
+- `docs/multimodal-prompt-guide.md` — Text/audio/visual prompt routing
+- `docs/dependency-graph.md` — Build order enforcement
+- `docs/patent-addendum.md` — Patent claims 13-16 (runtime, world state, multimodal, curriculum)
+- 8 new core modules: `event-bus`, `test-utils`, `world-engine`, `multimodal-router`, `curriculum-delivery-router`, `runtime-customization`, `interlanguage-engine`, `anti-fossilization`
+
+**Pedagogical Impact:** The event bus enforces module isolation, preventing direct coupling that could violate tier boundaries. The implementation standards ensure all new modules respect the Affective Filter and ZPD constraints by requiring precondition/postcondition blocks on every function.
+
 ## [0.4.0] — Documentation, Integration & Patent Specification (2026-02-23)
 
 ### Added in 0.4.0

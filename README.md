@@ -200,8 +200,10 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 
 | File | What AI Tools Learn From It |
 | ------ | ----------------------------- |
+| `VIBECODE_ENTRY.md` | **Start here** — 18-step reading order, master prompt, build phases, quality gates |
+| `IMPLEMENTATION_MASTERCLASS.md` | 10-chapter production standards: contracts, event bus, DI, testing, observability |
 | `.cursorrules` | AAPM philosophy, architecture patterns, design constraints |
-| `docs/glossary.md` | Every AAPM-specific term |
+| `docs/glossary.md` | Every AAPM-specific term (70+) |
 | `schemas/*.schema.json` | Valid configuration shapes |
 | `prompts/` | Prompt engineering patterns for every system |
 | `recipes/` | Step-by-step build guides |
@@ -214,15 +216,25 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 ```text
 aapm-framework/
 ├── .cursorrules                        # AI coding context — the AAPM Bible
+├── VIBECODE_ENTRY.md                   # AI tool entry point — start here
+├── IMPLEMENTATION_MASTERCLASS.md       # 10-chapter production standards
+├── AAPM_ROUTER.md                      # Routing + workaround library
 ├── .github/workflows/ci.yml            # CI: typecheck + test + schema validation
 ├── docs/
 │   ├── aapm-full.md                    # Complete AAPM specification
 │   ├── architecture.md                 # System architecture overview
-│   ├── glossary.md                     # AAPM terminology (35+ terms)
+│   ├── glossary.md                     # AAPM terminology (70+ terms)
 │   ├── three-tiers.md                  # Tier architecture detail
 │   ├── feedback-engine.md              # Recursive Feedback Engine spec
+│   ├── aam-charter.md                  # AAM philosophy + event bus spec
+│   ├── dependency-graph.md             # Build order enforcement
+│   ├── implementation-checklist.md     # Per-module quality gate
 │   ├── interaction-loop.md             # 7 state machines
 │   ├── session-lifecycle.md            # Typed session contracts
+│   ├── world-state-contract.md         # World state specification
+│   ├── character-control-spec.md       # Character control taxonomy
+│   ├── multimodal-prompt-guide.md      # Multimodal prompt usage
+│   ├── patent-addendum.md              # Patent claims 13-16
 │   ├── security-privacy.md             # GDPR/COPPA/CCPA compliance
 │   ├── evaluation-framework.md         # 8 metrics + A/B testing
 │   ├── patent-claims.md                # 12 provisional patent claims
@@ -241,11 +253,11 @@ aapm-framework/
 │       ├── 006 → 010                   # Engine + IP ADRs
 │       └── 011-l1-l2-transfer-format   # L1-L2 transfer spec
 ├── schemas/
-│   ├── persona.schema.json             # JSON Schema v2.0.0
+│   ├── persona.schema.json             # JSON Schema v3.0.0
 │   └── examples/                       # 8 pre-built persona schemas
 ├── packages/
 │   ├── core/                           # @aapm/core — engine modules
-│   │   └── src/                        # 12 modules with types + barrel exports
+│   │   └── src/                        # 20 modules with types + barrel exports
 │   ├── ui/                             # @aapm/ui — component library
 │   └── cli/                            # @aapm/cli — schema validation tool
 ├── prompts/                            # Prompt engineering library
@@ -290,14 +302,27 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 | [Session Lifecycle](docs/session-lifecycle.md) | Typed contracts for all session phases |
 | [Evaluation Framework](docs/evaluation-framework.md) | 8 quantitative metrics + A/B testing |
 | [Security & Privacy](docs/security-privacy.md) | GDPR, COPPA, CCPA compliance architecture |
-| [Glossary](docs/glossary.md) | AAPM-specific terminology (35+ terms) |
+| [Glossary](docs/glossary.md) | AAPM-specific terminology (70+ terms) |
 | [Persona Schema Guide](docs/persona-schema-guide.md) | How to create your own schema |
+
+### Engineering
+
+| Document | Description |
+| ---------- | ------------- |
+| [Implementation Masterclass](IMPLEMENTATION_MASTERCLASS.md) | 10-chapter production engineering standards |
+| [AAM Charter](docs/aam-charter.md) | Autonomous Adaptive Matrix philosophy + event bus |
+| [Dependency Graph](docs/dependency-graph.md) | Build order enforcement for all modules |
+| [Implementation Checklist](docs/implementation-checklist.md) | Per-module binary quality gate |
+| [World State Contract](docs/world-state-contract.md) | Tier 2 world state specification |
+| [Character Control Spec](docs/character-control-spec.md) | NPC character control taxonomy |
+| [Multimodal Prompt Guide](docs/multimodal-prompt-guide.md) | Text/audio/visual prompt mapping |
 
 ### IP & Business
 
 | Document | Description |
 | ---------- | ------------- |
-| [Patent Claims](docs/patent-claims.md) | 12 provisional patent claims with pseudocode |
+| [Patent Claims (1-12)](docs/patent-claims.md) | 12 provisional patent claims with pseudocode |
+| [Patent Addendum (13-16)](docs/patent-addendum.md) | 4 additional patent claims: runtime, world state, multimodal, curriculum |
 | [Business Model](docs/business-model.md) | Revenue streams, pricing tiers, unit economics |
 | [Investor Brief](docs/investor-brief.md) | TAM, competitive moat, funding ask |
 

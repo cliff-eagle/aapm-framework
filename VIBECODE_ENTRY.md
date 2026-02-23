@@ -193,4 +193,4 @@ If your implementation fails either condition, do not report it as complete.
 
 ---
 
-*"Dynamically Efficient and Efficiently Dynamic"*
+> *"Dynamically Efficient and Efficiently Dynamic"*

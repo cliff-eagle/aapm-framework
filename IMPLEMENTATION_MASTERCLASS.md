@@ -337,4 +337,4 @@ Append to the master prompt in `VIBECODE_ENTRY.md` before any code generation:
 
 ---
 
-*"Dynamically Efficient and Efficiently Dynamic"*
+> *"Dynamically Efficient and Efficiently Dynamic"*

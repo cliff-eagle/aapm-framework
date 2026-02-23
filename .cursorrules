@@ -196,6 +196,33 @@ NEVER assume all learners want gamification. The five profiles:
 
 ---
 
+## v3.0 Infrastructure — Event Bus and New Modules
+
+The AAPM uses an event-driven architecture. All modules communicate via the `AAPMEventBus`. No module may call another directly.
+
+### Event Bus
+
+- Located at `packages/core/src/event-bus/`
+- Every event is wrapped in an `AAPMEventEnvelope` with: type, source, learnerId, sessionId, correlationId, payload
+- Every module exports a `register(bus, deps)` function that returns an unsubscribe cleanup function
+- 14 event types: `FRICTION_DETECTED`, `AFFECTIVE_STATE_CHANGED`, `FORWARD_INJECTION_READY`, `REPUTATION_DELTA`, `WORLD_STATE_CHANGED`, `CURRICULUM_GENERATED`, `TIER_TRANSITION`, `NPC_MOOD_CHANGED`, `SCHEMA_ACTIVATED`, `CONTROL_MODE_CHANGED`, `SESSION_STARTED`, `SESSION_ENDED`, `PIPELINE_PHASE_COMPLETED`, `SCAFFOLDING_ESCALATED`
+
+### New Modules (v3.0)
+
+- `world-engine/` — Tier 2 location graph, time system, ambient events, NPC world state
+- `multimodal-router/` — Routes text/audio/visual inputs to schema fields
+- `curriculum-delivery-router/` — Selects delivery format from retention profile
+- `runtime-customization/` — Session config, schema hot-swap, control mode events
+- `test-utils/` — Shared fixtures and mock dependency builder
+
+### Key Files for Implementation
+
+- Start with `VIBECODE_ENTRY.md` — the master prompt and reading order
+- Read `IMPLEMENTATION_MASTERCLASS.md` for production engineering standards
+- Use `docs/implementation-checklist.md` as a quality gate before committing
+
+---
+
 ## Glossary Quick Reference
 
 - **Affective Filter**: Emotional barrier that blocks language acquisition when high
