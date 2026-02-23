@@ -14,6 +14,8 @@
 
 import type {
     FrictionPoint,
+    FrictionType,
+    FrictionSeverity,
     FrictionExtractionResult,
     PatternClassificationResult,
     CurriculumGenerationResult,
@@ -24,6 +26,7 @@ import type {
     RecurringPattern,
     InterlanguageModelDelta,
     MicroCurriculum,
+    CurriculumUnit,
     ForwardInjectionSpec,
 } from './types';
 
@@ -182,14 +185,139 @@ export async function extractFriction(
         conversationCount: session.conversations.length,
     });
 
-    // Implementation: Send session transcript to LLM with friction
-    // extraction prompt from prompts/curriculum/friction-analysis.md
-    // The LLM returns structured FrictionPoint[] matching the schema.
-    //
-    // For phonemic friction, cross-reference with session.pronunciationData
-    // to attach PAE cosine similarity scores.
+    // ── Build analysis prompt from session transcript ──
+    const transcript = session.conversations
+        .flatMap(conv => conv.turns.map(t =>
+            `[${t.speaker}] ${t.content}`
+        ))
+        .join('\n');
 
-    throw new Error('Implementation pending — see docs/feedback-engine.md for specification');
+    const systemPrompt = [
+        'You are a Second Language Acquisition expert analyzing a language learning session.',
+        'Identify every moment of communicative friction — where the learner struggled,',
+        'made an error, used L1, avoided a topic, or misused register.',
+        'For each friction point, classify it by type (lexical, morphosyntactic, phonemic,',
+        'register, pragmatic) and severity (minor, moderate, major, critical).',
+        'Preserve 3 turns of context before and after each friction event.',
+        `Current CEFR: ${learnerProfile.currentCEFR}`,
+        `Active Persona: ${learnerProfile.activePersonaId}`,
+    ].join('\n');
+
+    const responseSchema = {
+        type: 'object',
+        properties: {
+            frictionPoints: {
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                        type: { type: 'string', enum: ['lexical', 'morphosyntactic', 'phonemic', 'register', 'pragmatic'] },
+                        severity: { type: 'string', enum: ['low', 'medium', 'high', 'critical'] },
+                        rawUtterance: { type: 'string' },
+                        analysis: {
+                            type: 'object',
+                            properties: {
+                                whatWentWrong: { type: 'string' },
+                                l1TransferHypothesis: { type: 'string' },
+                                interlanguagePattern: { type: 'string', enum: ['systematic', 'random'] },
+                                targetRule: { type: 'string' },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    };
+
+    const llmResult = await deps.llmProvider.generateStructured<{
+        frictionPoints: Array<{
+            type: FrictionType;
+            severity: FrictionSeverity;
+            rawUtterance: string;
+            analysis: {
+                whatWentWrong: string;
+                l1TransferHypothesis: string | null;
+                interlanguagePattern: 'systematic' | 'random';
+                targetRule: string;
+            };
+        }>;
+    }>(systemPrompt, `Analyze this session transcript:\n\n${transcript}`, responseSchema);
+
+    // ── Build structured FrictionPoint objects ──
+    const frictionPoints: FrictionPoint[] = llmResult.frictionPoints.map((fp, idx) => ({
+        id: `${session.sessionId}-fp-${idx}`,
+        type: fp.type,
+        severity: fp.severity,
+        timestamp: new Date().toISOString(),
+        durationMs: 0,
+        rawUtterance: fp.rawUtterance,
+        context: {
+            turnsBefore: [],
+            frictionTurn: { speaker: 'learner', content: fp.rawUtterance, timestamp: new Date().toISOString(), durationMs: 0 },
+            turnsAfter: [],
+            communicativeConsequence: 'communication-partially-succeeded',
+            npcId: session.conversations[0]?.npcId ?? 'unknown',
+            tierAtFriction: 1,
+            locationId: 'default',
+        },
+        analysis: {
+            whatWentWrong: fp.analysis.whatWentWrong,
+            l1TransferHypothesis: fp.analysis.l1TransferHypothesis,
+            interlanguagePattern: fp.analysis.interlanguagePattern,
+            comprehensibilityImpact: fp.severity,
+            socialImpact: 'none',
+            targetRule: fp.analysis.targetRule,
+        },
+        curriculumRecommendation: {
+            priority: fp.severity === 'critical' || fp.severity === 'high' ? 'immediate' : 'soon',
+            targetForm: fp.analysis.targetRule,
+            recommendedFormat: 'spaced-repetition-cards',
+            forwardInjectionSpec: {
+                targetForm: fp.analysis.targetRule,
+                frictionType: fp.type,
+                injectionMethod: `Create a natural opportunity to practice '${fp.analysis.targetRule}'.`,
+                naturalityConstraint: 'Must feel like organic conversation.',
+                targetNpcIds: ['companion'],
+                targetTier: 1,
+                targetLocationIds: ['default'],
+                maxSessionAttempts: 3,
+                status: 'pending',
+            },
+            estimatedDurationMinutes: 3,
+        },
+        recurrence: {
+            seenBefore: false,
+            previousSessionIds: [],
+            totalOccurrences: 1,
+            trajectory: 'stable',
+        },
+    }));
+
+    // ── Count by type and severity ──
+    const countByType = {} as Record<FrictionType, number>;
+    const countBySeverity = {} as Record<FrictionSeverity, number>;
+    for (const fp of frictionPoints) {
+        countByType[fp.type] = (countByType[fp.type] ?? 0) + 1;
+        countBySeverity[fp.severity] = (countBySeverity[fp.severity] ?? 0) + 1;
+    }
+
+    deps.logger.info('friction-extraction', `Phase 1 complete: ${frictionPoints.length} friction points`, { countByType });
+
+    return {
+        frictionPoints,
+        totalCount: frictionPoints.length,
+        countByType,
+        countBySeverity,
+        fluencyMetrics: {
+            totalWordsProduced: transcript.split(/\s+/).length,
+            wordsPerMinute: 0, // Requires timing data
+            frictionRate: frictionPoints.length / Math.max(session.conversations.length, 1),
+            averageHesitationMs: 0,
+            l1IntrusionCount: countByType['lexical'] ?? 0,
+            topicAbandonmentCount: 0,
+            recoveryRate: 0,
+        },
+    };
 }
 
 // ─── Phase 2: Pattern Classification ─────────────────────────
@@ -225,14 +353,85 @@ export async function classifyPatterns(
         frictionCount: extractionResult.totalCount,
     });
 
-    // Implementation:
-    // 1. Retrieve historical friction points for this learner
-    // 2. Use LLM to cluster current friction points by linguistic domain
-    // 3. Match current points against historical patterns by target form
-    // 4. Compute interlanguage model delta (confirmed/violated/emerging rules)
-    // 5. Flag patterns with >3 recurrences and no improvement as fossilization risks
+    // ── Step 1: Retrieve historical friction points ──
+    const historicalFriction = await deps.sessionStore.getPreviousFrictionPoints(
+        learnerProfile.learnerId,
+        100, // Last 100 friction points
+    );
+    const historicalForms = new Map<string, number>();
+    for (const hf of historicalFriction) {
+        const form = hf.analysis.targetRule ?? hf.rawUtterance;
+        historicalForms.set(form, (historicalForms.get(form) ?? 0) + 1);
+    }
 
-    throw new Error('Implementation pending — see docs/feedback-engine.md for specification');
+    // ── Step 2: Cluster current friction points by type ──
+    const clusterMap = new Map<FrictionType, FrictionPoint[]>();
+    for (const fp of extractionResult.frictionPoints) {
+        const existing = clusterMap.get(fp.type) ?? [];
+        existing.push(fp);
+        clusterMap.set(fp.type, existing);
+    }
+
+    const clusters: FrictionCluster[] = Array.from(clusterMap.entries()).map(
+        ([type, members]) => ({
+            clusterLabel: `${type} friction cluster`,
+            dominantType: type,
+            members,
+            isStructuralGap: members.length >= 3,
+            treatmentApproach: members.length >= 3 ? 'systematic' : 'individual',
+        }),
+    );
+
+    // ── Step 3: Detect recurring patterns ──
+    const recurringPatterns: RecurringPattern[] = [];
+    const novelPatterns: FrictionPoint[] = [];
+
+    for (const fp of extractionResult.frictionPoints) {
+        const form = fp.analysis.targetRule ?? fp.rawUtterance;
+        const prevCount = historicalForms.get(form) ?? 0;
+
+        if (prevCount > 0) {
+            recurringPatterns.push({
+                patternId: `pattern-${form}`,
+                targetForm: form,
+                sessionCount: prevCount + 1,
+                trajectory: prevCount >= 5 ? 'stable' : 'improving',
+                fossilizationRisk: prevCount >= 3,
+                escalatedPriority: prevCount >= 3 ? 'immediate' : 'soon',
+            });
+        } else {
+            novelPatterns.push(fp);
+        }
+    }
+
+    // ── Step 4: Compute interlanguage model delta ──
+    const confirmedRules: string[] = [];
+    const violatedRules = extractionResult.frictionPoints
+        .filter(fp => fp.analysis.interlanguagePattern === 'systematic')
+        .map(fp => fp.analysis.targetRule)
+        .filter((r): r is string => r !== undefined);
+
+    const emergingRules = novelPatterns
+        .map(fp => fp.analysis.targetRule)
+        .filter((r): r is string => r !== undefined);
+
+    const fossilizingRules = recurringPatterns
+        .filter(rp => rp.fossilizationRisk)
+        .map(rp => rp.targetForm);
+
+    deps.logger.info('pattern-classification', `Phase 2 complete: ${clusters.length} clusters, ${recurringPatterns.length} recurring`, {});
+
+    return {
+        clusters,
+        recurringPatterns,
+        novelPatterns,
+        interlanguageUpdate: {
+            confirmedRules,
+            violatedRules,
+            emergingRules,
+            fossilizingRules,
+        },
+    };
 }
 
 // ─── Phase 3: Curriculum Generation ──────────────────────────
@@ -269,20 +468,133 @@ export async function generateCurriculum(
         recurringCount: classificationResult.recurringPatterns.length,
     });
 
-    // Implementation:
-    // 1. Merge clusters and recurring patterns into priority queue
-    // 2. Select curriculum format from learner's instructional preferences
-    // 3. For each priority item, generate a CurriculumUnit using LLM:
-    //    - Reference the original conversation context
-    //    - Explain in learner's L1 what went wrong
-    //    - Provide L2 examples from their domain vocabulary
-    //    - Generate exercises matching their CEFR level
-    // 4. For each unit, generate a ForwardInjectionSpec:
-    //    - Define how to create natural practice opportunities
-    //    - Assign target NPCs and locations
-    //    - Set naturality constraints
+    // ── Step 1: Build priority queue from friction data ──
+    const priorityItems = [
+        ...classificationResult.recurringPatterns.map(rp => ({
+            priority: rp.escalatedPriority === 'immediate' ? 0 : 1,
+            targetForm: rp.targetForm,
+            source: 'recurring' as const,
+            frictionPoints: classificationResult.clusters
+                .flatMap(c => c.members)
+                .filter(fp => (fp.analysis.targetRule ?? fp.rawUtterance) === rp.targetForm),
+        })),
+        ...classificationResult.clusters
+            .filter(c => c.isStructuralGap)
+            .map(c => ({
+                priority: 2,
+                targetForm: c.clusterLabel,
+                source: 'cluster' as const,
+                frictionPoints: c.members,
+            })),
+    ].sort((a, b) => a.priority - b.priority)
+        .slice(0, 5); // Cap at 5 curriculum units per session
 
-    throw new Error('Implementation pending — see docs/feedback-engine.md for specification');
+    // ── Step 2: Generate curriculum units via LLM ──
+    const units: CurriculumUnit[] = [];
+    const forwardInjectionDirectives: ForwardInjectionSpec[] = [];
+
+    for (const item of priorityItems) {
+        const contextSnippets = item.frictionPoints
+            .map(fp => `Learner said: "${fp.rawUtterance}" — Problem: ${fp.analysis.whatWentWrong}`)
+            .join('\n');
+
+        const unitPrompt = [
+            `Generate a micro-curriculum unit for a ${learnerProfile.currentCEFR} learner.`,
+            `Target form: ${item.targetForm}`,
+            `Learner persona: ${learnerProfile.activePersonaId}`,
+            `Context from session:\n${contextSnippets}`,
+            '',
+            'Provide:',
+            '1. A clear explanation in the learner\'s L1 of what went wrong',
+            '2. Three correct example sentences in L2',
+            '3. One fill-in-the-blank exercise and one multiple-choice exercise',
+        ].join('\n');
+
+        const unitResult = await deps.llmProvider.generateStructured<{
+            explanationL1: string;
+            examplesL2: string[];
+            exercises: Array<{
+                type: 'fill-blank' | 'multiple-choice';
+                prompt: string;
+                answer: string;
+                feedback: string;
+            }>;
+        }>(
+            'You are a language curriculum designer. Generate concise, learner-friendly content.',
+            unitPrompt,
+            {
+                type: 'object',
+                properties: {
+                    explanationL1: { type: 'string' },
+                    examplesL2: { type: 'array', items: { type: 'string' } },
+                    exercises: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                type: { type: 'string' },
+                                prompt: { type: 'string' },
+                                answer: { type: 'string' },
+                                feedback: { type: 'string' },
+                            },
+                        },
+                    },
+                },
+            },
+        );
+
+        const unitId = `unit-${units.length}`;
+        units.push({
+            id: unitId,
+            frictionPointIds: item.frictionPoints.map(fp => fp.id),
+            targetForm: item.targetForm,
+            title: `Practice: ${item.targetForm}`,
+            content: {
+                explanationL1: unitResult.explanationL1,
+                examplesL2: unitResult.examplesL2,
+            },
+            exercises: unitResult.exercises.map((ex, i) => ({
+                type: ex.type,
+                prompt: ex.prompt,
+                acceptedAnswers: [ex.answer],
+                incorrectFeedback: ex.feedback,
+                correctFeedback: 'Correct! Well done.',
+            })),
+            contextReference: contextSnippets,
+        });
+
+        // ── Generate forward injection directive ──
+        forwardInjectionDirectives.push({
+            targetForm: item.targetForm,
+            frictionType: item.frictionPoints[0]?.type ?? 'lexical',
+            injectionMethod: `Create a natural conversational situation requiring '${item.targetForm}'. The NPC should organically steer dialogue toward this form.`,
+            naturalityConstraint: 'The NPC must create a conversational situation where the target form is needed, without explicitly teaching it.',
+            targetNpcIds: ['companion'],
+            targetTier: 1,
+            targetLocationIds: ['default'],
+            maxSessionAttempts: 3,
+            status: 'pending',
+        });
+    }
+
+    const curriculum: MicroCurriculum = {
+        id: `curriculum-${classificationResult.clusters[0]?.clusterLabel ?? 'default'}-${Date.now()}`,
+        sourceSessionId: classificationResult.clusters[0]?.members[0]?.context?.npcId
+            ? classificationResult.clusters[0].members[0].id.split('-fp-')[0]
+            : 'unknown',
+        addressedFrictionPointIds: units.flatMap(u => u.frictionPointIds),
+        format: 'spaced-repetition-cards',
+        units,
+        schemaVersion: '1.0.0',
+    };
+
+    deps.logger.info('curriculum-generation', `Phase 3 complete: ${units.length} units, ${forwardInjectionDirectives.length} injection directives`, {});
+
+    return {
+        curriculum,
+        forwardInjectionDirectives,
+        estimatedDeliveryMinutes: units.length * 3, // ~3 min per unit
+    };
 }
 
 // ─── Phase 4: Adaptive Lesson Delivery ───────────────────────
