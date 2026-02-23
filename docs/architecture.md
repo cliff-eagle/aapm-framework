@@ -7,7 +7,7 @@
 ## System Modules
 
 | Module | Function | Key Technologies |
-|--------|----------|--------------------|
+| -------- | ---------- | -------------------- |
 | **Simulation Engine** | 3D environments, NPC movement, spatial audio | Unity URP / Three.js / Web |
 | **Agent Intelligence Layer** | NPC persona management, dialogue, tier behavior | LLM (GPT-4o / Claude), LangChain, Prompt Stack |
 | **Recursive Feedback Engine** | Friction extraction, curriculum generation, forward injection | Custom LLM pipeline, vector similarity |
@@ -23,7 +23,7 @@
 
 ## Data Flow — The Five-Stage Cycle
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                                                             │
 │  Stage 1: PRE-SESSION CONTEXT LOADING                       │
@@ -108,7 +108,7 @@
 
 ## Interlanguage Hypothesis Engine — Processing Pipeline
 
-```
+```text
 Learner Production (every turn)
         │
         ▼
@@ -148,7 +148,7 @@ Learner Production (every turn)
 
 ## Affective State Inference — Signal Processing
 
-```
+```text
 Per-Turn Signal Extraction
         │
         ├── Response Latency (ms)
@@ -181,7 +181,7 @@ Per-Turn Signal Extraction
 
 ## NPC Prompt Architecture — 4-Layer Stack
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │ Layer 4: REAL-TIME STATE                │
 │ Current turn, interlanguage assessment, │
@@ -210,7 +210,7 @@ Per-Turn Signal Extraction
 ### Tier-Specific Behavior Parameters
 
 | Parameter | Tier 1 (Companion) | Tier 2 (Immersion) | Tier 3 (Negotiation) |
-|-----------|-------------------|-------------------|---------------------|
+| ----------- | ------------------- | ------------------- | --------------------- |
 | Patience | Infinite wait | Realistic timing | Normal + register tracking |
 | Error Response | Recast naturally | Repeat once, then move on | Track violations, reduce openness |
 | Scaffolding | Proactive, constant | Minimal, realistic | None — sink or swim |
@@ -224,7 +224,7 @@ Per-Turn Signal Extraction
 
 ## Cross-Module Integration Map
 
-```
+```text
 ┌──────────────┐
 │     IHE      │──── predictions ────→ Forward Injection
 │              │──── trajectory ─────→ AFE (fossilization detection)
@@ -262,7 +262,7 @@ Per-Turn Signal Extraction
 
 ## Phoneme Alignment Engine — 5-Stage Pipeline
 
-```
+```text
 Audio Input
     │
     ▼
@@ -298,7 +298,7 @@ Audio Input
 ## Friction Point Classification
 
 | Friction Type | Detection | Curriculum Response | Forward Injection |
-|---------------|-----------|-------------------|-------------------|
+| --------------- | ----------- | ------------------- | ------------------- |
 | **Lexical Gap** | Hesitation >2s, topic abandonment, L1 intrusion | Vocab cards + contextual examples | NPC creates target vocab opportunity |
 | **Morphosyntactic Error** | Grammar rule vs. Interlanguage model | Grammar explanation + L1 contrastive analysis | NPC produces correct form naturally |
 | **Phonemic Error** | PAE cosine similarity below threshold | Heatmap + articulatory guidance + re-recording | Pronunciation drill in next interaction |
@@ -312,7 +312,7 @@ Audio Input
 
 ### Learner State
 
-```
+```text
 learner_state {
   matrix_coordinates: { x: float, y: float, z: float }
   interlanguage_grammar: InterlanguageGrammar
@@ -331,7 +331,7 @@ learner_state {
 
 ### NPC Relationship
 
-```
+```text
 npc_relationship {
   npc_id: string
   learner_id: string
@@ -349,7 +349,7 @@ npc_relationship {
 
 ### Session Record
 
-```
+```text
 session_record {
   session_id: string
   tier: 1 | 2 | 3

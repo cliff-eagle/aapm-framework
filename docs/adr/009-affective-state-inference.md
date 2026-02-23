@@ -19,7 +19,7 @@ We implement a **six-signal computational inference method** that detects learne
 ### Six Behavioral Signals
 
 | Signal | Interpretation |
-|--------|---------------|
+| -------- | --------------- |
 | Response Latency | Above baseline → uncertainty/difficulty |
 | L1 Fallback Rate | Increasing → cognitive overload |
 | Hedging Frequency | High → uncertainty |
