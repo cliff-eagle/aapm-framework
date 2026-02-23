@@ -1,0 +1,198 @@
+# Heritage Recovery — Persona Schema
+# A heritage speaker reconnecting with ancestral language
+
+persona:
+  id: "heritage-recovery"
+  name: "Heritage Language Recovery"
+  description: >
+    A second-generation diaspora adult who grew up hearing their parents'
+    language but never fully acquired productive competence. Has passive
+    comprehension, emotional connection to the language, and cultural
+    knowledge gaps that create a unique form of Linguistic Imposter Syndrome.
+
+  learner_profile:
+    native_language: "en"
+    target_languages: ["ko"]
+    proficiency_baseline: "A2"
+    domain: "heritage-recovery"
+    objective: >
+      Recover productive fluency in Korean to communicate authentically
+      with family, navigate visits to Korea, and resolve the identity tension
+      between cultural belonging and linguistic limitation.
+
+  vocabulary_matrix:
+    priority_domains:
+      - family-relationships     # 할머니, 이모, 삼촌, 존댓말/반말 distinction
+      - emotional-expression     # 보고싶다, 자랑스럽다, 서운하다, 정 (jeong)
+      - food-and-cooking         # 반찬, 김치찌개, 된장, traditional recipes and kitchen talk
+      - honorific-system          # -요, -습니다, -시-, age-based register shifts
+      - cultural-identity        # 교포 (gyopo), 한인 (hanin), belonging, identity talk
+      - practical-korea          # 지하철, 편의점, 배달, 병원, navigation in Korea
+    cefr_annotations: true
+    excluded_generic:
+      - business-korean
+      - academic-korean
+
+  environment:
+    tier_2:
+      setting: "Korean family home, Korean community center, and visits to Seoul"
+      locations:
+        - name: family-kitchen
+          description: "Grandmother's kitchen during holiday cooking"
+          npcs: [grandmother, aunt]
+          typical_tasks:
+            - follow-cooking-instructions
+            - learn-family-recipe-stories
+            - use-appropriate-honorifics
+        - name: family-gathering
+          description: "Extended family dinner during Chuseok or Seollal"
+          npcs: [grandmother, uncle, cousin]
+          typical_tasks:
+            - participate-in-table-conversation
+            - navigate-age-based-honorific-shifts
+            - tell-stories-about-life-abroad
+        - name: korean-church
+          description: "Korean community church or temple social gathering"
+          npcs: [community-elder, peer]
+          typical_tasks:
+            - introduce-self-in-korean
+            - respond-to-identity-questions
+            - navigate-generational-expectations
+        - name: seoul-neighborhood
+          description: "Walking through a Seoul neighborhood during a visit"
+          npcs: [shopkeeper, stranger]
+          typical_tasks:
+            - order-food-at-restaurant
+            - ask-for-directions
+            - handle-being-addressed-as-foreigner
+        - name: video-call-home
+          description: "Weekly video call with family in Korea"
+          npcs: [grandmother, parent]
+          typical_tasks:
+            - share-weekly-updates
+            - express-emotions-in-korean
+            - understand-family-news
+
+      npc_roster:
+        - role: grandmother
+          count: 1
+          register: informal-affectionate
+          personality: "Warm, proud, sometimes critical of language mistakes. Speaks only Korean. Uses dialect."
+          vocabulary_focus: [family-relationships, food-and-cooking, emotional-expression]
+        - role: aunt
+          count: 1
+          register: informal-supportive
+          personality: "Bilingual bridge. Patient, corrects gently, switches to English when learner struggles."
+          vocabulary_focus: [family-relationships, honorific-system]
+        - role: uncle
+          count: 1
+          register: informal-teasing
+          personality: "Good-natured but teases about Korean ability. Uses idioms the learner doesn't know."
+          vocabulary_focus: [family-relationships, cultural-identity]
+        - role: cousin
+          count: 1
+          register: casual-peer
+          personality: "Same generation, fluent Korean. Supportive but sometimes impatient. Uses modern slang."
+          vocabulary_focus: [cultural-identity, practical-korea]
+        - role: community-elder
+          count: 1
+          register: formal-evaluative
+          personality: "Expects proper honorifics. Judges Korean ability as a marker of cultural commitment."
+          vocabulary_focus: [honorific-system, cultural-identity]
+        - role: shopkeeper
+          count: 1
+          register: casual-commercial
+          personality: "Busy, speaks fast, may switch to English upon hearing accent. Tests authenticity."
+          vocabulary_focus: [practical-korea]
+
+      cultural_parameters:
+        greeting_norms: "Age-based bowing depth. '안녕하세요' baseline with register adjustment."
+        formality_level: "Strict honorific hierarchy in family. Casual with same-age peers."
+        taboo_topics:
+          - why-parents-didnt-teach-korean
+          - comparing-korea-to-america-unfavorably
+          - questioning-elder-decisions
+
+    tier_3:
+      scenarios:
+        - type: grandmother-storytelling
+          description: >
+            Grandmother shares a family history story entirely in Korean,
+            including dialect and old-fashioned expressions. The learner
+            must demonstrate comprehension, ask appropriate questions,
+            and respond emotionally in Korean.
+          authority: grandmother
+          stakes: family-bond
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.30
+
+        - type: identity-challenge
+          description: >
+            A community elder directly challenges the learner's Korean
+            identity — "You're not really Korean if you can't speak properly."
+            Must navigate the emotional and cultural complexity of this
+            confrontation with dignity and respect.
+          authority: community-elder
+          stakes: cultural-belonging
+          evaluation_weight:
+            linguistic_accuracy: 0.15
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.25
+            cultural_intelligence: 0.35
+
+        - type: family-mediation
+          description: >
+            Parents are in a disagreement with grandparents about a family
+            decision. The learner must mediate in Korean, using appropriate
+            honorifics for both generations and navigating the emotional
+            dynamics of intergenerational Korean family communication.
+          authority: family-group
+          stakes: family-harmony
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+  companion:
+    personality: >
+      A fellow heritage Korean speaker who grew up in LA's Koreatown.
+      Went through the same "not Korean enough for Koreans, not American
+      enough for Americans" identity crisis. Warm, validating, and deeply
+      understanding of the shame and longing that heritage speakers carry.
+      Uses humor to defuse the emotional weight of language recovery.
+    shared_interests:
+      - korean-food-and-cooking
+      - k-drama-and-music
+      - diaspora-identity-navigation
+      - family-dynamics
+    cultural_bridge: >
+      Normalizes the heritage speaker experience — it's not a failure to
+      not speak perfectly, it's a consequence of immigration that can be
+      addressed. Explains why grandmother's criticism comes from love,
+      why the honorific system feels harder for heritage speakers, and
+      why emotional vocabulary is the key to unlocking authentic connection.
+
+  retention_profile:
+    default_style: "organic-social"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Check-in about family interactions or emotional processing"
+      - type: npc-message
+        sender: grandmother
+        frequency: twice-weekly
+        trigger: "Voice message with family update or recipe instruction"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Family gathering or video call upcoming"
+
+  evaluation:
+    tier_2_success: "Sustained 20-minute family conversation with appropriate honorific use"
+    tier_3_success: "Navigate grandmother storytelling with comprehension > 80% and emotional engagement"
+    primary_metric: "heritage-authenticity-score"

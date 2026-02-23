@@ -1,0 +1,188 @@
+# University Admissions — Persona Schema
+# An international student preparing for English-medium higher education
+
+persona:
+  id: "university-admissions"
+  name: "University Admissions Candidate"
+  description: >
+    An international student from East Asia preparing for admission to and
+    success in an English-medium university. Needs to navigate the admissions
+    process, academic writing, seminar participation, and social integration
+    into campus culture.
+
+  learner_profile:
+    native_language: "zh"
+    target_languages: ["en"]
+    proficiency_baseline: "B1"
+    domain: "higher-education"
+    objective: >
+      Successfully navigate university admissions interviews, participate
+      confidently in academic seminars, produce clear academic writing,
+      and integrate socially into campus life.
+
+  vocabulary_matrix:
+    priority_domains:
+      - academic-discourse        # thesis, hypothesis, methodology, peer review, citation
+      - admissions-process        # personal statement, reference letter, UCAS, scholarship
+      - seminar-participation     # I'd like to add to that, building on what X said, counterargument
+      - campus-life               # student union, society, flatmate, halls, fresher's week
+      - academic-writing          # moreover, notwithstanding, in contrast, it can be argued that
+      - administrative            # enrollment, tuition, visa, student services, accommodation
+    cefr_annotations: true
+    excluded_generic:
+      - informal-slang
+      - business-jargon
+
+  environment:
+    tier_2:
+      setting: "English university campus — lectures, seminars, library, student accommodation"
+      locations:
+        - name: seminar-room
+          description: "Small-group academic discussion led by a tutor"
+          npcs: [tutor, classmates]
+          typical_tasks:
+            - present-argument-in-discussion
+            - respond-to-counterargument
+            - ask-clarifying-question-about-reading
+        - name: lecture-hall
+          description: "Large lecture with Q&A period"
+          npcs: [professor]
+          typical_tasks:
+            - take-structured-notes
+            - ask-question-during-qa
+            - request-clarification-after-lecture
+        - name: library
+          description: "Study space and research support"
+          npcs: [librarian, study-partner]
+          typical_tasks:
+            - request-help-finding-sources
+            - discuss-assignment-with-partner
+            - explain-research-methodology
+        - name: student-accommodation
+          description: "Shared flat in student halls"
+          npcs: [flatmates]
+          typical_tasks:
+            - negotiate-cleaning-schedule
+            - make-social-plans
+            - resolve-flatmate-conflict
+        - name: student-services
+          description: "Administrative office for enrollment, visa, and support"
+          npcs: [administrator]
+          typical_tasks:
+            - explain-visa-situation
+            - request-deadline-extension
+            - arrange-academic-support
+
+      npc_roster:
+        - role: tutor
+          count: 1
+          register: academic-supportive
+          personality: "Encouraging but rigorous. Expects evidence-based arguments. Values original thinking."
+          vocabulary_focus: [academic-discourse, seminar-participation]
+        - role: professor
+          count: 1
+          register: formal-academic
+          personality: "Authoritative, fast-paced. Assumes baseline knowledge. Appreciates thoughtful questions."
+          vocabulary_focus: [academic-discourse, academic-writing]
+        - role: classmate
+          count: 3
+          register: casual-academic
+          personality: "Mix of native and international students. Varying registers and cultural backgrounds."
+          vocabulary_focus: [seminar-participation, campus-life]
+        - role: flatmate
+          count: 2
+          register: casual-informal
+          personality: "Friendly but occasionally inconsiderate. Uses extensive slang and cultural references."
+          vocabulary_focus: [campus-life]
+        - role: administrator
+          count: 1
+          register: professional-bureaucratic
+          personality: "Efficient, procedure-focused. Not unfriendly but not warm. Expects clear communication."
+          vocabulary_focus: [administrative, admissions-process]
+
+      cultural_parameters:
+        greeting_norms: "Casual 'Hey' or 'Hi' with peers. 'Good morning/afternoon' with academic staff."
+        formality_level: "Informal with peers, semi-formal in seminars, formal in written assignments."
+        taboo_topics:
+          - exam-grades-comparison
+          - income-or-family-wealth
+          - overly-personal-questions-to-staff
+
+    tier_3:
+      scenarios:
+        - type: admissions-interview
+          description: >
+            Formal interview for a competitive program or scholarship.
+            Must articulate academic motivations, research interests, and
+            personal qualities coherently under pressure.
+          authority: admissions-panel
+          stakes: program-admission
+          evaluation_weight:
+            linguistic_accuracy: 0.25
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.30
+            cultural_intelligence: 0.20
+
+        - type: thesis-defense
+          description: >
+            Present and defend a dissertation proposal to an academic committee.
+            Must handle critical questions, acknowledge limitations, and
+            demonstrate mastery of the research methodology.
+          authority: dissertation-committee
+          stakes: academic-progression
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: academic-misconduct-hearing
+          description: >
+            Respond to an allegation of unintentional plagiarism. Must explain
+            cultural differences in citation practices, demonstrate understanding
+            of Western academic integrity norms, and present a credible defense.
+          authority: disciplinary-panel
+          stakes: academic-standing
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.30
+            cultural_intelligence: 0.25
+
+  companion:
+    personality: >
+      A bilingual (Mandarin/English) graduate student who completed the same
+      transition — Chinese university to UK postgraduate study. Empathetic,
+      intellectually curious, and pragmatic. Shares stories of cultural
+      misunderstandings and academic adjustment.
+    shared_interests:
+      - academic-research
+      - navigating-bureaucracy
+      - food-and-homesickness
+      - career-planning
+    cultural_bridge: >
+      Explains Western academic norms — why plagiarism definitions differ,
+      why professors expect disagreement in seminars, why asking for help
+      is valued rather than shameful, and how to navigate indirect British
+      communication styles.
+
+  retention_profile:
+    default_style: "intrinsic-mastery"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Check-in about assignment progress or upcoming seminar"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Admissions interview simulation upcoming"
+      - type: npc-message
+        sender: classmate
+        frequency: twice-weekly
+        trigger: "Study group invitation or social event"
+
+  evaluation:
+    tier_2_success: "85% task completion across 12 sessions in academic environments"
+    tier_3_success: "Admissions interview completed with cumulative register score > 80%"
+    primary_metric: "academic-discourse-competency"

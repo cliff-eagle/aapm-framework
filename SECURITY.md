@@ -3,8 +3,8 @@
 ## Supported Versions
 
 | Version | Supported          |
-|---------|--------------------|
-| 0.1.x   | ✅ Current release |
+| ------- | ------------------ |
+| 0.4.x   | ✅ Current release |
 
 ## Reporting a Vulnerability
 
@@ -14,7 +14,7 @@ If you discover a security vulnerability in the AAPM Framework, please report it
 
 ### How to Report
 
-1. Email: [INSERT SECURITY CONTACT EMAIL]
+1. Email: <security@cliffeagle.dev>
 2. Include:
    - Description of the vulnerability
    - Steps to reproduce
@@ -24,7 +24,7 @@ If you discover a security vulnerability in the AAPM Framework, please report it
 ### Response Timeline
 
 | Action | Timeline |
-|--------|----------|
+| -------- | ---------- |
 | Acknowledgment of report | Within 48 hours |
 | Initial assessment | Within 5 business days |
 | Resolution or mitigation plan | Within 15 business days |

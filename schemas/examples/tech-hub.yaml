@@ -1,0 +1,188 @@
+# Tech Hub Professional — Persona Schema
+# A software engineer relocating to a German tech ecosystem
+
+persona:
+  id: "tech-hub-professional"
+  name: "Tech Hub Professional"
+  description: >
+    A software engineer from India relocating to Berlin's tech ecosystem.
+    Needs to navigate professional communication in English-dominant but
+    German-influenced tech culture, including standup meetings, code reviews,
+    client presentations, and after-work social integration.
+
+  learner_profile:
+    native_language: "hi"
+    target_languages: ["de", "en"]
+    proficiency_baseline: "A1"
+    domain: "tech-professional"
+    objective: >
+      Professional integration into a German tech company — daily standups,
+      sprint planning, code review discussions, client-facing presentations,
+      and social bonding with multinational colleagues.
+
+  vocabulary_matrix:
+    priority_domains:
+      - agile-scrum             # sprint, backlog, user story, velocity, blocker, standup
+      - code-review             # pull request, refactor, edge case, tech debt, merge conflict
+      - client-communication    # deliverable, milestone, scope creep, stakeholder, timeline
+      - office-social           # Feierabend, Stammtisch, Döner, Bier, Wochenende
+      - bureaucracy-german      # Anmeldung, Aufenthaltserlaubnis, Krankenkasse, Finanzamt
+      - apartment-hunting       # Wohnungsbesichtigung, Kaltmiete, Warmmiete, Schufa, WG
+    cefr_annotations: true
+    excluded_generic:
+      - literary-german
+      - academic-philosophy
+
+  environment:
+    tier_2:
+      setting: "Berlin tech startup office and surrounding Kiez neighborhood"
+      locations:
+        - name: open-office
+          description: "Modern open-plan office with standing desks and meeting pods"
+          npcs: [tech-lead, colleagues]
+          typical_tasks:
+            - give-standup-update
+            - explain-technical-decision
+            - ask-for-help-with-blocker
+        - name: meeting-room
+          description: "Glass-walled meeting room for sprint planning and retros"
+          npcs: [product-manager, tech-lead, colleagues]
+          typical_tasks:
+            - discuss-sprint-priorities
+            - raise-technical-concern
+            - estimate-story-points
+        - name: client-video-call
+          description: "Video conference with German enterprise client"
+          npcs: [client-manager]
+          typical_tasks:
+            - present-feature-demo
+            - handle-scope-change-request
+            - explain-technical-limitation
+        - name: office-kitchen
+          description: "Communal kitchen and coffee area"
+          npcs: [colleagues]
+          typical_tasks:
+            - casual-conversation
+            - discuss-weekend-plans
+            - navigate-cultural-small-talk
+        - name: buergeramt
+          description: "German government office for registration and permits"
+          npcs: [bureaucrat]
+          typical_tasks:
+            - complete-anmeldung-registration
+            - explain-visa-situation
+            - request-form-clarification
+
+      npc_roster:
+        - role: tech-lead
+          count: 1
+          register: professional-direct
+          personality: "German, thorough, values precision. Code review feedback is blunt but constructive."
+          vocabulary_focus: [agile-scrum, code-review]
+        - role: colleague
+          count: 3
+          register: casual-multicultural
+          personality: "Mix of German, Turkish, and international. English as lingua franca with German social norms."
+          vocabulary_focus: [agile-scrum, office-social]
+        - role: product-manager
+          count: 1
+          register: professional-diplomatic
+          personality: "German, organized, deadline-driven. Mediates between engineering and business."
+          vocabulary_focus: [agile-scrum, client-communication]
+        - role: client-manager
+          count: 1
+          register: formal-german-business
+          personality: "Senior, formal, expects structured presentations. Switches between German and English."
+          vocabulary_focus: [client-communication]
+        - role: bureaucrat
+          count: 1
+          register: formal-bureaucratic
+          personality: "Speaks German only. Impatient with unclear requests. Follows procedures rigidly."
+          vocabulary_focus: [bureaucracy-german, apartment-hunting]
+
+      cultural_parameters:
+        greeting_norms: "Handshake in formal settings. 'Morgen!' or 'Moin!' in office. Duzen (informal 'du') among colleagues."
+        formality_level: "Informal in office (English). Very formal in government offices (German). Mixed with clients."
+        taboo_topics:
+          - salary-discussion-with-colleagues
+          - work-life-balance-criticism
+          - jaywalking-admission
+
+    tier_3:
+      scenarios:
+        - type: client-presentation
+          description: >
+            Present a quarterly product roadmap to the enterprise client's
+            C-suite in German. Must handle technical questions, manage
+            expectations about delayed features, and maintain trust.
+          authority: client-cto
+          stakes: contract-renewal
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: performance-review
+          description: >
+            Annual performance review with German tech lead. Must self-advocate
+            for promotion, discuss areas for improvement without defensiveness,
+            and negotiate professional development opportunities.
+          authority: tech-lead
+          stakes: career-progression
+          evaluation_weight:
+            linguistic_accuracy: 0.20
+            pragmatic_appropriateness: 0.30
+            register_alignment: 0.25
+            cultural_intelligence: 0.25
+
+        - type: visa-renewal
+          description: >
+            Appointment at the Ausländerbehörde (immigration office) to renew
+            work visa. Must present employment documentation, explain job role,
+            and respond to questions entirely in formal German.
+          authority: immigration-officer
+          stakes: residency-status
+          evaluation_weight:
+            linguistic_accuracy: 0.30
+            pragmatic_appropriateness: 0.25
+            register_alignment: 0.25
+            cultural_intelligence: 0.20
+
+  companion:
+    personality: >
+      A bilingual (Hindi/English) software engineer who moved to Berlin
+      three years ago. Navigated the same bureaucratic maze, learned German
+      from scratch, and built a social network in the tech scene. Pragmatic,
+      humorous about cultural clashes, and deeply empathetic about homesickness.
+    shared_interests:
+      - software-engineering
+      - berlin-food-scene
+      - navigating-german-bureaucracy
+      - cricket-and-football
+    cultural_bridge: >
+      Explains German workplace norms — why directness is respect not rudeness,
+      why Feierabend is sacred, why the Ausländerbehörde requires extreme
+      patience, and how to build genuine friendships in a culture that separates
+      'friend' and 'acquaintance' more sharply than Indian culture.
+
+  retention_profile:
+    default_style: "professional-urgency"
+    async_triggers:
+      - type: npc-message
+        sender: companion
+        frequency: daily
+        trigger: "Check-in about work situation or German learning progress"
+      - type: scenario-reminder
+        sender: system
+        frequency: weekly
+        trigger: "Client presentation or bureaucratic appointment upcoming"
+      - type: npc-message
+        sender: colleague
+        frequency: twice-weekly
+        trigger: "After-work Stammtisch invitation or social event"
+
+  evaluation:
+    tier_2_success: "80% task completion across 12 sessions in office and social environments"
+    tier_3_success: "Client presentation completed with cumulative score > 80%"
+    primary_metric: "professional-communication-competency"
