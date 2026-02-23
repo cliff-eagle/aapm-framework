@@ -1,0 +1,15 @@
+{
+    "name": "@aapm/core",
+    "version": "0.1.0",
+    "description": "Core engine packages for the AAPM Framework",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "license": "BUSL-1.1",
+    "scripts": {
+        "build": "tsc",
+        "typecheck": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "typescript": "^5.4.0"
+    }
+}

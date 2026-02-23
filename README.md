@@ -13,6 +13,13 @@
   <a href="docs/aapm-full.md">Full AAPM Document</a>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/license-BUSL--1.1-blue" alt="License: BUSL-1.1" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript" alt="TypeScript: strict" />
+  <img src="https://img.shields.io/badge/version-0.1.0-green" alt="Version: 0.1.0" />
+  <img src="https://img.shields.io/badge/PRs-CLA%20required-yellow" alt="PRs: CLA Required" />
+</p>
+
 ---
 
 ## What Is This
@@ -45,6 +52,8 @@ Tier 2: THE IMMERSION      → Monolingual world where you must communicate to s
 Tier 3: THE NEGOTIATION    → High-stakes professional encounters with power dynamics
 ```
 
+→ **[ADR-001: Why three tiers?](docs/adr/001-three-tier-architecture.md)**
+
 ---
 
 ## Architecture
@@ -71,6 +80,12 @@ Tier 3: THE NEGOTIATION    → High-stakes professional encounters with power dy
 │  │  ├─────────────┤  ├────────────────┤  │      │
 │  │  │  Tier        │  │  Retention     │  │      │
 │  │  │  Manager     │  │  Architecture  │  │      │
+│  │  ├─────────────┤  ├────────────────┤  │      │
+│  │  │  Refraction  │  │  Evaluation    │  │      │
+│  │  │  Interface   │  │  Framework     │  │      │
+│  │  ├─────────────┤  ├────────────────┤  │      │
+│  │  │  Schema      │  │               │  │      │
+│  │  │  Loader      │  │               │  │      │
 │  │  └─────────────┘  └────────────────┘  │      │
 │  └───────────────────────────────────────┘      │
 │                      │                           │
@@ -95,12 +110,17 @@ The **Persona Schema** is the unit of infinite scalability. Every new domain is 
 
 ```yaml
 # schemas/examples/premier-league.yaml
+schema_version: "1.0.0"
 persona:
   id: "premier-league-footballer"
   learner_profile:
     native_language: "es"
     target_languages: ["en"]
     domain: "professional-sports"
+  companion:
+    name: "Carlos"
+    personality: "Warm, football-obsessed, bilingual since childhood"
+    backstory: "Grew up in Barcelona, moved to London at 16"
   environment:
     tier_2:
       setting: "Premier League training ground"
@@ -108,9 +128,9 @@ persona:
     tier_3:
       scenarios:
         - type: contract-negotiation
-          authority: club-director
+          authority_npc_id: club-director
         - type: press-conference
-          authority: media-panel
+          authority_npc_id: media-panel
 ```
 
 ### Available Schemas
@@ -120,11 +140,38 @@ persona:
 | [`premier-league`](schemas/examples/premier-league.yaml) | ES → EN | Professional football |
 | [`mediterranean-yacht`](schemas/examples/mediterranean-yacht.yaml) | Any → FR/IT/ES/GR/TR | Maritime hospitality |
 | [`medical-migration`](schemas/examples/medical-migration.yaml) | Any → EN/DE | Healthcare professionals |
-| [`university-admissions`](schemas/examples/university-admissions.yaml) | Any → EN/FR/DE | Academic preparation |
-| [`tech-hub`](schemas/examples/tech-hub.yaml) | Any → EN/ZH/DE | Tech industry relocation |
-| [`heritage-recovery`](schemas/examples/heritage-recovery.yaml) | Partial → Full L2 | Heritage language reconnection |
 
-→ **[How to create your own schema](docs/persona-schema-guide.md)**
+→ **[Persona Schema JSON Schema](schemas/persona.schema.json)** · **[ADR-003: Why schema-driven?](docs/adr/003-persona-schema-system.md)**
+
+---
+
+## The Recursive Feedback Engine
+
+The core innovation: every interaction generates data that improves the next interaction.
+
+```
+Session → Friction Extraction → Pattern Classification → Micro-Curriculum → Forward Injection → Next Session
+```
+
+Three temporal loops:
+
+- **Micro-Loop**: Real-time scaffolding during conversation
+- **Macro-Loop**: Post-session curriculum generation (5-phase pipeline)
+- **Persistence Loop**: Long-term social world evolution
+
+→ **[ADR-002: Why recursive feedback?](docs/adr/002-recursive-feedback-engine.md)** · **[Interaction Loop (7 state machines)](docs/interaction-loop.md)**
+
+---
+
+## Key Innovations
+
+| Innovation | Description | ADR |
+|------------|-------------|-----|
+| **Tri-Refraction Interface** | Every learner input refracted into Basic / Native / Formal with metalinguistic explanation | [ADR-004](docs/adr/004-tri-refraction-interface.md) |
+| **Social Reputation System** | Invisible NPC reputation scores that govern behavior — learner reads social cues, not numbers | [ADR-005](docs/adr/005-social-reputation-persistence.md) |
+| **Phoneme Alignment Engine** | 5-stage pronunciation pipeline producing comprehensibility scores + articulatory guidance | — |
+| **Forward Injection** | Learning targets embedded into NPC behavior, invisible to the learner | [ADR-002](docs/adr/002-recursive-feedback-engine.md) |
+| **Axis Z Retention** | 5 retention profiles that respect individual psychology — never defaulting to gamification | — |
 
 ---
 
@@ -147,7 +194,7 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 ### Key Files for AI Tools
 
 | File | What AI Tools Learn From It |
-|------|----------------------------|
+|------|---------------------------|
 | `.cursorrules` | AAPM philosophy, architecture patterns, design constraints |
 | `docs/glossary.md` | Every AAPM-specific term |
 | `schemas/*.schema.json` | Valid configuration shapes |
@@ -161,26 +208,65 @@ This repo is designed for **AI-assisted rapid development**. The `.cursorrules` 
 
 ```
 aapm-framework/
-├── .cursorrules                    # AI coding context
-├── docs/                           # AAPM specification & guides
-├── schemas/                        # Persona Schema definitions
-│   ├── persona.schema.json         # JSON Schema
-│   └── examples/                   # Pre-built schemas
+├── .cursorrules                        # AI coding context — the AAPM Bible
+├── docs/
+│   ├── aapm-full.md                    # Complete AAPM specification
+│   ├── architecture.md                 # System architecture overview
+│   ├── glossary.md                     # AAPM terminology
+│   ├── three-tiers.md                  # Tier architecture detail
+│   ├── interaction-loop.md             # 7 state machines (NEW)
+│   ├── session-lifecycle.md            # Typed session contracts (NEW)
+│   ├── security-privacy.md             # GDPR/COPPA/CCPA compliance (NEW)
+│   ├── evaluation-framework.md         # 8 metrics + A/B testing (NEW)
+│   └── adr/                            # Architecture Decision Records (NEW)
+│       ├── 001-three-tier-architecture.md
+│       ├── 002-recursive-feedback-engine.md
+│       ├── 003-persona-schema-system.md
+│       ├── 004-tri-refraction-interface.md
+│       └── 005-social-reputation-persistence.md
+├── schemas/
+│   ├── persona.schema.json             # JSON Schema (expanded)
+│   └── examples/                       # Pre-built persona schemas
 ├── packages/
-│   ├── core/                       # Engine packages
-│   │   └── src/
-│   │       ├── agent-intelligence/ # NPC system
-│   │       ├── feedback-engine/    # Recursive Feedback Engine
-│   │       ├── persistence/        # Memory & reputation
-│   │       ├── phoneme-engine/     # Pronunciation analysis
-│   │       ├── tier-manager/       # Three-tier state machine
-│   │       └── retention/          # Axis Z engagement
-│   ├── ui/                         # Interface components
-│   └── cli/                        # CLI tools
-├── prompts/                        # Prompt engineering library
-├── recipes/                        # Vibecoding step-by-step guides
-├── templates/                      # Starter app templates
-└── examples/                       # Complete reference apps
+│   └── core/                           # @aapm/core engine
+│       ├── tsconfig.json               # TypeScript strict mode (NEW)
+│       └── src/
+│           ├── feedback-engine/        # Recursive Feedback Engine
+│           │   ├── types.ts            # Data models (NEW)
+│           │   └── pipeline.ts         # 5-phase Macro-Loop (NEW)
+│           ├── persistence/            # Memory & reputation
+│           │   └── types.ts            # Data models (NEW)
+│           ├── phoneme-engine/         # Pronunciation analysis
+│           │   └── types.ts            # PAE pipeline types (NEW)
+│           ├── tier-manager/           # Three-tier state machine
+│           │   └── types.ts            # Tier types (NEW)
+│           ├── retention/              # Axis Z engagement
+│           │   └── types.ts            # 5 profiles (NEW)
+│           ├── refraction/             # Tri-Refraction Interface
+│           │   └── types.ts            # Refraction types (NEW)
+│           ├── evaluation/             # Outcome measurement
+│           │   ├── types.ts            # Metrics + A/B types (NEW)
+│           │   └── metrics.ts          # Metric calculations (NEW)
+│           └── schema-loader/          # Schema validation
+│               ├── validator.ts        # Runtime validator (NEW)
+│               └── migrations.ts       # Version migration (NEW)
+├── prompts/                            # Prompt engineering library
+│   ├── system/                         # NPC system prompts
+│   │   ├── tier1-companion.md
+│   │   ├── tier2-immersion-npc.md
+│   │   └── tier3-authority.md
+│   ├── curriculum/                     # Feedback pipeline prompts
+│   │   ├── friction-analysis.md
+│   │   └── micro-curriculum-generator.md  (NEW)
+│   ├── refraction/
+│   │   └── tri-refraction.md
+│   ├── npc/
+│   │   └── forward-injection-briefing.md  (NEW)
+│   └── evaluation/
+│       └── register-classifier.md         (NEW)
+├── recipes/                            # Vibecoding step-by-step guides
+├── templates/                          # Starter app templates
+└── examples/                           # Complete reference apps
 ```
 
 ---
@@ -198,33 +284,46 @@ The AAPM is grounded in established SLA (Second Language Acquisition) research:
 
 ---
 
-## The Recursive Feedback Engine
+## Documentation
 
-The core innovation: every interaction generates data that improves the next interaction.
+| Document | Description |
+|----------|-------------|
+| [Full AAPM Specification](docs/aapm-full.md) | The complete pedagogical framework |
+| [Architecture Overview](docs/architecture.md) | System architecture and components |
+| [Interaction Loop](docs/interaction-loop.md) | 7 state machines — onboarding through async engagement |
+| [Session Lifecycle](docs/session-lifecycle.md) | Typed contracts for all session phases |
+| [Evaluation Framework](docs/evaluation-framework.md) | 8 quantitative metrics and A/B testing methodology |
+| [Security & Privacy](docs/security-privacy.md) | GDPR, COPPA, CCPA compliance architecture |
+| [Glossary](docs/glossary.md) | AAPM-specific terminology |
+| [Persona Schema Guide](docs/persona-schema-guide.md) | How to create your own schema |
 
-```
-Session → Friction Extraction → Pattern Classification → Micro-Curriculum → Forward Injection → Next Session
-```
+### Architecture Decision Records
 
-Three temporal loops:
-
-- **Micro-Loop**: Real-time scaffolding during conversation
-- **Macro-Loop**: Post-session curriculum generation
-- **Persistence Loop**: Long-term social world evolution
-
-→ **[Technical specification](docs/feedback-engine.md)**
+| ADR | Decision |
+|-----|----------|
+| [001](docs/adr/001-three-tier-architecture.md) | Three-Tier Architecture |
+| [002](docs/adr/002-recursive-feedback-engine.md) | Recursive Feedback Engine |
+| [003](docs/adr/003-persona-schema-system.md) | Persona Schema System |
+| [004](docs/adr/004-tri-refraction-interface.md) | Tri-Refraction Interface |
+| [005](docs/adr/005-social-reputation-persistence.md) | Social Reputation Persistence |
 
 ---
 
 ## Contributing
 
-We welcome new Persona Schemas, prompt improvements, and recipe contributions. See the [issue templates](.github/ISSUE_TEMPLATE/) for structured proposals.
+We welcome new Persona Schemas, prompt improvements, and recipe contributions. All contributions require a **Contributor License Agreement** (CLA). See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+For security vulnerabilities, see [SECURITY.md](SECURITY.md).
 
 ---
 
 ## License
 
-MIT — Build freely, teach effectively.
+**Business Source License 1.1** — See [LICENSE](LICENSE) for full text.
+
+- **Allowed**: Research, education, non-production evaluation, personal learning
+- **Restricted**: Production commercial use without a separate agreement
+- **Change Date**: February 23, 2030 → converts to Apache 2.0
 
 ---
 

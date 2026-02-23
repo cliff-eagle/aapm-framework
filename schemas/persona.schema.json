@@ -2,18 +2,36 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aapm-framework.dev/schemas/persona.schema.json",
   "title": "AAPM Persona Schema",
-  "description": "Defines a complete domain-specific deployment for the Autonomous Adaptive Pedagogical Matrix",
+  "description": "Defines a complete domain-specific deployment for the Autonomous Adaptive Pedagogical Matrix. Version 1.0.0.",
   "type": "object",
-  "required": ["persona"],
+  "required": [
+    "schema_version",
+    "persona"
+  ],
   "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "1.0.0"
+      ],
+      "description": "Schema version — must match a registered version in migrations.ts"
+    },
     "persona": {
       "type": "object",
-      "required": ["id", "name", "learner_profile", "environment", "evaluation"],
+      "required": [
+        "id",
+        "name",
+        "learner_profile",
+        "vocabulary_matrix",
+        "companion",
+        "environment",
+        "evaluation"
+      ],
       "properties": {
         "id": {
           "type": "string",
           "pattern": "^[a-z0-9-]+$",
-          "description": "Unique kebab-case identifier"
+          "description": "Unique kebab-case identifier for this persona"
         },
         "name": {
           "type": "string",
@@ -25,21 +43,38 @@
         },
         "learner_profile": {
           "type": "object",
-          "required": ["native_language", "target_languages", "proficiency_baseline", "domain", "objective"],
+          "required": [
+            "native_language",
+            "target_languages",
+            "proficiency_baseline",
+            "domain",
+            "objective"
+          ],
           "properties": {
             "native_language": {
               "type": "string",
+              "pattern": "^[a-z]{2}$",
               "description": "ISO 639-1 language code"
             },
             "target_languages": {
               "type": "array",
-              "items": { "type": "string" },
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z]{2}$"
+              },
               "minItems": 1,
               "description": "Target languages (ISO 639-1 codes)"
             },
             "proficiency_baseline": {
               "type": "string",
-              "enum": ["A1", "A2", "B1", "B2", "C1", "C2"],
+              "enum": [
+                "A1",
+                "A2",
+                "B1",
+                "B2",
+                "C1",
+                "C2"
+              ],
               "description": "Starting CEFR proficiency level"
             },
             "domain": {
@@ -48,17 +83,27 @@
             },
             "objective": {
               "type": "string",
-              "description": "What fluency means for this learner"
+              "description": "What fluency means for this learner — the outcome they're paying for"
+            },
+            "timeline": {
+              "type": "string",
+              "description": "Optional deadline or timeline for the learner's objective"
             }
           }
         },
         "vocabulary_matrix": {
           "type": "object",
+          "required": [
+            "domains"
+          ],
           "properties": {
-            "priority_domains": {
+            "domains": {
               "type": "array",
-              "items": { "type": "string" },
-              "description": "Domain-specific vocabulary categories, ordered by priority"
+              "items": {
+                "$ref": "#/definitions/vocabulary_domain"
+              },
+              "minItems": 1,
+              "description": "Domain-specific vocabulary categories"
             },
             "cefr_annotations": {
               "type": "boolean",
@@ -67,118 +112,106 @@
             },
             "excluded_generic": {
               "type": "array",
-              "items": { "type": "string" },
-              "description": "Generic vocabulary categories to deprioritize"
-            }
-          }
-        },
-        "environment": {
-          "type": "object",
-          "required": ["tier_2", "tier_3"],
-          "properties": {
-            "tier_2": {
-              "type": "object",
-              "required": ["setting", "locations"],
-              "properties": {
-                "setting": {
-                  "type": "string",
-                  "description": "Description of the Tier 2 world"
-                },
-                "locations": {
-                  "type": "array",
-                  "items": {
-                    "oneOf": [
-                      { "type": "string" },
-                      {
-                        "type": "object",
-                        "required": ["name"],
-                        "properties": {
-                          "name": { "type": "string" },
-                          "description": { "type": "string" },
-                          "npcs": {
-                            "type": "array",
-                            "items": { "type": "string" }
-                          },
-                          "typical_tasks": {
-                            "type": "array",
-                            "items": { "type": "string" }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "minItems": 1
-                },
-                "npc_roster": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": ["role", "register"],
-                    "properties": {
-                      "role": { "type": "string" },
-                      "count": { "type": "integer", "minimum": 1, "default": 1 },
-                      "register": { "type": "string" },
-                      "personality": { "type": "string" },
-                      "vocabulary_focus": {
-                        "type": "array",
-                        "items": { "type": "string" }
-                      }
-                    }
-                  }
-                },
-                "cultural_parameters": {
-                  "type": "object",
-                  "properties": {
-                    "greeting_norms": { "type": "string" },
-                    "formality_level": { "type": "string" },
-                    "taboo_topics": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    }
-                  }
-                }
-              }
-            },
-            "tier_3": {
-              "type": "object",
-              "required": ["scenarios"],
-              "properties": {
-                "scenarios": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "required": ["type", "authority", "stakes"],
-                    "properties": {
-                      "type": { "type": "string" },
-                      "description": { "type": "string" },
-                      "authority": { "type": "string" },
-                      "stakes": { "type": "string" },
-                      "evaluation_weight": {
-                        "type": "object",
-                        "properties": {
-                          "linguistic_accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
-                          "pragmatic_appropriateness": { "type": "number", "minimum": 0, "maximum": 1 },
-                          "register_alignment": { "type": "number", "minimum": 0, "maximum": 1 },
-                          "cultural_intelligence": { "type": "number", "minimum": 0, "maximum": 1 }
-                        }
-                      }
-                    }
-                  },
-                  "minItems": 1
-                }
-              }
+              "items": {
+                "type": "string"
+              },
+              "description": "Generic vocabulary categories to deprioritize (e.g., 'colors', 'animals')"
             }
           }
         },
         "companion": {
           "type": "object",
+          "required": [
+            "name",
+            "personality",
+            "backstory"
+          ],
           "properties": {
-            "personality": { "type": "string" },
+            "name": {
+              "type": "string",
+              "description": "The companion's name — should feel culturally appropriate"
+            },
+            "personality": {
+              "type": "string",
+              "description": "Personality traits and communication style"
+            },
+            "backstory": {
+              "type": "string",
+              "description": "The companion's personal history with both languages/cultures"
+            },
             "shared_interests": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              },
+              "description": "Interests shared with the learner for rapport building"
             },
-            "cultural_bridge": { "type": "string" }
+            "cultural_bridge": {
+              "type": "string",
+              "description": "How the companion bridges the learner's L1 and L2 cultures"
+            },
+            "relationship_seed": {
+              "type": "string",
+              "description": "How the companion and learner 'met' — the relationship origin story"
+            }
+          }
+        },
+        "environment": {
+          "type": "object",
+          "required": [
+            "tier_2",
+            "tier_3"
+          ],
+          "properties": {
+            "tier_2": {
+              "type": "object",
+              "required": [
+                "setting",
+                "locations",
+                "npc_roster"
+              ],
+              "properties": {
+                "setting": {
+                  "type": "string",
+                  "description": "Description of the Tier 2 social world"
+                },
+                "locations": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/location"
+                  },
+                  "minItems": 3,
+                  "description": "Tier 2 locations where interactions occur"
+                },
+                "npc_roster": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/npc"
+                  },
+                  "minItems": 3,
+                  "description": "NPCs populating Tier 2 locations"
+                },
+                "cultural_parameters": {
+                  "$ref": "#/definitions/cultural_parameters"
+                }
+              }
+            },
+            "tier_3": {
+              "type": "object",
+              "required": [
+                "scenarios"
+              ],
+              "properties": {
+                "scenarios": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/scenario"
+                  },
+                  "minItems": 2,
+                  "description": "High-stakes scenarios with authority dynamics"
+                }
+              }
+            }
           }
         },
         "retention_profile": {
@@ -192,31 +225,448 @@
                 "professional-urgency",
                 "intrinsic-mastery",
                 "social-accountability"
-              ]
+              ],
+              "description": "Default Axis Z retention profile to suggest during onboarding"
             },
             "async_triggers": {
               "type": "array",
               "items": {
-                "type": "object",
-                "required": ["type"],
-                "properties": {
-                  "type": { "type": "string" },
-                  "sender": { "type": "string" },
-                  "frequency": { "type": "string" },
-                  "trigger": { "type": "string" }
-                }
-              }
+                "$ref": "#/definitions/async_trigger"
+              },
+              "description": "Pre-configured async engagement triggers for this domain"
             }
           }
         },
         "evaluation": {
           "type": "object",
-          "required": ["tier_2_success", "tier_3_success", "primary_metric"],
+          "required": [
+            "tier_2_success",
+            "tier_3_success",
+            "primary_metric"
+          ],
           "properties": {
-            "tier_2_success": { "type": "string" },
-            "tier_3_success": { "type": "string" },
-            "primary_metric": { "type": "string" }
+            "tier_2_success": {
+              "type": "string",
+              "description": "What constitutes Tier 2 success for this domain"
+            },
+            "tier_3_success": {
+              "type": "string",
+              "description": "What constitutes Tier 3 mastery for this domain"
+            },
+            "primary_metric": {
+              "type": "string",
+              "enum": [
+                "task-completion-rate",
+                "comprehensibility-score",
+                "register-accuracy-score",
+                "negotiation-success-rate",
+                "code-switch-reduction-rate"
+              ],
+              "description": "The single most important metric for this domain"
+            },
+            "rubrics": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/evaluation_rubric"
+              },
+              "description": "Custom evaluation rubrics for Tier 3 scenarios"
+            }
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "vocabulary_domain": {
+      "type": "object",
+      "required": [
+        "name",
+        "priority",
+        "items"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Domain category name (e.g., 'tactical-vocabulary', 'medical-terminology')"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "critical",
+            "important",
+            "supplementary"
+          ],
+          "description": "How essential this vocabulary is for the learner's objective"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "term"
+                ],
+                "properties": {
+                  "term": {
+                    "type": "string"
+                  },
+                  "cefr": {
+                    "type": "string",
+                    "enum": [
+                      "A1",
+                      "A2",
+                      "B1",
+                      "B2",
+                      "C1",
+                      "C2"
+                    ]
+                  },
+                  "register": {
+                    "type": "string",
+                    "enum": [
+                      "informal",
+                      "neutral",
+                      "formal",
+                      "technical"
+                    ]
+                  },
+                  "context": {
+                    "type": "string",
+                    "description": "When/where this term is used"
+                  }
+                }
+              }
+            ]
+          },
+          "minItems": 1,
+          "description": "Vocabulary items — can be simple strings or annotated objects"
+        },
+        "hierarchy": {
+          "type": "string",
+          "description": "Social context this vocabulary is used in (e.g., 'with-coaches', 'with-media')"
+        },
+        "emotional_register": {
+          "type": "string",
+          "enum": [
+            "neutral",
+            "high-stakes",
+            "intimate",
+            "adversarial"
+          ],
+          "description": "Emotional weight of this vocabulary category"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique kebab-case identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable location name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the location and its social character"
+        },
+        "npc_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "NPC IDs available at this location"
+        },
+        "typical_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Communicative tasks that naturally occur here"
+        },
+        "vocabulary_focus": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vocabulary domains most relevant at this location"
+        }
+      }
+    },
+    "npc": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "role",
+        "register"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique kebab-case identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Character name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Social role (e.g., 'head-coach', 'café-owner', 'receptionist')"
+        },
+        "tier": {
+          "type": "integer",
+          "enum": [
+            2,
+            3
+          ],
+          "description": "Primary tier this NPC appears in"
+        },
+        "register": {
+          "type": "string",
+          "description": "Default register level ('informal', 'neutral', 'formal', 'mixed')"
+        },
+        "personality": {
+          "type": "string",
+          "description": "Personality description for prompt injection"
+        },
+        "location_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Locations where this NPC can be found"
+        },
+        "vocabulary_focus": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Vocabulary domains this NPC naturally uses"
+        },
+        "initial_reputation": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "default": 0,
+          "description": "Starting reputation score (default: 0 neutral)"
+        },
+        "openness_enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this NPC uses the Tier 3 openness mechanic"
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "authority_npc_id",
+        "stakes",
+        "objectives"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "type": {
+          "type": "string",
+          "description": "Scenario type (e.g., 'contract-negotiation', 'press-conference')"
+        },
+        "description": {
+          "type": "string"
+        },
+        "authority_npc_id": {
+          "type": "string",
+          "description": "NPC ID of the authority figure"
+        },
+        "stakes": {
+          "type": "string",
+          "description": "What's at stake — the consequence of failure"
+        },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "What the learner must achieve in this scenario"
+        },
+        "evaluation_weight": {
+          "type": "object",
+          "properties": {
+            "linguistic_accuracy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "pragmatic_appropriateness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "register_alignment": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "cultural_intelligence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "description": "Weight distribution for evaluation dimensions (must sum to 1.0)"
+        },
+        "register_requirements": {
+          "type": "string",
+          "description": "What register is expected (e.g., 'professional-formal', 'diplomatic')"
+        }
+      }
+    },
+    "async_trigger": {
+      "type": "object",
+      "required": [
+        "type",
+        "sender_npc_id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "npc-message",
+            "companion-check-in",
+            "scenario-preview",
+            "achievement-alert",
+            "streak-reminder",
+            "deadline-countdown",
+            "challenge-unlock",
+            "peer-update",
+            "curriculum-ready",
+            "pronunciation-drill"
+          ]
+        },
+        "sender_npc_id": {
+          "type": "string",
+          "description": "NPC who sends this trigger (must exist in npc_roster or companion)"
+        },
+        "frequency": {
+          "type": "string",
+          "enum": [
+            "daily",
+            "every-2-days",
+            "weekly",
+            "on-churn-risk"
+          ],
+          "description": "How often this trigger fires"
+        },
+        "template": {
+          "type": "string",
+          "description": "Message template with {{variables}}"
+        }
+      }
+    },
+    "evaluation_rubric": {
+      "type": "object",
+      "required": [
+        "scenario_id",
+        "pass_threshold"
+      ],
+      "properties": {
+        "scenario_id": {
+          "type": "string",
+          "description": "Which scenario this rubric evaluates"
+        },
+        "pass_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum composite score for passing"
+        },
+        "distinction_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum composite score for distinction"
+        },
+        "criteria": {
+          "type": "object",
+          "properties": {
+            "linguistic_accuracy": {
+              "type": "string"
+            },
+            "pragmatic_appropriateness": {
+              "type": "string"
+            },
+            "register_alignment": {
+              "type": "string"
+            },
+            "cultural_intelligence": {
+              "type": "string"
+            }
+          },
+          "description": "Per-dimension rubric descriptions"
+        }
+      }
+    },
+    "cultural_parameters": {
+      "type": "object",
+      "properties": {
+        "greeting_norms": {
+          "type": "string",
+          "description": "How people greet in this culture/context"
+        },
+        "formality_system": {
+          "type": "string",
+          "description": "How formality works (e.g., 'tu/vous', 'tú/usted', Japanese keigo)"
+        },
+        "register_markers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "register": {
+                "type": "string"
+              },
+              "markers": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "description": "Linguistic markers that signal each register level"
+        },
+        "taboo_topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Topics to avoid in certain contexts"
+        },
+        "naming_conventions": {
+          "type": "string",
+          "description": "How to address people (first name, surname, title)"
+        },
+        "gesture_appropriateness": {
+          "type": "string",
+          "description": "Notes on physical gesture norms"
         }
       }
     }
