@@ -1,0 +1,22 @@
+{
+    "name": "@aapm/cli",
+    "version": "0.4.0",
+    "description": "CLI tools for the AAPM Framework — schema validation, pipeline testing, metric reporting",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "bin": {
+        "aapm": "./dist/index.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "js-yaml": "^4.1.0"
+    },
+    "devDependencies": {
+        "@types/js-yaml": "^4.0.9",
+        "@types/node": "^20.11.0",
+        "typescript": "^5.3.3"
+    }
+}
