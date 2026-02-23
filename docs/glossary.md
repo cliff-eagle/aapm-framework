@@ -10,6 +10,14 @@
 
 **Krashen's Affective Filter Hypothesis.** An emotional gating mechanism that mediates adult language acquisition. When a learner is anxious, self-conscious, or under social threat, their affective filter is HIGH — input is blocked from deep processing. When they feel safe, the filter is LOW — acquisition accelerates. The AAPM treats this as a foundational architectural constraint, not a UX nice-to-have.
 
+### Affective State Inference
+
+A six-signal computational method for detecting learner emotional state from behavioral signals (response latency, L1 fallback rate, hedging frequency, pause duration, topic avoidance, repair attempt rate), calibrated against per-learner baselines. Triggers scaffolding escalation when negative affect is detected.
+
+### Anti-Fossilization Engine (AFE)
+
+A three-strategy intervention system for dislodging fossilized interlanguage errors: Varied Context Exposure (same form in 5+ contexts), Contrastive Minimal Pairs (near-identical sentences highlighting the error), and NPC-Driven Correction Sequences (natural modeling of correct forms).
+
 ### Asynchronous Engagement Triggers
 
 Push notifications or messages delivered outside the app, framed as organic communications from the learner's NPC social world. Format and frequency are determined by the learner's Axis Z retention profile. Example: the Companion texts "I heard you have that press conference coming up — want to practice?"
@@ -37,6 +45,22 @@ The gradual, system-managed reduction of L1 (native language) usage in Tier 1 in
 ### Communicative Competence
 
 Dell Hymes' model extending beyond grammar to sociolinguistic competence — knowing not just what's grammatically possible but what's socially appropriate, pragmatically achievable, and actually performed by native speakers.
+
+### Communicative Pressure Calibrator
+
+Dynamic within-session difficulty adjustment system. Unlike static tier parameters, the pressure calibrator modulates challenge in real-time based on learner performance and affective state, keeping them in the Zone of Proximal Development.
+
+### Conversational Repair Tracking
+
+A competence dimension tracking HOW learners handle communication breakdowns. Measures repair strategy repertoire (clarification requests, circumlocution, paraphrasing, self-correction, etc.) and sophistication score over time.
+
+### Cross-Schema Transfer Engine
+
+The mechanism for transferring acquired skills between persona schemas. Determines what transfers (phonemic accuracy, grammar rules, repair strategies) and what doesn't (domain vocabulary, context-specific cultural norms) with per-skill confidence scores.
+
+### Cultural Intelligence Model (CQ)
+
+Four-factor assessment adapted from Earley & Ang: Metacognitive CQ (awareness), Cognitive CQ (knowledge), Motivational CQ (engagement), Behavioral CQ (adaptation). Cultural violations trigger persistent social consequences through the reputation system.
 
 ### Companion (Tier 1)
 
@@ -98,6 +122,10 @@ A learning progress metric. Formula: `FPRR = recurringFriction / totalFriction`.
 
 The evolving, rule-governed grammatical system every learner constructs as they move toward L2 proficiency. The AAPM identifies SYSTEMATIC patterns in the interlanguage (recurring errors revealing incorrect hypotheses) vs. RANDOM errors (one-off performance failures).
 
+### Interlanguage Hypothesis Engine (IHE)
+
+The computational model of the learner's internal grammar. Maintains probabilistic rules with confidence scores, predicts what the learner will produce before they produce it, maps to SLA developmental sequences (Pienemann's Processability Theory), and tracks L1 transfer patterns.
+
 ### Interlanguage Model
 
 A probabilistic representation of the grammatical rules the learner is currently applying, maintained live during conversation and updated across sessions.
@@ -105,6 +133,10 @@ A probabilistic representation of the grammatical rules the learner is currently
 ---
 
 ## L
+
+### Lexical Availability Index (LAI)
+
+Vocabulary retrieval speed metric. Knowing a word is not the same as retrieving it under communicative pressure. The LAI measures how quickly the learner accesses vocabulary in real-time conversation, tracked by frequency tier (high, mid, domain-specific).
 
 ### Linguistic Imposter Syndrome
 
@@ -137,6 +169,10 @@ The Tier 3 outcome metric. Formula: `NSR = successfulNegotiations / totalNegotia
 ### NPC (Non-Player Character)
 
 AI agents that populate the simulation world. Behavior varies by tier: bilingual companion (Tier 1), monolingual daily-life characters (Tier 2), high-status authority figures (Tier 3).
+
+### NPC Behavioral Authenticity
+
+Big Five personality traits + cultural overlays + mood states that create consistent, dynamic NPC behavior. Each NPC has a personality model, current mood (with decay), and behavioral variation matrix (personality × mood × reputation). Ensures simulations feel like real human interaction.
 
 ---
 

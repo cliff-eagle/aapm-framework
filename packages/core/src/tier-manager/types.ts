@@ -222,4 +222,66 @@ export interface TierBehaviorParams {
 
     /** Whether register is evaluated */
     registerEvaluation: boolean;
+
+    /**
+     * Dynamic pressure calibration configuration.
+     *
+     * @patentCritical Connects tier-level behavior parameters to
+     *   the real-time Communicative Pressure State, enabling the
+     *   system to adjust difficulty dynamically within a session
+     *   rather than applying static tier parameters uniformly.
+     */
+    adaptivePressure: AdaptivePressureConfig;
+}
+
+/**
+ * Configuration for adaptive communicative pressure within a tier.
+ *
+ * @patentCritical Dynamic pressure calibration is the mechanism that
+ *   keeps the learner in the Zone of Proximal Development (ZPD)
+ *   during each session, not just across sessions.
+ */
+export interface AdaptivePressureConfig {
+    /** Whether adaptive pressure is enabled for this tier */
+    enabled: boolean;
+
+    /**
+     * Target pressure range.
+     * The system tries to keep pressure within this range.
+     * Outside the range triggers automatic adjustment.
+     */
+    targetRange: {
+        min: number;
+        max: number;
+    };
+
+    /**
+     * How aggressively the system adjusts pressure.
+     * 'gradual' = small adjustments over many turns
+     * 'responsive' = quick adjustments when learner is struggling
+     * 'aggressive' = immediate adjustment on any signal
+     */
+    adjustmentSpeed: 'gradual' | 'responsive' | 'aggressive';
+
+    /**
+     * Which signals trigger pressure adjustment.
+     * Different tiers weight different signals.
+     */
+    triggerSignals: Array<{
+        signal: string;
+        weight: number;
+        threshold: number;
+    }>;
+
+    /**
+     * Maximum pressure adjustment per turn.
+     * Prevents jarring sudden changes.
+     */
+    maxAdjustmentPerTurn: number;
+
+    /**
+     * Whether to use affective state data for pressure calibration.
+     * Requires the Affective State Inference system.
+     */
+    useAffectiveData: boolean;
 }

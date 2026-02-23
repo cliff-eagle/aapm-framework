@@ -775,3 +775,314 @@ export interface PipelineError {
     /** Number of retry attempts so far */
     retryCount: number;
 }
+
+// ─── Affective State Inference ───────────────────────────────
+
+/**
+ * Multi-signal input vector for affective state inference.
+ *
+ * The system infers the learner's emotional state from BEHAVIORAL
+ * signals, not self-report. This is a computational method, not
+ * a magic enum — every emotional state classification is derived
+ * from measurable interaction signals.
+ *
+ * @patentCritical The six-signal affective inference method is a
+ *   novel computational approach to detecting learner emotional
+ *   state in a conversational AI system, enabling real-time
+ *   pedagogical adaptation (Krashen's Affective Filter).
+ */
+export interface AffectiveSignalVector {
+    /**
+     * Response latency: ms between NPC utterance end and learner response start.
+     * Above baseline → uncertainty or formulation difficulty.
+     * Below baseline → confidence or rehearsed response.
+     */
+    responseLatencyMs: number;
+
+    /**
+     * L1 fallback rate over the last N turns (0.0 to 1.0).
+     * Increasing L1 use signals cognitive overload or frustration.
+     */
+    l1FallbackRate: number;
+
+    /**
+     * Hedging frequency: rate of hedging markers ("maybe", "I think",
+     * "I'm not sure", fillers) in recent turns.
+     * High hedging signals uncertainty.
+     */
+    hedgingFrequency: number;
+
+    /**
+     * Pause duration: average intra-utterance pause length in ms.
+     * Long pauses signal lexical retrieval difficulty.
+     */
+    averagePauseDurationMs: number;
+
+    /**
+     * Topic avoidance: rate at which the learner steers away from
+     * NPC-introduced topics toward safer territory.
+     * Signals anxiety about specific domains.
+     */
+    topicAvoidanceRate: number;
+
+    /**
+     * Repair attempt rate: how often the learner tries to fix
+     * their own utterances (self-correction, restarts).
+     * High rate can signal both learning AND frustration.
+     */
+    repairAttemptRate: number;
+
+    /**
+     * Utterance length trend: are learner utterances getting
+     * shorter or longer over the session?
+     * Shortening → withdrawal; lengthening → engagement.
+     */
+    utteranceLengthTrend: number;
+
+    /**
+     * Session engagement duration: how long into the session
+     * the learner has been active.
+     * Accuracy of affect inference improves with more data.
+     */
+    sessionDurationMinutes: number;
+}
+
+/**
+ * Result of affective state inference computation.
+ *
+ * @patentCritical The inference is probabilistic — the system
+ *   computes a confidence-weighted emotional state from the
+ *   signal vector, calibrated against the learner's personal
+ *   baseline (some learners are naturally hesitant).
+ */
+export interface AffectiveInferenceResult {
+    /** Inferred emotional state (most likely) */
+    primaryState: EmotionalState;
+
+    /** Confidence in the primary state */
+    confidence: number;
+
+    /** Second most likely state (for ambiguous situations) */
+    secondaryState?: EmotionalState;
+
+    /** Confidence in the secondary state */
+    secondaryConfidence?: number;
+
+    /** The raw signal vector used for inference */
+    signals: AffectiveSignalVector;
+
+    /** Which signals contributed most to this classification */
+    dominantSignals: Array<{
+        signal: string;
+        deviation: number;
+        direction: 'above-baseline' | 'below-baseline';
+    }>;
+
+    /** Whether this state triggers a scaffolding escalation */
+    triggersEscalation: boolean;
+
+    /** Timestamp of inference */
+    timestamp: string;
+}
+
+/**
+ * Per-learner baseline calibration for affective inference.
+ *
+ * Some learners are naturally hesitant, some are naturally fast.
+ * The baseline is computed from the first 3-5 sessions and
+ * continuously updated with Bayesian updates.
+ */
+export interface AffectiveCalibrationProfile {
+    /** Learner identifier */
+    learnerId: string;
+
+    /** Sessions used to compute baseline */
+    baselineSessionCount: number;
+
+    /** Baseline response latency (ms) — personal "normal" */
+    baselineLatencyMs: number;
+
+    /** Baseline L1 usage rate — personal "normal" */
+    baselineL1Rate: number;
+
+    /** Baseline hedging frequency */
+    baselineHedgingFrequency: number;
+
+    /** Baseline pause duration */
+    baselinePauseDurationMs: number;
+
+    /** Deviation thresholds for each signal */
+    deviationThresholds: {
+        /** How many standard deviations above baseline triggers concern */
+        latencyThreshold: number;
+        l1RateThreshold: number;
+        hedgingThreshold: number;
+        pauseThreshold: number;
+    };
+
+    /** Last updated timestamp */
+    lastUpdatedAt: string;
+}
+
+/**
+ * Scaffolding escalation protocol triggered by negative affect.
+ *
+ * @patentCritical The system automatically escalates scaffolding
+ *   intensity when it detects learner distress, implementing
+ *   Krashen's Affective Filter Hypothesis computationally.
+ */
+export interface ScaffoldingEscalation {
+    /** Trigger: which affective state caused this */
+    triggerState: EmotionalState;
+
+    /** Escalation level (1 = subtle, 5 = maximum support) */
+    level: 1 | 2 | 3 | 4 | 5;
+
+    /** Actions taken */
+    actions: ScaffoldingAction[];
+
+    /** Whether Tier 1 Companion was made available */
+    companionActivated: boolean;
+
+    /** L2 pressure adjustment (negative = reduce) */
+    l2PressureAdjustment: number;
+
+    /** Session timestamp */
+    timestamp: string;
+}
+
+/**
+ * A specific scaffolding action taken in response to detected affect.
+ */
+export type ScaffoldingAction =
+    | 'reduce-l2-ratio'              // Companion uses more L1 temporarily
+    | 'offer-companion-check-in'     // Companion reaches out
+    | 'simplify-npc-register'        // NPCs use simpler language
+    | 'increase-npc-patience'        // NPCs wait longer before re-prompt
+    | 'provide-vocabulary-hint'      // System provides word suggestions
+    | 'reduce-topic-complexity'      // Steer toward simpler topics
+    | 'offer-session-break'          // Suggest a break
+    | 'activate-refraction-helper';  // Make refraction interface more visible
+
+// ─── Conversational Repair Tracking ──────────────────────────
+
+/**
+ * Strategies learners use to repair communication breakdowns.
+ *
+ * @patentCritical Tracking repair strategy development over time
+ *   is a novel competence dimension. Existing apps track what
+ *   the learner says CORRECTLY — the AAPM also tracks how the
+ *   learner HANDLES DIFFICULTY, which is equally important for
+ *   real-world communicative competence.
+ */
+export type RepairStrategy =
+    | 'clarification-request'   // "Could you repeat that?"
+    | 'confirmation-check'      // "Do you mean X?"
+    | 'comprehension-check'     // "Did you understand?"
+    | 'circumlocution'          // Describing something you don't have the word for
+    | 'paraphrase'              // Saying it differently
+    | 'self-correction'         // Catching and fixing own error
+    | 'appeal-to-npc'           // Asking NPC for help
+    | 'code-switch'             // Falling back to L1
+    | 'topic-shift'             // Changing the subject
+    | 'abandonment';            // Giving up on the communicative goal
+
+/**
+ * A single repair attempt observed in a conversation.
+ */
+export interface RepairAttempt {
+    /** Unique attempt identifier */
+    attemptId: string;
+
+    /** Session and turn where repair occurred */
+    sessionId: string;
+    turnIndex: number;
+
+    /** Strategy used */
+    strategy: RepairStrategy;
+
+    /** What triggered the need for repair */
+    triggerType: 'comprehension-failure' | 'production-failure' | 'npc-non-understanding';
+
+    /** The learner's repair utterance */
+    repairUtterance: string;
+
+    /** Whether the repair succeeded */
+    successful: boolean;
+
+    /** How many repair attempts before success (or abandonment) */
+    attemptsInSequence: number;
+
+    /** Time spent on repair (ms from trigger to resolution) */
+    repairDurationMs: number;
+
+    /** NPC patience during repair (how the NPC responded) */
+    npcResponse: 'supportive' | 'neutral' | 'impatient';
+
+    /** Tier context */
+    tierContext: 1 | 2 | 3;
+
+    /** Timestamp */
+    timestamp: string;
+}
+
+/**
+ * Learner's overall repair competence profile.
+ *
+ * @patentCritical This profile enables the system to detect when a
+ *   learner's repair repertoire is too narrow (e.g., always code-switches
+ *   instead of circumlocuting) and to create Forward Injection scenarios
+ *   that require specific repair strategies.
+ */
+export interface RepairCompetenceProfile {
+    /** Learner identifier */
+    learnerId: string;
+
+    /** Assessment timestamp */
+    assessedAt: string;
+
+    /** Strategy repertoire: which strategies the learner uses, and how often */
+    strategyRepertoire: StrategyUsage[];
+
+    /** Overall repair success rate */
+    overallSuccessRate: number;
+
+    /** Average number of attempts before success */
+    averageAttemptsToSuccess: number;
+
+    /** Dominant strategy (most frequently used) */
+    dominantStrategy: RepairStrategy;
+
+    /** Strategies the learner NEVER uses (gap in repertoire) */
+    unusedStrategies: RepairStrategy[];
+
+    /**
+     * Repair sophistication score (0.0 to 1.0).
+     * Higher = uses varied, target-like strategies.
+     * Lower = relies on L1 code-switch or abandonment.
+     */
+    sophisticationScore: number;
+
+    /** Trajectory: is repair competence improving? */
+    trajectory: 'improving' | 'stable' | 'declining';
+}
+
+/**
+ * Usage statistics for a single repair strategy.
+ */
+export interface StrategyUsage {
+    /** Strategy */
+    strategy: RepairStrategy;
+
+    /** Number of times used */
+    usageCount: number;
+
+    /** Success rate for this strategy */
+    successRate: number;
+
+    /** Average time to resolution when using this strategy */
+    averageResolutionMs: number;
+
+    /** Whether this is a "mature" strategy (target-like) or "immature" */
+    maturity: 'target-like' | 'developing' | 'immature';
+}

@@ -22,7 +22,18 @@ export type {
     ForwardInjectionSpec,
     MacroLoopPipelineState,
     PipelineError,
+    EmotionalState,
+    AffectiveSignalVector,
+    AffectiveInferenceResult,
+    AffectiveCalibrationProfile,
+    ScaffoldingEscalation,
+    ScaffoldingAction,
+    RepairStrategy,
+    RepairAttempt,
+    RepairCompetenceProfile,
+    StrategyUsage,
 } from './types';
+
 
 export { executeMacroLoop } from './pipeline';
 export type { MacroLoopDependencies } from './pipeline';

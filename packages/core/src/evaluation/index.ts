@@ -13,6 +13,11 @@ export type {
     ScoringCriteria,
     ABTestConfig,
     ABTestResults,
+    LexicalAvailabilityIndex,
+    LexicalRetrievalEvent,
+    CommunicativePressureState,
+    PressureComponent,
+    PressureAdjustmentEvent,
 } from './types';
 
 export {

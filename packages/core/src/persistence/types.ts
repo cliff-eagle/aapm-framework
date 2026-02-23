@@ -564,3 +564,304 @@ export interface AsyncEngagementEntry {
     /** Expiry: when this entry becomes stale */
     expiresAt: string;
 }
+
+// ─── Cross-Schema Transfer Engine ────────────────────────────
+
+/**
+ * Record of skill transfer between persona schemas.
+ *
+ * When a learner completes one persona schema (e.g., "Italian Restaurant
+ * Worker") and starts another (e.g., "Italian University Student"),
+ * certain skills transfer and others don't. The transfer engine
+ * determines WHAT transfers and with what CONFIDENCE.
+ *
+ * @patentCritical Cross-schema transfer enables the claim that the
+ *   AAPM produces generalized communicative competence, not just
+ *   scenario-specific performance. This is what makes the persona
+ *   schema marketplace commercially viable — learners carry skills
+ *   across purchases.
+ */
+export interface CrossSchemaTransferRecord {
+    /** Learner identifier */
+    learnerId: string;
+
+    /** Source persona schema */
+    sourceSchemaId: string;
+
+    /** Target persona schema */
+    targetSchemaId: string;
+
+    /** Transfer timestamp */
+    transferredAt: string;
+
+    /** Skills that transferred successfully */
+    transferredSkills: TransferableSkill[];
+
+    /** Skills that did NOT transfer (schema-specific) */
+    nonTransferrableSkills: string[];
+
+    /** Overall transfer coverage (0.0 to 1.0) */
+    transferCoverage: number;
+
+    /**
+     * Adjustment applied to initial metrics in the target schema.
+     * A transferring learner doesn't start from zero in the new schema.
+     */
+    initialMetricAdjustments: Record<string, number>;
+}
+
+/**
+ * A skill that can transfer across persona schemas.
+ */
+export interface TransferableSkill {
+    /** Skill identifier */
+    skillId: string;
+
+    /** Skill category */
+    category: TransferableSkillCategory;
+
+    /** Description of the skill */
+    description: string;
+
+    /** Proficiency in the source schema (0.0 to 1.0) */
+    sourceProficiency: number;
+
+    /**
+     * Transfer confidence (0.0 to 1.0).
+     * How confidently does this skill apply in the new context?
+     *
+     * Example: Formal register for business meetings transfers
+     * well between "Italian Restaurant Manager" and "Italian
+     * Corporate Employee" (0.9), but less well to "Italian
+     * University Student" (0.4).
+     */
+    transferConfidence: number;
+
+    /** Estimated proficiency in the target schema after transfer */
+    estimatedTargetProficiency: number;
+
+    /** Mapping details: how this skill maps to the target schema */
+    mapping: TransferMapping;
+}
+
+/**
+ * Categories of transferable skills.
+ */
+export type TransferableSkillCategory =
+    | 'phonemic-accuracy'         // Pronunciation transfers fully
+    | 'morphosyntactic-rules'     // Grammar rules transfer fully
+    | 'general-vocabulary'        // Non-domain vocabulary transfers
+    | 'domain-vocabulary'         // Domain vocabulary may not transfer
+    | 'register-awareness'        // Register skills partially transfer
+    | 'pragmatic-competence'      // Pragmatic skills contextually transfer
+    | 'cultural-norms'            // Cultural knowledge partially transfers
+    | 'repair-strategies'         // Repair competence transfers fully
+    | 'affective-calibration';    // Emotional baselines transfer fully
+
+/**
+ * How a skill maps from one schema to another.
+ */
+export interface TransferMapping {
+    /** Source skill context */
+    sourceContext: string;
+
+    /** Target skill context */
+    targetContext: string;
+
+    /**
+     * Mapping type:
+     * - 'direct': Skill applies identically
+     * - 'adapted': Skill applies with modification
+     * - 'partial': Only some aspects apply
+     * - 'none': Doesn't transfer
+     */
+    mappingType: 'direct' | 'adapted' | 'partial' | 'none';
+
+    /** If adapted or partial, what changes */
+    adaptationNotes?: string;
+}
+
+// ─── NPC Behavioral Authenticity ─────────────────────────────
+
+/**
+ * NPC personality model based on the Big Five personality traits,
+ * adapted for language learning simulation.
+ *
+ * @patentCritical NPC behavioral authenticity ensures that the
+ *   simulation feels like real human interaction. NPCs have
+ *   consistent personalities that influence how they respond to
+ *   the learner, creating an authentic communicative environment
+ *   that cannot be replicated by scripted dialogue trees.
+ */
+export interface NPCPersonalityModel {
+    /** NPC identifier */
+    npcId: string;
+
+    /**
+     * Big Five personality traits (each 0.0 to 1.0).
+     *
+     * These traits influence NPC behavior consistently across sessions:
+     * a high-agreeableness NPC will be more patient with errors,
+     * while a low-agreeableness NPC will show visible frustration.
+     */
+    bigFive: {
+        /** Openness to experience: curiosity, creativity, willingness to engage unusual topics */
+        openness: number;
+        /** Conscientiousness: reliability, follow-through on promises, attention to detail */
+        conscientiousness: number;
+        /** Extraversion: talkativeness, social energy, initiative in conversation */
+        extraversion: number;
+        /** Agreeableness: patience, helpfulness, tolerance of errors */
+        agreeableness: number;
+        /** Neuroticism: emotional reactivity, sensitivity to social friction */
+        neuroticism: number;
+    };
+
+    /**
+     * Cultural parameters that overlay personality.
+     * These modify how personality traits manifest in culturally
+     * specific ways.
+     */
+    culturalOverlay: {
+        /** Directness in communication (0.0 indirect → 1.0 direct) */
+        communicativeDirectness: number;
+        /** Formality default (0.0 casual → 1.0 formal) */
+        formalityDefault: number;
+        /** Power distance sensitivity (0.0 egalitarian → 1.0 hierarchical) */
+        powerDistanceSensitivity: number;
+        /** Emotional expressiveness (0.0 reserved → 1.0 expressive) */
+        emotionalExpressiveness: number;
+    };
+
+    /** NPC's professional role (influences register expectations) */
+    professionalRole: string;
+
+    /** NPC's relationship with learner's role in the persona schema */
+    socialRelationshipToLearner: 'peer' | 'superior' | 'subordinate' | 'service-provider' | 'customer' | 'friend' | 'stranger';
+}
+
+/**
+ * NPC's current mood state — temporary emotional state that
+ * influences behavior within and across sessions.
+ *
+ * @patentCritical NPC mood creates dynamic, unpredictable
+ *   interaction that cannot be memorized or gamed. The learner
+ *   must read social cues and adapt, just as in real life.
+ */
+export interface NPCMoodState {
+    /** NPC identifier */
+    npcId: string;
+
+    /** Current mood */
+    currentMood: NPCMood;
+
+    /** Intensity of the mood (0.0 mild → 1.0 intense) */
+    intensity: number;
+
+    /** What caused this mood */
+    cause: string;
+
+    /**
+     * Decay rate: how quickly the mood returns to baseline.
+     * Expressed as intensity reduction per session turn.
+     */
+    decayRatePerTurn: number;
+
+    /** Base mood when nothing has happened */
+    baselineMood: NPCMood;
+
+    /** Session-level mood history */
+    moodHistory: Array<{
+        mood: NPCMood;
+        intensity: number;
+        timestamp: string;
+        cause: string;
+    }>;
+}
+
+/**
+ * NPC mood states.
+ */
+export type NPCMood =
+    | 'content'        // Default positive state
+    | 'busy'           // Has less time/patience
+    | 'enthusiastic'   // Extra helpful and engaged
+    | 'irritated'      // Less patient, shorter responses
+    | 'amused'         // Playful, may joke around
+    | 'concerned'      // Worried about something
+    | 'distracted'     // Less attentive to the conversation
+    | 'professional'   // Strictly business
+    | 'warm'           // Extra friendly, goes above and beyond
+    | 'neutral';       // Baseline
+
+/**
+ * How NPC behavior varies based on personality × mood × reputation.
+ *
+ * @patentCritical The behavioral variation matrix creates emergent
+ *   interaction dynamics that no scripted system can replicate.
+ */
+export interface NPCBehavioralVariation {
+    /** NPC identifier */
+    npcId: string;
+
+    /**
+     * Response length modifier.
+     * Based on: extraversion ↑ + mood:enthusiastic → longer
+     * neuroticism ↑ + mood:irritated → shorter
+     */
+    responseLengthModifier: number;
+
+    /**
+     * Patience modifier (affects wait time before re-prompt).
+     * Based on: agreeableness ↑ → more patient
+     * reputation score ↑ → more patient
+     */
+    patienceModifier: number;
+
+    /**
+     * Helpfulness modifier (affects willingness to scaffold).
+     * Based on: agreeableness ↑ + openness ↑ → more helpful
+     * reputation score < -0.5 → minimal helpfulness
+     */
+    helpfulnessModifier: number;
+
+    /**
+     * Register strictness modifier.
+     * Based on: conscientiousness ↑ → stricter register expectations
+     * mood:professional → stricter
+     * mood:amused → more relaxed
+     */
+    registerStrictnessModifier: number;
+
+    /**
+     * Topic initiative modifier (how often NPC introduces new topics).
+     * Based on: extraversion ↑ + openness ↑ → more initiative
+     */
+    topicInitiativeModifier: number;
+}
+
+/**
+ * Constraints ensuring NPC personality stays coherent.
+ */
+export interface NPCConsistencyConstraints {
+    /** NPC identifier */
+    npcId: string;
+
+    /** Behaviors the NPC will NEVER perform (regardless of mood) */
+    prohibitedBehaviors: string[];
+
+    /** Behaviors the NPC will ALWAYS perform (personality-defining) */
+    mandatoryBehaviors: string[];
+
+    /** Speech patterns that define this NPC's voice */
+    speechPatterns: string[];
+
+    /** Topics this NPC is passionate about */
+    passionTopics: string[];
+
+    /** Topics this NPC avoids (cultural/personal reasons) */
+    avoidedTopics: string[];
+
+    /** Catchphrases or verbal tics (for character consistency) */
+    verbalTics: string[];
+}

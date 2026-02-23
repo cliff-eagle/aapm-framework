@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] — Patent-Grade Enhancement (2026-02-23)
+
+### Added
+
+- **Interlanguage Hypothesis Engine** — Computational interlanguage model with probabilistic rules, developmental stage mapping, L1 transfer profiling, learning frontier identification, and predictive error detection
+- **Anti-Fossilization Engine** — Three-strategy intervention system (Varied Context Exposure, Contrastive Minimal Pairs, NPC Correction Sequences) with fossilization detection and progress tracking
+- **Cultural Intelligence Model** — Four-factor CQ assessment (Metacognitive, Cognitive, Motivational, Behavioral) with cultural norm enforcement, faux pas tracking, and persistent social consequences
+- **Collaboration & Enterprise API** — Instructor dashboards, student cohorts, learning objectives auto-translated to Forward Injection directives, collaborative multi-learner sessions
+- **Affective State Inference** — Six-signal computational method (response latency, L1 fallback, hedging, pause duration, topic avoidance, repair rate) with per-learner baseline calibration and scaffolding escalation protocol
+- **Conversational Repair Tracking** — Ten repair strategies tracked with success rates, sophistication scoring, and repertoire gap detection
+- **Lexical Availability Index** — Vocabulary retrieval speed metric by frequency tier, distinguishing vocabulary knowledge from retrieval under pressure
+- **Communicative Pressure Calibrator** — Dynamic within-session pressure state with ZPD detection, multi-source pressure components, and real-time adjustment protocol
+- **Cross-Schema Transfer Engine** — Skill portability across persona schemas with nine transfer categories and per-skill confidence scoring
+- **NPC Behavioral Authenticity** — Big Five personality model with cultural overlays, dynamic mood states, behavioral variation matrix (personality × mood × reputation), and consistency constraints
+- Adaptive Pressure Configuration added to `TierBehaviorParams`
+- 12 new glossary terms
+- Barrel exports for all 4 new modules
+
 ### Fixed
 
 - 2 missing metric calculations (`socialReputationTrajectory`, `negotiationSuccessRate`)

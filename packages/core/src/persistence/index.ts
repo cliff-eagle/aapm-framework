@@ -15,4 +15,13 @@ export type {
     NPCRelationshipState,
     SessionRecord,
     SessionMetrics,
+    CrossSchemaTransferRecord,
+    TransferableSkill,
+    TransferableSkillCategory,
+    TransferMapping,
+    NPCPersonalityModel,
+    NPCMoodState,
+    NPCMood,
+    NPCBehavioralVariation,
+    NPCConsistencyConstraints,
 } from './types';

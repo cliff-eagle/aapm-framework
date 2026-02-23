@@ -313,3 +313,160 @@ export interface ABTestResults {
     /** Recommendation */
     recommendation: 'adopt-treatment' | 'keep-control' | 'inconclusive' | 'need-more-data';
 }
+
+// ─── Lexical Availability Index ──────────────────────────────
+
+/**
+ * Tracking vocabulary retrieval speed as a fluency metric.
+ *
+ * Knowing a word is NOT the same as being able to retrieve it
+ * under communicative pressure. The Lexical Availability Index
+ * measures how quickly the learner can access vocabulary in
+ * real-time conversation.
+ *
+ * @patentCritical No existing language learning system tracks
+ *   vocabulary RETRIEVAL SPEED as a distinct metric from vocabulary
+ *   KNOWLEDGE. A learner may "know" 5,000 words but only be able
+ *   to retrieve 1,000 of them fast enough for fluent conversation.
+ */
+export interface LexicalAvailabilityIndex {
+    /** Learner identifier */
+    learnerId: string;
+
+    /** Assessment timestamp */
+    assessedAt: string;
+
+    /** Overall availability score (0.0 to 1.0) */
+    overallScore: number;
+
+    /** Vocabulary tiers: high-frequency, mid-frequency, domain-specific */
+    tierScores: {
+        highFrequency: number;    // Top 1000 words
+        midFrequency: number;     // 1001-5000 words
+        domainSpecific: number;   // Persona schema vocabulary
+    };
+
+    /**
+     * Retrieval speed percentiles.
+     * How fast can the learner retrieve words compared to a native speaker?
+     */
+    retrievalSpeedPercentile: number;
+
+    /** Words with retrieval issues (known but slow) */
+    slowRetrievalWords: LexicalRetrievalEvent[];
+
+    /** Trajectory */
+    trajectory: 'improving' | 'stable' | 'declining';
+}
+
+/**
+ * A single lexical retrieval measurement.
+ */
+export interface LexicalRetrievalEvent {
+    /** The word or phrase */
+    lexicalItem: string;
+
+    /** Retrieval time in milliseconds (from context trigger to production) */
+    retrievalTimeMs: number;
+
+    /**
+     * Baseline retrieval time for this difficulty level (ms).
+     * Derived from native speaker norms for this language.
+     */
+    baselineMs: number;
+
+    /** Ratio: retrievalTimeMs / baselineMs (1.0 = native speed) */
+    speedRatio: number;
+
+    /**
+     * Whether the learner used a compensatory strategy instead
+     * of direct retrieval (e.g., circumlocution, code-switch).
+     */
+    usedCompensatoryStrategy: boolean;
+
+    /** Session ID where this was measured */
+    sessionId: string;
+
+    /** Domain this word belongs to */
+    domain: string;
+}
+
+// ─── Communicative Pressure State ────────────────────────────
+
+/**
+ * Dynamic communicative pressure level within a session.
+ *
+ * Pressure is not the same as difficulty — a simple conversation
+ * with a strict Tier 3 authority figure can be higher pressure
+ * than a complex conversation with a friendly Tier 2 shopkeeper.
+ *
+ * @patentCritical Dynamic pressure calibration enables the system
+ *   to modulate challenge level in real-time based on learner
+ *   performance and affective state, not just static tier parameters.
+ *   This is the missing link between assessment and intervention.
+ */
+export interface CommunicativePressureState {
+    /** Session identifier */
+    sessionId: string;
+
+    /** Current pressure level (0.0 minimal → 1.0 maximum) */
+    currentLevel: number;
+
+    /** Target pressure level (where the system is trying to get to) */
+    targetLevel: number;
+
+    /**
+     * Pressure components contributing to the current level.
+     * Each component contributes independently.
+     */
+    components: PressureComponent[];
+
+    /** Recent adjustments made by the system */
+    recentAdjustments: PressureAdjustmentEvent[];
+
+    /** Whether the learner is currently in the "Zone of Proximal Development" */
+    inZPD: boolean;
+
+    /** If outside ZPD, which direction: too easy or too hard? */
+    zpdDeviation?: 'below' | 'above';
+}
+
+/**
+ * A component contributing to communicative pressure.
+ */
+export interface PressureComponent {
+    /** Component name */
+    component: string;
+
+    /** Contribution to total pressure (0.0 to 1.0) */
+    contribution: number;
+
+    /** Source of this pressure */
+    source: 'tier-context' | 'npc-mood' | 'topic-complexity'
+    | 'register-requirement' | 'time-pressure' | 'social-stakes'
+    | 'audience-size' | 'consequences-severity';
+}
+
+/**
+ * A pressure adjustment event.
+ */
+export interface PressureAdjustmentEvent {
+    /** Timestamp */
+    timestamp: string;
+
+    /** Direction of adjustment */
+    direction: 'increase' | 'decrease';
+
+    /** Magnitude of adjustment */
+    magnitude: number;
+
+    /** Reason for adjustment */
+    reason: string;
+
+    /** What mechanism was used to adjust */
+    mechanism: 'npc-behavior-change' | 'topic-shift' | 'register-relaxation'
+    | 'scaffolding-level-change' | 'companion-intervention' | 'timer-adjustment';
+
+    /** New pressure level after adjustment */
+    newLevel: number;
+}

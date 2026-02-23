@@ -14,4 +14,5 @@ export type {
     TierTransitionReason,
     TierSessionConfig,
     TierBehaviorParams,
+    AdaptivePressureConfig,
 } from './types';
