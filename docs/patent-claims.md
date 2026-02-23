@@ -200,3 +200,200 @@ e) consistency constraints ensuring that core character identity (verbal tics, p
 **wherein** the combination of static personality traits, dynamic mood states, and relationship-dependent reputation creates emergent behavioral dynamics that require the learner to develop social reading skills — the same skills needed for real-world communication.
 
 **Referenced types**: `NPCPersonalityModel`, `NPCMoodState`, `NPCBehavioralVariation`, `NPCConsistencyConstraints`, `NPCBehaviorResolution`
+
+---
+
+## Claim 11: Communicative Pressure Calibrator (Independent Method)
+
+**A computer-implemented method for real-time calibration of communicative difficulty within a language learning session, independent of linguistic difficulty, comprising:**
+
+a) defining communicative pressure as a composite scalar computed from a plurality of simultaneously active pressure components, each component having an independent source, contribution weight, and current value, wherein sources include: NPC emotional state, social audience size, consequence severity, time constraint, register requirement, topic unfamiliarity, and power distance;
+
+b) establishing a per-learner Zone of Proximal Development (ZPD) target range for communicative pressure, calibrated from: (i) stated proficiency level, (ii) accumulated session performance data, and (iii) real-time affective state inference;
+
+c) computing the current composite pressure at each learner turn by summing weighted component contributions;
+
+d) when the composite pressure deviates from the ZPD target range, selecting and executing one or more pressure adjustment mechanisms from a ranked set, including: NPC mood shift, topic diversion, register relaxation, scaffolding escalation, companion intervention, or audience reduction;
+
+e) constraining the magnitude of any single adjustment to prevent jarring discontinuities in the learner's experience;
+
+f) logging each adjustment event with the triggering pressure deviation, selected mechanism, and measured effect for continuous model refinement;
+
+**wherein** communicative pressure is modulated in real-time within each session turn, not merely across sessions, and the modulation is invisible to the learner — experienced only as natural conversational dynamics.
+
+**Distinction from Claim 8**: This claim covers the calibrator as a standalone method operating on any interactive language learning environment, independent of the broader AAPM system. Claim 8 describes pressure calibration as integrated with the AAPM's NPC behavior and affective inference systems.
+
+**Referenced types**: `CommunicativePressureState`, `PressureComponent`, `PressureAdjustmentEvent`, `ZPDTargetRange`, `PressureTierAdjustment`
+
+---
+
+## Claim 12: Code-Switching Gradient (Method)
+
+**A computer-implemented method for dynamically modulating the ratio of a learner's first language (L1) to target language (L2) in an AI-mediated language learning interaction comprising:**
+
+a) maintaining a code-switching ratio parameter (`r`) ranging from 0.0 (full L2) to 1.0 (full L1), initialized based on the learner's assessed proficiency level;
+
+b) computing a target ratio adjustment based on converging signals from: (i) the learner's demonstrated comprehension rate, measured as successful task completion and appropriate responses, (ii) the learner's affective state, wherein negative affect increases L1 ratio and positive engagement decreases it, (iii) the session's pedagogical objectives, wherein explicit grammar instruction tolerates higher L1 and immersive practice targets lower L1;
+
+c) instructing a bilingual AI companion agent to produce conversational turns that reflect the current code-switching ratio by: mixing L1 and L2 within turns (intra-sentential switching), alternating between L1 and L2 across turns (inter-sentential switching), and providing L1 explanations for L2 content as determined by the ratio;
+
+d) monotonically trending the ratio toward 0.0 (full L2) over time as the learner's proficiency increases, with temporary reversions permitted when: the learner's affective state indicates distress, a new linguistic domain is introduced, or the learner explicitly requests L1 support;
+
+e) tracking the ratio's trajectory as a secondary proficiency metric, wherein a sustained downward trend indicates growing target language confidence;
+
+**wherein** the gradient transitions continuously rather than in discrete level steps, and the transition is experienced by the learner as natural bilingual conversation rather than a pedagogical intervention.
+
+**Referenced types**: `CodeSwitchingRatio`, `CompanionDialogueConfig`, `AffectivePressureSignal`, `LearnerProficiencyMetrics`
+
+---
+---
+
+## Appendix A: Pseudocode for Key Algorithms
+
+### A.1: Bayesian Hypothesis Rule Update (Claim 2)
+
+```
+FUNCTION update_hypothesis_rule(rule, production, context):
+    // Determine whether this production is evidence for/against the rule
+    match = evaluate_production_against_rule(rule, production)
+
+    IF match == CONFIRMS:
+        // Bayesian update: P(rule|evidence) ∝ P(evidence|rule) × P(rule)
+        likelihood = rule.confidence * CONFIRMATION_WEIGHT
+        rule.evidence_chain.append({
+            type: 'confirming',
+            production: production,
+            session: context.session_id,
+            timestamp: now()
+        })
+        rule.trajectory = compute_trajectory(rule.evidence_chain)
+
+    ELSE IF match == VIOLATES:
+        likelihood = (1 - rule.confidence) * VIOLATION_WEIGHT
+        rule.evidence_chain.append({
+            type: 'violating',
+            production: production,
+            expected: rule.predicted_form,
+            actual: production.form
+        })
+
+        // Check if this creates a frontier rule (alternating correct/incorrect)
+        IF is_alternating(rule.evidence_chain, window=FRONTIER_WINDOW):
+            rule.status = 'frontier'  // Highest teaching value
+
+    ELSE IF match == NOVEL:
+        // New evidence that doesn't clearly confirm or violate
+        // Spawn a new hypothesis rule
+        new_rule = create_hypothesis_rule(production, confidence=INITIAL_CONFIDENCE)
+        grammar.add_rule(new_rule)
+        RETURN
+
+    // Normalize confidence to [0, 1]
+    prior = rule.confidence
+    posterior = (likelihood) / (likelihood + (1 - prior) * PRIOR_WEIGHT)
+    rule.confidence = clamp(posterior, 0.01, 0.99)
+
+    // Check developmental stage alignment (Processability Theory)
+    IF rule.target_stage > learner.current_processing_stage + 1:
+        rule.acquirable = FALSE  // Beyond i+1, don't target yet
+    ELSE:
+        rule.acquirable = TRUE
+```
+
+### A.2: Fossilization Detection (Claim 3)
+
+```
+FUNCTION detect_fossilization(rule, session_history):
+    // Criterion 1: Minimum recurrence
+    sessions_with_error = count_sessions_where(
+        rule.evidence_chain, type='violating'
+    )
+    IF sessions_with_error < FOSSILIZATION_SESSION_THRESHOLD:
+        RETURN NOT_FOSSILIZED
+
+    // Criterion 2: Trajectory analysis
+    trajectory = compute_trajectory(rule.evidence_chain)
+    IF trajectory NOT IN ['stable-incorrect', 'worsening']:
+        RETURN NOT_FOSSILIZED
+
+    // Criterion 3: High confidence in wrong form
+    IF rule.confidence < FOSSILIZATION_CONFIDENCE_THRESHOLD:
+        RETURN NOT_FOSSILIZED
+
+    // Criterion 4: Previous intervention failure
+    prior_interventions = get_interventions_targeting(rule)
+    IF length(prior_interventions) == 0:
+        RETURN NOT_FOSSILIZED
+    IF any(intervention.outcome == 'improved' FOR intervention IN prior_interventions):
+        RETURN NOT_FOSSILIZED
+
+    // All four criteria met — classify as fossilized
+    RETURN FOSSILIZED, select_defossilization_strategy(rule, prior_interventions)
+
+FUNCTION select_defossilization_strategy(rule, prior_interventions):
+    // Escalate through strategies based on prior failures
+    strategies_tried = [i.strategy FOR i IN prior_interventions]
+
+    IF 'varied-context' NOT IN strategies_tried:
+        RETURN VariedContextPlan(
+            target_form: rule.target_form,
+            min_contexts: 5,
+            contexts: generate_diverse_contexts(rule)
+        )
+    ELSE IF 'contrastive-pairs' NOT IN strategies_tried:
+        RETURN ContrastiveMinimalPairPlan(
+            correct_form: rule.target_form,
+            incorrect_form: rule.learner_form,
+            pairs: generate_minimal_pairs(rule)
+        )
+    ELSE:
+        RETURN NPCCorrectionPlan(
+            technique: select_correction_technique(learner.affective_state),
+            npc: select_correction_npc(learner.reputation_scores)
+        )
+```
+
+### A.3: Affective State Inference (Claim 6)
+
+```
+FUNCTION infer_affective_state(signals, baseline):
+    // signals: { latency, l1_fallback, hedging, pause, avoidance, repair }
+    // baseline: per-learner calibrated norms for each signal
+
+    deviations = {}
+    FOR EACH signal_name IN signals:
+        raw = signals[signal_name]
+        norm = baseline[signal_name].mean
+        std = baseline[signal_name].std
+
+        // Compute z-score relative to personal baseline
+        deviations[signal_name] = (raw - norm) / max(std, EPSILON)
+
+    // Classify state from deviation pattern
+    IF deviations.latency > 2.0 AND deviations.l1_fallback > 1.5:
+        state = 'overwhelmed'
+        confidence = min(deviations.latency, deviations.l1_fallback) / 3.0
+    ELSE IF deviations.hedging > 1.5 AND deviations.repair > 1.0:
+        state = 'uncertain'
+        confidence = (deviations.hedging + deviations.repair) / 5.0
+    ELSE IF deviations.avoidance > 1.5 AND deviations.latency > 1.0:
+        state = 'anxious'
+        confidence = (deviations.avoidance + deviations.latency) / 4.0
+    ELSE IF deviations.latency < -1.0 AND deviations.l1_fallback < -0.5:
+        state = 'confident'
+        confidence = abs(deviations.latency) / 3.0
+    ELSE:
+        state = 'engaged'  // Default positive state
+        confidence = 0.5
+
+    // Trigger scaffolding if negative affect detected
+    IF state IN ['overwhelmed', 'anxious', 'frustrated']:
+        IF confidence > SCAFFOLDING_THRESHOLD:
+            escalate_scaffolding(magnitude=confidence)
+
+    // Update baseline with exponential moving average
+    FOR EACH signal_name IN signals:
+        baseline[signal_name].update(signals[signal_name], alpha=BASELINE_ALPHA)
+
+    RETURN AffectiveInferenceResult(state, confidence, deviations)
+```
