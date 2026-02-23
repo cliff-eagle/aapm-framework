@@ -1,6 +1,6 @@
 {
     "name": "aapm-framework",
-    "version": "0.1.0",
+    "version": "0.4.0",
     "description": "The Autonomous Adaptive Pedagogical Matrix — A meta-framework for vibecoding infinite custom edtech lifesim solutions",
     "private": true,
     "workspaces": [
@@ -10,6 +10,9 @@
         "build": "turbo run build",
         "dev": "turbo run dev",
         "lint": "turbo run lint",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
         "validate-schema": "node packages/cli/src/validate-schema.js"
     },
     "keywords": [
@@ -33,5 +36,8 @@
     },
     "engines": {
         "node": ">=18.0.0"
+    },
+    "devDependencies": {
+        "vitest": "^3.2.4"
     }
 }

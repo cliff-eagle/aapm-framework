@@ -295,5 +295,9 @@ function main(): void {
         process.exit(1);
     }
 }
-
-main();
+// Only run main() when invoked directly (not when imported by tests)
+const isDirectExecution =
+    typeof require !== 'undefined' && require.main === module;
+if (isDirectExecution) {
+    main();
+}
