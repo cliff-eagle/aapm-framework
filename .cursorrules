@@ -1,6 +1,8 @@
 # AAPM Framework — AI Coding Context
-# This file gives AI coding tools deep understanding of the AAPM architecture.
-# Read this FIRST before generating any code in this repository.
+
+## This file gives AI coding tools deep understanding of the AAPM architecture
+
+## Read this FIRST before generating any code in this repository
 
 ## Core Philosophy
 
@@ -24,6 +26,7 @@ AAPM treats language learning as SOCIAL BEHAVIOR PRACTICE, not content consumpti
 Every AAPM app has three tiers. When building a feature, ALWAYS ask: "Which tier does this belong to?"
 
 **Tier 1 — The Companion** (Affective Scaffold)
+
 - Bilingual AI companion who knows the learner personally
 - L1 is permitted and gradually reduced (Code-Switching Gradient)
 - No failure state — only recasting and encouragement
@@ -31,6 +34,7 @@ Every AAPM app has three tiers. When building a feature, ALWAYS ask: "Which tier
 - Primary function: reduce Affective Filter, build L2 identity
 
 **Tier 2 — The Immersion** (Functional Simulation)
+
 - Monolingual NPCs in a culturally authentic environment
 - L2 only — no translations available
 - Failure = Social Friction Events (repairable, not catastrophic)
@@ -38,6 +42,7 @@ Every AAPM app has three tiers. When building a feature, ALWAYS ask: "Which tier
 - Social Reputation System governs NPC warmth
 
 **Tier 3 — The Negotiation** (Professional Power Dynamics)
+
 - High-status authority figures
 - L2 only + register enforcement
 - Failure = Negotiation Collapse
@@ -48,7 +53,7 @@ Every AAPM app has three tiers. When building a feature, ALWAYS ask: "Which tier
 
 The RFE is the CORE PATENT ARCHITECTURE. Every interaction feeds three loops:
 
-```
+```text
 MICRO-LOOP (real-time):
   During conversation → monitor interlanguage → provide scaffolding
   CONSTRAINT: Never break Flow State — scaffold through narrative, not interruption
@@ -65,6 +70,7 @@ PERSISTENCE LOOP (long-term):
 ### The Forward Injection Pattern
 
 After curriculum is generated, the learning targets are INJECTED into the next session:
+
 - NPCs are "briefed" to create natural opportunities for target vocabulary/grammar
 - The learner doesn't know this is happening
 - From their perspective, the simulation naturally presents relevant practice
@@ -73,7 +79,7 @@ After curriculum is generated, the learning targets are INJECTED into the next s
 
 When a learner needs help expressing something, provide THREE formulations:
 
-```
+```text
 BASIC  — Safe, simple, zero sociolinguistic risk
 NATIVE — Idiomatic, colloquial, how natives actually talk
 FORMAL — High-register, professional, Tier 3 appropriate
@@ -88,6 +94,7 @@ Each with an explanation of WHY it's formulated that way.
 The Persona Schema is the UNIT OF CUSTOMIZATION. Every domain-specific deployment is defined by a schema.
 
 A schema contains:
+
 - `learner_profile` — L1, L2, proficiency, domain, objective
 - `vocabulary_matrix` — domain-specific priority vocabulary with CEFR levels
 - `environment` — Tier 2 locations and NPCs, Tier 3 scenarios
@@ -103,14 +110,17 @@ When creating new features, ALWAYS check if they should be schema-configurable.
 Every learner exists on three simultaneous axes:
 
 **Axis X — Linguistic Granularity** (phoneme → pragmatic synthesis)
+
 - Phoneme precision, morphosyntax, lexical depth
 - Measured by Interlanguage Model, not test scores
 
 **Axis Y — Situational Agency** (Tier 1 → Tier 2 → Tier 3)
+
 - The sociolinguistic stakes and constraints of the environment
 - Not just "difficulty" — qualitatively different social dynamics
 
 **Axis Z — Psychological Retention** (engagement architecture)
+
 - Configurable per learner: Gamified, Organic Social, Professional Urgency, Intrinsic Mastery, Social Accountability
 - NEVER default to gamification — respect the learner's psychology
 
@@ -120,7 +130,7 @@ Every learner exists on three simultaneous axes:
 
 Every NPC uses a 4-layer prompt stack:
 
-```
+```text
 Layer 1: Base System Prompt     → Identity, language, personality
 Layer 2: Persona Schema         → Domain vocab, culture, context
 Layer 3: Session Context        → Relationship state, forward injection directives
@@ -135,19 +145,20 @@ Use `packages/core/src/agent-intelligence/prompt-composer.ts` to compose these l
 
 NEVER assume all learners want gamification. The five profiles:
 
-| Profile | Mechanism | For |
-|---------|-----------|-----|
-| Gamified Coercion | Streaks, XP, leaderboards | Competitive types |
-| Organic Social | NPC messages, relationship narrative | Heritage learners |
-| Professional Urgency | Countdown timers, benchmarks | Exam/relocation |
-| Intrinsic Mastery | Difficulty unlocks, precision scoring | Perfectionists |
-| Social Accountability | Peer cohorts, instructor oversight | Group learners |
+| Profile                | Mechanism                              | For                    |
+| ---------------------- | -------------------------------------- | ---------------------- |
+| Gamified Coercion      | Streaks, XP, leaderboards              | Competitive types      |
+| Organic Social         | NPC messages, relationship narrative   | Heritage learners      |
+| Professional Urgency   | Countdown timers, benchmarks           | Exam/relocation        |
+| Intrinsic Mastery      | Difficulty unlocks, precision scoring  | Perfectionists         |
+| Social Accountability  | Peer cohorts, instructor oversight     | Group learners         |
 
 ---
 
 ## Code Patterns
 
-### When building a new feature:
+### When building a new feature
+
 1. Which tier does this belong to?
 2. How does the Feedback Engine extract data from this interaction?
 3. What's the Forward Injection path back into simulation?
@@ -155,14 +166,16 @@ NEVER assume all learners want gamification. The five profiles:
 5. Is the Affective Filter kept low?
 6. Is this schema-configurable or hardcoded?
 
-### When creating a new NPC:
+### When creating a new NPC
+
 1. Define base personality in `prompts/npc/`
 2. Specify tier-specific behavior parameters
 3. Set up relationship state in persistence layer
 4. Configure Forward Injection reception
 5. Define failure/success modes per tier
 
-### When generating curriculum:
+### When generating curriculum
+
 1. Extract friction points with full conversational context
 2. Classify by type (lexical, morphosyntactic, phonemic, register, pragmatic)
 3. Check recurrence against historical data
