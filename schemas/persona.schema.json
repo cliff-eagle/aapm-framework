@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aapm-framework.dev/schemas/persona.schema.json",
   "title": "AAPM Persona Schema",
-  "description": "Defines a complete domain-specific deployment for the Autonomous Adaptive Pedagogical Matrix. Version 1.0.0.",
+  "description": "Defines a complete domain-specific deployment for the Autonomous Adaptive Pedagogical Matrix. Version 3.0.0.",
   "type": "object",
   "required": [
     "schema_version",
@@ -13,7 +13,8 @@
       "type": "string",
       "enum": [
         "1.0.0",
-        "2.0.0"
+        "2.0.0",
+        "3.0.0"
       ],
       "description": "Schema version — must match a registered version in migrations.ts"
     },
@@ -307,6 +308,232 @@
               "description": "Whether to track vocabulary retrieval speed as a fluency metric"
             }
           }
+        }
+      }
+    },
+    "input_modalities": {
+      "type": "object",
+      "description": "Multimodal input configuration — which input types the simulation accepts",
+      "properties": {
+        "text": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "default_language": {
+              "type": "string",
+              "description": "L1 or L2"
+            }
+          }
+        },
+        "audio": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "phoneme_engine": {
+              "type": "string",
+              "enum": [
+                "wav2vec2",
+                "azure-speech",
+                "whisper",
+                "deepgram"
+              ],
+              "description": "ASR / phoneme alignment backend"
+            },
+            "fallback": {
+              "type": "string",
+              "default": "text-only"
+            }
+          }
+        },
+        "visual": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "scene_descriptor_format": {
+              "type": "string",
+              "enum": [
+                "json",
+                "yaml",
+                "natural-language"
+              ],
+              "default": "json"
+            },
+            "fallback": {
+              "type": "string",
+              "default": "text-description"
+            }
+          }
+        }
+      }
+    },
+    "world_state": {
+      "type": "object",
+      "description": "World Engine configuration — governs Tier 2 immersive environment",
+      "properties": {
+        "location_graph": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "connections": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "IDs of connected locations"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "public",
+                  "private",
+                  "commercial",
+                  "institutional"
+                ]
+              }
+            }
+          }
+        },
+        "time_system": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "day_length_minutes": {
+              "type": "number",
+              "minimum": 1
+            }
+          }
+        },
+        "ambient_events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "trigger"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "trigger": {
+                "type": "string",
+                "enum": [
+                  "time-based",
+                  "reputation-gated",
+                  "random",
+                  "quest-triggered"
+                ]
+              },
+              "npc_reactions": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "character_control": {
+      "type": "object",
+      "description": "Character controllability configuration",
+      "properties": {
+        "player_character": {
+          "type": "object",
+          "properties": {
+            "control_mode": {
+              "type": "string",
+              "enum": [
+                "full",
+                "choice-tree",
+                "voice"
+              ],
+              "default": "full"
+            }
+          }
+        },
+        "npc_autonomy_level": {
+          "type": "string",
+          "enum": [
+            "scripted",
+            "semi-autonomous",
+            "fully-autonomous"
+          ],
+          "default": "fully-autonomous"
+        },
+        "hybrid_npcs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "player_can_possess": {
+                "type": "boolean",
+                "default": false
+              },
+              "takeover_trigger": {
+                "type": "string",
+                "enum": [
+                  "manual",
+                  "affective-threshold",
+                  "educator-assigned"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "curriculum_delivery": {
+      "type": "object",
+      "description": "Micro-curriculum delivery format configuration",
+      "properties": {
+        "preferred_format": {
+          "type": "string",
+          "enum": [
+            "slideshow",
+            "video",
+            "flashcards",
+            "podcast",
+            "debrief",
+            "auto"
+          ],
+          "default": "auto"
+        },
+        "auto_select_by": {
+          "type": "string",
+          "enum": [
+            "retention_profile",
+            "session_length",
+            "affective_state"
+          ],
+          "default": "retention_profile"
         }
       }
     }
