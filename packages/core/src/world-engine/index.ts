@@ -9,6 +9,42 @@
  * @patentCritical Claim 13 — World Engine Layer
  */
 
+// ─── Runtime Re-exports ───────────────────────────────────────────────────────
+
+export {
+    createWorldState,
+    navigateTo,
+    advanceTime,
+    getNPCsAtLocation,
+    getCurrentTimeSlot,
+    fireAmbientEvent,
+    clearAmbientEvent,
+    updateReputation,
+} from './world-runtime';
+
+export type {
+    BigFiveProfile,
+    CulturalOverlay,
+    SchemaNPCDefinition,
+    SchemaLocationDefinition,
+    SchemaAmbientEvent,
+    SchemaEnvironment,
+} from './world-runtime';
+
+export {
+    computeNPCBehavior,
+    computeMoodShift,
+    shouldDecayMood,
+    getReputationBehaviorDescriptor,
+} from './npc-behavior';
+
+export type {
+    NPCMoodState,
+    MoodModifier,
+    NPCBehaviorModifiers,
+    MoodTriggerEvent,
+} from './npc-behavior';
+
 // ─── Location Graph ───────────────────────────────────────────────────────────
 
 export interface Location {

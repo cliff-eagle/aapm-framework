@@ -1,5 +1,6 @@
 # Hospitality Professional — Persona Schema
 # A hospitality worker learning English for international service roles
+# Enhanced with Big Five personality, cultural overlays, and location graph
 
 persona:
   id: "hospitality-professional"
@@ -10,6 +11,11 @@ persona:
     service-specific vocabulary, cultural sensitivity across guest
     nationalities, crisis communication, and the delicate register of
     "warm professionalism" — neither too casual nor too stiff.
+
+  # ─── Flight Attendant Focus ──────────────────────────────────
+  flight_attendant_primary: true
+  primary_environment: airplane-cabin
+  primary_companion: "Rosa"
 
   learner_profile:
     native_language: "es"
@@ -87,94 +93,406 @@ persona:
 
     tier_2:
       setting: "A luxury hotel, international flight, and private yacht"
+
+      # ─── Location Graph ────────────────────────────────────────
       locations:
-        - name: hotel-reception
+        - id: staff-break-room
+          name:
+            en: "Staff Break Room"
+            es: "Sala de Descanso"
+          description: "A comfortable crew rest area with lockers, a coffee station, and a training board."
+          type: private
+          connections: [hotel-reception, airplane-cabin, yacht-deck]
+          npcs:
+            resident: []
+            transient: [companion]
+          interactables:
+            - id: training-board
+              name: { en: "Training Board", es: "Tablón de Formación" }
+              type: document
+              vocabulary_domain: flight-operations
+              interaction_prompt: "Review today's briefing notes and service protocols"
+            - id: coffee-machine
+              name: { en: "Coffee Machine", es: "Máquina de Café" }
+              type: device
+              vocabulary_domain: food-beverage-service
+              interaction_prompt: "Make coffee while reviewing vocabulary flashcards"
+          ambient_description: "Fluorescent lighting, the hum of a fridge, a locker with your name on it."
+
+        - id: hotel-reception
+          name:
+            en: "Hotel Reception"
+            es: "Recepción del Hotel"
           description: "Front desk of a 5-star Mediterranean hotel"
-          npcs: [business-guest, honeymooners, elderly-couple, travel-agent-caller]
+          type: commercial
+          connections: [hotel-concierge, hotel-restaurant, staff-break-room]
+          npcs:
+            resident: [business-guest]
+            transient: [honeymooners, elderly-couple, travel-agent-caller]
+          interactables:
+            - id: reservation-terminal
+              name: { en: "Reservation Terminal", es: "Terminal de Reservas" }
+              type: device
+              vocabulary_domain: check-in-checkout
+              interaction_prompt: "Check the guest reservation system for incoming arrivals"
+            - id: hotel-phone
+              name: { en: "Front Desk Phone", es: "Teléfono de Recepción" }
+              type: device
+              vocabulary_domain: complaint-resolution
+              interaction_prompt: "Answer incoming calls from guests or travel agents"
+          ambient_description: "Marble floors, soft piano music, the scent of fresh flowers. A guest approaches the desk."
           typical_tasks:
             - check-in-guest-with-special-requests
             - handle-room-upgrade-negotiation
             - explain-local-attractions-and-dining
             - manage-overbooking-situation
-        - name: hotel-concierge
+
+        - id: hotel-concierge
+          name:
+            en: "Hotel Concierge"
+            es: "Conserjería del Hotel"
           description: "Concierge desk — restaurant reservations, tours, transportation"
-          npcs: [luxury-guest, family-with-children, solo-traveler]
+          type: commercial
+          connections: [hotel-reception, hotel-restaurant]
+          npcs:
+            resident: [luxury-guest]
+            transient: [family-with-children, solo-traveler]
+          interactables:
+            - id: city-map
+              name: { en: "City Map", es: "Mapa de la Ciudad" }
+              type: document
+              vocabulary_domain: cultural-sensitivity
+              interaction_prompt: "Study local attractions and plan guest itineraries"
+            - id: taxi-phone
+              name: { en: "Taxi Line", es: "Línea de Taxi" }
+              type: device
+              vocabulary_domain: check-in-checkout
+              interaction_prompt: "Arrange private transportation for a guest"
+          ambient_description: "A polished wood desk with brochures, a concierge bell, and a vase of orchids."
           typical_tasks:
             - recommend-restaurants-matching-preferences
             - arrange-private-transportation
             - handle-lost-item-report
             - coordinate-surprise-arrangement
-        - name: hotel-restaurant
+
+        - id: hotel-restaurant
+          name:
+            en: "Hotel Restaurant"
+            es: "Restaurante del Hotel"
           description: "Fine dining restaurant within the hotel"
-          npcs: [food-critic, anniversary-couple, allergic-guest]
+          type: commercial
+          connections: [hotel-reception, hotel-concierge]
+          npcs:
+            resident: [food-critic]
+            transient: [anniversary-couple, allergic-guest]
+          interactables:
+            - id: wine-list
+              name: { en: "Wine List", es: "Carta de Vinos" }
+              type: menu
+              vocabulary_domain: food-beverage-service
+              interaction_prompt: "Study the wine pairings and prepare sommelier-level descriptions"
+            - id: allergen-chart
+              name: { en: "Allergen Chart", es: "Tabla de Alérgenos" }
+              type: document
+              vocabulary_domain: safety-emergency
+              interaction_prompt: "Review ingredient allergen information for tonight's menu"
+          ambient_description: "Candlelight, white tablecloths, the quiet clink of silverware. A sommelier decants wine."
           typical_tasks:
             - present-menu-and-wine-pairings
             - handle-dietary-restrictions
             - manage-complaint-about-food-quality
             - coordinate-surprise-dessert-presentation
-        - name: airplane-cabin
+
+        - id: airplane-cabin
+          name:
+            en: "Airplane Cabin"
+            es: "Cabina del Avión"
           description: "Business class cabin on a transatlantic flight"
-          npcs: [nervous-flyer, demanding-businessman, unaccompanied-minor, sleeping-passenger]
+          type: commercial
+          connections: [staff-break-room]
+          npcs:
+            resident: [nervous-flyer, demanding-businessman]
+            transient: [unaccompanied-minor, sleeping-passenger]
+          interactables:
+            - id: pa-system
+              name: { en: "PA System", es: "Sistema de Megafonía" }
+              type: device
+              vocabulary_domain: safety-emergency
+              interaction_prompt: "Make a cabin announcement — safety, service, or emergency"
+            - id: service-cart
+              name: { en: "Service Cart", es: "Carrito de Servicio" }
+              type: object
+              vocabulary_domain: food-beverage-service
+              interaction_prompt: "Prepare and serve beverages and meals to passengers"
+            - id: overhead-bin
+              name: { en: "Overhead Bin", es: "Compartimento Superior" }
+              type: object
+              vocabulary_domain: flight-operations
+              interaction_prompt: "Help a passenger store their luggage"
+          ambient_description: "The steady hum of engines, seat belt signs illuminated, a gentle vibration through the floor."
           typical_tasks:
             - deliver-safety-briefing-clearly
             - manage-in-flight-service
             - calm-anxious-passenger-during-turbulence
             - handle-medical-situation
-        - name: yacht-deck
+
+        - id: yacht-deck
+          name:
+            en: "Yacht Deck"
+            es: "Cubierta del Yate"
           description: "Crew service on a chartered superyacht in the Mediterranean"
-          npcs: [yacht-owner, owner-spouse, celebrity-guest, charter-broker]
+          type: private
+          connections: [staff-break-room]
+          npcs:
+            resident: [yacht-owner]
+            transient: [owner-spouse, celebrity-guest, charter-broker]
+          interactables:
+            - id: radio
+              name: { en: "VHF Radio", es: "Radio VHF" }
+              type: device
+              vocabulary_domain: yacht-maritime
+              interaction_prompt: "Communicate with the bridge or port authority"
+            - id: guest-itinerary
+              name: { en: "Guest Itinerary", es: "Itinerario del Huésped" }
+              type: document
+              vocabulary_domain: vip-luxury-service
+              interaction_prompt: "Review today's planned activities and guest preferences"
+          ambient_description: "Azure Mediterranean water, teak decking warm underfoot, a light breeze carrying salt air."
           typical_tasks:
             - serve-breakfast-on-deck
             - coordinate-water-sport-activities
             - manage-guest-itinerary-preferences
             - handle-seasickness-situation
 
+      # ─── NPC Roster with Big Five & Cultural Overlays ──────────
       npc_roster:
         - role: business-guest
+          id: business-guest
+          name: "Thomas Thompson"
           count: 1
           register: efficient-professional
           personality: "Time-pressured, expects instant service, speaks in short directives. Not rude — just busy."
           vocabulary_focus: [check-in-checkout, vip-luxury-service]
+          patience_level: 0.3
+          big_five:
+            openness: 0.3
+            conscientiousness: 0.9
+            extraversion: 0.5
+            agreeableness: 0.4
+            neuroticism: 0.3
+          cultural_overlay:
+            communicative_directness: 0.9
+            formality_default: 0.7
+            power_distance_sensitivity: 0.8
+            emotional_expressiveness: 0.2
+
         - role: honeymooners
+          id: honeymooners
+          name: "Jake & Emily"
           count: 2
           register: warm-excited
           personality: "Happy, chatty, want recommendations for romantic experiences. Easy but time-consuming."
           vocabulary_focus: [room-service-amenities, cultural-sensitivity]
+          patience_level: 0.9
+          big_five:
+            openness: 0.8
+            conscientiousness: 0.4
+            extraversion: 0.9
+            agreeableness: 0.9
+            neuroticism: 0.2
+          cultural_overlay:
+            communicative_directness: 0.6
+            formality_default: 0.3
+            power_distance_sensitivity: 0.2
+            emotional_expressiveness: 0.9
+
         - role: elderly-couple
+          id: elderly-couple
+          name: "George & Margaret"
           count: 2
           register: gentle-patient
           personality: "Speak slowly, may have hearing difficulties, very appreciative of personal attention."
           vocabulary_focus: [room-service-amenities, complaint-resolution]
+          patience_level: 0.95
+          big_five:
+            openness: 0.4
+            conscientiousness: 0.7
+            extraversion: 0.3
+            agreeableness: 0.9
+            neuroticism: 0.4
+          cultural_overlay:
+            communicative_directness: 0.4
+            formality_default: 0.8
+            power_distance_sensitivity: 0.6
+            emotional_expressiveness: 0.4
+
         - role: food-critic
+          id: food-critic
+          name: "Laurent Beaumont"
           count: 1
           register: formal-evaluative
           personality: "Asks detailed questions about ingredients, preparation, and provenance. Tests knowledge."
           vocabulary_focus: [food-beverage-service]
+          patience_level: 0.5
+          big_five:
+            openness: 0.9
+            conscientiousness: 0.8
+            extraversion: 0.6
+            agreeableness: 0.3
+            neuroticism: 0.5
+          cultural_overlay:
+            communicative_directness: 0.7
+            formality_default: 0.9
+            power_distance_sensitivity: 0.7
+            emotional_expressiveness: 0.5
+
         - role: allergic-guest
+          id: allergic-guest
+          name: "Sarah Chen"
           count: 1
           register: anxious-precise
           personality: "Has severe nut allergy. Needs 100% clear confirmation of ingredient safety. Life-or-death precision."
           vocabulary_focus: [food-beverage-service, safety-emergency]
+          patience_level: 0.6
+          big_five:
+            openness: 0.5
+            conscientiousness: 0.9
+            extraversion: 0.4
+            agreeableness: 0.6
+            neuroticism: 0.8
+          cultural_overlay:
+            communicative_directness: 0.8
+            formality_default: 0.5
+            power_distance_sensitivity: 0.3
+            emotional_expressiveness: 0.7
+
         - role: nervous-flyer
+          id: nervous-flyer
+          name: "Maria Rodriguez"
           count: 1
           register: anxious-seeking-reassurance
           personality: "White-knuckled during turbulence, asks repeatedly if everything is okay. Needs calming authority."
           vocabulary_focus: [flight-operations, safety-emergency]
+          patience_level: 0.7
+          big_five:
+            openness: 0.3
+            conscientiousness: 0.5
+            extraversion: 0.6
+            agreeableness: 0.7
+            neuroticism: 0.9
+          cultural_overlay:
+            communicative_directness: 0.5
+            formality_default: 0.4
+            power_distance_sensitivity: 0.6
+            emotional_expressiveness: 0.9
+
         - role: demanding-businessman
+          id: demanding-businessman
+          name: "Richard Hale"
           count: 1
           register: curt-entitled
           personality: "Expects first-class treatment, complains about minor things, uses threatening language ('I'll speak to your manager')."
           vocabulary_focus: [complaint-resolution, vip-luxury-service]
+          patience_level: 0.15
+          big_five:
+            openness: 0.2
+            conscientiousness: 0.7
+            extraversion: 0.7
+            agreeableness: 0.1
+            neuroticism: 0.6
+          cultural_overlay:
+            communicative_directness: 0.95
+            formality_default: 0.6
+            power_distance_sensitivity: 0.9
+            emotional_expressiveness: 0.5
+
         - role: yacht-owner
+          id: yacht-owner
+          name: "Viktor Andreev"
           count: 1
           register: casual-but-expectations
           personality: "Relaxed demeanor but expects perfection. Addresses crew by first name but fires for incompetence."
           vocabulary_focus: [yacht-maritime, vip-luxury-service, food-beverage-service]
+          patience_level: 0.4
+          big_five:
+            openness: 0.6
+            conscientiousness: 0.5
+            extraversion: 0.7
+            agreeableness: 0.4
+            neuroticism: 0.3
+          cultural_overlay:
+            communicative_directness: 0.8
+            formality_default: 0.3
+            power_distance_sensitivity: 0.9
+            emotional_expressiveness: 0.4
+
         - role: celebrity-guest
+          id: celebrity-guest
+          name: "Anonymous VIP"
           count: 1
           register: guarded-private
           personality: "Needs absolute discretion. Tests whether crew can be trusted with privacy. Minimal conversation."
           vocabulary_focus: [vip-luxury-service, cultural-sensitivity]
+          patience_level: 0.5
+          big_five:
+            openness: 0.2
+            conscientiousness: 0.6
+            extraversion: 0.2
+            agreeableness: 0.3
+            neuroticism: 0.7
+          cultural_overlay:
+            communicative_directness: 0.3
+            formality_default: 0.7
+            power_distance_sensitivity: 0.8
+            emotional_expressiveness: 0.1
+
+      # ─── Ambient Events ────────────────────────────────────────
+      ambient_events:
+        - id: turbulence-event
+          name: "Turbulence Pocket"
+          trigger: random
+          trigger_condition: "learnerLocation === 'airplane-cabin' && random < 0.3"
+          description: "The aircraft hits moderate turbulence. Passengers grip armrests."
+          npc_reactions:
+            nervous-flyer: "Grabs the nearest crew member's arm, visibly panicking"
+            demanding-businessman: "Sighs impatiently, looks at watch"
+          vocabulary_domain: safety-emergency
+          duration: scene
+          learner_can_ignore: false
+
+        - id: busy-checkin
+          name: "Rush Check-In Period"
+          trigger: time-based
+          trigger_condition: "timeOfDay === 'afternoon' && learnerLocation === 'hotel-reception'"
+          description: "A tour bus arrives. The lobby fills with guests."
+          npc_reactions:
+            business-guest: "Becomes noticeably more impatient"
+          vocabulary_domain: check-in-checkout
+          duration: persistent
+          learner_can_ignore: true
+
+        - id: medical-call
+          name: "Medical Assistance Call"
+          trigger: quest-triggered
+          trigger_condition: "tierReadiness.tier2.sessionsCompleted >= 5"
+          description: "A passenger reports feeling unwell. The PA system crackles."
+          npc_reactions:
+            nervous-flyer: "Looks around wide-eyed, asking if everything is okay"
+          vocabulary_domain: safety-emergency
+          duration: scene
+          learner_can_ignore: false
+
+        - id: vip-arrival
+          name: "VIP Guest Arrival"
+          trigger: reputation-gated
+          trigger_condition: "npcStates['yacht-owner'].reputationWithLearner >= 0.5"
+          description: "A high-profile guest arrives unannounced at the yacht."
+          npc_reactions:
+            yacht-owner: "Quietly pulls you aside and explains the situation"
+            celebrity-guest: "Appears on deck wearing sunglasses, says nothing"
+          vocabulary_domain: vip-luxury-service
+          duration: persistent
+          learner_can_ignore: true
 
       example_interactions:
         - context: "Hotel reception — business guest arrives late, tired, reservation issue"
@@ -226,6 +544,74 @@ persona:
           - politics-or-religion
           - commenting-on-guest-appearance
           - discussing-other-guests
+
+    # ─── Time System ────────────────────────────────────────────
+    time_system:
+      enabled: true
+      day_length_minutes: 30   # 30 real minutes = 1 in-game day (one flight)
+      time_affects_npcs: true
+      time_affects_locations: true
+      schedule:
+        - time_of_day: morning
+          npc_availability:
+            business-guest: true
+            honeymooners: false
+            elderly-couple: true
+            nervous-flyer: true
+            demanding-businessman: true
+            yacht-owner: true
+          location_accessibility:
+            staff-break-room: true
+            hotel-reception: true
+            hotel-concierge: true
+            hotel-restaurant: false
+            airplane-cabin: true
+            yacht-deck: true
+        - time_of_day: afternoon
+          npc_availability:
+            business-guest: true
+            honeymooners: true
+            elderly-couple: true
+            nervous-flyer: true
+            demanding-businessman: true
+            yacht-owner: true
+          location_accessibility:
+            staff-break-room: true
+            hotel-reception: true
+            hotel-concierge: true
+            hotel-restaurant: true
+            airplane-cabin: true
+            yacht-deck: true
+        - time_of_day: evening
+          npc_availability:
+            business-guest: false
+            honeymooners: true
+            elderly-couple: false
+            nervous-flyer: true
+            demanding-businessman: false
+            yacht-owner: true
+          location_accessibility:
+            staff-break-room: true
+            hotel-reception: true
+            hotel-concierge: false
+            hotel-restaurant: true
+            airplane-cabin: true
+            yacht-deck: true
+        - time_of_day: night
+          npc_availability:
+            business-guest: false
+            honeymooners: false
+            elderly-couple: false
+            nervous-flyer: false
+            demanding-businessman: false
+            yacht-owner: false
+          location_accessibility:
+            staff-break-room: true
+            hotel-reception: false
+            hotel-concierge: false
+            hotel-restaurant: false
+            airplane-cabin: false
+            yacht-deck: false
 
     tier_3:
       scenarios:
@@ -279,6 +665,7 @@ persona:
             cultural_intelligence: 0.35
 
   companion:
+    name: "Rosa"
     personality: >
       A veteran hospitality professional from Manila who has worked
       hotels in Dubai, cruise ships in the Caribbean, and private yachts
