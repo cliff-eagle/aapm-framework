@@ -16,7 +16,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/license-BUSL--1.1-blue" alt="License: BUSL-1.1" />
   <img src="https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript" alt="TypeScript: strict" />
-  <img src="https://img.shields.io/badge/version-0.1.0-green" alt="Version: 0.1.0" />
+  <img src="https://img.shields.io/badge/version-0.4.0-green" alt="Version: 0.4.0" />
   <img src="https://img.shields.io/badge/PRs-CLA%20required-yellow" alt="PRs: CLA Required" />
 </p>
 
