@@ -136,13 +136,58 @@ The AAPM accepts three types of reference prompts as starting input:
 
 ---
 
+## Implementation Standards — Read Before Writing Any Code
+
+> Source: [IMPLEMENTATION_MASTERCLASS.md](IMPLEMENTATION_MASTERCLASS.md) Chapter 10
+
+**BEFORE IMPLEMENTING ANY MODULE, CONFIRM:**
+
+1. You have read `.cursorrules`, the relevant ADR, and `IMPLEMENTATION.md` (if exists).
+2. You understand which `AAPMEventType` this module emits and consumes.
+3. You have identified all external dependencies and confirmed adapter packages exist.
+
+**EVERY FUNCTION YOU WRITE MUST:**
+
+- Begin with a **PRECONDITION BLOCK** that throws `PipelineError` on invalid input.
+- End with a **POSTCONDITION BLOCK** that asserts structural invariants before returning.
+- Thread `correlationId` through every log and every emitted event.
+- Use **injected interfaces** for ALL external calls — never import SDKs directly.
+- Implement a **Null Object** for every optional dependency.
+- Export a `register(bus, deps) => () => void` function for bus integration.
+- Classify all errors as `retryable: true` or `retryable: false`.
+
+**EVERY MODULE YOU COMPLETE MUST INCLUDE:**
+
+- `packages/core/src/[module]/IMPLEMENTATION.md` (9-section template)
+- Test file: Section A fixtures / B preconditions / C logic / D bus / E failures
+- Passing `vitest run` with zero failures before reporting complete.
+- `CHANGELOG.md` entry with **Pedagogical Impact** field.
+- JSDoc on every exported function following the masterclass template.
+
+**PEDAGOGICAL INVARIANTS — NEVER VIOLATE:**
+
+- The Affective Filter is real. Anxiety blocks acquisition. Never produce output
+  that could humiliate, shame, or publicly expose learner error.
+- Stay in the ZPD. Cap curriculum units at 5 per session. Never overload.
+- Forward Injection is INVISIBLE. NPC briefings must feel natural. Max 5 active.
+- Sociolinguistic > grammatical. Register and pragmatic errors rank higher than
+  minor grammatical errors in curriculum priority.
+
+**MOTTO:** Dynamically Efficient = correct on first execution.
+Efficiently Dynamic = changeable without breaking neighbours.
+If your implementation fails either condition, do not report it as complete.
+
+---
+
 ## Related Documents
 
 | Document | Purpose |
 | --- | --- |
+| [IMPLEMENTATION_MASTERCLASS.md](IMPLEMENTATION_MASTERCLASS.md) | Full engineering standards (10 chapters) |
 | [AAPM_ROUTER.md](AAPM_ROUTER.md) | Framework routing + workaround library |
 | [docs/aam-charter.md](docs/aam-charter.md) | AAM philosophy + runtime customization spec |
 | [docs/dependency-graph.md](docs/dependency-graph.md) | Build order enforcement |
+| [docs/implementation-checklist.md](docs/implementation-checklist.md) | Per-module quality gate |
 | [docs/world-state-contract.md](docs/world-state-contract.md) | World state specification |
 | [docs/character-control-spec.md](docs/character-control-spec.md) | Character control taxonomy |
 
