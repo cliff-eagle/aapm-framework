@@ -1,0 +1,234 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — North Africa, Cyprus, Israel, Lebanon
+# ════════════════════════════════════════════════════════════════
+
+region: eastern_med_and_africa
+ports:
+
+  # ─── Cyprus ──────────────────────────────────────────────────
+
+  - id: loc_limassol
+    name: Limassol
+    country: Cyprus
+    coordinates: [34.67, 33.04]
+    languages: [Greek, English]
+    marina: Limassol Marina
+    cultural_highlight: "Wine capital of Cyprus, cosmopolitan waterfront"
+    npcs:
+      - {name: Andreas, role: harbor-master, language: Cypriot Greek, personality: "Modern marina professional, yachting boom manager", cultural_note: "Cypriot Greek sounds different from mainland Greek — locals appreciate if you notice"}
+      - {name: Chryso, role: winemaker, language: Greek, personality: "Commandaria wine producer — world's oldest named wine", cultural_note: "Commandaria was named by Crusader Knights — produced continuously since 800 BC"}
+      - {name: Mustafa, role: cafe-server, language: Turkish/Greek, personality: "Green Line buffer zone area, bridge between communities", cultural_note: "The Cyprus divide is physical — the UN buffer zone runs through Nicosia"}
+
+  - id: loc_paphos
+    name: Paphos
+    country: Cyprus
+    coordinates: [34.76, 32.41]
+    languages: [Greek, English]
+    marina: Paphos Harbor
+    cultural_highlight: "Aphrodite's birthplace, Roman mosaics (UNESCO)"
+    npcs:
+      - {name: Aphrodite (nickname), role: tour-guide, language: Greek/English, personality: "Archaeological park guide, mythology specialist", cultural_note: "Aphrodite's Rock (Petra tou Romiou) — swimming around it 3 times brings eternal beauty"}
+      - {name: Stelios, role: fisherman, language: Cypriot Greek, personality: "Last traditional fisherman at the castle harbor", cultural_note: "Paphos fish meze is 15+ courses — pace yourself, it never ends"}
+
+  - id: loc_larnaca
+    name: Larnaca
+    country: Cyprus
+    coordinates: [34.92, 33.63]
+    languages: [Greek, English]
+    marina: Larnaca Marina
+    cultural_highlight: "Salt lake flamingos, Lazarus' tomb, kite surfing"
+    npcs:
+      - {name: Pavlos, role: church-warden, language: Greek, personality: "Church of Saint Lazarus guardian", cultural_note: "Lazarus (yes, THAT Lazarus) became Bishop of Larnaca after resurrection — his tomb is here"}
+      - {name: Demetra, role: halloumi-maker, language: Greek, personality: "Traditional halloumi artisan, copper kettles", cultural_note: "Real halloumi uses a mix of goat and sheep milk — factory versions use cow milk (heresy)"}
+
+  - id: loc_ayia_napa
+    name: Ayia Napa
+    country: Cyprus
+    coordinates: [34.99, 34.00]
+    languages: [Greek, English, Russian]
+    marina: Ayia Napa Marina
+    cultural_highlight: "Party resort turned luxury marina, sea caves"
+    npcs:
+      - {name: Christos, role: marina-attendant, language: Greek/English, personality: "New luxury marina, ultra-modern facilities", cultural_note: "Ayia Napa was a quiet fishing village until 1998 — then British tourists arrived"}
+      - {name: Natasha, role: bar-owner, language: Russian/English, personality: "Russian expat community veteran", cultural_note: "Large Russian community — many signs in Cyrillic, Russian widely spoken"}
+
+  # ─── Israel ──────────────────────────────────────────────────
+
+  - id: loc_tel_aviv
+    name: Tel Aviv / Jaffa
+    country: Israel
+    coordinates: [32.05, 34.75]
+    languages: [Hebrew, Arabic, English]
+    marina: Tel Aviv Marina
+    cultural_highlight: "Ancient Jaffa port, Bauhaus White City, startup nation"
+    npcs:
+      - {name: Yael, role: harbor-master, language: Hebrew/English, personality: "Security-conscious but welcoming, thorough paperwork", cultural_note: "Security checks are normal and thorough — don't take it personally"}
+      - {name: Omar, role: market-vendor, language: Arabic/Hebrew, personality: "Jaffa flea market antique dealer", cultural_note: "Jaffa was Arab before 1948 — the flea market reflects layers of history"}
+      - {name: Avi, role: cafe-server, language: Hebrew, personality: "Rothschild Boulevard café, tech-world commentary", cultural_note: "Shabbat (Friday sunset–Saturday sunset) changes everything — many places close"}
+
+  - id: loc_haifa
+    name: Haifa
+    country: Israel
+    coordinates: [32.82, 34.98]
+    languages: [Hebrew, Arabic]
+    marina: Haifa Marina
+    cultural_highlight: "Bahá'í Gardens (UNESCO), Arab-Jewish coexistence"
+    npcs:
+      - {name: Dr. Rania, role: guide, language: Arabic/Hebrew, personality: "Bahá'í Gardens guide, interfaith dialogue advocate", cultural_note: "Haifa is the only city where Arab-Jewish coexistence actually works daily"}
+      - {name: Eli, role: restaurant-owner, language: Hebrew, personality: "German Colony gastropub, Carmel Market regular", cultural_note: "Haifa was built by Templars (German, not Crusader) — the German Colony remains"}
+
+  - id: loc_acre
+    name: Acre (Akko)
+    country: Israel
+    coordinates: [32.92, 35.07]
+    languages: [Arabic, Hebrew]
+    marina: Old Port of Akko
+    cultural_highlight: "Crusader citadel (UNESCO), living Arab old town"
+    npcs:
+      - {name: Abu Hassan, role: hummus-master, language: Arabic, personality: "Legendary hummus restaurant, opens 5am closes when pot is empty", cultural_note: "Abu Hassan's hummus is pilgrimage-worthy — arrive before 10am or it's gone"}
+      - {name: Salim, role: fisherman, language: Arabic, personality: "Old port fishing tradition, Templar tunnel stories", cultural_note: "The Crusader tunnels under Akko were rediscovered only in 1994"}
+
+  # ─── Lebanon ─────────────────────────────────────────────────
+
+  - id: loc_beirut
+    name: Beirut
+    country: Lebanon
+    coordinates: [33.89, 35.50]
+    languages: [Arabic, French, English]
+    marina: Zaitunay Bay Marina
+    cultural_highlight: "Paris of the Middle East — resilient, multilingual, nightlife"
+    npcs:
+      - {name: Rami, role: harbor-master, language: Arabic/French, personality: "Manages marina amid the chaos, philosophical", cultural_note: "Beirut has been destroyed and rebuilt 7 times — resilience is the city's DNA"}
+      - {name: Layla, role: restaurant-owner, language: Arabic/French, personality: "Mar Mikhael district, natural wine pioneer", cultural_note: "Lebanese switch between Arabic-French-English mid-sentence — trilingual is default"}
+      - {name: George, role: taxi-driver, language: Arabic, personality: "No meter, negotiation-based, storytelling machine", cultural_note: "Everyone in Beirut has a war story — listening is the greatest respect you can show"}
+
+  - id: loc_byblos
+    name: Byblos (Jbeil)
+    country: Lebanon
+    coordinates: [34.12, 35.65]
+    languages: [Arabic, French]
+    marina: Byblos Old Port
+    cultural_highlight: "Oldest continuously inhabited city on Earth, Phoenician alphabet origin"
+    npcs:
+      - {name: Charbel, role: archaeologist, language: Arabic/French, personality: "Byblos ruins guide, alphabet history", cultural_note: "The word 'Bible' comes from Byblos — this is where papyrus was traded"}
+      - {name: Noura, role: cafe-server, language: Arabic/French, personality: "Pepe Abed's old fishing harbor café", cultural_note: "Byblos has been inhabited for 7,000+ years — every stone has a story"}
+
+  # ─── Egypt ───────────────────────────────────────────────────
+
+  - id: loc_alexandria
+    name: Alexandria
+    country: Egypt
+    coordinates: [31.20, 29.92]
+    languages: [Arabic]
+    marina: El-Montazah Marina
+    cultural_highlight: "Cleopatra's city, lost library, Mediterranean Egypt"
+    npcs:
+      - {name: Hassan, role: harbor-master, language: Arabic, personality: "Bureaucratic but helpful with correct bakshish", cultural_note: "Bakshish is not bribery — it's the lubricant of Egyptian society"}
+      - {name: Fatima, role: market-vendor, language: Arabic, personality: "Attarine spice souk encyclopedic knowledge", cultural_note: "Egyptian Arabic is the most widely understood Arabic — thanks to cinema and music"}
+      - {name: Dr. Amira, role: guide, language: Arabic/English, personality: "Bibliotheca Alexandrina scholar, passionate historian", cultural_note: "The ancient Library was the world's first 'google' — 400,000 scrolls"}
+
+  - id: loc_port_said
+    name: Port Said
+    country: Egypt
+    coordinates: [31.26, 32.30]
+    languages: [Arabic]
+    marina: Port Said Yacht Club
+    cultural_highlight: "Suez Canal entrance, duty-free shopping, colonial architecture"
+    npcs:
+      - {name: Mahmoud, role: port-agent, language: Arabic/English, personality: "Suez Canal transit coordinator, logistics wizard", cultural_note: "Suez Canal transit for yachts costs $800-2000 — you need a pilot on board"}
+      - {name: Samira, role: restaurant-owner, language: Arabic, personality: "Sayadeya (fish with rice) specialist, waterfront", cultural_note: "Port Said was built from scratch for the Suez Canal in 1859 — planned city"}
+
+  # ─── Morocco ─────────────────────────────────────────────────
+
+  - id: loc_tangier
+    name: Tangier
+    country: Morocco
+    coordinates: [35.78, -5.81]
+    languages: [Arabic, French, Berber]
+    marina: Tanja Marina Bay
+    cultural_highlight: "Strait of Gibraltar gateway, international city history"
+    npcs:
+      - {name: Youssef, role: harbor-master, language: Arabic/French, personality: "Controls Strait traffic, precise", cultural_note: "Tangier was an international zone 1923-1956 — everyone has papers from somewhere"}
+      - {name: Amina, role: guide, language: Arabic/French/Berber, personality: "Medina specialist, three languages flowing", cultural_note: "Haggling mastery is expected — starting at asking price marks you as prey"}
+      - {name: Driss, role: cafe-server, language: Arabic/French, personality: "Café Hafa cliff terrace, mint tea ceremony", cultural_note: "Moroccan mint tea pouring from height is an art — creates the foam"}
+
+  - id: loc_casablanca
+    name: Casablanca
+    country: Morocco
+    coordinates: [33.59, -7.62]
+    languages: [Arabic, French]
+    marina: Marina de Casablanca
+    cultural_highlight: "Hassan II Mosque (on the ocean), economic capital"
+    npcs:
+      - {name: Rachid, role: port-agent, language: Arabic/French, personality: "Business-minded, efficient, less tourist-oriented", cultural_note: "Casablanca is Morocco's business city — less romantic than the movie suggests"}
+      - {name: Khadija, role: restaurant-owner, language: Arabic/French, personality: "Corniche seafood specialist, tajine authority", cultural_note: "Rick's Café exists (recreated in 2004) — tourists love it, locals are amused"}
+
+  - id: loc_essaouira
+    name: Essaouira
+    country: Morocco
+    coordinates: [31.51, -9.77]
+    languages: [Arabic, French, Berber]
+    marina: Essaouira Old Port
+    cultural_highlight: "Gnaoua music, windsurfing, Game of Thrones Astapor"
+    npcs:
+      - {name: Mbarek, role: gnaoua-musician, language: Arabic/Berber, personality: "Gnaoua trance music master, multi-generational", cultural_note: "Gnaoua music is Moroccan-Subsaharan trance — the annual festival draws 500,000"}
+      - {name: Halima, role: argan-producer, language: Berber/Arabic, personality: "Women's argan oil cooperative leader", cultural_note: "Argan trees are endemic to Morocco — goats climb them, the oil is liquid gold"}
+
+  # ─── Tunisia ─────────────────────────────────────────────────
+
+  - id: loc_tunis
+    name: Tunis / La Goulette
+    country: Tunisia
+    coordinates: [36.81, 10.18]
+    languages: [Arabic, French]
+    marina: Port de La Goulette
+    cultural_highlight: "Carthage ruins, Sidi Bou Saïd blue-white village"
+    npcs:
+      - {name: Slim, role: harbor-master, language: Arabic/French, personality: "La Goulette port authority, paperwork patient", cultural_note: "Tunisian Arabic (Derja) mixes Arabic-French-Berber-Italian — unique dialect"}
+      - {name: Leila, role: cafe-server, language: Arabic/French, personality: "Café des Nattes in Sidi Bou Saïd, Paul Klee stories", cultural_note: "Sidi Bou Saïd inspired Paul Klee's color revolution — 'Color has got me'"}
+
+  - id: loc_djerba
+    name: Djerba
+    country: Tunisia
+    coordinates: [33.80, 10.86]
+    languages: [Arabic, Berber, French]
+    marina: Houmt Souk Marina
+    cultural_highlight: "Homer's Land of the Lotus Eaters, oldest synagogue in Africa"
+    npcs:
+      - {name: Aziz, role: pottery-maker, language: Arabic/Berber, personality: "Guellala pottery tradition, multi-generational kiln", cultural_note: "Djerba pottery uses techniques unchanged since Phoenician times"}
+      - {name: Rachel, role: synagogue-guardian, language: Arabic/Hebrew/French, personality: "El Ghriba synagogue caretaker, interfaith ambassador", cultural_note: "El Ghriba is Africa's oldest synagogue — pilgrimage site for 2,500 years"}
+
+  - id: loc_monastir
+    name: Monastir
+    country: Tunisia
+    coordinates: [35.77, 10.83]
+    languages: [Arabic, French]
+    marina: Cap Monastir Marina
+    cultural_highlight: "Ribat fortress, Bourguiba's birthplace"
+    npcs:
+      - {name: Habib, role: guide, language: Arabic/French, personality: "Ribat fortress historian, Bourguiba devotee", cultural_note: "The ribat was a fortified monastery — one of Islam's oldest military buildings"}
+      - {name: Sonia, role: weaver, language: Arabic, personality: "Traditional Monastir textile artisan", cultural_note: "Monastir textiles were famous in medieval trade — the city's name means 'monastery'"}
+
+  # ─── Algeria ─────────────────────────────────────────────────
+
+  - id: loc_algiers
+    name: Algiers
+    country: Algeria
+    coordinates: [36.75, 3.04]
+    languages: [Arabic, French, Berber]
+    marina: Port d'Alger
+    cultural_highlight: "Casbah (UNESCO), French colonial + Ottoman layers"
+    npcs:
+      - {name: Karim, role: harbor-master, language: Arabic/French, personality: "Formal, French bureaucratic tradition strong", cultural_note: "Algeria fought France for independence 1954-1962 — the memory shapes everything"}
+      - {name: Houria, role: cafe-server, language: Arabic/French, personality: "Casbah terrace café, Ottoman-era building", cultural_note: "Algerian mint tea adds orange blossom water — different from Moroccan style"}
+
+  - id: loc_oran
+    name: Oran
+    country: Algeria
+    coordinates: [35.70, -0.64]
+    languages: [Arabic, French]
+    marina: Port d'Oran
+    cultural_highlight: "Raï music capital, Camus' The Plague setting"
+    npcs:
+      - {name: Khaled (not the singer), role: musician, language: Arabic/French, personality: "Raï music bar owner, defends the genre's soul", cultural_note: "Raï music was born in Oran — protest music that went global through Khaled and Cheb Mami"}
+      - {name: Nassima, role: market-vendor, language: Arabic/French, personality: "Marché de Mdina Jdida spice specialist", cultural_note: "Oran was Spanish until 1792 — the Santa Cruz fort on the hill is the legacy"}

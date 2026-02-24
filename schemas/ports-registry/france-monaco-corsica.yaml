@@ -1,0 +1,108 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — France, Monaco & Corsica
+# ════════════════════════════════════════════════════════════════
+
+region: france
+ports:
+
+  - id: loc_nice
+    name: Nice
+    country: France
+    coordinates: [43.70, 7.27]
+    languages: [French]
+    marina: Port de Nice
+    cultural_highlight: "Belle Époque elegance on the Côte d'Azur"
+    npcs:
+      - {name: Jean-Pierre, role: harbor-master, language: French, personality: "Impeccable formality, judges your berthing technique", cultural_note: "Vouvoyer ALWAYS — tutoring a stranger is deeply rude on the Riviera"}
+      - {name: Colette, role: flower-seller, language: French/Niçois, personality: "Cours Saleya market queen, knows everyone", cultural_note: "Socca and pissaladière are Niçois, NOT Provençal"}
+      - {name: Ahmed, role: cafe-server, language: French/Arabic, personality: "Third-generation Vieux Nice café owner", cultural_note: "Pan bagnat is Nice's answer to salade niçoise — for eating on boats"}
+
+  - id: loc_marseille
+    name: Marseille
+    country: France
+    coordinates: [43.30, 5.37]
+    languages: [French, Arabic]
+    marina: Vieux-Port
+    cultural_highlight: "France's oldest city — multicultural melting pot"
+    npcs:
+      - {name: Karim, role: fish-seller, language: French/Arabic, personality: "Vieux-Port fish market, rapid Marseillais accent", cultural_note: "'Putain' is punctuation in Marseille, not an insult"}
+      - {name: Mireille, role: restaurant-owner, language: French, personality: "Bouillabaisse guardian — follows the charter", cultural_note: "Real bouillabaisse has strict rules — the Bouillabaisse Charter of 1980"}
+      - {name: Samir, role: market-vendor, language: French/Arabic, personality: "Noailles market spice merchant", cultural_note: "Noailles is called 'the belly of Marseille' — North African flavors everywhere"}
+
+  - id: loc_cannes
+    name: Cannes
+    country: France
+    coordinates: [43.55, 7.02]
+    languages: [French]
+    marina: Vieux Port de Cannes
+    cultural_highlight: "Film festival glamour, Lérins Islands escape"
+    npcs:
+      - {name: Olivier, role: marina-attendant, language: French, personality: "Name-drops film stars, impeccable blazer", cultural_note: "During the festival, berths cost 10x normal — book months ahead"}
+      - {name: Isabelle, role: parfumeur, language: French, personality: "Grasse-trained perfume maker, poetic", cultural_note: "Grasse is 30min away — world perfume capital since the 16th century"}
+
+  - id: loc_saint_tropez
+    name: Saint-Tropez
+    country: France
+    coordinates: [43.27, 6.64]
+    languages: [French]
+    marina: Port de Saint-Tropez
+    cultural_highlight: "Fishing village turned celebrity playground"
+    npcs:
+      - {name: Brigitte, role: gallery-owner, language: French, personality: "Named after Bardot, fierce about art", cultural_note: "Bardot put this village on the map in 1956 — locals have mixed feelings"}
+      - {name: Marcel, role: fisherman, language: Provençal/French, personality: "Last traditional fisherman, 4am starts", cultural_note: "The Place des Lices pétanque games are sacred — never interrupt"}
+
+  - id: loc_antibes
+    name: Antibes
+    country: France
+    coordinates: [43.58, 7.12]
+    languages: [French]
+    marina: Port Vauban
+    cultural_highlight: "Largest marina in Europe, Picasso museum"
+    npcs:
+      - {name: Pierre, role: harbor-master, language: French, personality: "Manages Europe's biggest marina with military precision", cultural_note: "Port Vauban has 1,642 berths — the superyacht quay alone is extraordinary"}
+      - {name: Nathalie, role: market-vendor, language: French, personality: "Marché Provençal olive oil specialist", cultural_note: "Provençal market runs 6am-1pm — arrive early or miss the best produce"}
+
+  - id: loc_toulon
+    name: Toulon
+    country: France
+    coordinates: [43.12, 5.93]
+    languages: [French]
+    marina: Port de Toulon
+    cultural_highlight: "French Navy HQ, underrated Provençal city"
+    npcs:
+      - {name: Commandant Leclerc, role: port-control, language: French, personality: "Naval precision, formal radio protocol", cultural_note: "Major naval base — follow restricted zones carefully"}
+      - {name: Thérèse, role: bakery-owner, language: French, personality: "Cade (chickpea flatbread) specialist", cultural_note: "Toulon's cade is their socca — don't confuse the two cities' versions"}
+
+  - id: loc_monaco
+    name: Monte Carlo
+    country: Monaco
+    coordinates: [43.74, 7.43]
+    languages: [French, Monégasque]
+    marina: Port Hercules
+    cultural_highlight: "World's second-smallest country, Grand Prix circuit"
+    npcs:
+      - {name: Éric, role: marina-attendant, language: French, personality: "White-glove service, memorizes yacht names", cultural_note: "Berth fees are eye-watering — budget €2,000+/night during Grand Prix"}
+      - {name: Princesse (nickname), role: concierge, language: French/Italian, personality: "Hotel de Paris veteran, discretion absolute", cultural_note: "Monégasque (Ligurian dialect) exists but almost nobody speaks it"}
+
+  - id: loc_ajaccio
+    name: Ajaccio
+    country: France (Corsica)
+    coordinates: [41.93, 8.74]
+    languages: [French, Corsican]
+    marina: Port Tino Rossi
+    cultural_highlight: "Napoleon's birthplace, wild Corsican mountains"
+    npcs:
+      - {name: Ange-Marie, role: harbor-master, language: Corsican/French, personality: "Fierce Corsican pride, switching to French reluctantly", cultural_note: "Corsican is closer to Italian than French — locals resent being 'French'"}
+      - {name: Petru, role: charcutier, language: Corsican, personality: "Wild boar charcuterie artisan", cultural_note: "Figatellu, lonzu, coppa — Corsican charcuterie rivals Italian"}
+      - {name: Saveria, role: cafe-server, language: French, personality: "Serves pastizzu and fiadone with local stories", cultural_note: "Vendetta culture shaped Corsican society for centuries"}
+
+  - id: loc_bonifacio
+    name: Bonifacio
+    country: France (Corsica)
+    coordinates: [41.39, 9.16]
+    languages: [French, Corsican]
+    marina: Port de Bonifacio
+    cultural_highlight: "Dramatic cliff-top citadel, Sardinia visible across the strait"
+    npcs:
+      - {name: Battista, role: port-control, language: Bonifacien/French, personality: "Strait of Bonifacio expert, wind warnings", cultural_note: "Bonifacien dialect is actually Ligurian — closer to Genoese than Corsican"}
+      - {name: Dominique, role: tour-guide, language: French, personality: "Grotto boat tour operator, dramatic storyteller", cultural_note: "The King of Aragon's Staircase — 187 steps carved in cliff face"}

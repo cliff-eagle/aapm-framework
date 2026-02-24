@@ -1,0 +1,109 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Turkey
+# ════════════════════════════════════════════════════════════════
+
+region: turkey
+ports:
+
+  - id: loc_istanbul
+    name: Istanbul
+    country: Turkey
+    coordinates: [41.01, 28.98]
+    languages: [Turkish]
+    marina: Kalamış Marina
+    crew_special: {crew: deckhand-emre, note: "Emre's hometown — family reunion, childhood neighborhood tour"}
+    cultural_highlight: "Where Europe meets Asia, Bosphorus traffic, bazaar culture"
+    npcs:
+      - {name: Hasan, role: harbor-master, language: Turkish, personality: "Bosphorus traffic controller, military precision", cultural_note: "50,000 ships pass through the Bosphorus annually — tight traffic control"}
+      - {name: Ayşe, role: bazaar-vendor, language: Turkish, personality: "Grand Bazaar carpet seller, 5th generation", cultural_note: "Never accept the first price — haggling is expected and enjoyable"}
+      - {name: Mehmet, role: ferry-captain, language: Turkish, personality: "Commuter ferry pilot, Istanbul philosopher", cultural_note: "The ferry between Europe and Asia takes 20 minutes — most poetic commute on earth"}
+
+  - id: loc_bodrum
+    name: Bodrum
+    country: Turkey
+    coordinates: [37.03, 27.43]
+    languages: [Turkish]
+    marina: Milta Bodrum Marina
+    cultural_highlight: "Ancient Halicarnassus, gulet (wooden yacht) capital"
+    npcs:
+      - {name: Cengiz, role: gulet-builder, language: Turkish, personality: "Traditional wooden gulet craftsman, hand-tools only", cultural_note: "Bodrum gulets are handmade — takes 18 months per boat, each is unique"}
+      - {name: Deniz, role: bar-owner, language: Turkish/English, personality: "Bodrum Bar Street survivor, cultural commentary", cultural_note: "Bodrum transforms from fishing village to party town every June–September"}
+      - {name: Selma, role: market-vendor, language: Turkish, personality: "Tuesday market spice specialist", cultural_note: "Sumac, za'atar, and Urfa biber — Turkish spice vocabulary is essential"}
+
+  - id: loc_marmaris
+    name: Marmaris
+    country: Turkey
+    coordinates: [36.85, 28.27]
+    languages: [Turkish]
+    marina: Netsel Marina
+    cultural_highlight: "Pine-forested bay, gateway to Datça peninsula"
+    npcs:
+      - {name: Osman, role: harbor-master, language: Turkish, personality: "Manages one of Turkey's largest marinas precisely", cultural_note: "Marmaris bay is so sheltered even hurricanes can't reach inside"}
+      - {name: Fatih, role: honey-seller, language: Turkish, personality: "Çam balı (pine honey) producer from mountains", cultural_note: "Turkish pine honey is made by bees from pine sap — unique flavor, amber color"}
+
+  - id: loc_fethiye
+    name: Fethiye
+    country: Turkey
+    coordinates: [36.62, 29.11]
+    languages: [Turkish]
+    marina: Ece Marina Fethiye
+    cultural_highlight: "Lycian rock tombs, Ölüdeniz lagoon, paragliding"
+    npcs:
+      - {name: Emren, role: paragliding-pilot, language: Turkish/English, personality: "Babadağ mountain tandem flights", cultural_note: "Paragliding from Babadağ (1,960m) over Ölüdeniz — world's best site"}
+      - {name: Gülsüm, role: restaurant-owner, language: Turkish, personality: "Pide (Turkish pizza) specialist in Paspatur old quarter", cultural_note: "Fethiye pide is boat-shaped, open-topped — different from lahmacun"}
+
+  - id: loc_kas
+    name: Kaş
+    country: Turkey
+    coordinates: [36.20, 29.64]
+    languages: [Turkish]
+    marina: Kaş Marina
+    cultural_highlight: "Underwater ruins, scuba diving capital, Lycian Way"
+    npcs:
+      - {name: Ali, role: dive-master, language: Turkish/English, personality: "Kekova sunken city dive guide", cultural_note: "Swimming over the sunken city ruins is banned — boat tours with glass bottom only"}
+      - {name: Elif, role: cafe-server, language: Turkish, personality: "Serves çay on the harbor wall at sunset", cultural_note: "Kaş faces the Greek island Meis (Kastellorizo) — you wave at Greece from your tea"}
+
+  - id: loc_antalya
+    name: Antalya
+    country: Turkey
+    coordinates: [36.88, 30.70]
+    languages: [Turkish]
+    marina: Kaleiçi Marina
+    cultural_highlight: "Roman-Ottoman old town, Turquoise Riviera hub"
+    npcs:
+      - {name: Kemal, role: harbor-master, language: Turkish, personality: "Old harbor (Kaleiçi) guardian, Roman gates", cultural_note: "Hadrian's Gate is from 130 AD — you walk through it to reach the marina"}
+      - {name: Serap, role: ice-cream-vendor, language: Turkish, personality: "Dondurma performer — the stretchy ice cream tricks", cultural_note: "Maraş dondurma uses salep orchid root — it stretches and doesn't melt"}
+      - {name: Burak, role: carpet-dealer, language: Turkish/German, personality: "Kaleiçi carpet shop, performs tea ceremony for browsers", cultural_note: "Carpet-buying involves minimum 3 cups of çay — rushing is offensive"}
+
+  - id: loc_gocek
+    name: Göcek
+    country: Turkey
+    coordinates: [36.75, 28.94]
+    languages: [Turkish]
+    marina: D-Marin Göcek
+    cultural_highlight: "12 islands, pine-fringed bays, sailing epicenter"
+    npcs:
+      - {name: Yusuf, role: marina-manager, language: Turkish, personality: "Knows every anchorage in the 12 islands", cultural_note: "Göcek is where serious sailors go — no nightlife, just perfect sailing"}
+      - {name: Nurcan, role: gözleme-maker, language: Turkish, personality: "Makes gözleme on a wood-fired saç at the market", cultural_note: "Gözleme is Turkish crepe — spinach-cheese is classic, practice ordering fillings"}
+
+  - id: loc_kusadasi
+    name: Kuşadası
+    country: Turkey
+    coordinates: [37.86, 27.26]
+    languages: [Turkish]
+    marina: Kuşadası Marina
+    cultural_highlight: "Ephesus gateway, cruise port, leather market"
+    npcs:
+      - {name: Ibrahim, role: tour-guide, language: Turkish/English, personality: "Ephesus archaeologist guide, Library of Celsus devotee", cultural_note: "Ephesus had flush toilets in 100 AD — mention this to impress your guide"}
+      - {name: Zeynep, role: leather-merchant, language: Turkish, personality: "Leather jacket retailer, aggressive but friendly", cultural_note: "Kuşadası leather bazaar requires strong negotiation — start at 30% of asking price"}
+
+  - id: loc_cesme
+    name: Çeşme
+    country: Turkey
+    coordinates: [38.32, 26.30]
+    languages: [Turkish]
+    marina: Çeşme Marina
+    cultural_highlight: "Thermal springs, windsurfing, Greek island views"
+    npcs:
+      - {name: Barış, role: thermal-attendant, language: Turkish, personality: "Hamam and thermal springs expert", cultural_note: "Turkish bath etiquette: full body scrub (kese) is not optional, it's the whole point"}
+      - {name: Selin, role: restaurant-owner, language: Turkish, personality: "Alaçatı stone village farm-to-table pioneer", cultural_note: "Alaçatı was a Greek village until 1923 — the architecture is Aegean Greek, population Turkish"}

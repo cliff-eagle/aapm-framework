@@ -1,0 +1,193 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Croatia, Montenegro, Albania, Slovenia
+# ════════════════════════════════════════════════════════════════
+
+region: adriatic_east
+ports:
+
+  # ─── Croatia ─────────────────────────────────────────────────
+
+  - id: loc_dubrovnik
+    name: Dubrovnik
+    country: Croatia
+    coordinates: [42.65, 18.09]
+    languages: [Croatian]
+    marina: ACI Marina Dubrovnik
+    cultural_highlight: "Pearl of the Adriatic, medieval walls, GoT fame"
+    npcs:
+      - {name: Ivana, role: harbor-master, language: Croatian, personality: "Professional, tired of Game of Thrones questions", cultural_note: "GoT references annoy locals — this city predates HBO by 1400 years"}
+      - {name: Ante, role: cafe-server, language: Croatian, personality: "Buža bar cliff perch, serves cold beer with views", cultural_note: "Buža bar is literally a hole in the city wall — 'buža' means hole"}
+      - {name: Maro, role: tour-guide, language: Croatian/English, personality: "Old Town historian, Ragusa era specialist", cultural_note: "Dubrovnik was once 'Ragusa' — a rival republic to Venice"}
+
+  - id: loc_split
+    name: Split
+    country: Croatia
+    coordinates: [43.51, 16.44]
+    languages: [Croatian]
+    marina: ACI Marina Split
+    cultural_highlight: "Diocletian's Palace is the entire old town"
+    npcs:
+      - {name: Tonči, role: fisherman, language: Dalmatian Croatian, personality: "Green market (Pazar) fish seller, Hajduk football fanatic", cultural_note: "Never mention Dinamo Zagreb — Hajduk Split is religion here"}
+      - {name: Jelena, role: restaurant-owner, language: Croatian, personality: "Konoba owner in the palace basement", cultural_note: "Pašticada (beef stew) is Split's signature — every family has a secret recipe"}
+
+  - id: loc_hvar
+    name: Hvar Town
+    country: Croatia
+    coordinates: [43.17, 16.44]
+    languages: [Croatian]
+    marina: Hvar Town Harbor
+    cultural_highlight: "Lavender island, oldest public theater in Europe"
+    npcs:
+      - {name: Mila, role: lavender-seller, language: Croatian, personality: "Family lavender farm in Velo Grablje", cultural_note: "Hvar lavender rivals Provence — the festival is in late June"}
+      - {name: Dino, role: bar-owner, language: Croatian/English, personality: "Hula Hula beach bar manager, party coordinator", cultural_note: "Hvar is Croatia's Ibiza — sunset cocktails are mandatory"}
+
+  - id: loc_korcula
+    name: Korčula
+    country: Croatia
+    coordinates: [42.96, 17.14]
+    languages: [Croatian]
+    marina: Korčula Town Harbor
+    cultural_highlight: "Claims to be Marco Polo's birthplace"
+    npcs:
+      - {name: Marko, role: tour-guide, language: Croatian, personality: "Insists Marco Polo was definitely born here", cultural_note: "Venice also claims Marco Polo — this is a serious diplomatic issue"}
+      - {name: Katarina, role: winemaker, language: Croatian, personality: "Grk grape specialist, women-only harvest tradition", cultural_note: "Grk grapes only grow on Korčula — they need female vines to pollinate"}
+
+  - id: loc_zadar
+    name: Zadar
+    country: Croatia
+    coordinates: [44.12, 15.23]
+    languages: [Croatian]
+    marina: Marina Zadar
+    cultural_highlight: "Sea Organ, Sun Salutation, Hitchcock's best sunset"
+    npcs:
+      - {name: Branko, role: musician, language: Croatian, personality: "Plays klapa (a cappella) near the Sea Organ", cultural_note: "Klapa singing is UNESCO intangible heritage — Croatia's sea shanties"}
+      - {name: Maja, role: market-vendor, language: Croatian, personality: "Maraschino cherry liqueur producer", cultural_note: "Zadar invented Maraschino liqueur — the original, not the American cherry"}
+
+  - id: loc_sibenik
+    name: Šibenik
+    country: Croatia
+    coordinates: [43.74, 15.89]
+    languages: [Croatian]
+    marina: Marina Šibenik
+    cultural_highlight: "Cathedral of St. James (UNESCO), Krka falls nearby"
+    npcs:
+      - {name: Petar, role: stone-carver, language: Croatian, personality: "Works on cathedral restoration, multi-generational craft", cultural_note: "The cathedral is entirely stone — no wood or brick, unique in Europe"}
+      - {name: Luce, role: cafe-server, language: Croatian, personality: "Serves in the old town square, Krka falls enthusiast", cultural_note: "Swimming in Krka falls is now restricted — ecological preservation"}
+
+  - id: loc_rovinj
+    name: Rovinj
+    country: Croatia
+    coordinates: [45.08, 13.64]
+    languages: [Croatian, Italian]
+    marina: Marina Rovinj
+    cultural_highlight: "Istrian hilltop town, Italian-Croatian bilingual"
+    npcs:
+      - {name: Sergio, role: truffle-hunter, language: Italian/Croatian, personality: "Istrian truffle hunter with trained dog Fifi", cultural_note: "Istria produces white truffles rivaling Alba — at half the price"}
+      - {name: Nada, role: olive-oil-producer, language: Croatian, personality: "Award-winning Istrian olive oil artisan", cultural_note: "Istrian olive oil regularly beats Tuscan oil in blind tastings"}
+
+  - id: loc_pula
+    name: Pula
+    country: Croatia
+    coordinates: [44.87, 13.85]
+    languages: [Croatian, Italian]
+    marina: ACI Marina Pula
+    cultural_highlight: "Roman amphitheater (6th largest), Brijuni islands"
+    npcs:
+      - {name: Danijel, role: arena-guide, language: Croatian, personality: "Film festival organizer, amphitheater concerts", cultural_note: "The arena still hosts 5,000-person concerts — acoustics are extraordinary"}
+      - {name: Mirjana, role: restaurant-owner, language: Croatian/Italian, personality: "Fuži pasta and Istrian malvasia wine specialist", cultural_note: "Istrian cuisine is unique — neither fully Italian nor Croatian"}
+
+  - id: loc_vis
+    name: Vis
+    country: Croatia
+    coordinates: [43.06, 16.18]
+    languages: [Croatian]
+    marina: Vis Town Harbor
+    cultural_highlight: "Most remote inhabited Croatian island, ex-military base"
+    npcs:
+      - {name: Roko, role: fisherman, language: Viski dialect, personality: "Knows the Blue Cave timing perfectly", cultural_note: "Vis was a closed military island until 1989 — preserved in time"}
+      - {name: Iva, role: winemaker, language: Croatian, personality: "Vugava grape producer, unique to Vis", cultural_note: "Vugava wine exists nowhere else — the grape is endemic to this island"}
+
+  # ─── Montenegro ──────────────────────────────────────────────
+
+  - id: loc_kotor
+    name: Kotor
+    country: Montenegro
+    coordinates: [42.42, 18.77]
+    languages: [Montenegrin, Serbian]
+    marina: Marina Kotor
+    cultural_highlight: "Fjord-like bay, medieval walls climbing 1200m"
+    npcs:
+      - {name: Marko, role: harbor-master, language: Montenegrin, personality: "Guards the narrow bay entrance carefully", cultural_note: "Bay of Kotor is not a fjord (ria actually) — but looks exactly like one"}
+      - {name: Milena, role: cafe-server, language: Montenegrin, personality: "Serves Turkish coffee in the old town squares", cultural_note: "Coffee here is called 'domaća kafa' — the ritual takes 30 minutes minimum"}
+      - {name: Lazar, role: cat-museum-curator, language: Montenegrin/English, personality: "Kotor's famous cats are his life's work", cultural_note: "Kotor is the cat capital of the Adriatic — they're protected citizens"}
+
+  - id: loc_budva
+    name: Budva
+    country: Montenegro
+    coordinates: [42.29, 18.84]
+    languages: [Montenegrin]
+    marina: Marina Budva
+    cultural_highlight: "2,500-year-old town, Montenegrin Riviera party center"
+    npcs:
+      - {name: Nikola, role: beach-bar-owner, language: Montenegrin/Russian, personality: "Slovenska Beach nightlife coordinator", cultural_note: "Large Russian expat community — Russian is widely understood"}
+      - {name: Dragana, role: tour-guide, language: Montenegrin, personality: "Sveti Stefan island historian", cultural_note: "Sveti Stefan island was a fishing village — now an Aman resort at $2000/night"}
+
+  - id: loc_tivat
+    name: Tivat
+    country: Montenegro
+    coordinates: [42.44, 18.70]
+    languages: [Montenegrin]
+    marina: Porto Montenegro
+    cultural_highlight: "Converted naval base, now a superyacht marina"
+    npcs:
+      - {name: Vesna, role: marina-manager, language: Montenegrin/English, personality: "Porto Montenegro luxury concierge", cultural_note: "This was a Yugoslav naval base — now berths superyachts up to 250m"}
+      - {name: Dejan, role: naval-historian, language: Montenegrin, personality: "Maritime heritage museum curator", cultural_note: "Yugoslav submarine pens are now a museum — eerie and fascinating"}
+
+  # ─── Albania ─────────────────────────────────────────────────
+
+  - id: loc_saranda
+    name: Sarandë
+    country: Albania
+    coordinates: [39.87, 20.00]
+    languages: [Albanian, Greek]
+    marina: Sarandë Harbor
+    cultural_highlight: "Corfu views, Butrint UNESCO ruins, emerging Riviera"
+    npcs:
+      - {name: Arben, role: harbor-master, language: Albanian, personality: "Resourceful, getting better every season", cultural_note: "Albania's coast is the Med's last undiscovered stretch — prices are 1/3 of Greece"}
+      - {name: Elona, role: cafe-server, language: Albanian/Greek, personality: "Serves byrek and raki, bilingual Greek border town", cultural_note: "Large Greek minority — bilingual signs, bilingual menus"}
+      - {name: Besnik, role: guide, language: Albanian, personality: "Butrint archaeological site expert", cultural_note: "Butrint was Greek, Roman, Byzantine, Venetian, Ottoman — all in one site"}
+
+  - id: loc_vlore
+    name: Vlorë
+    country: Albania
+    coordinates: [40.47, 19.49]
+    languages: [Albanian]
+    marina: Vlorë Harbor
+    cultural_highlight: "Albanian independence birthplace, ferry to Italy"
+    npcs:
+      - {name: Agron, role: fisherman, language: Albanian, personality: "Traditional fishing, remembers communist isolation", cultural_note: "Albania was completely isolated 1945-1991 — the culture is unique"}
+      - {name: Teuta, role: restaurant-owner, language: Albanian, personality: "Named after the Illyrian queen, proud feminist", cultural_note: "Albania named its ancient queen on the currency — women are central to national identity"}
+
+  - id: loc_durres
+    name: Durrës
+    country: Albania
+    coordinates: [41.32, 19.45]
+    languages: [Albanian]
+    marina: Port of Durrës
+    cultural_highlight: "Albania's main port, Roman amphitheater, beach town"
+    npcs:
+      - {name: Ilir, role: port-agent, language: Albanian/Italian, personality: "Italy ferry terminal veteran, speaks fluent Italian", cultural_note: "Durrës-Bari ferry is the historic crossing — 8 hours, runs daily"}
+      - {name: Mimoza, role: market-vendor, language: Albanian, personality: "Bazaar seller with Ottoman-era family recipes", cultural_note: "Albanian cuisine blends Ottoman, Italian, and Balkan — completely unique"}
+
+  # ─── Slovenia ────────────────────────────────────────────────
+
+  - id: loc_piran
+    name: Piran
+    country: Slovenia
+    coordinates: [45.53, 13.57]
+    languages: [Slovenian, Italian]
+    marina: Marina Piran
+    cultural_highlight: "Venetian architecture, Tartini Square, salt pans"
+    npcs:
+      - {name: Tomaž, role: salt-harvester, language: Slovenian, personality: "Sečovlje salt pan artisan, 700-year tradition", cultural_note: "Piran salt is harvested by hand — 700 years of unbroken tradition"}
+      - {name: Alenka, role: cafe-server, language: Slovenian/Italian, personality: "Tartini Square terrace, violin stories", cultural_note: "Giuseppe Tartini (Devil's Trill) was born here — the square is named for him"}

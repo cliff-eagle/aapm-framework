@@ -1,0 +1,164 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Italy, Sardinia & Sicily
+# ════════════════════════════════════════════════════════════════
+
+region: italy
+ports:
+
+  - id: loc_naples
+    name: Naples
+    country: Italy
+    coordinates: [40.85, 14.27]
+    languages: [Italian]
+    marina: Marina di Stabia
+    crew_special: {crew: first-mate-luca, note: "Luca's home region — emotional return, family introductions"}
+    cultural_highlight: "Pizza's birthplace, Vesuvius looming, controlled chaos"
+    npcs:
+      - {name: Gennaro, role: pizzaiolo, language: Neapolitan/Italian, personality: "Da Michele lineage, judges your pizza order", cultural_note: "Only margherita or marinara — anything else marks you as tourist"}
+      - {name: Assunta, role: market-vendor, language: Neapolitan, personality: "Pignasecca market matriarch, theatrical haggler", cultural_note: "Neapolitan is basically a separate language — don't pretend to understand if you don't"}
+      - {name: Ciro, role: harbor-master, language: Italian, personality: "Chain-smoking, shouting, somehow gets everything done", cultural_note: "Controlled chaos is the Naples way — trust the process"}
+
+  - id: loc_amalfi
+    name: Amalfi
+    country: Italy
+    coordinates: [40.63, 14.60]
+    languages: [Italian]
+    marina: Porto di Amalfi
+    cultural_highlight: "Dramatic cliffside coast, limoncello paradise"
+    npcs:
+      - {name: Salvatore, role: limoncello-maker, language: Italian, personality: "Family recipe since 1890, poetic about lemons", cultural_note: "Sfusato Amalfitano lemons are not regular lemons — they're enormous and sweet"}
+      - {name: Rosa, role: ceramics-artisan, language: Italian, personality: "Hand-paints Vietri ceramics, patient teacher", cultural_note: "Each town on the coast has a distinct ceramic pattern"}
+
+  - id: loc_capri
+    name: Capri
+    country: Italy
+    coordinates: [40.55, 14.24]
+    languages: [Italian]
+    marina: Marina Grande
+    cultural_highlight: "Blue Grotto, Emperor Tiberius' villa, celebrity haven"
+    npcs:
+      - {name: Luciano, role: boat-captain, language: Italian, personality: "Blue Grotto tour operator, sings in the cave", cultural_note: "Tip the singers in the grotto — it's expected"}
+      - {name: Francesca, role: perfumer, language: Italian, personality: "Carthusia perfume artisan, monastery history", cultural_note: "Carthusia perfumes have been made here since 1380"}
+
+  - id: loc_portofino
+    name: Portofino
+    country: Italy
+    coordinates: [44.30, 9.21]
+    languages: [Italian, Ligurian]
+    marina: Porto di Portofino
+    cultural_highlight: "Tiny fishing harbor turned ultra-exclusive"
+    npcs:
+      - {name: Giorgio, role: harbor-master, language: Ligurian/Italian, personality: "Only 14 berths — gate-keeper of exclusivity", cultural_note: "Book berths months in advance — spontaneous visits rarely succeed"}
+      - {name: Simonetta, role: restaurant-owner, language: Italian, personality: "Serves pesto genovese the correct way", cultural_note: "Pesto must be made in marble mortar — food processors are heresy"}
+
+  - id: loc_genoa
+    name: Genoa
+    country: Italy
+    coordinates: [44.41, 8.93]
+    languages: [Italian, Ligurian]
+    marina: Porto Antico
+    cultural_highlight: "Medieval maritime republic, Columbus birthplace, pesto capital"
+    npcs:
+      - {name: Beppe, role: trattoria-owner, language: Genoese/Italian, personality: "Focaccia di Recco evangelist", cultural_note: "Focaccia col formaggio vs focaccia genovese — two completely different things"}
+      - {name: Carla, role: museum-guide, language: Italian, personality: "Maritime museum expert, Genoese trade routes", cultural_note: "Genoa was Venice's great rival — never compare the two favorably"}
+
+  - id: loc_civitavecchia
+    name: Civitavecchia (Rome)
+    country: Italy
+    coordinates: [42.09, 11.79]
+    languages: [Italian]
+    marina: Porto di Civitavecchia
+    cultural_highlight: "Gateway to Rome, 1 hour by train"
+    npcs:
+      - {name: Marco, role: port-agent, language: Italian, personality: "Efficient, manages cruise traffic professionally", cultural_note: "This is a working port, not a resort — adjust expectations"}
+      - {name: Antonella, role: cafe-server, language: Italian, personality: "Espresso purist, local trattoria guide", cultural_note: "Romans say 'un caffè' — never 'espresso'. And absolutely no cappuccino after 11am"}
+
+  - id: loc_venice
+    name: Venice
+    country: Italy
+    coordinates: [45.44, 12.32]
+    languages: [Italian, Venetian]
+    marina: Marina di Venezia (Lido)
+    cultural_highlight: "Floating city, gondolas, Biennale, flooding"
+    npcs:
+      - {name: Alvise, role: harbor-master, language: Venetian/Italian, personality: "Navigating the lagoon channels requires precision", cultural_note: "Speed limits in Venice are strictly enforced — 5km/h in canals"}
+      - {name: Ornella, role: glassblower, language: Italian, personality: "Murano glass artisan, multi-generational", cultural_note: "Real Murano glass has a certificate — most tourist shops sell Chinese fakes"}
+      - {name: Bepi, role: fisherman, language: Venetian, personality: "Chioggia fishing fleet, catches moeche (soft-shell crabs)", cultural_note: "Venetian dialect is alive — 'ciao' comes from Venetian 'sciavo' (I am your slave)"}
+
+  - id: loc_bari
+    name: Bari
+    country: Italy
+    coordinates: [41.13, 16.87]
+    languages: [Italian, Barese]
+    marina: Porto di Bari
+    cultural_highlight: "Puglia's capital, orecchiette grandmothers, Saint Nicholas"
+    npcs:
+      - {name: Nonna Lucia, role: pasta-maker, language: Barese/Italian, personality: "Sits in Bari Vecchia making orecchiette by hand", cultural_note: "Buying pasta from the nonnas in the old town is the authentic experience"}
+      - {name: Vito, role: olive-oil-producer, language: Italian, personality: "Pugliese olive oil certified DOP", cultural_note: "Puglia produces 40% of Italy's olive oil — it's liquid gold"}
+
+  - id: loc_catania
+    name: Catania
+    country: Italy (Sicily)
+    coordinates: [37.50, 15.09]
+    languages: [Italian, Sicilian]
+    marina: Porto di Catania
+    cultural_highlight: "Under Etna's shadow, baroque city, fish market"
+    npcs:
+      - {name: Don Salvatore, role: fish-seller, language: Sicilian/Italian, personality: "La Pescheria market king, operatic shouting", cultural_note: "Catania's fish market is the Med's most theatrical — arrive at 6am"}
+      - {name: Carmela, role: pastry-chef, language: Italian, personality: "Cannoli and granita authority", cultural_note: "Granita with brioche IS breakfast in Sicily — not a dessert"}
+      - {name: Alfio, role: guide, language: Italian, personality: "Etna volcano guide, eruption stories", cultural_note: "Etna is Europe's most active volcano — lava reached Catania in 1669"}
+
+  - id: loc_palermo
+    name: Palermo
+    country: Italy (Sicily)
+    coordinates: [38.12, 13.36]
+    languages: [Italian, Sicilian]
+    marina: La Cala
+    cultural_highlight: "Arab-Norman UNESCO sites, street food capital"
+    npcs:
+      - {name: Tancredi, role: street-food-vendor, language: Sicilian/Italian, personality: "Pane con la milza (spleen sandwich) specialist at Ballarò", cultural_note: "Palermo street food has Arab origins — stigghiola, panelle, arancine"}
+      - {name: Giuseppina, role: tour-guide, language: Italian, personality: "Arab-Norman architecture expert", cultural_note: "The Palatine Chapel has Arabic, Byzantine, and Norman art in one room"}
+
+  - id: loc_syracuse
+    name: Syracuse
+    country: Italy (Sicily)
+    coordinates: [37.07, 15.29]
+    languages: [Italian, Sicilian]
+    marina: Marina di Siracusa
+    cultural_highlight: "Ancient Greek colony, Archimedes' city, Ortigia island"
+    npcs:
+      - {name: Sebastiano, role: archaeologist, language: Italian, personality: "Greek Theatre guide, quotes Aeschylus", cultural_note: "Syracuse was the most powerful Greek city — larger than Athens"}
+      - {name: Lucia, role: cafe-server, language: Italian, personality: "Named after the city's patron saint", cultural_note: "Feast of Santa Lucia (Dec 13) — the whole city eats arancini not bread"}
+
+  - id: loc_cagliari
+    name: Cagliari
+    country: Italy (Sardinia)
+    coordinates: [39.22, 9.12]
+    languages: [Italian, Sardinian]
+    marina: Marina di Bonaria
+    cultural_highlight: "Sardinia's capital, flamingos in the city, nuraghi mysteries"
+    npcs:
+      - {name: Efisio, role: harbor-master, language: Sardinian/Italian, personality: "Sardinian pride, Sardinian is NOT an Italian dialect", cultural_note: "Sardinian (Sardu) is its own Romance language — EU recognized"}
+      - {name: Mariangela, role: cheese-maker, language: Italian, personality: "Pecorino Sardo and Casu Marzu specialist", cultural_note: "Casu Marzu (maggot cheese) is technically illegal but served everywhere"}
+
+  - id: loc_olbia
+    name: Olbia
+    country: Italy (Sardinia)
+    coordinates: [40.92, 9.50]
+    languages: [Italian, Gallurese]
+    marina: Marina di Olbia
+    cultural_highlight: "Gateway to Costa Smeralda, Aga Khan's creation"
+    npcs:
+      - {name: Ferruccio, role: marina-attendant, language: Italian, personality: "Costa Smeralda luxury specialist", cultural_note: "Aga Khan developed Costa Smeralda in 1962 — created a billionaire playground"}
+      - {name: Giovanna, role: market-vendor, language: Gallurese/Italian, personality: "Mirto liqueur producer, sardinian herb specialist", cultural_note: "Gallurese is closer to Corsican than Sardinian — linguistic crossover"}
+
+  - id: loc_la_maddalena
+    name: La Maddalena
+    country: Italy (Sardinia)
+    coordinates: [41.21, 9.41]
+    languages: [Italian, Maddalenino]
+    marina: Porto di La Maddalena
+    cultural_highlight: "Archipelago national park, Garibaldi's final home"
+    npcs:
+      - {name: Giuseppe, role: park-ranger, language: Italian, personality: "Marine biology enthusiast, dolphin spotter", cultural_note: "Pink Beach (Spiaggia Rosa) on Budelli — removing sand is a criminal offense"}
+      - {name: Tonina, role: restaurant-owner, language: Maddalenino/Italian, personality: "Zuppa gallurese specialist, fisherman's wife", cultural_note: "Maddalenino dialect has Genoese roots — the island was Genoese until 1767"}

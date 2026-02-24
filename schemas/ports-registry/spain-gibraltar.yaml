@@ -1,0 +1,120 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Spain & Gibraltar
+# ════════════════════════════════════════════════════════════════
+
+region: iberia
+ports:
+
+  - id: loc_barcelona
+    name: Barcelona
+    country: Spain
+    coordinates: [41.38, 2.18]
+    languages: [Spanish, Catalan]
+    marina: Port Olímpic
+    cultural_highlight: "Gaudí architecture meets beach culture"
+    npcs:
+      - {name: Jordi, role: harbor-master, language: Catalan, personality: "Proud Catalan, switches to Castellano reluctantly", cultural_note: "Will correct you if you call Catalan a dialect"}
+      - {name: Montse, role: market-vendor, language: Catalan/Spanish, personality: "La Boqueria fish seller, fast-talking", cultural_note: "Weighs everything in kilos, quotes in euros per kilo"}
+      - {name: Pau, role: cafe-server, language: Spanish, personality: "Relaxed surfer who works mornings at chiringuito", cultural_note: "Café con leche ordering ritual matters"}
+
+  - id: loc_palma
+    name: Palma de Mallorca
+    country: Spain
+    coordinates: [39.57, 2.65]
+    languages: [Spanish, Catalan]
+    marina: Club de Mar
+    cultural_highlight: "Superyacht culture meets medieval old town"
+    npcs:
+      - {name: Xisco, role: marina-attendant, language: Mallorquín, personality: "Seen every mega-yacht, unimpressed", cultural_note: "Mallorquín Catalan variant — locals proud of it"}
+      - {name: Aina, role: bakery-owner, language: Spanish, personality: "Third-generation ensaïmada baker", cultural_note: "Sobrasada and ensaïmada are sacred — never compare to mainland versions"}
+      - {name: Tomeu, role: tour-guide, language: Spanish/English, personality: "Retired fisherman who runs cathedral tours", cultural_note: "La Seu cathedral obsession, Gaudí connection"}
+
+  - id: loc_ibiza
+    name: Ibiza Town
+    country: Spain
+    coordinates: [38.91, 1.44]
+    languages: [Spanish, Catalan]
+    marina: Marina Botafoch
+    cultural_highlight: "Party island with ancient Phoenician roots"
+    npcs:
+      - {name: Neus, role: harbor-master, language: Eivissenc, personality: "No-nonsense amid the party chaos", cultural_note: "Eivissenc dialect — distinct from mainland Catalan"}
+      - {name: Dani, role: bar-owner, language: Spanish, personality: "Sunset Ashram bartender, philosopher type", cultural_note: "Sunset ritual at Café del Mar is religion here"}
+      - {name: Carmen, role: artisan, language: Spanish, personality: "Ad Lib fashion designer in Dalt Vila", cultural_note: "Ibiza's UNESCO old town predates the club scene by 2500 years"}
+
+  - id: loc_menorca
+    name: Mahón (Menorca)
+    country: Spain
+    coordinates: [39.89, 4.27]
+    languages: [Spanish, Menorquín]
+    marina: Port de Maó
+    cultural_highlight: "Deepest natural harbor in Mediterranean"
+    npcs:
+      - {name: Biel, role: port-control, language: Menorquín, personality: "Proud of having the Med's largest natural port", cultural_note: "British colonial influence — gin is local, not Spanish brandy"}
+      - {name: Margalida, role: cheese-maker, language: Spanish, personality: "Runs artisan Mahón cheese shop", cultural_note: "Queso de Mahón has DOP status — serious business"}
+
+  - id: loc_valencia
+    name: Valencia
+    country: Spain
+    coordinates: [39.45, -0.32]
+    languages: [Spanish, Valencian]
+    marina: Marina Real Juan Carlos I
+    cultural_highlight: "Paella's birthplace, City of Arts and Sciences"
+    npcs:
+      - {name: Amparo, role: market-vendor, language: Valencian/Spanish, personality: "Mercado Central spice seller, encyclopedic", cultural_note: "NEVER put chorizo in paella — this is a serious offense"}
+      - {name: Vicent, role: cafe-server, language: Spanish, personality: "Horchata specialist at Horchatería Santa Catalina", cultural_note: "Horchata con fartons — the correct afternoon order"}
+      - {name: Rafa, role: fisherman, language: Spanish, personality: "El Cabanyal fishing quarter local", cultural_note: "All-i-pebre (garlic eel stew) is the real local dish, not paella valenciana"}
+
+  - id: loc_malaga
+    name: Málaga
+    country: Spain
+    coordinates: [36.72, -4.42]
+    languages: [Spanish]
+    marina: Muelle Uno
+    cultural_highlight: "Picasso's birthplace, Andalusian coast gateway"
+    npcs:
+      - {name: Rocío, role: cafe-server, language: Andalusian Spanish, personality: "Speaks rapid-fire Andalusian, drops final S sounds", cultural_note: "Ordering coffee here has 10+ variations — 'nube', 'sombra', 'mitad'..."}
+      - {name: Paco, role: fisherman, language: Spanish, personality: "Espeto sardine griller on Pedregalejo beach", cultural_note: "Espetos must be grilled on olive-wood boats stuck in sand"}
+
+  - id: loc_cartagena
+    name: Cartagena
+    country: Spain
+    coordinates: [37.60, -0.98]
+    languages: [Spanish]
+    marina: Puerto de Cartagena
+    cultural_highlight: "Roman amphitheater and naval military heritage"
+    npcs:
+      - {name: Mari Carmen, role: museum-guide, language: Spanish, personality: "Passionate about Carthaginian/Roman history", cultural_note: "Founded by Carthaginians — Hannibal connection"}
+      - {name: Diego, role: harbor-master, language: Spanish, personality: "Ex-navy, extremely precise with berthing", cultural_note: "Active naval base — respect restricted zones"}
+
+  - id: loc_alicante
+    name: Alicante
+    country: Spain
+    coordinates: [38.35, -0.49]
+    languages: [Spanish, Valencian]
+    marina: Marina Deportiva
+    cultural_highlight: "Santa Bárbara castle overlooking turquoise coast"
+    npcs:
+      - {name: Lola, role: market-vendor, language: Spanish, personality: "Mercado Central turrón specialist", cultural_note: "Jijona turrón vs Alicante turrón — know the difference"}
+      - {name: Juanjo, role: bar-owner, language: Spanish, personality: "Barrio Santa Cruz tapas institution", cultural_note: "Free tapa with every drink — it's the law here"}
+
+  - id: loc_marbella
+    name: Marbella
+    country: Spain
+    coordinates: [36.51, -4.88]
+    languages: [Spanish]
+    marina: Puerto Banús
+    cultural_highlight: "Luxury yacht capital of southern Spain"
+    npcs:
+      - {name: Santi, role: marina-attendant, language: Spanish, personality: "Puerto Banús veteran, celebrity stories", cultural_note: "Don't stare at the superyachts — act like you belong"}
+      - {name: Fatima, role: cafe-server, language: Spanish/Arabic, personality: "Moroccan-Spanish fusion café in old town", cultural_note: "Large Moroccan community — Arabic heard everywhere in old quarter"}
+
+  - id: loc_gibraltar
+    name: Gibraltar
+    country: Gibraltar (UK)
+    coordinates: [36.14, -5.35]
+    languages: [English, Llanito]
+    marina: Ocean Village Marina
+    cultural_highlight: "British territory at Med's western gate"
+    npcs:
+      - {name: Danny, role: harbor-master, language: Llanito/English, personality: "Switches between English and Llanito mid-sentence", cultural_note: "Llanito is English-Spanish creole unique to Gibraltar"}
+      - {name: Gemma, role: pub-owner, language: English, personality: "Runs a proper British pub with Mediterranean views", cultural_note: "They use pounds sterling, not euros — the only Med port that does"}

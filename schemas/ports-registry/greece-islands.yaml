@@ -1,0 +1,197 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Greece & Islands
+# ════════════════════════════════════════════════════════════════
+
+region: greece
+ports:
+
+  - id: loc_athens
+    name: Athens (Piraeus)
+    country: Greece
+    coordinates: [37.94, 23.65]
+    languages: [Greek]
+    marina: Zea Marina
+    crew_special: {crew: engineer-sofia, note: "Sofia's hometown — family taverna reunion, childhood stories"}
+    cultural_highlight: "Acropolis, birthplace of democracy, urban chaos"
+    npcs:
+      - {name: Nikos, role: harbor-master, language: Greek, personality: "Chain-smoking, philosophizing between radio calls", cultural_note: "Greek bureaucracy is an art form — patience is essential"}
+      - {name: Eleni, role: taverna-owner, language: Greek, personality: "Plaka district, refuses to serve mousaka to tourists", cultural_note: "Real Greek food is simple — grilled fish, horiatiki, olives"}
+      - {name: Yiannis, role: taxi-driver, language: Greek, personality: "Knows every shortcut, political opinions included free", cultural_note: "Greek taxi drivers are the country's unofficial news network"}
+
+  - id: loc_mykonos
+    name: Mykonos
+    country: Greece
+    coordinates: [37.45, 25.33]
+    languages: [Greek]
+    marina: New Port (Tourlos)
+    cultural_highlight: "Cycladic party island, windmills, Little Venice"
+    npcs:
+      - {name: Petros, role: bar-owner, language: Greek/English, personality: "Named after the island's famous pelican", cultural_note: "The pelican Petros is Mykonos' official mascot — don't feed him"}
+      - {name: Despina, role: jewelry-maker, language: Greek, personality: "Matoyianni Street artisan, evil eye specialist", cultural_note: "Mati (evil eye) is not superstition here — it's preventive medicine"}
+
+  - id: loc_santorini
+    name: Santorini (Thera)
+    country: Greece
+    coordinates: [36.43, 25.43]
+    languages: [Greek]
+    marina: Vlychada Marina
+    cultural_highlight: "Caldera views, volcanic wine, Minoan ruins"
+    npcs:
+      - {name: Manolis, role: winemaker, language: Greek, personality: "Volcanic Assyrtiko wine from basket-trained vines", cultural_note: "Vines are trained in basket shape (kouloura) to protect from wind — unique to Santorini"}
+      - {name: Katerina, role: sunset-bar-owner, language: Greek, personality: "Oia sunset ritual coordinator", cultural_note: "Applauding the sunset in Oia is a thing — tourists clap, locals eye-roll"}
+
+  - id: loc_rhodes
+    name: Rhodes
+    country: Greece
+    coordinates: [36.45, 28.22]
+    languages: [Greek]
+    marina: Mandraki Harbor
+    cultural_highlight: "Medieval knights' city, Colossus legacy, Turkish influence"
+    npcs:
+      - {name: Stavros, role: harbor-master, language: Greek, personality: "Guards the harbor where the Colossus once stood", cultural_note: "The Colossus straddled the harbor entrance — or probably didn't, but don't tell Stavros"}
+      - {name: Fatma, role: cafe-server, language: Greek/Turkish, personality: "Turkish quarter resident, bridge between cultures", cultural_note: "Rhodes' old town has a Turkish quarter — the cultural mixing is centuries old"}
+      - {name: Kostas, role: tour-guide, language: Greek, personality: "Knights of St. John expert, medieval warfare enthusiast", cultural_note: "The Street of the Knights is Europe's best-preserved medieval street"}
+
+  - id: loc_corfu
+    name: Corfu (Kerkyra)
+    country: Greece
+    coordinates: [39.62, 19.92]
+    languages: [Greek, Italian influence]
+    marina: Gouvia Marina
+    cultural_highlight: "Venetian old town (UNESCO), cricket-playing Greeks"
+    npcs:
+      - {name: Spiros, role: harbor-master, language: Greek/Italian, personality: "Venetian heritage, speaks with Italian lilt", cultural_note: "Corfu was Venetian for 400 years — the architecture is more Italian than Greek"}
+      - {name: Alexandra, role: kumquat-seller, language: Greek, personality: "Kumquat liqueur producer, unique to Corfu", cultural_note: "Corfu is the only place in Greece with cricket teams — British colonial legacy"}
+
+  - id: loc_crete_heraklion
+    name: Heraklion
+    country: Greece (Crete)
+    coordinates: [35.34, 25.13]
+    languages: [Greek, Cretan dialect]
+    marina: Heraklion Marina
+    cultural_highlight: "Knossos palace, Minoan civilization, fierce independence"
+    npcs:
+      - {name: Michalis, role: archaeologist, language: Cretan Greek, personality: "Knossos guide, argues Linear A will be decoded soon", cultural_note: "Cretans consider themselves Cretan first, Greek second — never confuse the two"}
+      - {name: Maria, role: raki-distiller, language: Cretan Greek, personality: "Rakí (tsikoudia) is offered at every occasion", cultural_note: "Refusing raki in Crete is deeply insulting — always accept the first glass"}
+      - {name: Giorgos, role: shepherd, language: Cretan Greek, personality: "Mountain shepherd who comes to market weekly", cultural_note: "Cretan mountain culture is warrior culture — the Sfakia region never submitted to any empire"}
+
+  - id: loc_crete_chania
+    name: Chania
+    country: Greece (Crete)
+    coordinates: [35.51, 24.02]
+    languages: [Greek, Cretan dialect]
+    marina: Venetian Harbor
+    cultural_highlight: "Most beautiful harbor in Greece, Venetian lighthouse"
+    npcs:
+      - {name: Lefteris, role: leather-maker, language: Cretan Greek, personality: "Stivania (Cretan boots) craftsman, Odos Skridlof", cultural_note: "Leather Lane has made boots for centuries — Cretan mountain boots are iconic"}
+      - {name: Dimitra, role: bakery-owner, language: Greek, personality: "Kalitsounia and bougatsa specialist", cultural_note: "Chania's covered market (Agora) is a cross-shaped Venetian-era building"}
+
+  - id: loc_zakynthos
+    name: Zakynthos (Zante)
+    country: Greece
+    coordinates: [37.79, 20.90]
+    languages: [Greek]
+    marina: Zakynthos Town Port
+    cultural_highlight: "Shipwreck Beach (Navagio), turtle conservation"
+    npcs:
+      - {name: Andreas, role: boat-captain, language: Greek, personality: "Navagio Beach tour operator, dramatic cliff approach", cultural_note: "The shipwreck is a smuggler's ship (Panagiotis) — wrecked in 1980"}
+      - {name: Ioanna, role: conservationist, language: Greek/English, personality: "Caretta caretta sea turtle protector", cultural_note: "Loggerhead turtles nest on Laganas Beach — strict light/noise rules at night"}
+
+  - id: loc_hydra
+    name: Hydra
+    country: Greece
+    coordinates: [37.35, 23.46]
+    languages: [Greek]
+    marina: Hydra Port
+    cultural_highlight: "No cars, no motorbikes — donkeys and boats only"
+    npcs:
+      - {name: Panayiotis, role: donkey-handler, language: Greek, personality: "Transport logistics via donkey, multi-generational", cultural_note: "Motor vehicles are banned — garbage collection is by donkey"}
+      - {name: Sophia, role: gallery-owner, language: Greek/English, personality: "Artist colony resident since the 1960s", cultural_note: "Leonard Cohen lived here 1960-1967 — wrote his first novel on Hydra"}
+
+  - id: loc_paros
+    name: Paros
+    country: Greece
+    coordinates: [37.08, 25.15]
+    languages: [Greek]
+    marina: Parikia Port
+    cultural_highlight: "Marble quarries, windsurfing capital, relaxed vibe"
+    npcs:
+      - {name: Thanasis, role: marble-carver, language: Greek, personality: "Parian marble sculptor, classical techniques", cultural_note: "Venus de Milo was carved from Parian marble — the quarries are still active"}
+      - {name: Irini, role: cafe-server, language: Greek, personality: "Naoussa harbor sunset drinks specialist", cultural_note: "Paros is the locals' favorite island — less touristy than Mykonos/Santorini"}
+
+  - id: loc_naxos
+    name: Naxos
+    country: Greece
+    coordinates: [37.10, 25.38]
+    languages: [Greek]
+    marina: Naxos Port
+    cultural_highlight: "Largest Cycladic island, Apollo's Gate (Portara)"
+    npcs:
+      - {name: Dimitris, role: cheese-maker, language: Greek, personality: "Graviera Naxou producer, mountain cave aging", cultural_note: "Naxos potatoes and cheese are the best in Greece — the island is lush unlike other Cyclades"}
+      - {name: Ariadne, role: guide, language: Greek, personality: "Named after the mythological Ariadne abandoned here by Theseus", cultural_note: "The Portara (Apollo's Gate) faces Delos — alignment is intentional"}
+
+  - id: loc_kos
+    name: Kos
+    country: Greece
+    coordinates: [36.90, 26.94]
+    languages: [Greek]
+    marina: Kos Marina
+    cultural_highlight: "Hippocrates birthplace, Turkish-influenced Dodecanese"
+    npcs:
+      - {name: Hippocrates (nickname), role: pharmacist, language: Greek, personality: "Named after the island's famous son, herbal medicine interest", cultural_note: "The Hippocratic Plane Tree in the town center is allegedly where Hippocrates taught"}
+      - {name: Mehmet, role: cafe-server, language: Greek/Turkish, personality: "Ottoman quarter cafe, Turkish coffee tradition", cultural_note: "Kos is 4km from Turkey — you can see Bodrum from the harbor"}
+
+  - id: loc_patmos
+    name: Patmos
+    country: Greece
+    coordinates: [37.32, 26.55]
+    languages: [Greek]
+    marina: Skala Port
+    cultural_highlight: "Holy island — where Revelation was written"
+    npcs:
+      - {name: Father Theologos, role: monk, language: Greek, personality: "Monastery of Saint John guide, scholarly", cultural_note: "Patmos is called 'the Jerusalem of the Aegean' — deeply sacred island"}
+      - {name: Chrysoula, role: restaurant-owner, language: Greek, personality: "Chora hilltop taverna, traditional recipes", cultural_note: "The Cave of the Apocalypse is where John wrote Revelation — UNESCO site"}
+
+  - id: loc_syros
+    name: Syros (Ermoupoli)
+    country: Greece
+    coordinates: [37.44, 24.94]
+    languages: [Greek]
+    marina: Ermoupoli Port
+    cultural_highlight: "Capital of regional government, neoclassical pearl, Catholic minority"
+    npcs:
+      - {name: Markos, role: loukoumi-maker, language: Greek, personality: "Syros loukoumi (Turkish delight) artisan since 1837", cultural_note: "Syros loukoumi predates Greek independence — the oldest sweet shop in Greece"}
+      - {name: Eleftheria, role: theater-director, language: Greek, personality: "Apollo Theater (mini La Scala) enthusiast", cultural_note: "Ermoupoli was Greece's main port before Piraeus — the architecture shows it"}
+
+  - id: loc_skiathos
+    name: Skiathos
+    country: Greece
+    coordinates: [39.16, 23.49]
+    languages: [Greek]
+    marina: Skiathos Port
+    cultural_highlight: "60+ beaches, Mamma Mia filming location"
+    npcs:
+      - {name: Alexandros, role: boat-rental, language: Greek/English, personality: "Beach-hopping boat tours, secret cove finder", cultural_note: "Lalaria Beach is accessible only by boat — white pebbles and natural arch"}
+      - {name: Popi, role: taverna-owner, language: Greek, personality: "Plakes district old town, home cooking style", cultural_note: "Skiathos was the setting for 'The Magus' by John Fowles — literary island"}
+
+  - id: loc_lefkada
+    name: Lefkada
+    country: Greece
+    coordinates: [38.83, 20.71]
+    languages: [Greek]
+    marina: Lefkada Marina
+    cultural_highlight: "Connected by bridge, Porto Katsiki cliffs"
+    npcs:
+      - {name: Vasilis, role: windsurfer, language: Greek, personality: "Vasiliki windsurfing school owner", cultural_note: "Vasiliki Bay has thermal wind patterns that create perfect afternoon conditions"}
+      - {name: Georgia, role: embroiderer, language: Greek, personality: "Traditional Lefkadian embroidery artisan", cultural_note: "Lefkada lace is a dying art — fewer than 20 women still practice it"}
+
+  - id: loc_kefalonia
+    name: Kefalonia
+    country: Greece
+    coordinates: [38.18, 20.49]
+    languages: [Greek]
+    marina: Argostoli Harbor
+    cultural_highlight: "Captain Corelli's island, Melissani cave, robola wine"
+    npcs:
+      - {name: Gerasimos, role: winemaker, language: Greek, personality: "Robola grape specialist, unique to Kefalonia", cultural_note: "Robola wine only grows on Kefalonia's Mount Aenos — volcanic soil terroir"}
+      - {name: Penelope, role: cafe-server, language: Greek, personality: "Argostoli waterfront, sea turtle watching spot", cultural_note: "The earthquake of 1953 destroyed everything — rebuilt from scratch, resilient people"}
