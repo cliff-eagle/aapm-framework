@@ -31,3 +31,8 @@ export type { GlobeControlsOptions, GlobeControlsInstance } from './globe/GlobeC
 
 export { generateEarthTexture, generateCloudTexture } from './globe/ProceduralEarthTexture';
 export type { ProceduralTextureOptions } from './globe/ProceduralEarthTexture';
+
+// ─── Schema Bridge ────────────────────────────────────────────
+
+export { schemaToCityDefinitions, resolveCityCoordinates, KNOWN_COORDINATES } from './globe/schema-adapter';
+export type { SchemaLocation, SchemaCity, SchemaToGlobeConfig } from './globe/schema-adapter';

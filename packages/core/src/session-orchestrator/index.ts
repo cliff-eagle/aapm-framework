@@ -69,6 +69,18 @@ import type {
     SessionEndedPayload,
 } from '../event-bus/types';
 
+import { ModuleHookRegistry } from './module-hooks';
+import type {
+    SessionLifecycleEvent,
+    TurnEvent,
+    TickEvent,
+    DialogueEvent,
+    ModuleHook,
+} from './module-hooks';
+
+export { ModuleHookRegistry } from './module-hooks';
+export type * from './module-hooks';
+
 // ─── Session State ────────────────────────────────────────────
 
 export interface SimulationSession {
@@ -90,6 +102,8 @@ export interface SimulationSession {
     npcMoodTurnCounters: Record<string, number>;
     /** Event log */
     eventLog: AAPMEventEnvelope[];
+    /** Module hook registry — wires orphaned modules into lifecycle */
+    hookRegistry: ModuleHookRegistry;
     /** Session start timestamp */
     startedAt: number;
     /** Session status */
@@ -129,6 +143,8 @@ export function initSession(
         moodCounters[npc.id] = 0;
     }
 
+    const hookRegistry = new ModuleHookRegistry();
+
     const session: SimulationSession = {
         sessionId,
         learnerId,
@@ -139,6 +155,7 @@ export function initSession(
         globalTurnCount: 0,
         npcMoodTurnCounters: moodCounters,
         eventLog: [],
+        hookRegistry,
         startedAt: Date.now(),
         status: 'active',
     };
@@ -243,6 +260,21 @@ export function tick(
                     }));
                 }
             }
+        }
+    }
+
+    // ── Call module hooks on tick ──
+    const tickEvt: TickEvent = {
+        sessionId: session.sessionId,
+        timestamp: Date.now(),
+        schemaId: session.schemaId,
+        deltaTime: 1,
+        worldState,
+        elapsedSeconds: (Date.now() - session.startedAt) / 1000,
+    };
+    for (const hook of session.hookRegistry.getAll()) {
+        if ('onTick' in hook && typeof hook.onTick === 'function') {
+            hook.onTick(tickEvt);
         }
     }
 
@@ -363,6 +395,24 @@ export function processLearnerTurn(
         }
     }
 
+    // ── Call module hooks on turn complete ──
+    const turnEvt: TurnEvent = {
+        sessionId: session.sessionId,
+        timestamp: Date.now(),
+        schemaId: session.schemaId,
+        npcId: session.activeDialogue.npcId,
+        locationId: session.activeDialogue.locationId,
+        turnIndex: session.globalTurnCount,
+        speaker: 'learner',
+        text: content,
+        frictionEvents,
+    };
+    for (const hook of session.hookRegistry.getAll()) {
+        if ('onTurnComplete' in hook && typeof hook.onTurnComplete === 'function') {
+            hook.onTurnComplete(turnEvt);
+        }
+    }
+
     return {
         ...session,
         worldState,
@@ -414,6 +464,20 @@ export function finishDialogue(
         } as ReputationDeltaPayload));
     }
 
+    // ── Call module hooks on dialogue end ──
+    const dialogueEvt: DialogueEvent = {
+        sessionId: session.sessionId,
+        timestamp: Date.now(),
+        schemaId: session.schemaId,
+        npcId,
+        locationId: session.activeDialogue.locationId,
+    };
+    for (const hook of session.hookRegistry.getAll()) {
+        if ('onDialogueEnd' in hook && typeof hook.onDialogueEnd === 'function') {
+            hook.onDialogueEnd(dialogueEvt, outcome);
+        }
+    }
+
     return {
         session: {
             ...session,
@@ -438,6 +502,18 @@ export function endSession(
             turnCount: session.globalTurnCount,
             frictionCount: session.eventLog.filter(e => e.type === 'FRICTION_DETECTED').length,
         } as SessionEndedPayload));
+    }
+
+    // ── Call module hooks on session end ──
+    const sessionEvt: SessionLifecycleEvent = {
+        sessionId: session.sessionId,
+        timestamp: Date.now(),
+        schemaId: session.schemaId,
+    };
+    for (const hook of session.hookRegistry.getAll()) {
+        if ('onSessionEnd' in hook && typeof hook.onSessionEnd === 'function') {
+            hook.onSessionEnd(sessionEvt, session.worldState);
+        }
     }
 
     return {
