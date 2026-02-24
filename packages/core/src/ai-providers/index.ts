@@ -44,6 +44,17 @@ export type {
 } from './interactions-bridge';
 export { createInteractionsBridge } from './interactions-bridge';
 
+// OpenAI provider — GPT-4o, Embeddings, Whisper ASR, TTS
+export type {
+    OpenAIConfig,
+    OpenAIVoice,
+    OpenAIProviderInstance,
+} from './openai';
+export {
+    createOpenAIProvider,
+    OPENAI_DEFAULTS,
+} from './openai';
+
 import type { AIProviderConfig, AICapability, AIProviderId } from './types';
 import { AI_PROVIDER_CATALOG, REQUIRED_CAPABILITIES } from './types';
 
