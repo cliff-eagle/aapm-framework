@@ -1,0 +1,78 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Alexandria, Egypt
+# ════════════════════════════════════════════════════════════════
+# El Mina Marina — ancient crossroads. Egyptian Arabic challenge.
+
+id: port-alexandria
+extends: yacht-captain-mediterranean
+city: Alexandria
+country: Egypt
+languages: [Arabic]
+primary_language: Arabic
+
+locations:
+  - id: alexandria-approach
+    name: { en: "Alexandria Approach", ar: "مقتربة الإسكندرية" }
+    description: "VHF channel 16. Pass the Qaitbay Citadel (built on Lighthouse ruins)."
+  - id: marina-office
+    name: { en: "Marina Office", ar: "مكتب المارنا" }
+    description: "Small office near the Eastern Harbour."
+  - id: customs-alexandria
+    name: { en: "Customs & Port Authority", ar: "الجمارك" }
+    description: "Non-EU entry. Extensive paperwork. Currency declaration required."
+  - id: fuel-dock
+    name: { en: "Fuel Station", ar: "محطة وقود" }
+    description: "Diesel available but confirm quality — filtering recommended."
+  - id: souk-attarine
+    name: { en: "Attarine Souk", ar: "سوق العطارين" }
+    description: "Perfume and spice souk. Narrow lanes, overwhelming aromas."
+  - id: cafe-corniche
+    name: { en: "Corniche Café", ar: "كافيه الكورنيش" }
+    description: "Mediterranean-facing café. Strong Egyptian coffee. Shisha available."
+  - id: bibliotheca
+    name: { en: "Bibliotheca Alexandrina", ar: "مكتبة الإسكندرية" }
+    description: "Modern tribute to the ancient library. Spectacular architecture."
+
+npcs:
+  - id: npc-harbor-master-alexandria
+    name: Hassan
+    role: Harbor Master
+    register: formal
+    personality: "Egyptian Navy veteran. Bureaucratic but warm beneath the surface. Loves chess."
+    native_language: Arabic
+    also_speaks: [English, French]
+    patience: 0.5
+    cultural_notes:
+      - "Egyptian Arabic is very different from Gulf or Levantine Arabic"
+      - "Bakshish (tip) for port officials is expected and customary"
+      - "Time is flexible — 'bukra inshallah' (tomorrow, God willing) is literal"
+  - id: npc-market-vendor-alexandria
+    name: Amira
+    role: Local Shopkeeper
+    register: informal
+    personality: "Young Alexandrian perfumer. Speaks rapid Egyptian Arabic with French loanwords."
+    native_language: Arabic
+    also_speaks: [French, English]
+    patience: 0.7
+    cultural_notes:
+      - "Haggling is an art form and expected — start at 30% of asking price"
+      - "Offering tea means the negotiation is getting serious"
+      - "Alexandria has a cosmopolitan history — French, Greek, Italian influences"
+  - id: npc-tour-guide-alexandria
+    name: Omar
+    role: Tour Guide
+    register: neutral
+    personality: "Archaeology student. Connects ancient Alexandria to Cleopatra, the Ptolemies, and the lost library."
+    native_language: Arabic
+    also_speaks: [English, French, Greek]
+    patience: 0.9
+    cultural_notes:
+      - "The original Library of Alexandria was destroyed — he has opinions about who did it"
+      - "Qaitbay Citadel is built on the Lighthouse of Alexandria foundations"
+      - "Egyptian Arabic uses 'g' where other dialects use 'j' — gameel not jameel"
+
+scenario_modifiers:
+  arrival_challenge: "Port authority requires agent (simsar) — bureaucratic but manageable"
+  cultural_friction: "Arabic script reading direction and number systems are different"
+  provisioning_goal: "Stock up on Egyptian spices, tahini, and fresh pita"
+  emergency_variant: "Fuel quality issue — need to flush filters at marina"

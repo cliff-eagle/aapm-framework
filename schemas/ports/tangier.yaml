@@ -1,0 +1,79 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Tangier, Morocco
+# ════════════════════════════════════════════════════════════════
+# Tanger Med / Marina Bay — gateway between Atlantic and Mediterranean.
+
+id: port-tangier
+extends: yacht-captain-mediterranean
+city: Tangier
+country: Morocco
+languages: [Arabic, French, Berber]
+primary_language: Arabic
+
+locations:
+  - id: tangier-approach
+    name: { en: "Strait of Gibraltar Approach", ar: "مضيق جبل طارق" }
+    description: "VHF channel 69. Where the Atlantic meets the Mediterranean. Strong currents."
+  - id: marina-office
+    name: { en: "Tanger Marina Office", fr: "Bureau Marina Tanger" }
+    description: "Modern marina in the new Tanger Ville development."
+  - id: customs-tangier
+    name: { en: "Moroccan Customs", fr: "Douane du Maroc" }
+    description: "Non-EU entry. Passport stamps, crew list, cash declaration."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", fr: "Station Carburant" }
+    description: "Diesel available. Pay in dirhams."
+  - id: grand-socco
+    name: { en: "Grand Socco", ar: "السوق الكبير" }
+    description: "Main market square. Gateway to the Medina. Bewildering maze of stalls."
+  - id: cafe-hafa
+    name: { en: "Café Hafa", ar: "مقهى الحافة" }
+    description: "Clifftop café overlooking the strait. Mint tea. Unchanged since 1921."
+  - id: kasbah
+    name: { en: "Kasbah Museum", ar: "القصبة" }
+    description: "Former sultan's palace. Panoramic strait views."
+
+npcs:
+  - id: npc-harbor-master-tangier
+    name: Youssef
+    role: Harbor Master
+    register: formal
+    personality: "Trilingual (Arabic, French, Spanish). Straddles European and African maritime traditions."
+    native_language: Arabic
+    also_speaks: [French, Spanish, English]
+    patience: 0.5
+    cultural_notes:
+      - "French is the business language — use it for paperwork"
+      - "Arabic for personal connection — 'As-salamu alaykum' opens doors"
+      - "Tangier was an international zone until 1956 — multilingual DNA"
+  - id: npc-market-vendor-tangier
+    name: Khalid
+    role: Local Shopkeeper
+    register: informal
+    personality: "Master leather craftsman in the Medina. Claims every product is 'special price for you, my friend.'"
+    native_language: Arabic
+    also_speaks: [French, English, Spanish, German]
+    patience: 0.8
+    cultural_notes:
+      - "Haggling is EXPECTED — never accept the first price. Counter at 25%"
+      - "He speaks 6 languages at a tourist-transaction level"
+      - "Mint tea hospitality is genuine — drink it before negotiating"
+      - "Walking away is the nuclear option — he'll chase you with a 'final price'"
+  - id: npc-cafe-server-tangier
+    name: Zineb
+    role: Waterfront Café Server
+    register: informal
+    personality: "Young Tangéroise. Speaks Darija (Moroccan Arabic) which sounds almost like another language."
+    native_language: Arabic
+    also_speaks: [French, Spanish]
+    patience: 0.7
+    cultural_notes:
+      - "Moroccan Arabic (Darija) is barely intelligible to Gulf Arabic speakers"
+      - "Mint tea is poured from height — theatrical and functional (aerates)"
+      - "Café Hafa was Burroughs and Kerouac's hangout — literary history"
+
+scenario_modifiers:
+  arrival_challenge: "Strait of Gibraltar current at 3 knots — approach timing matters"
+  cultural_friction: "Entering the Medina without a guide risks getting lost (and overcharged)"
+  provisioning_goal: "Stock up on Moroccan spices, argan oil, and preserved lemons"
+  emergency_variant: "Crew passports need extra processing — 24-hour customs delay"

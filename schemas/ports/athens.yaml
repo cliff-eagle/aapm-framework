@@ -1,0 +1,78 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Athens (Piraeus), Greece
+# ════════════════════════════════════════════════════════════════
+# Zea Marina Piraeus — gateway to the Aegean. Engineer Sofia's hometown.
+
+id: port-athens
+extends: yacht-captain-mediterranean
+city: Athens
+country: Greece
+languages: [Greek]
+primary_language: Greek
+
+locations:
+  - id: piraeus-approach
+    name: { en: "Piraeus Approach", el: "Προσέγγιση Πειραιά" }
+    description: "VHF channel 12. Heavy ferry traffic — Blue Star, ANEK, Minoan."
+  - id: zea-marina
+    name: { en: "Zea Marina Office", el: "Γραφείο Μαρίνας Ζέας" }
+    description: "Circular harbour. Yachts and superyachts. Good facilities."
+  - id: limenarchis
+    name: { en: "Port Authority", el: "Λιμεναρχείο" }
+    description: "Coast guard and customs at the main port."
+  - id: fuel-dock
+    name: { en: "Fuel Station", el: "Βενζινάδικο" }
+    description: "Diesel at Zea Marina."
+  - id: varvakeios-market
+    name: { en: "Varvakeios Market", el: "Βαρβάκειος Αγορά" }
+    description: "Athens' central food market. Fish, meat, spices. Intense and authentic."
+  - id: cafe-plaka
+    name: { en: "Café under the Acropolis", el: "Καφενείο στην Πλάκα" }
+    description: "Plaka district. Greek coffee and loukoumades with Parthenon view."
+  - id: acropolis
+    name: { en: "Acropolis", el: "Ακρόπολη" }
+    description: "Parthenon, Erechtheion, Theatre of Dionysus. Western civilization's front porch."
+
+npcs:
+  - id: npc-harbor-master-athens
+    name: Nikos
+    role: Harbor Master
+    register: formal
+    personality: "Gruff but fair. Retired merchant marine. Smokes constantly."
+    native_language: Greek
+    also_speaks: [English]
+    patience: 0.4
+    cultural_notes:
+      - "Greek bureaucracy moves at Greek pace — patience is required"
+      - "'Malaka' is either an insult or a term of endearment depending on context"
+      - "Transit log ('dekti') must be stamped — don't skip this"
+  - id: npc-market-vendor-athens
+    name: Eleni
+    role: Local Shopkeeper
+    register: informal
+    personality: "Olive oil dynasty. Third-generation Kalamata trader. Encyclopedic olive knowledge."
+    native_language: Greek
+    also_speaks: [English]
+    patience: 0.8
+    cultural_notes:
+      - "Greek olive oil is the best — she has data, charts, and tastings"
+      - "Prices are fixed in established markets"
+      - "Offering to share food = genuine hospitality"
+  - id: npc-tour-guide-athens
+    name: Dimitris
+    role: Tour Guide
+    register: neutral
+    personality: "Classics professor. Every stone tells a story. Gets emotional at the Parthenon."
+    native_language: Greek
+    also_speaks: [English, French, German]
+    patience: 0.9
+    cultural_notes:
+      - "The Elgin Marbles belong in Athens — don't argue otherwise"
+      - "Modern Greek pronunciation differs from ancient — he teaches both"
+      - "Democracy was invented here — he'll remind you, repeatedly"
+
+scenario_modifiers:
+  arrival_challenge: "Ferry dodging at Piraeus entrance — commercial traffic has priority"
+  cultural_friction: "Greek alphabet reading — even basic signs require learning the script"
+  provisioning_goal: "Stock up on Kalamata olives, feta, ouzo, and phyllo dough"
+  crew_special: "Engineer Sofia's hometown — takes the crew to her family's taverna, homeland emotions"

@@ -1,0 +1,65 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Palma de Mallorca, Spain
+# ════════════════════════════════════════════════════════════════
+# Club de Mar / Marina Port de Mallorca — Balearic superyacht capital.
+
+id: port-palma
+extends: yacht-captain-mediterranean
+city: Palma de Mallorca
+country: Spain
+languages: [Spanish, Catalan]
+primary_language: Spanish
+
+locations:
+  - id: palma-approach
+    name: { en: "Palma Approach", es: "Aproximación a Palma" }
+    description: "VHF channel 09. Cathedral visible from 10nm. Stunning bay."
+  - id: club-de-mar
+    name: { en: "Club de Mar", es: "Club de Mar" }
+    description: "Premier yacht club. High-end facilities. Below the cathedral."
+  - id: customs-palma
+    name: { en: "Guardia Civil", es: "Guardia Civil" }
+    description: "EU internal. Spot checks for non-Schengen crew."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", es: "Gasolinera" }
+    description: "Full-service fuel dock. Quality diesel."
+  - id: mercat-olivar
+    name: { en: "Mercat de l'Olivar", ca: "Mercat de l'Olivar" }
+    description: "Covered market. Sobrasada, ensaïmada, Tramuntana wines."
+  - id: cafe-born
+    name: { en: "Café on Passeig del Born", es: "Café en el Born" }
+    description: "Elegant boulevard. Mallorcan almond cake, cortado."
+  - id: cathedral
+    name: { en: "La Seu Cathedral", ca: "La Seu" }
+    description: "Gothic masterpiece on the bay. Gaudí's unfinished interior renovation."
+
+npcs:
+  - id: npc-harbor-master-palma
+    name: Miquel
+    role: Harbor Master
+    register: formal
+    personality: "Proper Mallorcan. Bilingual Catalan-Spanish. Runs Club de Mar with precision."
+    native_language: Catalan
+    also_speaks: [Spanish, English, German]
+    patience: 0.5
+    cultural_notes:
+      - "Mallorca speaks Mallorquín (Catalan variant) — slightly different from Barcelona Catalan"
+      - "Superyacht culture is big — Club de Mar is elite but professional"
+      - "German is widely spoken — huge German expat community"
+  - id: npc-market-vendor-palma
+    name: Antònia
+    role: Local Shopkeeper
+    register: informal
+    personality: "Third-generation sobrasada maker. Passionate about Mallorcan food identity."
+    native_language: Catalan
+    also_speaks: [Spanish]
+    patience: 0.8
+    cultural_notes:
+      - "Sobrasada (spreadable cured sausage) is Mallorca's gift to the world"
+      - "Ensaïmada pastry for breakfast — the coiled shape is iconic"
+      - "Mallorcan olive oil from the Tramuntana mountains is exceptional"
+
+scenario_modifiers:
+  arrival_challenge: "Seasonal overcrowding — may be diverted to nearby Portixol"
+  cultural_friction: "Mallorquín Catalan vs. mainland Spanish — linguistic sensitivity"
+  provisioning_goal: "Stock up on sobrasada, Tramuntana wine, and ensaïmada for the crew"

@@ -1,0 +1,78 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Tunis, Tunisia
+# ════════════════════════════════════════════════════════════════
+# Port de la Goulette — North African gateway. Tunisian Arabic + French.
+
+id: port-tunis
+extends: yacht-captain-mediterranean
+city: Tunis
+country: Tunisia
+languages: [Arabic, French]
+primary_language: Arabic
+
+locations:
+  - id: tunis-approach
+    name: { en: "La Goulette Approach", fr: "Approche de La Goulette" }
+    description: "VHF channel 16. Navigate the channel from the Gulf of Tunis."
+  - id: marina-sidi
+    name: { en: "Marina Sidi Bou Saïd", fr: "Marina Sidi Bou Saïd" }
+    description: "Beautiful marina below the blue-and-white clifftop village."
+  - id: customs-tunis
+    name: { en: "Customs & Police", fr: "Douane et Police" }
+    description: "Non-EU entry. Passport stamps, crew manifest, vehicle registration."
+  - id: fuel-dock
+    name: { en: "Fuel Station", fr: "Station Carburant" }
+    description: "Diesel available. Pay in Tunisian dinars."
+  - id: medina-tunis
+    name: { en: "Medina of Tunis", ar: "المدينة القديمة" }
+    description: "UNESCO-listed. Perfume souks, carpet sellers, olive wood crafts."
+  - id: cafe-sidi-bou
+    name: { en: "Café des Nattes", fr: "Café des Nattes" }
+    description: "Iconic hilltop café in Sidi Bou Saïd. Mint tea and bambalouni donuts."
+  - id: carthage
+    name: { en: "Carthage Ruins", fr: "Ruines de Carthage" }
+    description: "Hannibal's capital. Punic ports, Roman baths, Byrsa Hill."
+
+npcs:
+  - id: npc-harbor-master-tunis
+    name: Amine
+    role: Harbor Master
+    register: formal
+    personality: "Francophone Tunisian. Perfectly bilingual Arabic-French. Educated in Marseille."
+    native_language: Arabic
+    also_speaks: [French, English]
+    patience: 0.5
+    cultural_notes:
+      - "French is the business language — more so than in Morocco"
+      - "Tunisian Arabic is heavily French-influenced — 'merci' is standard"
+      - "Non-EU paperwork takes time — bring patience and documentation"
+  - id: npc-market-vendor-tunis
+    name: Meriam
+    role: Local Shopkeeper
+    register: informal
+    personality: "Young Tunisian carpet shop owner in the Medina. Breaking family tradition by selling online too."
+    native_language: Arabic
+    also_speaks: [French, English, Italian]
+    patience: 0.7
+    cultural_notes:
+      - "Haggling expected but more gentle than Moroccan style"
+      - "Mint tea or coffee offered during negotiation — always accept"
+      - "Tunisian harissa is a point of national pride"
+  - id: npc-tour-guide-tunis
+    name: Sami
+    role: Tour Guide
+    register: neutral
+    personality: "Passionate about Carthaginian history. Hannibal is his hero. Gets emotional at Byrsa Hill."
+    native_language: Arabic
+    also_speaks: [French, English, Italian]
+    patience: 0.8
+    cultural_notes:
+      - "Carthage predates Rome — he makes this point emphatically"
+      - "The Punic Wars narrative from the Carthaginian perspective"
+      - "Sidi Bou Saïd blue-and-white aesthetic was an early zoning law"
+
+scenario_modifiers:
+  arrival_challenge: "Shallow channel approach — keel draft matters, confirm depth beforehand"
+  cultural_friction: "Ramadan timing changes everything — restaurant hours, mood, expectations"
+  provisioning_goal: "Stock up on harissa, Tunisian olive oil, and dried dates"
+  emergency_variant: "Marina pump-out facility broken — need alternative solution"

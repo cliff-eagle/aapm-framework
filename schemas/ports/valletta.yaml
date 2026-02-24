@@ -1,0 +1,65 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Valletta, Malta
+# ════════════════════════════════════════════════════════════════
+# Grand Harbour — Knights Hospitaller fortress. Maltese + English bilingual.
+
+id: port-valletta
+extends: yacht-captain-mediterranean
+city: Valletta
+country: Malta
+languages: [Maltese, English]
+primary_language: English
+
+locations:
+  - id: valletta-approach
+    name: { en: "Grand Harbour Approach", mt: "Dħul fil-Port il-Kbir" }
+    description: "VHF channel 12. Dramatic fortress walls on both sides."
+  - id: marina-office
+    name: { en: "Grand Harbour Marina", mt: "Marina tal-Port il-Kbir" }
+    description: "Luxury marina below the Barrakka Gardens."
+  - id: customs-valletta
+    name: { en: "Customs & Immigration", mt: "Dwana" }
+    description: "EU Schengen. Bilingual English-Maltese processing."
+  - id: fuel-dock
+    name: { en: "Fuel Pontoon", mt: "Pontun tal-fuel" }
+    description: "Near Vittoriosa waterfront."
+  - id: marsaxlokk-market
+    name: { en: "Marsaxlokk Fish Market", mt: "Suq tal-Ħut" }
+    description: "Sunday fish market. Colorful luzzu boats. Lampuki season is sacred."
+  - id: cafe-castille
+    name: { en: "Café Castille", mt: "Café Castille" }
+    description: "Overlooking Grand Harbour. Pastizzi and coffee."
+  - id: st-johns
+    name: { en: "St. John's Co-Cathedral", mt: "Kon-Katidral ta' San Ġwann" }
+    description: "Caravaggio's masterpiece inside. Knights Hospitaller HQ."
+
+npcs:
+  - id: npc-harbor-master-valletta
+    name: Joseph
+    role: Harbor Master
+    register: formal
+    personality: "Ex-Royal Navy, impeccable English. Speaks Maltese with family."
+    native_language: Maltese
+    also_speaks: [English, Italian]
+    patience: 0.7
+    cultural_notes:
+      - "English is official — you'll rarely need Maltese for business"
+      - "But learning 'Bonġu' (good morning) earns instant warmth"
+      - "Grand Harbour is one of the finest natural harbours in the world — he'll tell you"
+  - id: npc-market-vendor-valletta
+    name: Pawlu
+    role: Local Shopkeeper
+    register: informal
+    personality: "Marsaxlokk fisherman. Speaks Maltese-accented English. Passionate about lampuki season."
+    native_language: Maltese
+    also_speaks: [English]
+    patience: 0.8
+    cultural_notes:
+      - "Maltese is Semitic (Arabic root) with Italian/English loanwords"
+      - "Lampuki (dorado) is THE fish — September to November"
+      - "Pastizzi (cheese/pea pastries) are 30 cents and non-negotiable"
+
+scenario_modifiers:
+  arrival_challenge: "Strong Gregale wind — harbour approach requires careful helming"
+  cultural_friction: "Malta was British until 1964 — English is fine but Maltese shows respect"
+  provisioning_goal: "Stock up on Maltese olive oil, capers from Gozo, and ħobż tal-Malti bread"

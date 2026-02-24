@@ -1,0 +1,65 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Split, Croatia
+# ════════════════════════════════════════════════════════════════
+# ACI Marina Split — Diocletian's Palace waterfront. Croatian Adriatic.
+
+id: port-split
+extends: yacht-captain-mediterranean
+city: Split
+country: Croatia
+languages: [Croatian]
+primary_language: Croatian
+
+locations:
+  - id: split-approach
+    name: { en: "Split Approach", hr: "Prilaz Splitu" }
+    description: "VHF channel 07. Sail past Brač island. Marjan hill landmark."
+  - id: aci-marina-split
+    name: { en: "ACI Marina Split", hr: "ACI Marina Split" }
+    description: "West of old town, beneath Marjan forest."
+  - id: police-split
+    name: { en: "Border Police", hr: "Granična Policija" }
+    description: "EU Schengen. Quick and professional."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", hr: "Crpka" }
+    description: "Diesel at entrance breakwater."
+  - id: green-market-split
+    name: { en: "Green Market", hr: "Pazar" }
+    description: "Just outside Diocletian's Palace walls. Dalmatian produce, cheese, honey."
+  - id: cafe-riva
+    name: { en: "Riva Promenade Café", hr: "Kavana na Rivi" }
+    description: "Waterfront promenade. See and be seen. Croatian craft beer emerging."
+  - id: diocletians-palace
+    name: { en: "Diocletian's Palace", hr: "Dioklecijanova palača" }
+    description: "Roman emperor's retirement palace. 1700 years old and still inhabited."
+
+npcs:
+  - id: npc-harbor-master-split
+    name: Marko
+    role: Harbor Master
+    register: neutral
+    personality: "Laid-back Dalmatian. Summer mode permanently. 'Polako' (slowly) is his motto."
+    native_language: Croatian
+    also_speaks: [English, Italian]
+    patience: 0.7
+    cultural_notes:
+      - "'Polako' (slowly, relax) — Dalmatian lifestyle philosophy"
+      - "Football (Hajduk Split) is identity — don't mention Dinamo Zagreb"
+      - "Summer berths are scarce — book ahead or anchor in nearby bays"
+  - id: npc-market-vendor-split
+    name: Dragana
+    role: Local Shopkeeper
+    register: informal
+    personality: "Hvar island lavender and honey producer. Commutes by ferry daily."
+    native_language: Croatian
+    also_speaks: [English]
+    patience: 0.8
+    cultural_notes:
+      - "Island products carry premium — and they're worth it"
+      - "Pag cheese and Hvar lavender are Dalmatian gold"
+      - "Will tell you which islands to anchor at — local knowledge is invaluable"
+
+scenario_modifiers:
+  arrival_challenge: "Bura (north wind) forecast — may need to shelter in Milna bay on Brač"
+  cultural_friction: "Dalmatian pace is slower than Zagreb — rushing offends"
+  provisioning_goal: "Stock up on Pag cheese, Dalmatian wine, and island honey"

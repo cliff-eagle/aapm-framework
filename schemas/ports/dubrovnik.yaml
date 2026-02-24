@@ -1,0 +1,65 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Dubrovnik, Croatia
+# ════════════════════════════════════════════════════════════════
+# ACI Marina Dubrovnik — Pearl of the Adriatic. Croatian + tourism English.
+
+id: port-dubrovnik
+extends: yacht-captain-mediterranean
+city: Dubrovnik
+country: Croatia
+languages: [Croatian]
+primary_language: Croatian
+
+locations:
+  - id: dubrovnik-approach
+    name: { en: "Dubrovnik Approach", hr: "Prilaz Dubrovniku" }
+    description: "VHF channel 17. Stunning walled city view on approach."
+  - id: aci-marina
+    name: { en: "ACI Marina Office", hr: "ACI Marina Ured" }
+    description: "Modern marina south of the Old Town."
+  - id: customs-booth
+    name: { en: "Border Police", hr: "Granična Policija" }
+    description: "EU Schengen entry point. Professional."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", hr: "Crpka" }
+    description: "Diesel and water near marina entrance."
+  - id: green-market
+    name: { en: "Gundulić Square Market", hr: "Gundulićeva Poljana" }
+    description: "Open-air market selling lavender, olive oil, and dried figs."
+  - id: cafe-stradun
+    name: { en: "Café on Stradun", hr: "Kavana na Stradunu" }
+    description: "Marble-paved main street. Expensive but iconic."
+  - id: old-town
+    name: { en: "Old Town Walls", hr: "Gradske Zidine" }
+    description: "UNESCO World Heritage. Walk the full 2km circuit."
+
+npcs:
+  - id: npc-harbor-master-dubrovnik
+    name: Ante
+    role: Harbor Master
+    register: formal
+    personality: "Proud Croatian. Loves recounting Dubrovnik's resistance during the 1991 siege."
+    native_language: Croatian
+    also_speaks: [English, Italian]
+    patience: 0.6
+    cultural_notes:
+      - "Very proud of Croatian independence — don't call it 'Yugoslavia'"
+      - "Berth rates are high in summer — 'King's Landing' tourism premium"
+      - "Prefers 'dobar dan' greeting even if he speaks English"
+  - id: npc-market-vendor-dubrovnik
+    name: Ivana
+    role: Local Shopkeeper
+    register: informal
+    personality: "Warm Dalmatian grandmother. Sells homemade lavender sachets and rakija."
+    native_language: Croatian
+    also_speaks: [Italian]
+    patience: 0.9
+    cultural_notes:
+      - "Will insist you taste her homemade rakija (grappa)"
+      - "Haggling is not traditional in Croatia — prices are fair"
+      - "Talks about her family's olive grove constantly"
+
+scenario_modifiers:
+  arrival_challenge: "Peak season — marina full, offered temporary berth on outer breakwater"
+  cultural_friction: "Game of Thrones references annoy locals — it's a real city with real history"
+  provisioning_goal: "Stock up on Dalmatian olive oil, lavender, and local wine"

@@ -1,0 +1,78 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Marseille, France
+# ════════════════════════════════════════════════════════════════
+# Vieux-Port — raw, gritty, multicultural. Not the Côte d'Azur polish.
+
+id: port-marseille
+extends: yacht-captain-mediterranean
+city: Marseille
+country: France
+languages: [French, Arabic]
+primary_language: French
+
+locations:
+  - id: marseille-approach
+    name: { en: "Marseille Approach", fr: "Approche de Marseille" }
+    description: "VHF channel 12. Pass the Château d'If. Heavy ferry traffic."
+  - id: vieux-port-office
+    name: { en: "Vieux-Port Office", fr: "Bureau du Vieux-Port" }
+    description: "Historic harbour master's office overlooking the fish market."
+  - id: customs-marseille
+    name: { en: "Customs", fr: "Douanes" }
+    description: "Busy port — more thorough inspections than Nice."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", fr: "Station Carburant" }
+    description: "End of the quay near Fort Saint-Jean."
+  - id: noailles-market
+    name: { en: "Noailles Market", fr: "Marché de Noailles" }
+    description: "North African spices, Mediterranean fish, Provençal herbs. Chaotic and wonderful."
+  - id: cafe-vieux-port
+    name: { en: "Café du Vieux-Port", fr: "Café du Vieux-Port" }
+    description: "Bouillabaisse is the undisputed king. Don't order it anywhere else."
+  - id: le-panier
+    name: { en: "Le Panier Quarter", fr: "Le Panier" }
+    description: "Oldest quarter. Street art, artisan shops, multicultural history."
+
+npcs:
+  - id: npc-harbor-master-marseille
+    name: Rachid
+    role: Harbor Master
+    register: neutral
+    personality: "Franco-Algerian, second generation. Switches between formal French and Marseillais slang."
+    native_language: French
+    also_speaks: [Arabic, English]
+    patience: 0.5
+    cultural_notes:
+      - "Marseille accent is distinct — 'putain' is punctuation, not offense"
+      - "More relaxed than Parisian bureaucracy but still thorough"
+      - "Proud of Marseille's multicultural heritage"
+  - id: npc-market-vendor-marseille
+    name: Fatima
+    role: Local Shopkeeper
+    register: informal
+    personality: "Loud, generous Algerian spice vendor. Mixes French and Arabic mid-sentence."
+    native_language: Arabic
+    also_speaks: [French]
+    patience: 0.8
+    cultural_notes:
+      - "Will give you free samples of ras el hanout and harissa"
+      - "Speaks Derija (Algerian Arabic) — different from Modern Standard Arabic"
+      - "Prices are negotiable but don't push hard — she'll get offended"
+  - id: npc-cafe-server-marseille
+    name: Thierry
+    role: Waterfront Café Server
+    register: informal
+    personality: "Opinionated Marseillais. Will argue passionately that bouillabaisse must have rascasse fish."
+    native_language: French
+    also_speaks: [English]
+    patience: 0.6
+    cultural_notes:
+      - "Real bouillabaisse requires a minimum of 4 fish types — he'll enumerate them"
+      - "Pastis before dinner is ritual, not optional"
+      - "Football (OM) is basically religion"
+
+scenario_modifiers:
+  arrival_challenge: "Vieux-Port traffic jam — commercial fishing boats have right of way"
+  cultural_friction: "Marseille is NOT Paris — comparing them is an insult"
+  provisioning_goal: "Stock up on North African spices, fresh fish, and pastis"
+  crew_special: "Chef Yasmine's hometown — she leads the market expedition, code-switches French/Arabic"

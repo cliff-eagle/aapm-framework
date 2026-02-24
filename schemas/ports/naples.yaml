@@ -1,0 +1,78 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Naples, Italy
+# ════════════════════════════════════════════════════════════════
+# Porto di Napoli — Vesuvius backdrop. Neapolitan dialect challenge.
+
+id: port-naples
+extends: yacht-captain-mediterranean
+city: Naples
+country: Italy
+languages: [Italian]
+primary_language: Italian
+
+locations:
+  - id: naples-approach
+    name: { en: "Naples Approach", it: "Approccio Napoli" }
+    description: "VHF channel 14. Vesuvius looming. Capri visible to starboard."
+  - id: marina-mergellina
+    name: { en: "Marina Mergellina", it: "Marina Mergellina" }
+    description: "Sheltered marina below Posillipo hill."
+  - id: customs-naples
+    name: { en: "Port Police", it: "Guardia Costiera" }
+    description: "Guardia Costiera handles arrivals. EU entry."
+  - id: fuel-dock
+    name: { en: "Fuel Dock", it: "Distributore" }
+    description: "Diesel available at marina."
+  - id: mercato-pignasecca
+    name: { en: "Pignasecca Market", it: "Mercato della Pignasecca" }
+    description: "Chaotic street market. Mozzarella di bufala, San Marzano tomatoes, fresh fish."
+  - id: cafe-gambrinus
+    name: { en: "Caffè Gambrinus", it: "Gran Caffè Gambrinus" }
+    description: "Grand 1860 café on Piazza del Plebiscito. Espresso perfection."
+  - id: spaccanapoli
+    name: { en: "Spaccanapoli", it: "Spaccanapoli" }
+    description: "Street that splits Old Naples in half. Baroque churches, street food, noise."
+
+npcs:
+  - id: npc-harbor-master-naples
+    name: Salvatore
+    role: Harbor Master
+    register: neutral
+    personality: "Animated Neapolitan. Gestures more than he speaks. Standard Italian when he remembers."
+    native_language: Italian
+    also_speaks: [English]
+    patience: 0.6
+    cultural_notes:
+      - "Neapolitan dialect is almost a separate language — 'ue' = 'guarda'"
+      - "Hand gestures are essential communication — learn the basics"
+      - "Bureaucracy is flexible — relationships matter more than paperwork"
+  - id: npc-market-vendor-naples
+    name: Gennaro
+    role: Local Shopkeeper
+    register: informal
+    personality: "Pizza dough supplier at Pignasecca. Lives and breathes Neapolitan pizza culture."
+    native_language: Italian
+    also_speaks: []
+    patience: 0.7
+    cultural_notes:
+      - "Margherita pizza was invented in Naples — this is gospel, not opinion"
+      - "'Mozzarella di bufala' from Campania only — he'll know if you buy fake"
+      - "Loud is normal — shouting across the market is standard communication"
+  - id: npc-cafe-server-naples
+    name: Carmela
+    role: Waterfront Café Server
+    register: informal
+    personality: "Gambrinus veteran. Makes espresso as an art form. Judges your coffee order."
+    native_language: Italian
+    also_speaks: [French]
+    patience: 0.5
+    cultural_notes:
+      - "Ordering a 'latte' gets you milk. Say 'caffè' for espresso"
+      - "Cappuccino after 11am is a sin — she will tell you"
+      - "Coffee is standing at the bar, not sitting — sitting costs double"
+
+scenario_modifiers:
+  arrival_challenge: "Vesuvius eruption anniversary — marina hosting a naval ceremony, limited berths"
+  cultural_friction: "Neapolitan dialect is impenetrable — standard Italian barely helps"
+  provisioning_goal: "Supply the yacht with buffalo mozzarella, San Marzano tomatoes, limoncello"
+  crew_special: "First Mate Luca's home region — Campanian Italian, family connections, emotional"
