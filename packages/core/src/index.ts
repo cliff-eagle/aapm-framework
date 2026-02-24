@@ -42,6 +42,9 @@ export * from './agent-intelligence';
 export * from './ai-providers';
 export * from './multimodal-router';
 
+import * as Agents from './agents';
+export { Agents };
+
 import * as CurriculumDeliveryRouter from './curriculum-delivery-router';
 export { CurriculumDeliveryRouter };
 

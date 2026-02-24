@@ -236,6 +236,28 @@ export interface EvaluationMetrics {
     overallCEFR: string;
 }
 
+/**
+ * Agent Hook — Delegates lifecycle events to the AgentOrchestrator.
+ * The orchestrator manages its own pool of NPC, Tutor, World, and
+ * Evaluation agents internally.
+ */
+export interface AgentHook {
+    readonly moduleId: 'agents';
+    /** Route session lifecycle events to all agents */
+    onSessionStart?(event: SessionLifecycleEvent): Promise<void>;
+    onSessionEnd?(event: SessionLifecycleEvent): Promise<void>;
+    /** Route dialogue events to NPC + evaluation agents */
+    onDialogueStart?(event: DialogueEvent): Promise<void>;
+    onDialogueEnd?(event: DialogueEvent, outcome: DialogueOutcome): Promise<void>;
+    /** Route turn events to all agents (NPC, tutor, evaluation) */
+    onTurnComplete?(event: TurnEvent): Promise<void>;
+    /** Route tick events to world + evaluation agents */
+    onTick?(event: TickEvent): Promise<void>;
+    /** Route location events to NPC + world agents */
+    onLocationEnter?(event: LocationEvent): Promise<void>;
+    onLocationExit?(event: LocationEvent): Promise<void>;
+}
+
 // ─── Union Type of All Hooks ──────────────────────────────────
 
 export type ModuleHook =
@@ -248,7 +270,8 @@ export type ModuleHook =
     | PersistenceHook
     | CollaborationHook
     | RuntimeCustomizationHook
-    | EvaluationHook;
+    | EvaluationHook
+    | AgentHook;
 
 export type ModuleHookId = ModuleHook['moduleId'];
 
