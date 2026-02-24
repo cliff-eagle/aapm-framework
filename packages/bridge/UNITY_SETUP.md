@@ -20,7 +20,7 @@ npx tsx packages/bridge/src/server.ts
 
 You should see:
 
-```
+```text
 🌉 AAPM Bridge Server
    Listening on ws://0.0.0.0:8765
    Waiting for Unity client...
@@ -57,11 +57,11 @@ The C# scripts use the `websocket-sharp` library:
 
 Copy these 4 files from your repo into Unity:
 
-| File | Copy From | Copy To |
-|------|-----------|---------|
-| AAPMBridge.cs | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
-| NPCInteraction.cs | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
-| DialogueUI.cs | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
+| File                | Copy From                        | Copy To                |
+| ------------------- | -------------------------------- | ---------------------- |
+| AAPMBridge.cs       | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
+| NPCInteraction.cs   | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
+| DialogueUI.cs       | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
 | PlayerController.cs | `packages/bridge/unity-scripts/` | `Assets/Scripts/AAPM/` |
 
 In Unity Explorer, right-click → **Show in Explorer** to find your `Assets` folder, then create `Assets/Scripts/AAPM/` and paste the files.
@@ -141,26 +141,26 @@ Repeat for each NPC you want to place.
 
 ## Controls
 
-| Key | Action |
-|-----|--------|
-| WASD | Walk |
-| Mouse | Look around |
-| Shift | Sprint |
-| Space | Jump |
-| E | Talk to NPC (when in range) |
-| Enter | Send dialogue message |
-| Escape | Toggle cursor lock |
+| Key    | Action                      |
+| ------ | --------------------------- |
+| WASD   | Walk                        |
+| Mouse  | Look around                 |
+| Shift  | Sprint                      |
+| Space  | Jump                        |
+| E      | Talk to NPC (when in range) |
+| Enter  | Send dialogue message       |
+| Escape | Toggle cursor lock          |
 
 ---
 
 ## Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| "Not connected" in console | Make sure bridge server is running (`npx tsx packages/bridge/src/server.ts`) |
-| NPC doesn't detect player | Make sure player is tagged "Player" and NPC has a trigger collider |
-| No dialogue UI appears | Make sure `DialogueUI.cs` is on a GameObject in the scene |
-| WebSocket error | Check firewall isn't blocking port 8765 |
+| Problem                        | Solution                                                                     |
+| ------------------------------ | ---------------------------------------------------------------------------- |
+| "Not connected" in console     | Make sure bridge server is running (`npx tsx packages/bridge/src/server.ts`) |
+| NPC doesn't detect player      | Make sure player is tagged "Player" and NPC has a trigger collider           |
+| No dialogue UI appears         | Make sure `DialogueUI.cs` is on a GameObject in the scene                    |
+| WebSocket error                | Check firewall isn't blocking port 8765                                      |
 
 ---
 
