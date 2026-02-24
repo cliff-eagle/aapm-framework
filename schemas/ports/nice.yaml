@@ -1,0 +1,138 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Nice, France
+# ════════════════════════════════════════════════════════════════
+#
+# Port de Nice / Bassin Lympia — elegant Côte d'Azur harbor.
+# French formality with Niçois dialect touches.
+
+id: port-nice
+extends: yacht-captain-mediterranean
+city: Nice
+country: France
+languages: [French]
+primary_language: French
+
+# ─── Port Locations ───────────────────────────────────────────
+
+locations:
+  - id: nice-harbour-approach
+    name: { en: "Nice Harbour Approach", fr: "Approche du Port de Nice" }
+    description: "VHF channel 09. Calm waters, backdrop of Colline du Château."
+
+  - id: capitainerie
+    name: { en: "Harbour Office", fr: "Capitainerie" }
+    description: "Elegant stone building at Bassin Lympia. French tricolour flying."
+
+  - id: douanes-office
+    name: { en: "Customs Office", fr: "Bureau des Douanes" }
+    description: "Small office near the quay. Police Aux Frontières handles EU/Schengen."
+
+  - id: station-carburant
+    name: { en: "Fuel Station", fr: "Station Carburant" }
+    description: "Diesel and water at the end of Quai Lunel."
+
+  - id: cours-saleya
+    name: { en: "Cours Saleya Market", fr: "Marché du Cours Saleya" }
+    description: "Famous flower and food market in Vieux Nice. Provençal specialties."
+
+  - id: cafe-promenade
+    name: { en: "Café de la Promenade", fr: "Café de la Promenade" }
+    description: "Terrace café on the Promenade des Anglais. Elegant clientele."
+
+  - id: vieux-nice
+    name: { en: "Old Nice", fr: "Vieux Nice" }
+    description: "Baroque churches, Italian-influenced architecture, narrow lanes."
+
+# ─── City-Specific NPCs ──────────────────────────────────────
+
+npcs:
+  - id: npc-port-control-nice
+    name: Commandant Dupont
+    role: Port Control
+    register: formal
+    personality: "Precise, courteous French naval officer. Expects 'vous' at all times."
+    native_language: French
+    also_speaks: [English, Italian]
+    patience: 0.4
+    cultural_notes:
+      - "Always uses 'vous' — switching to 'tu' is a social error"
+      - "Expects radio calls to begin with 'Port de Nice, Port de Nice'"
+      - "Will correct your French politely but firmly"
+
+  - id: npc-harbor-master-nice
+    name: Isabelle Laurent
+    role: Harbor Master
+    register: formal
+    personality: "Elegant, efficient, impeccably dressed. Runs Capitainerie with precision."
+    native_language: French
+    also_speaks: [English, Italian]
+    patience: 0.5
+    cultural_notes:
+      - "Expect a 'Bonjour, madame' before any business"
+      - "Berth fees are non-negotiable — this is the Côte d'Azur"
+      - "Appreciates when you attempt French even if imperfect"
+      - "Will mention upcoming festivals if you're staying multiple days"
+
+  - id: npc-customs-nice
+    name: Inspecteur Moreau
+    role: Customs Officer
+    register: formal
+    personality: "Thorough but gentlemanly. Old-school French bureaucracy. Loves stamps."
+    native_language: French
+    also_speaks: [English]
+    patience: 0.4
+    cultural_notes:
+      - "Expects a formal 'Bonjour, monsieur' before any interaction"
+      - "Non-EU arrivals get extra scrutiny"
+      - "Appreciates neatly organized documents — presentation matters"
+      - "May chat briefly about your voyage route"
+
+  - id: npc-market-vendor-nice
+    name: Claude
+    role: Local Shopkeeper
+    register: informal
+    personality: "Elderly Niçois olive oil vendor. Proud of Provençal heritage. Generous with samples."
+    native_language: French
+    also_speaks: []
+    patience: 0.9
+    cultural_notes:
+      - "Speaks with a Provençal accent — 'pain' sounds like 'pang'"
+      - "Will lecture you on olive oil grades for 20 minutes if given the chance"
+      - "Expects you to taste before buying — refusing is rude"
+      - "Prices are fixed — no haggling in French markets"
+
+  - id: npc-cafe-server-nice
+    name: Sophie
+    role: Waterfront Café Server
+    register: neutral
+    personality: "Young, stylish, slightly aloof. Typical Côte d'Azur service style."
+    native_language: French
+    also_speaks: [English, Italian]
+    patience: 0.5
+    cultural_notes:
+      - "Don't rush the order — French dining is an experience"
+      - "Expect 'Vous avez choisi?' not 'Are you ready?'"
+      - "Tip is included (service compris) — extra tip is for excellence"
+      - "Salade Niçoise is the local pride. Don't add lettuce."
+
+  - id: npc-tour-guide-nice
+    name: Antoine
+    role: Tour Guide
+    register: neutral
+    personality: "Charming art history graduate. Links Nice to Matisse, Chagall, and Belle Époque."
+    native_language: French
+    also_speaks: [English, Italian, Russian]
+    patience: 0.8
+    cultural_notes:
+      - "Emphasizes Nice was Italian (Nizza) until 1860"
+      - "Recommends Musée Matisse as a 'must' — personal bias"
+      - "Explains Carnaval de Nice with genuine enthusiasm"
+      - "Switches between formal and informal based on your French level"
+
+# ─── Scenario Variations ─────────────────────────────────────
+
+scenario_modifiers:
+  arrival_challenge: "Berth assignment near the ferry terminal — noisy, requires stern-to mooring"
+  cultural_friction: "Forgetting 'Bonjour' before any request is a serious faux pas"
+  provisioning_goal: "Stock up on Provençal olive oil, wine, and cheese for crossing to Italy"
+  emergency_variant: "Chef Yasmine needs a specific French ingredient — hunt through Cours Saleya"

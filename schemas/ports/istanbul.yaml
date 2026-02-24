@@ -1,0 +1,141 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Istanbul, Turkey
+# ════════════════════════════════════════════════════════════════
+#
+# Kalamış Marina / Ataköy Marina — where Europe meets Asia.
+# Turkish formality with warm hospitality undertones.
+
+id: port-istanbul
+extends: yacht-captain-mediterranean
+city: Istanbul
+country: Turkey
+languages: [Turkish]
+primary_language: Turkish
+
+# ─── Port Locations ───────────────────────────────────────────
+
+locations:
+  - id: istanbul-strait-approach
+    name: { en: "Bosphorus Approach", tr: "Boğaz Yaklaşması" }
+    description: "VHF channel 13. Heavy commercial traffic — tankers, ferries, fishing boats. Current runs south."
+
+  - id: marina-office
+    name: { en: "Marina Office", tr: "Marina Ofisi" }
+    description: "Modern building at Kalamış Marina. Turkish flag and Atatürk portrait."
+
+  - id: customs-office
+    name: { en: "Customs & Immigration", tr: "Gümrük ve Göç" }
+    description: "Government office near the marina gate. Requires transit log (transit log)."
+
+  - id: fuel-dock
+    name: { en: "Fuel Dock", tr: "Yakıt İstasyonu" }
+    description: "Diesel and water. Attendant speaks some English."
+
+  - id: grand-bazaar
+    name: { en: "Grand Bazaar", tr: "Kapalıçarşı" }
+    description: "World's oldest covered market. 4,000+ shops in a labyrinth of vaulted streets."
+
+  - id: cafe-bosphorus
+    name: { en: "Bosphorus Tea House", tr: "Boğaz Çay Evi" }
+    description: "Waterfront tea garden overlooking the strait. Traditional çay service."
+
+  - id: sultanahmet
+    name: { en: "Sultanahmet District", tr: "Sultanahmet" }
+    description: "Blue Mosque, Hagia Sophia, Topkapı Palace. Imperial heart of Istanbul."
+
+# ─── City-Specific NPCs ──────────────────────────────────────
+
+npcs:
+  - id: npc-port-control-istanbul
+    name: Kaptan Yılmaz
+    role: Port Control
+    register: formal
+    personality: "Authoritative Turkish coast guard officer. Bosphorus traffic is no joke — expects precision."
+    native_language: Turkish
+    also_speaks: [English]
+    patience: 0.2
+    cultural_notes:
+      - "Bosphorus is one of the busiest straits in the world — no hesitation tolerated"
+      - "Uses both Turkish and English on VHF depending on vessel flag"
+      - "Expects vessel dimensions and draft in meters"
+      - "May require a Bosphorus transit permit depending on route"
+
+  - id: npc-harbor-master-istanbul
+    name: Mehmet Bey
+    role: Harbor Master
+    register: formal
+    personality: "Warm but bureaucratic. Proud of Turkish maritime heritage. Tea is offered immediately."
+    native_language: Turkish
+    also_speaks: [English, Arabic]
+    patience: 0.6
+    cultural_notes:
+      - "'Bey' is a respectful title — 'Mehmet Bey' is expected"
+      - "Will offer you çay (tea) — refusing is mildly rude"
+      - "Paperwork is extensive — transit log, crew manifest, port fees"
+      - "Expects you to sit down for the process — standing is rushed"
+
+  - id: npc-customs-istanbul
+    name: Müfettiş Demir
+    role: Customs Officer
+    register: formal
+    personality: "Serious, methodical. Non-EU entry requires full crew passport stamps."
+    native_language: Turkish
+    also_speaks: [English]
+    patience: 0.3
+    cultural_notes:
+      - "Address as 'Beyefendi' (sir) — formal address is critical"
+      - "Every crew member's passport must be presented in person"
+      - "Alcohol provisions may be noted but usually not an issue"
+      - "Declaring firearms is absolutely mandatory"
+
+  - id: npc-bazaar-vendor-istanbul
+    name: Hasan
+    role: Local Shopkeeper
+    register: informal
+    personality: "Master carpet seller turned spice vendor. Champion haggler. World-class hospitality."
+    native_language: Turkish
+    also_speaks: [English, Arabic, German]
+    patience: 0.8
+    cultural_notes:
+      - "Will offer çay before any transaction — accept it"
+      - "Haggling is expected and enjoyed — starting at the listed price is naive"
+      - "Expects back-and-forth — walking away is a valid negotiation tactic"
+      - "Final price includes 'because you are my friend' discount (theatrical)"
+      - "Genuinely knowledgeable about spice quality and origin"
+
+  - id: npc-cafe-server-istanbul
+    name: Ayşe
+    role: Waterfront Café Server
+    register: informal
+    personality: "Warm, attentive. Serves çay in tulip glasses. Knows every ferry schedule."
+    native_language: Turkish
+    also_speaks: [English]
+    patience: 0.9
+    cultural_notes:
+      - "Çay is always offered — 'Bir çay, lütfen' is all you need"
+      - "Turkish breakfast (kahvaltı) is an elaborate affair — allow an hour"
+      - "Calling 'Garson!' is acceptable but 'Bakar mısınız?' is more polite"
+      - "No tipping required but 10% is appreciated"
+
+  - id: npc-tour-guide-istanbul
+    name: Burak
+    role: Tour Guide
+    register: neutral
+    personality: "History professor moonlighting as guide. Bridges Byzantine and Ottoman narrative effortlessly."
+    native_language: Turkish
+    also_speaks: [English, French, Arabic]
+    patience: 0.8
+    cultural_notes:
+      - "Corrects 'Constantinople' gently — 'Istanbul since 1453'"
+      - "Emphasizes the Bosphorus as the meeting of continents"
+      - "Mosque etiquette is serious — shoes off, women cover heads"
+      - "Will teach you Ottoman Turkish phrases alongside modern Turkish"
+
+# ─── Scenario Variations ─────────────────────────────────────
+
+scenario_modifiers:
+  arrival_challenge: "Bosphorus current is strong today — Port Control redirects you to alternate berth"
+  cultural_friction: "Tea ceremony is social glue — refusing tea is a significant faux pas"
+  provisioning_goal: "Stock up on Turkish spices, dried fruits, and fresh fish from the Bosphorus"
+  emergency_variant: "Deckhand Emre acts as translator — but his formal Turkish isn't strong enough for customs"
+  crew_special: "Emre is home — emotional reunion with local relatives, language shifts to intimate Turkish"

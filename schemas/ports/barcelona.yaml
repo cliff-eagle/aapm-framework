@@ -1,0 +1,133 @@
+# ════════════════════════════════════════════════════════════════
+# Port Scenario: Barcelona, Spain
+# ════════════════════════════════════════════════════════════════
+#
+# Port Vell / Marina Port Vell — one of the busiest yacht marinas
+# in the western Mediterranean. Catalan + Castilian bilingualism.
+
+id: port-barcelona
+extends: yacht-captain-mediterranean
+city: Barcelona
+country: Spain
+languages: [Spanish, Catalan]
+primary_language: Spanish
+
+# ─── Port Locations ───────────────────────────────────────────
+
+locations:
+  - id: port-vell-approach
+    name: { en: "Port Vell Approach", es: "Aproximación a Port Vell" }
+    description: "VHF channel 09. Busy commercial and pleasure traffic."
+
+  - id: marina-office
+    name: { en: "Marina Office", es: "Oficina de la Marina", ca: "Oficina de la Marina" }
+    description: "Modern glass-and-steel building at the end of the main dock."
+
+  - id: customs-booth
+    name: { en: "Customs Booth", es: "Control de Aduanas" }
+    description: "Small Guardia Civil office near the fuel dock."
+
+  - id: fuel-dock
+    name: { en: "Fuel Dock", es: "Estación de Combustible" }
+    description: "Self-service diesel pumps with an attendant."
+
+  - id: la-boqueria
+    name: { en: "La Boquería Market", es: "Mercado de La Boquería" }
+    description: "Famous covered market on La Rambla. Vibrant, loud, colorful."
+
+  - id: cafe-barceloneta
+    name: { en: "Café Barceloneta", es: "Café Barceloneta" }
+    description: "Beachfront café overlooking the marina. Local crowd."
+
+  - id: gothic-quarter
+    name: { en: "Gothic Quarter", es: "Barrio Gótico", ca: "Barri Gòtic" }
+    description: "Medieval streets, Roman walls, Cathedral. Tourist hub."
+
+# ─── City-Specific NPCs ──────────────────────────────────────
+
+npcs:
+  - id: npc-port-control-barcelona
+    name: Capitán Vidal
+    role: Port Control
+    register: formal
+    personality: "Strict Catalan naval officer. Expects proper radio protocol. May respond in Catalan if you try."
+    native_language: Catalan
+    also_speaks: [Spanish, English]
+    patience: 0.3
+    cultural_notes:
+      - "Uses 'bon dia' (Catalan greeting) before switching to Castilian"
+      - "Expects NATO phonetic alphabet on VHF"
+      - "Direct but professional — no small talk on the radio"
+
+  - id: npc-harbor-master-barcelona
+    name: María del Mar
+    role: Harbor Master
+    register: formal
+    personality: "Efficient, bilingual Catalan-Spanish. Proud of Port Vell. Knows every berth personally."
+    native_language: Spanish
+    also_speaks: [Catalan, English, French]
+    patience: 0.5
+    cultural_notes:
+      - "Addresses new arrivals as 'usted' until invited otherwise"
+      - "Loves discussing Barcelona's maritime history"
+      - "Will quote berth fees in euros with zero flexibility — posted rates"
+
+  - id: npc-customs-barcelona
+    name: Sargento Ruiz
+    role: Customs Officer
+    register: formal
+    personality: "Guardia Civil. Stern, methodical. Softens if your documents are impeccable."
+    native_language: Spanish
+    also_speaks: [English]
+    patience: 0.2
+    cultural_notes:
+      - "Addresses everyone as 'señor/señora'"
+      - "Will inspect provisioning for restricted imports (jamón from non-EU)"
+      - "Warms up slightly if you mention Guardia Civil positively"
+
+  - id: npc-market-vendor-barcelona
+    name: Jordi
+    role: Local Shopkeeper
+    register: informal
+    personality: "Loud, passionate Catalan fishmonger at La Boquería. Switches between Catalan and Spanish mid-sentence."
+    native_language: Catalan
+    also_speaks: [Spanish]
+    patience: 0.7
+    cultural_notes:
+      - "Recommends 'la gamba de Palamós' passionately"
+      - "Weighs everything in front of you — transparency is cultural"
+      - "Offended if you question freshness"
+
+  - id: npc-cafe-server-barcelona
+    name: Alba
+    role: Waterfront Café Server
+    register: informal
+    personality: "Warm but busy Barceloneta local. Knows all the regulars. Recommends pa amb tomàquet."
+    native_language: Spanish
+    also_speaks: [Catalan, English]
+    patience: 0.8
+    cultural_notes:
+      - "Says 'dime' instead of formal 'dígame'"
+      - "Lunch service is sacred — expect efficiency over chatting"
+      - "Tapas ordering requires knowing the verbs: 'ponme', 'dame'"
+
+  - id: npc-tour-guide-barcelona
+    name: Pere
+    role: Tour Guide
+    register: neutral
+    personality: "Encyclopedic knowledge of Roman Barcelona and Gaudí. Passionate Catalan identity."
+    native_language: Catalan
+    also_speaks: [Spanish, English, French]
+    patience: 0.9
+    cultural_notes:
+      - "Corrects 'Spain' to 'Catalonia' gently but firmly"
+      - "Will teach you Catalan phrases if you show interest"
+      - "History-through-architecture — every building has a story"
+
+# ─── Scenario Variations ─────────────────────────────────────
+
+scenario_modifiers:
+  arrival_challenge: "Busy marina — limited berth availability, Port Control assigns you a distant berth"
+  cultural_friction: "Catalan vs. Castilian sensitivity — some NPCs prefer Catalan"
+  provisioning_goal: "Stock up on Iberian ham, seafood for 4-day crossing to Nice"
+  emergency_variant: "Engine coolant leak discovered — need marina mechanic before departure"

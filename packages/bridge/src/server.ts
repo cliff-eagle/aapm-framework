@@ -34,6 +34,9 @@ import type {
     DialogueEndResponse,
     NavigateResponse,
     ErrorResponse,
+    ScenarioStartRequest,
+    ScenarioAdvanceRequest,
+    ScenarioChainResponse,
 } from './protocol';
 
 // ─── Session-Orchestrator imports ─────────────────────────────
@@ -68,10 +71,39 @@ export interface BridgeServerConfig {
     defaultEnvironment?: Record<string, unknown>;
 }
 
+interface ScenarioChain {
+    cityName: string;
+    locationId: string;
+    steps: Array<{
+        id: string;
+        step: number;
+        name: Record<string, string>;
+        npcRole: string | null;
+        register: string;
+        goal: string;
+        required: boolean;
+        vocabularyFocus: string[];
+        phase: string;
+    }>;
+    currentStep: number;
+    completedSteps: string[];
+    active: boolean;
+}
+
+const PORT_ARRIVAL_STEPS = [
+    { id: 'vhf-radio-call', step: 1, name: { en: 'VHF Radio Call' }, npcRole: 'port-control', register: 'formal', goal: 'Request permission to enter the port and berth assignment', required: true, vocabularyFocus: ['maritime', 'radio-protocol'], phase: 'arrival' },
+    { id: 'harbor-master', step: 2, name: { en: 'Harbor Master' }, npcRole: 'harbor-master', register: 'formal', goal: 'Complete arrival paperwork, negotiate berth fees', required: true, vocabularyFocus: ['maritime', 'regulations', 'numbers'], phase: 'arrival' },
+    { id: 'customs-clearance', step: 3, name: { en: 'Customs' }, npcRole: 'customs-officer', register: 'formal', goal: 'Present crew passports and ship documents', required: true, vocabularyFocus: ['customs', 'documentation'], phase: 'arrival' },
+    { id: 'fuel-dock', step: 4, name: { en: 'Fuel Dock' }, npcRole: 'fuel-attendant', register: 'neutral', goal: 'Refuel the yacht', required: false, vocabularyFocus: ['maritime', 'numbers'], phase: 'docked' },
+    { id: 'explore-city', step: 5, name: { en: 'Explore' }, npcRole: null, register: 'mixed', goal: 'Provision and explore', required: false, vocabularyFocus: ['food-and-drink', 'shopping'], phase: 'docked' },
+    { id: 'departure', step: 6, name: { en: 'Departure' }, npcRole: 'port-control', register: 'formal', goal: 'Request permission to depart', required: true, vocabularyFocus: ['maritime', 'radio-protocol', 'weather'], phase: 'departure' },
+];
+
 interface ClientState {
     session: SimulationSession | null;
     clientId: string;
     connectedAt: number;
+    scenarioChain: ScenarioChain | null;
 }
 
 // ─── Server ───────────────────────────────────────────────────
@@ -94,6 +126,7 @@ export function startBridgeServer(config: BridgeServerConfig) {
             session: null,
             clientId,
             connectedAt: Date.now(),
+            scenarioChain: null,
         });
 
         ws.on('message', async (raw) => {
@@ -178,6 +211,18 @@ async function handleMessage(
 
         case 'get/locations':
             handleGetLocations(ws, state, id);
+            break;
+
+        case 'scenario/start':
+            handleScenarioStart(ws, state, payload as ScenarioStartRequest, id);
+            break;
+
+        case 'scenario/advance':
+            handleScenarioAdvance(ws, state, payload as ScenarioAdvanceRequest, id);
+            break;
+
+        case 'scenario/status':
+            handleScenarioStatus(ws, state, id);
             break;
 
         default:
@@ -488,6 +533,115 @@ function handleGetLocations(ws: WebSocket, state: ClientState, msgId: string) {
             description: l.description,
         })),
     }, msgId);
+}
+
+// ─── Scenario Chain Handlers ──────────────────────────────────
+
+function handleScenarioStart(
+    ws: WebSocket,
+    state: ClientState,
+    req: ScenarioStartRequest,
+    msgId: string,
+) {
+    if (!state.session) return sendError(ws, 'no_session', 'No active session', msgId);
+
+    const chain: ScenarioChain = {
+        cityName: req.cityName,
+        locationId: req.locationId,
+        steps: PORT_ARRIVAL_STEPS.map(s => ({ ...s })),
+        currentStep: 0,
+        completedSteps: [],
+        active: true,
+    };
+
+    state.scenarioChain = chain;
+    console.log('   \u2693 Scenario started: ' + req.cityName);
+
+    sendScenarioResponse(ws, chain, msgId);
+}
+
+function handleScenarioAdvance(
+    ws: WebSocket,
+    state: ClientState,
+    req: ScenarioAdvanceRequest,
+    msgId: string,
+) {
+    const chain = state.scenarioChain;
+    if (!chain || !chain.active) {
+        return sendError(ws, 'no_scenario', 'No active scenario chain', msgId);
+    }
+
+    // Mark current step as completed
+    const current = chain.steps[chain.currentStep];
+    if (current && !chain.completedSteps.includes(current.id)) {
+        chain.completedSteps.push(current.id);
+    }
+
+    // Find next step
+    let next = chain.currentStep + 1;
+    const skipOptional = req.skipOptional || false;
+    while (next < chain.steps.length) {
+        if (skipOptional && !chain.steps[next].required) {
+            next++;
+            continue;
+        }
+        break;
+    }
+
+    if (next >= chain.steps.length) {
+        chain.active = false;
+        chain.currentStep = chain.steps.length - 1;
+        console.log('   \u2693 Scenario complete: ' + chain.cityName);
+    } else {
+        chain.currentStep = next;
+        console.log('   \u2693 Scenario step ' + (next + 1) + ': ' + chain.steps[next].name.en);
+    }
+
+    sendScenarioResponse(ws, chain, msgId);
+}
+
+function handleScenarioStatus(
+    ws: WebSocket,
+    state: ClientState,
+    msgId: string,
+) {
+    const chain = state.scenarioChain;
+    if (!chain) {
+        const emptyResponse: ScenarioChainResponse = {
+            active: false,
+            cityName: '',
+            currentStep: null,
+            completedSteps: [],
+            totalSteps: 0,
+            allRequiredComplete: false,
+        };
+        return send(ws, 'scenario/chain', emptyResponse, msgId);
+    }
+    sendScenarioResponse(ws, chain, msgId);
+}
+
+function sendScenarioResponse(ws: WebSocket, chain: ScenarioChain, msgId: string) {
+    const step = chain.steps[chain.currentStep];
+    const response: ScenarioChainResponse = {
+        active: chain.active,
+        cityName: chain.cityName,
+        currentStep: step ? {
+            id: step.id,
+            step: step.step,
+            name: step.name.en || step.id,
+            npcRole: step.npcRole,
+            register: step.register,
+            goal: step.goal,
+            required: step.required,
+            phase: step.phase,
+        } : null,
+        completedSteps: chain.completedSteps,
+        totalSteps: chain.steps.length,
+        allRequiredComplete: chain.steps
+            .filter(s => s.required)
+            .every(s => chain.completedSteps.includes(s.id)),
+    };
+    send(ws, 'scenario/chain', response, msgId);
 }
 
 // ─── Helpers ──────────────────────────────────────────────────
