@@ -1,0 +1,256 @@
+# ════════════════════════════════════════════════════════════════
+# Cielos del Mediterráneo — Yacht Captain Persona Schema
+# ════════════════════════════════════════════════════════════════
+#
+# This schema defines the complete configuration for a yacht captain
+# language-learning simulation. It is consumed by the AAPM session
+# orchestrator to generate sessions, NPCs, and dialogue scenarios.
+#
+# Extends the base AAPM persona schema with yacht-specific fields:
+#   - yacht (vessel config)
+#   - crew (persistent companion NPCs)
+#   - player (customizable native/target languages)
+#   - voyage (route and port scenarios)
+
+id: yacht-captain-mediterranean
+version: "1.0"
+name:
+  en: "Cielos del Mediterráneo"
+  es: "Cielos del Mediterráneo"
+  fr: "Cieux de la Méditerranée"
+  it: "Cieli del Mediterraneo"
+
+description: >
+  Captain your yacht across the Mediterranean, managing a multilingual crew
+  and navigating port authorities, markets, and local culture — all while
+  learning languages through real-world interaction.
+
+# ─── Player Configuration ─────────────────────────────────────
+# Customizable per player. These are defaults.
+
+player:
+  role: captain
+  native_languages: [English]
+  target_languages:
+    - language: Spanish
+      level: A2
+      focus: [maritime, hospitality, bargaining, social]
+    - language: French
+      level: A1
+      focus: [maritime, hospitality, social]
+  difficulty: traveler   # tourist | traveler | immersion
+  learning_focus: all    # maritime | hospitality | bargaining | medical | social | all
+
+# ─── Yacht Configuration ──────────────────────────────────────
+
+yacht:
+  name: "Cielos"
+  flag_country: Spain
+  type: sailing_yacht    # sailing_yacht | motor_yacht | catamaran
+  length_m: 24
+  crew_capacity: 5
+
+  locations:
+    - id: bridge
+      name: { en: "Bridge", es: "Puente de mando" }
+      description: "Helm, navigation instruments, VHF radio, chart table"
+      npcs: [first-mate]
+
+    - id: galley
+      name: { en: "Galley", es: "Cocina" }
+      description: "Kitchen and dining area. Chef's domain."
+      npcs: [chef]
+
+    - id: deck
+      name: { en: "Main Deck", es: "Cubierta principal" }
+      description: "Open air deck with seating, boarding area"
+      npcs: [deckhand]
+
+    - id: salon
+      name: { en: "Salon", es: "Salón" }
+      description: "Main living area, crew socializing"
+      npcs: []
+
+    - id: engine-room
+      name: { en: "Engine Room", es: "Sala de máquinas" }
+      description: "Engine, generator, water maker, tools"
+      npcs: [engineer]
+
+# ─── Crew (Companion NPCs) ────────────────────────────────────
+# Permanent members who sail with you. Each has their own language
+# profile — they're learning too.
+
+crew:
+  - id: first-mate-luca
+    name: Luca
+    role: First Mate
+    native_language: Italian
+    learning:
+      - { language: Spanish, level: B1 }
+      - { language: French,  level: A2 }
+    personality: "Calm, experienced, dry humor. Former Italian Navy."
+    register: neutral
+    patience: 0.8
+    big_five: { O: 0.5, C: 0.9, E: 0.4, A: 0.6, N: 0.2 }
+    cultural_overlay:
+      communicative_directness: 0.6
+      formality_default: 0.5
+      power_distance_sensitivity: 0.5
+      emotional_expressiveness: 0.5
+    default_location: bridge
+    vocabulary_focus: [maritime, navigation, weather, crew-management]
+    dialogue_goals:
+      - "Discuss the route to the next port"
+      - "Review the weather forecast"
+      - "Coordinate a docking maneuver"
+
+  - id: chef-yasmine
+    name: Yasmine
+    role: Chef
+    native_language: French
+    learning:
+      - { language: Spanish, level: A2 }
+      - { language: Greek,   level: A1 }
+    personality: "Passionate about food, dramatic, warm. Trained in Marseille."
+    register: informal
+    patience: 0.6
+    big_five: { O: 0.8, C: 0.6, E: 0.9, A: 0.7, N: 0.4 }
+    cultural_overlay:
+      communicative_directness: 0.5
+      formality_default: 0.3
+      power_distance_sensitivity: 0.3
+      emotional_expressiveness: 0.9
+    default_location: galley
+    vocabulary_focus: [food-and-drink, local-markets, provisioning, recipes]
+    dialogue_goals:
+      - "Plan the menu for a guest dinner"
+      - "Create a shopping list for the local market"
+      - "Discuss local cuisine and ingredients"
+
+  - id: deckhand-emre
+    name: Emre
+    role: Deckhand
+    native_language: Turkish
+    learning:
+      - { language: English, level: B2 }
+      - { language: Italian, level: A1 }
+    personality: "Energetic, eager to learn, asks lots of questions. Strong swimmer."
+    register: informal
+    patience: 0.9
+    big_five: { O: 0.7, C: 0.5, E: 0.8, A: 0.8, N: 0.3 }
+    cultural_overlay:
+      communicative_directness: 0.5
+      formality_default: 0.4
+      power_distance_sensitivity: 0.6
+      emotional_expressiveness: 0.6
+    default_location: deck
+    vocabulary_focus: [sailing, weather, swimming, diving, port-operations]
+    dialogue_goals:
+      - "Prepare the deck for docking"
+      - "Discuss a diving spot at the next port"
+      - "Learn sailing terminology together"
+
+  - id: engineer-sofia
+    name: Sofia
+    role: Engineer
+    native_language: Greek
+    learning:
+      - { language: English, level: B1 }
+      - { language: French,  level: A1 }
+    personality: "Quiet, methodical, problem-solver. Loves crossword puzzles."
+    register: formal
+    patience: 0.7
+    big_five: { O: 0.6, C: 0.9, E: 0.3, A: 0.5, N: 0.2 }
+    cultural_overlay:
+      communicative_directness: 0.7
+      formality_default: 0.6
+      power_distance_sensitivity: 0.4
+      emotional_expressiveness: 0.3
+    default_location: engine-room
+    vocabulary_focus: [mechanical, technical, troubleshooting, tools]
+    dialogue_goals:
+      - "Diagnose an engine warning light"
+      - "Order spare parts at a marina"
+      - "Explain a maintenance schedule"
+
+# ─── Port Arrival Scenario Chain ──────────────────────────────
+# Defines the sequence of encounters when arriving at any port.
+# Each step maps to a dialogue scenario with an NPC role.
+
+port_arrival_chain:
+  - step: 1
+    id: vhf-radio-call
+    name: { en: "VHF Radio Call", es: "Llamada VHF" }
+    npc_role: port-control
+    register: formal
+    goal: "Request permission to enter the port and berth assignment"
+    required: true
+    vocabulary_focus: [maritime, radio-protocol, navigation]
+
+  - step: 2
+    id: harbor-master
+    name: { en: "Harbor Master Check-in", es: "Registro en capitanía" }
+    npc_role: harbor-master
+    register: formal
+    goal: "Complete arrival paperwork, negotiate berth fees, confirm duration"
+    required: true
+    vocabulary_focus: [maritime, regulations, numbers, dates]
+
+  - step: 3
+    id: customs-clearance
+    name: { en: "Customs Clearance", es: "Despacho de aduanas" }
+    npc_role: customs-officer
+    register: formal
+    goal: "Present crew passports and ship documents, declare provisions"
+    required: true
+    vocabulary_focus: [customs, documentation, declarations]
+
+  - step: 4
+    id: fuel-dock
+    name: { en: "Fuel Dock", es: "Estación de combustible" }
+    npc_role: fuel-attendant
+    register: neutral
+    goal: "Refuel the yacht, pay, get water and pump-out"
+    required: false
+    vocabulary_focus: [maritime, numbers, payment]
+
+  - step: 5
+    id: explore-city
+    name: { en: "Explore the City", es: "Explorar la ciudad" }
+    npc_role: null  # Free roam — interact with city NPCs
+    register: mixed
+    goal: "Provision at the market, eat at a café, explore landmarks"
+    required: false
+
+  - step: 6
+    id: departure
+    name: { en: "Departure", es: "Partida" }
+    npc_role: port-control
+    register: formal
+    goal: "Request permission to depart, get weather advisory"
+    required: true
+    vocabulary_focus: [maritime, radio-protocol, weather]
+
+# ─── Difficulty Tiers ─────────────────────────────────────────
+
+tiers:
+  tourist:
+    description: "NPCs switch to English if you struggle. Maximum patience."
+    npc_patience_multiplier: 2.0
+    fallback_language: true
+    grammar_strictness: 0.3
+    cultural_friction: false
+
+  traveler:
+    description: "NPCs use natural speech, correct you gently."
+    npc_patience_multiplier: 1.0
+    fallback_language: false
+    grammar_strictness: 0.6
+    cultural_friction: true
+
+  immersion:
+    description: "Full in-character. Cultural friction is real."
+    npc_patience_multiplier: 0.5
+    fallback_language: false
+    grammar_strictness: 0.9
+    cultural_friction: true

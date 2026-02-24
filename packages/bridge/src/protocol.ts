@@ -194,6 +194,52 @@ export interface ErrorResponse {
     message: string;
 }
 
+// ─── Scenario Chain (Yacht Captain) ───────────────────────────
+
+/** Start a port scenario chain */
+export interface ScenarioStartRequest {
+    /** City name to dock at */
+    cityName: string;
+    /** Location ID of the port */
+    locationId: string;
+}
+
+/** Advance to the next step in a scenario chain */
+export interface ScenarioAdvanceRequest {
+    /** Skip optional steps? */
+    skipOptional?: boolean;
+}
+
+/** Request current scenario chain status */
+export interface ScenarioStatusRequest {
+    // no payload needed
+}
+
+/** Scenario chain status response */
+export interface ScenarioChainResponse {
+    /** Is a scenario chain active? */
+    active: boolean;
+    /** City name */
+    cityName: string;
+    /** Current step */
+    currentStep: {
+        id: string;
+        step: number;
+        name: string;
+        npcRole: string | null;
+        register: string;
+        goal: string;
+        required: boolean;
+        phase: string;
+    } | null;
+    /** Completed step IDs */
+    completedSteps: string[];
+    /** Total steps in chain */
+    totalSteps: number;
+    /** Are all required steps done? */
+    allRequiredComplete: boolean;
+}
+
 // ─── Message Type Map ─────────────────────────────────────────
 
 /** All client → server message types */
@@ -206,6 +252,9 @@ export type ClientMessageType =
     | 'navigate'
     | 'get/npcs'
     | 'get/locations'
+    | 'scenario/start'
+    | 'scenario/advance'
+    | 'scenario/status'
     | 'ping';
 
 /** All server → client message types */
@@ -218,5 +267,7 @@ export type ServerMessageType =
     | 'navigate/result'
     | 'npcs/list'
     | 'locations/list'
+    | 'scenario/chain'
     | 'error'
     | 'pong';
+
