@@ -47,10 +47,11 @@ import {
     endSession,
     getVisibleNPCs,
     getNavigableLocations,
-    getDialoguePromptContext,
 } from '../../core/src/session-orchestrator';
 
 import type { SimulationSession } from '../../core/src/session-orchestrator';
+import type { NPCWorldState } from '../../core/src/world-engine';
+import type { NPCDialogueDefinition, FrictionEvent } from '../../core/src/dialogue-engine';
 
 import {
     analyzeCulturalViolations,
@@ -217,13 +218,13 @@ function handleSessionInit(
             worldState: {
                 currentLocation: state.session.worldState.learnerLocation,
                 timeOfDay: state.session.worldState.timeSystem.enabled ? 12 : 0,
-                locations: locations.map(l => ({
+                locations: locations.map((l: { id: string; name: Record<string, string>; description: string }) => ({
                     id: l.id,
                     name: l.name.en || l.name.es || l.id,
                     description: l.description,
                 })),
             },
-            availableNPCs: visibleNPCs.map(npc => ({
+            availableNPCs: visibleNPCs.map((npc: { npcState: NPCWorldState; definition: NPCDialogueDefinition }) => ({
                 id: npc.npcState.npcId,
                 name: npc.definition.name,
                 role: npc.definition.role,
@@ -252,7 +253,7 @@ function handleNPCApproach(
     if (!state.session) return sendError(ws, 'no_session', 'No active session', msgId);
 
     const visibleNPCs = getVisibleNPCs(state.session);
-    const npc = visibleNPCs.find(n => n.npcState.npcId === req.npcId);
+    const npc = visibleNPCs.find((n: { npcState: NPCWorldState }) => n.npcState.npcId === req.npcId);
 
     if (!npc) {
         return sendError(ws, 'npc_not_found', `NPC ${req.npcId} not visible`, msgId);
@@ -297,7 +298,7 @@ function handleDialogueStart(
 
     const dialogue = state.session.activeDialogue!;
     const visibleNPCs = getVisibleNPCs(state.session);
-    const npcDef = visibleNPCs.find(n => n.npcState.npcId === req.npcId);
+    const npcDef = visibleNPCs.find((n: { npcState: NPCWorldState }) => n.npcState.npcId === req.npcId);
 
     const response: DialogueStartResponse = {
         dialogueId: dialogue.sessionId,
@@ -343,7 +344,7 @@ function handleDialogueTurn(
     const response: DialogueTurnResponse = {
         npcText: `[NPC responds to: "${req.text}"]`, // In production: LLM generates this
         npcMood: state.session.worldState.npcStates[dialogue.npcId]?.mood ?? 'neutral',
-        frictionEvents: lastTurn?.frictionEvents?.map(e => ({
+        frictionEvents: lastTurn?.frictionEvents?.map((e: FrictionEvent) => ({
             type: e.type,
             description: e.description,
             severity: e.severity,
@@ -434,7 +435,7 @@ function handleNavigate(
         success: true,
         newLocationId: state.session.worldState.learnerLocation,
         newLocationName: req.targetLocationId,
-        availableNPCs: npcs.map(n => ({
+        availableNPCs: npcs.map((n: { npcState: NPCWorldState; definition: NPCDialogueDefinition }) => ({
             id: n.npcState.npcId,
             name: n.definition.name,
             role: n.definition.role,
@@ -445,7 +446,7 @@ function handleNavigate(
             personality: n.definition.personality,
             register: n.definition.register,
         })),
-        navigableLocations: locations.map(l => ({
+        navigableLocations: locations.map((l: { id: string; name: Record<string, string>; accessible: boolean }) => ({
             id: l.id,
             name: l.name.en || l.name.es || l.id,
             accessible: l.accessible,
@@ -461,7 +462,7 @@ function handleGetNPCs(ws: WebSocket, state: ClientState, msgId: string) {
 
     const npcs = getVisibleNPCs(state.session);
     send(ws, 'npcs/list', {
-        npcs: npcs.map(n => ({
+        npcs: npcs.map((n: { npcState: NPCWorldState; definition: NPCDialogueDefinition }) => ({
             id: n.npcState.npcId,
             name: n.definition.name,
             role: n.definition.role,
@@ -480,7 +481,7 @@ function handleGetLocations(ws: WebSocket, state: ClientState, msgId: string) {
 
     const locations = getNavigableLocations(state.session);
     send(ws, 'locations/list', {
-        locations: locations.map(l => ({
+        locations: locations.map((l: { id: string; name: Record<string, string>; accessible: boolean; description: string }) => ({
             id: l.id,
             name: l.name.en || l.name.es || l.id,
             accessible: l.accessible,
