@@ -1,0 +1,98 @@
+# ════════════════════════════════════════════════════════════════
+# Dialogue Template: Restaurant Ordering
+# ════════════════════════════════════════════════════════════════
+# Used by service NPCs with role: restaurant-owner
+# Covers the full restaurant dining experience from entering to paying.
+
+template:
+  id: restaurant-ordering
+  name: "Restaurant Ordering"
+  service_role: restaurant-owner
+  difficulty_range: [A1, C1]
+  estimated_duration_minutes: 8
+
+phases:
+
+  - id: greeting
+    name: "Entering the Restaurant"
+    npc_initiates: true
+    prompts:
+      A1: "Greet the player simply and ask how many people"
+      A2: "Welcome them warmly, ask if they have a reservation, offer terrace or inside"
+      B1: "Greet with local flair, comment on the weather, suggest sitting outside for the view"
+      B2: "Welcome with personality, reference a regular customer or today's special catch"
+    vocabulary_targets:
+      - reservation / reserva / réservation / prenotazione
+      - table for one / mesa para uno / table pour un / tavolo per uno
+      - terrace / terraza / terrasse / terrazza
+      - inside / dentro / à l'intérieur / dentro
+
+  - id: menu_discussion
+    name: "Discussing the Menu"
+    npc_initiates: true
+    prompts:
+      A1: "Present 3 simple dishes with clear descriptions"
+      A2: "Describe today's specials, ask about dietary restrictions"
+      B1: "Explain dishes using local ingredient names, recommend wine pairings"
+      B2: "Tell the story behind a traditional dish, mention the fisherman who brought today's catch"
+    vocabulary_targets:
+      - starter / entrante / entrée / antipasto
+      - main course / plato principal / plat principal / secondo
+      - grilled fish / pescado a la plancha / poisson grillé / pesce alla griglia
+      - vegetarian / vegetariano / végétarien / vegetariano
+      - allergy / alergia / allergie / allergia
+      - today's special / plato del día / plat du jour / piatto del giorno
+
+  - id: ordering
+    name: "Placing the Order"
+    npc_initiates: false
+    prompts:
+      A1: "Take the order with patience and confirmation"
+      A2: "Confirm the order, suggest a side dish or bread"
+      B1: "Make a recommendation based on what they ordered, suggest a local wine"
+      B2: "React to their choice with personality (praise good picks, gently redirect questionable ones)"
+    vocabulary_targets:
+      - "I would like / me gustaría / je voudrais / vorrei"
+      - "Could I have / ¿podría tener / pourriez-vous / potrei avere"
+      - water / agua / eau / acqua
+      - still or sparkling / sin gas o con gas / plate ou gazeuse / naturale o frizzante
+      - red wine / vino tinto / vin rouge / vino rosso
+      - the bill / la cuenta / l'addition / il conto
+
+  - id: during_meal
+    name: "During the Meal"
+    optional: true
+    npc_initiates: true
+    prompts:
+      A2: "Check how the food is, ask if they need anything"
+      B1: "Ask about their travels, share a local recommendation for after dinner"
+      B2: "Tell a story about the restaurant's history, ask their opinion on local cuisine vs their home country"
+    vocabulary_targets:
+      - delicious / delicioso / délicieux / delizioso
+      - "Could I have more / ¿podría tener más / encore un peu de / ancora un po' di"
+      - bread / pan / pain / pane
+      - olive oil / aceite de oliva / huile d'olive / olio d'oliva
+
+  - id: paying
+    name: "Asking for the Bill"
+    npc_initiates: false
+    prompts:
+      A1: "Present a simple total"
+      A2: "Present the bill, explain each item if asked, mention tipping customs"
+      B1: "Invite them to return, recommend another restaurant in the next port"
+      B2: "Refuse to charge for dessert ('on the house'), invite to a local festival this evening"
+    vocabulary_targets:
+      - "The bill please / la cuenta por favor / l'addition s'il vous plaît / il conto per favore"
+      - "Do you accept cards / ¿aceptan tarjetas / acceptez-vous les cartes / accettate carte"
+      - tip / propina / pourboire / mancia
+      - receipt / recibo / reçu / ricevuta
+      - "It was excellent / estaba excelente / c'était excellent / era eccellente"
+      - "Thank you for the meal / gracias por la comida / merci pour le repas / grazie per il pasto"
+
+cultural_notes:
+  Spain: "In Spain, you may need to ask for the bill — waiters consider it rude to rush you. Tipping is not expected but rounding up is appreciated. Lunch is 2-4pm, dinner after 9pm."
+  France: "In France, the bill includes service (service compris). Bread comes automatically and is free. Never ask for modifications — the chef decides."
+  Italy: "Coperto (cover charge) is normal and legal. Cappuccino is ONLY for breakfast — ordering one after lunch marks you as a tourist. Pizza is a one-person dish."
+  Greece: "Tavernas often invite you to the kitchen to choose your food. Free dessert (fruit or homemade sweets) is common. Splitting the bill is unusual — one person pays."
+  Turkey: "Turkish restaurants often bring meze automatically. Tea may be offered for free after the meal. Haggling over the bill is not done."
+  Morocco: "Eating with the right hand is customary. Tagines are cooked to order and take 30+ minutes. Mint tea is ceremonial."

@@ -1,0 +1,92 @@
+# ════════════════════════════════════════════════════════════════
+# Dialogue Template: Navigation & Directions
+# ════════════════════════════════════════════════════════════════
+# Used by service NPCs with role: tourist-guide, taxi-driver
+# Asking for and giving directions in a foreign city.
+
+template:
+  id: navigation-directions
+  name: "Asking for Directions"
+  service_role: [tourist-guide, taxi-driver]
+  difficulty_range: [A1, B2]
+  estimated_duration_minutes: 4
+
+phases:
+
+  - id: asking
+    name: "Asking Where Something Is"
+    npc_initiates: false
+    prompts:
+      A1: "Give very simple directions — point and say left/right/straight"
+      A2: "Give clear directions using landmarks as reference points"
+      B1: "Describe the route in detail, mention what you'll see along the way, warn about confusing intersections"
+      B2: "Give local context — shortcuts locals use, which streets to avoid at certain hours, historical names vs modern names"
+    vocabulary_targets:
+      - "Where is / ¿dónde está / où est / dov'è"
+      - left / izquierda / gauche / sinistra
+      - right / derecha / droite / destra
+      - straight / recto / tout droit / dritto
+      - "turn at / gire en / tournez à / giri a"
+      - corner / esquina / coin / angolo
+      - block / manzana / pâté de maisons / isolato
+      - "next to / al lado de / à côté de / accanto a"
+      - "in front of / delante de / devant / davanti a"
+      - "behind / detrás de / derrière / dietro"
+
+  - id: landmarks
+    name: "Using Landmarks"
+    npc_initiates: true
+    prompts:
+      A1: "Use simple landmark words — church, market, fountain"
+      A2: "Reference specific local landmarks by name — 'go past the blue mosque on your left'"
+      B1: "Give a walking tour route that passes the destination — with cultural commentary"
+      B2: "Explain the city's layout pattern (grid, medina, radiating streets) and how to navigate using it"
+    vocabulary_targets:
+      - church / iglesia / église / chiesa
+      - mosque / mezquita / mosquée / moschea
+      - market / mercado / marché / mercato
+      - fountain / fuente / fontaine / fontana
+      - square / plaza / place / piazza
+      - bridge / puente / pont / ponte
+      - "you will see / verá / vous verrez / vedrà"
+      - "you can't miss it / no tiene pérdida / vous ne pouvez pas le manquer / non può sbagliare"
+
+  - id: transport
+    name: "Taking Transport"
+    optional: true
+    npc_initiates: true
+    prompts:
+      A1: "Explain taxi or bus simply"
+      A2: "Recommend bus/taxi/metro, tell them which stop to get off at"
+      B1: "Compare transport options — cost, time, scenic value. Negotiate a taxi fare."
+      B2: "Explain the public transport system, apps to use, scams to avoid, which bus has the best view"
+    vocabulary_targets:
+      - taxi / taxi / taxi / taxi
+      - bus / autobús / bus / autobus
+      - metro / metro / métro / metro
+      - "How much / ¿cuánto cuesta / combien / quanto costa"
+      - ticket / billete / billet / biglietto
+      - stop / parada / arrêt / fermata
+      - "Get off at / baje en / descendez à / scenda a"
+      - "How far / ¿a qué distancia / à quelle distance / quanto dista"
+
+  - id: farewell
+    name: "Thanking and Moving On"
+    npc_initiates: false
+    prompts:
+      A1: "Respond to thanks warmly"
+      A2: "Wish them a good walk, mention something to look for on the way"
+      B1: "Recommend a stop along the route — a café, a viewpoint, a hidden gem"
+      B2: "Share a personal story connected to the route, invite to come back for a guided tour"
+    vocabulary_targets:
+      - "Thank you / gracias / merci / grazie"
+      - "You're welcome / de nada / de rien / prego"
+      - "Have a nice walk / buen paseo / bonne promenade / buona passeggiata"
+      - "Enjoy / disfrute / profitez / si goda"
+
+cultural_notes:
+  Mediterranean: "In most Mediterranean cities, distances are given in walking minutes, not meters. 'Five minutes' can mean 5-15 actual minutes."
+  Morocco: "In medinas, don't accept unsolicited guides — they'll lead you to their cousin's shop. Official tourist guides carry ID badges."
+  Italy: "Italians give directions using gestures as much as words. 'Qua' with a hand motion is completely valid."
+  Greece: "Greeks may physically walk with you for a block to show you the way — and then invite you for coffee."
+  Turkey: "Asking for directions often results in the person calling a friend who knows better. You may end up with an impromptu guide."

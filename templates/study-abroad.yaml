@@ -1,0 +1,99 @@
+# ════════════════════════════════════════════════════════════════
+# Starter Template: Study Abroad Student
+# ════════════════════════════════════════════════════════════════
+# For university students preparing for or currently studying abroad.
+
+persona:
+  name: "Sam Rodriguez"
+  age: 21
+  nationality: "American"
+  native_language: "English"
+  target_language: "Italian"
+  cefr_level: "A1"
+  occupation: "University student (Art History)"
+  backstory: >
+    College junior spending a semester in Florence studying Renaissance
+    art history. Knows a few Italian phrases from Duolingo but has never
+    lived abroad. Needs survival Italian for daily life plus academic
+    Italian for museum visits, lectures, and research discussions.
+
+learner_profile:
+  goals:
+    - "Navigate daily life — shopping, transport, housing"
+    - "Order food and socialize with Italian classmates"
+    - "Discuss art and history in Italian"
+    - "Handle bureaucracy — residence permit, bank account"
+    - "Make Italian friends"
+  interests:
+    - Renaissance art
+    - Italian cinema
+    - cooking
+    - photography
+    - soccer
+  challenges:
+    - "Spoken Italian speed vs textbook Italian"
+    - "Regional dialect in Florence (aspirazione toscana)"
+    - "Academic register for university contexts"
+
+vocabulary_matrix:
+  tier_1_essentials:
+    - directions and transport
+    - shopping and numbers
+    - food ordering
+    - introductions and small talk
+    - emergency phrases
+  tier_2_domain:
+    - university vocabulary (lecture, exam, thesis, professor)
+    - art terms (painting, sculpture, fresco, perspective)
+    - housing vocabulary (rent, landlord, bills, wifi)
+    - social language (party, weekend plans, suggestions)
+  tier_3_professional:
+    - academic Italian (argument, evidence, analysis)
+    - art history terminology
+    - museum and gallery vocabulary
+    - formal email and application language
+
+environment:
+  tier_2:
+    location: "Florence — university, city center, student housing"
+    npcs:
+      - role: landlord
+        personality: "Dramatic, speaks fast, gestures a lot"
+      - role: barista
+        personality: "Busy in the morning, chatty in the afternoon"
+      - role: classmate
+        personality: "Helpful, uses slang, teaches you real Italian"
+      - role: professor
+        personality: "Formal, expects you to try Italian in class"
+  tier_3:
+    location: "Uffizi Gallery, university library"
+    npcs:
+      - role: museum-guide
+        personality: "Passionate about art, speaks in metaphors"
+      - role: librarian
+        personality: "Quiet, precise, judges your Italian silently"
+
+companion:
+  name: "Luca"
+  role: "Student buddy and informal language coach"
+  personality: >
+    Italian classmate from Naples studying in Florence. Switches between
+    Florentine and Neapolitan Italian to keep you on your toes. Teaches
+    you slang, takes you to local spots, and corrects you like a friend.
+  teaching_style: "peer-immersion"
+
+retention_profile:
+  dominant_style: "visual"
+  secondary_style: "social"
+  spaced_repetition_factor: 0.80
+  preferred_review_time: "afternoon"
+
+evaluation:
+  assessment_frequency: "weekly"
+  rubric_dimensions:
+    - communicative_effectiveness
+    - vocabulary_range
+    - social_competence
+    - academic_register
+    - cultural_integration
+  min_pass_threshold: 0.55

@@ -1,0 +1,95 @@
+# ════════════════════════════════════════════════════════════════
+# Starter Template: Business Travel Negotiator
+# ════════════════════════════════════════════════════════════════
+# For professionals needing to negotiate and present in a target language.
+
+persona:
+  name: "Jordan Chen"
+  age: 32
+  nationality: "American"
+  native_language: "English"
+  target_language: "French"
+  cefr_level: "B1"
+  occupation: "Tech startup founder"
+  backstory: >
+    Silicon Valley startup founder expanding to the European market.
+    Has meetings in Paris, Lyon, and Geneva. Needs to pitch to French
+    VCs, negotiate partnership terms, and navigate business culture.
+    Has basic French from college but needs professional fluency.
+
+learner_profile:
+  goals:
+    - "Deliver a startup pitch in French"
+    - "Negotiate contract terms and pricing"
+    - "Network at business events and conferences"
+    - "Handle formal correspondence (emails, proposals)"
+    - "Navigate French business etiquette"
+  interests:
+    - technology
+    - entrepreneurship
+    - French cinema
+    - wine and gastronomy
+  challenges:
+    - "Formal vs informal register in business contexts"
+    - "Numbers and financial terminology at speed"
+    - "Small talk vs getting down to business"
+
+vocabulary_matrix:
+  tier_1_essentials:
+    - greetings (formal and informal)
+    - numbers and currency
+    - days, months, scheduling
+    - basic opinions (I think, I believe, I agree)
+  tier_2_domain:
+    - business terms (revenue, margin, growth, investment)
+    - meeting vocabulary (agenda, minutes, action items)
+    - presentation phrases (allow me to present, as you can see)
+    - negotiation language (proposal, counter-offer, terms)
+  tier_3_professional:
+    - legal contract terminology
+    - financial reporting language
+    - intellectual property vocabulary
+    - regulatory compliance terms
+
+environment:
+  tier_2:
+    location: "Paris — business district, restaurants, conferences"
+    npcs:
+      - role: vc-investor
+        personality: "Sharp, tests your French, respects effort"
+      - role: business-partner
+        personality: "Formal at first, warms up over dinner"
+      - role: office-manager
+        personality: "Efficient, helps with logistics"
+  tier_3:
+    location: "Conference center, formal dinner"
+    npcs:
+      - role: competitor
+        personality: "Charming but probing for information"
+      - role: journalist
+        personality: "Asks tough questions in rapid French"
+
+companion:
+  name: "Marie"
+  role: "Business French coach and cultural advisor"
+  personality: >
+    Former Parisian investment banker turned language coach. Direct,
+    professional, and slightly intimidating. Drills you before meetings
+    and debriefs after. Knows every business French faux pas.
+  teaching_style: "professional-immersion"
+
+retention_profile:
+  dominant_style: "auditory"
+  secondary_style: "reading"
+  spaced_repetition_factor: 0.90
+  preferred_review_time: "evening"
+
+evaluation:
+  assessment_frequency: "per-meeting"
+  rubric_dimensions:
+    - communicative_effectiveness
+    - register_appropriateness
+    - vocabulary_range
+    - negotiation_skill
+    - cultural_competence
+  min_pass_threshold: 0.65

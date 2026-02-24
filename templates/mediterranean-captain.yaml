@@ -1,0 +1,106 @@
+# ════════════════════════════════════════════════════════════════
+# Starter Template: Mediterranean Yacht Captain
+# ════════════════════════════════════════════════════════════════
+# A ready-to-use persona for the Cielos del Mediterráneo scenario.
+# Copy this file as a starting point for custom personas.
+#
+# Usage:
+#   npx @aapm/cli validate-schema templates/mediterranean-captain.yaml
+
+persona:
+  name: "Alex Morgan"
+  age: 38
+  nationality: "British"
+  native_language: "English"
+  target_language: "Spanish"
+  cefr_level: "A2"
+  occupation: "Yacht charter captain"
+  backstory: >
+    Former Royal Navy officer who left the service to pursue a lifelong
+    dream of sailing the Mediterranean. Recently purchased a 42-foot
+    motor yacht and started a small charter business. Needs to learn
+    coastal Spanish, French, Italian, and Greek for port operations,
+    customs, provisioning, and guest interactions.
+
+learner_profile:
+  goals:
+    - "Communicate with harbor masters and port authorities"
+    - "Handle customs and immigration in target languages"
+    - "Order provisions and negotiate with suppliers"
+    - "Give safety briefings to charter guests"
+    - "Understand VHF radio communication protocols"
+  interests:
+    - sailing
+    - navigation
+    - Mediterranean cuisine
+    - maritime history
+    - coastal ecology
+  challenges:
+    - "Fast regional speech (Neapolitan Italian, Catalan)"
+    - "Formal register required for official interactions"
+    - "Maritime-specific vocabulary not in standard courses"
+
+vocabulary_matrix:
+  tier_1_essentials:
+    - hello / goodbye / please / thank you
+    - numbers 1-100
+    - port / starboard / bow / stern
+    - weather words (wind, waves, calm, storm)
+    - food basics (water, bread, fish, meat, vegetables)
+  tier_2_domain:
+    - VHF protocol phrases (sécurité, pan-pan, mayday)
+    - customs vocabulary (passport, crew list, transit log)
+    - provisioning (fuel, water, ice, gas bottle)
+    - navigation (heading, bearing, waypoint, ETA)
+    - mooring (bow line, stern line, fender, cleat, bollard)
+  tier_3_professional:
+    - charter contract terms
+    - insurance and liability language
+    - engine and mechanical terminology
+    - weather forecast interpretation (Beaufort, gale warnings)
+    - maritime law references
+
+environment:
+  tier_2:
+    location: "Mediterranean Sea — rotating between 8 ports"
+    npcs:
+      - role: harbor-master
+        personality: "Efficient, slightly impatient during high season"
+      - role: customs-officer
+        personality: "By-the-book but fair"
+      - role: fuel-dock-attendant
+        personality: "Chatty, loves talking about boats"
+      - role: market-vendor
+        personality: "Warm, tries to upsell, generous with samples"
+  tier_3:
+    location: "Yacht interior — engine room, bridge, galley"
+    npcs:
+      - role: mechanic
+        personality: "Gruff but helpful, speaks in technical jargon"
+      - role: charter-guest
+        personality: "Curious, asks questions about everything"
+
+companion:
+  name: "Sofia"
+  role: "Chief engineer and language coach"
+  personality: >
+    Greek-Italian bilingual engineer from Rhodes. Patient teacher who
+    uses real maritime situations to teach vocabulary. Corrects gently
+    with humor. Tracks your progress across ports.
+  teaching_style: "contextual-immersion"
+
+retention_profile:
+  dominant_style: "kinesthetic"
+  secondary_style: "visual"
+  spaced_repetition_factor: 0.85
+  preferred_review_time: "morning"
+
+evaluation:
+  assessment_frequency: "per-port"
+  rubric_dimensions:
+    - communicative_effectiveness
+    - vocabulary_range
+    - grammatical_accuracy
+    - pragmatic_competence
+    - cultural_sensitivity
+  min_pass_threshold: 0.6

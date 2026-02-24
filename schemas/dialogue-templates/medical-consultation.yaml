@@ -1,0 +1,84 @@
+# ════════════════════════════════════════════════════════════════
+# Dialogue Template: Medical Consultation
+# ════════════════════════════════════════════════════════════════
+# Used by service NPCs with role: doctor
+# Maritime medical scenarios — from seasickness to jellyfish stings.
+
+template:
+  id: medical-consultation
+  name: "Port Medical Consultation"
+  service_role: doctor
+  difficulty_range: [A1, B2]
+  estimated_duration_minutes: 6
+
+phases:
+
+  - id: reception
+    name: "Entering the Clinic"
+    npc_initiates: true
+    prompts:
+      A1: "Ask what's wrong — simple and slow"
+      A2: "Welcome them, ask what the problem is and how long they've had it"
+      B1: "Ask about medical history, allergies, current medications"
+      B2: "Take a thorough patient history, discuss symptoms in medical terminology, mention similar cases this week"
+    vocabulary_targets:
+      - "What's wrong / ¿qué le pasa / qu'est-ce qui ne va pas / cosa c'è che non va"
+      - pain / dolor / douleur / dolore
+      - fever / fiebre / fièvre / febbre
+      - headache / dolor de cabeza / mal de tête / mal di testa
+      - "How long / ¿desde cuándo / depuis combien de temps / da quanto tempo"
+      - allergy / alergia / allergie / allergia
+
+  - id: examination
+    name: "Examining the Patient"
+    npc_initiates: true
+    prompts:
+      A1: "Examine simply — 'let me see', 'does this hurt?'"
+      A2: "Check temperature and blood pressure, ask about recent activities"
+      B1: "Discuss sun exposure, dehydration, food they ate, diving depth if relevant"
+      B2: "Differential diagnosis discussion, explain the medical reasoning behind each possibility"
+    vocabulary_targets:
+      - temperature / temperatura / température / temperatura
+      - blood pressure / presión arterial / tension artérielle / pressione arteriosa
+      - sunburn / quemadura solar / coup de soleil / scottatura solare
+      - seasickness / mareo / mal de mer / mal di mare
+      - jellyfish sting / picadura de medusa / piqûre de méduse / puntura di medusa
+      - dehydration / deshidratación / déshydratation / disidratazione
+      - "Does it hurt here / ¿le duele aquí / ça fait mal ici / fa male qui"
+
+  - id: diagnosis
+    name: "Diagnosis & Treatment"
+    npc_initiates: true
+    prompts:
+      A1: "Give simple diagnosis and hand them medicine"
+      A2: "Explain what's wrong in simple terms, prescribe treatment with clear instructions"
+      B1: "Explain the condition, why it happened, how to prevent it, prescribe medication with dosage"
+      B2: "Discuss the condition in detail, explain the biology, prescribe and explain how the medication works"
+    vocabulary_targets:
+      - pill / pastilla / comprimé / compressa / pastiglia
+      - cream / crema / crème / crema
+      - "twice a day / dos veces al día / deux fois par jour / due volte al giorno"
+      - "with food / con comida / avec de la nourriture / con il cibo"
+      - prescription / receta / ordonnance / ricetta
+      - rest / descanso / repos / riposo
+      - "drink water / beba agua / buvez de l'eau / beva acqua"
+
+  - id: follow_up
+    name: "Follow-up & Advice"
+    optional: true
+    npc_initiates: true
+    prompts:
+      A2: "Advise sun protection and hydration"
+      B1: "Recommend a pharmacy for supplies, advise on next few days' activities"
+      B2: "Discuss maritime health regulations, mention ships' medical chest requirements, share a local herbal remedy"
+    vocabulary_targets:
+      - pharmacy / farmacia / pharmacie / farmacia
+      - sunscreen / protector solar / crème solaire / protezione solare
+      - "Come back if / vuelva si / revenez si / torni se"
+      - insurance / seguro / assurance / assicurazione
+
+cultural_notes:
+  Mediterranean: "Most ports have at least a first-aid station. Larger ports (Barcelona, Naples, Istanbul) have full hospitals. EU citizens bring EHIC/GHIC card."
+  Greece: "Many island pharmacists double as the local doctor. They'll often diagnose and prescribe without a formal consultation."
+  Turkey: "Private clinics accept foreigners readily. Costs are reasonable by Western standards. Pharmacists are highly trained."
+  Morocco: "French-trained medical system. Private clinics in port cities are excellent. Pharmacies sell many drugs over-the-counter."

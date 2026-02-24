@@ -1,0 +1,84 @@
+# ════════════════════════════════════════════════════════════════
+# Dialogue Template: Immigration & Customs
+# ════════════════════════════════════════════════════════════════
+# Used by service NPCs with role: immigration-officer
+# The high-stakes official interaction — get it right or face delays!
+
+template:
+  id: immigration-customs
+  name: "Immigration & Customs Check"
+  service_role: immigration-officer
+  difficulty_range: [A1, B2]
+  estimated_duration_minutes: 5
+
+phases:
+
+  - id: approach
+    name: "Approaching the Desk"
+    npc_initiates: true
+    prompts:
+      A1: "Ask for passport simply"
+      A2: "Greet formally, ask for passport and crew documentation"
+      B1: "Check a list, ask about the previous port of call, verify flag state registration"
+      B2: "Reference a maritime regulation, ask about cargo, check transit log"
+    vocabulary_targets:
+      - passport / pasaporte / passeport / passaporto
+      - crew list / lista de tripulación / liste d'équipage / lista equipaggio
+      - flag state / estado del pabellón / État du pavillon / stato di bandiera
+      - registration / matrícula / immatriculation / immatricolazione
+
+  - id: document_check
+    name: "Document Review"
+    npc_initiates: true
+    prompts:
+      A1: "Ask simple questions — name, nationality, how long staying"
+      A2: "Verify passport details, ask purpose of visit and duration of stay"
+      B1: "Question discrepancies in the log, ask about specific crew members by name"
+      B2: "Reference bilateral agreements, discuss maritime visa waivers, mention recent regulation changes"
+    vocabulary_targets:
+      - nationality / nacionalidad / nationalité / nazionalità
+      - purpose of visit / motivo de visita / motif de visite / motivo della visita
+      - duration of stay / duración de estancia / durée du séjour / durata del soggiorno
+      - transit / tránsito / transit / transito
+      - pleasure / recreo / plaisance / diporto
+      - commercial / comercial / commercial / commerciale
+
+  - id: customs_declaration
+    name: "Customs Declaration"
+    npc_initiates: true
+    prompts:
+      A1: "Ask if carrying anything to declare — simple yes/no"
+      A2: "Ask about alcohol, tobacco, food products, currency amounts"
+      B1: "Explain local import restrictions, ask about fishing equipment, ask if bought goods in previous port"
+      B2: "Discuss duty-free allowances, ask about prescription medications, explain quarantine for food items"
+    vocabulary_targets:
+      - declare / declarar / déclarer / dichiarare
+      - goods / mercancías / marchandises / merci
+      - duty-free / libre de impuestos / hors taxes / duty-free
+      - prohibited / prohibido / interdit / vietato
+      - alcohol / alcohol / alcool / alcol
+      - tobacco / tabaco / tabac / tabacco
+      - fresh food / alimentos frescos / aliments frais / alimenti freschi
+      - currency / divisas / devises / valuta
+
+  - id: clearance
+    name: "Granting Clearance"
+    npc_initiates: true
+    prompts:
+      A1: "Stamp passport and welcome them"
+      A2: "Stamp and advise on check-out procedure before departure"
+      B1: "Warn about local regulations (anchor zones, fishing licenses), welcome them warmly"
+      B2: "Discuss the port's history, recommend something to visit, mention the upcoming local festival"
+    vocabulary_targets:
+      - stamp / sello / tampon / timbro
+      - entry permit / permiso de entrada / permis d'entrée / permesso d'ingresso
+      - departure clearance / despacho de salida / congé de sortie / autorizzazione di partenza
+      - "Welcome to / Bienvenido a / Bienvenue à / Benvenuto a"
+      - "Enjoy your stay / disfrute de su estancia / profitez de votre séjour / buon soggiorno"
+
+cultural_notes:
+  EU_Schengen: "Within Schengen, the check is simplified — just boat registration, no passport stamp. But you still need to report to the port authority."
+  Turkey: "E-visa is required for many nationalities. The officer will ask to see it on your phone or as a printout. 90/180 day rule applies."
+  Morocco: "Crew list must be submitted in advance. There may be a police check in addition to immigration. Be patient — the process takes time."
+  Egypt: "Visa on arrival available for many nationalities. USD is preferred for fees. Port agents handle much of the paperwork."
+  Israel: "Expect security questions in addition to immigration — standard and should not cause alarm. Entry stamp can be on a separate paper."
