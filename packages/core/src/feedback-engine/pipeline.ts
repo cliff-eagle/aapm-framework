@@ -748,10 +748,14 @@ export async function injectForward(
                 `Tier: ${spec.targetTier}`,
             ].join('\n');
 
-            // Use a zero-vector placeholder for the embedding.
-            // In production, the briefing content would be embedded via
-            // the LLM provider's embedding API before storage.
-            const briefingEmbedding = new Array(1536).fill(0);
+            // Generate embedding for the briefing content via the
+            // provider's embedding API — falls back to zero-vector if unavailable.
+            let briefingEmbedding: number[];
+            try {
+                briefingEmbedding = await deps.llmProvider.generateEmbedding(briefingContent);
+            } catch {
+                briefingEmbedding = new Array(1536).fill(0);
+            }
 
             await deps.vectorStore.upsert(
                 `injection-${learnerProfile.learnerId}-${npcId}-${Date.now()}`,

@@ -81,6 +81,9 @@ import type {
 export { ModuleHookRegistry } from './module-hooks';
 export type * from './module-hooks';
 
+export { createAgentHook } from './agent-hook';
+export type { AgentHookConfig } from './agent-hook';
+
 // ─── Session State ────────────────────────────────────────────
 
 export interface SimulationSession {

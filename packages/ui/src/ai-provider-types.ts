@@ -108,17 +108,17 @@ export const AI_PROVIDER_CATALOG: readonly AIProviderDefinition[] = [
         ],
     },
     {
-        id: 'google', name: 'Google AI', logoEmoji: '🔵',
-        description: 'Gemini models with built-in multimodal capabilities.',
+        id: 'google', name: 'Google AI Studio', logoEmoji: '🔵',
+        description: 'Gemini 3 models with Interactions API for agentic sessions, 2M context, and built-in multimodal.',
         apiKeyUrl: 'https://aistudio.google.com/apikey',
         capabilities: ['llm', 'embedding', 'asr', 'tts', 'video'],
         models: [
-            { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash', capability: 'llm', isDefault: true, costTier: 'budget', description: 'Fastest Gemini model.', contextWindow: 1000000, supportsStructuredOutput: true },
-            { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro', capability: 'llm', isDefault: false, costTier: 'standard', description: '1M+ context window.', contextWindow: 2000000, supportsStructuredOutput: true },
-            { id: 'text-embedding-004', name: 'Gecko Embedding', capability: 'embedding', isDefault: true, costTier: 'budget', description: 'Google embedding model.' },
+            { id: 'gemini-3-flash', name: 'Gemini 3 Flash', capability: 'llm', isDefault: true, costTier: 'budget', description: 'Fastest Gemini 3 model — ideal for NPC dialogue.', contextWindow: 1000000, supportsStructuredOutput: true },
+            { id: 'gemini-3-pro', name: 'Gemini 3 Pro', capability: 'llm', isDefault: false, costTier: 'standard', description: 'Most capable Gemini 3 model with 2M context.', contextWindow: 2000000, supportsStructuredOutput: true },
+            { id: 'text-embedding-005', name: 'Text Embedding 005', capability: 'embedding', isDefault: true, costTier: 'budget', description: 'Latest Google embedding model for semantic memory.' },
             { id: 'google-cloud-speech-v2', name: 'Cloud Speech-to-Text', capability: 'asr', isDefault: true, costTier: 'standard', description: 'Multilingual speech recognition.' },
             { id: 'google-cloud-tts', name: 'Cloud Text-to-Speech', capability: 'tts', isDefault: true, costTier: 'standard', description: 'Natural voices in 40+ languages.' },
-            { id: 'veo-2', name: 'Veo 2', capability: 'video', isDefault: true, costTier: 'premium', description: 'Google video generation.' },
+            { id: 'veo-3', name: 'Veo 3', capability: 'video', isDefault: true, costTier: 'premium', description: 'Google video generation for immersive scenario content.' },
         ],
     },
     {

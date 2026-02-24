@@ -237,3 +237,34 @@ export function registerBuiltinTools(toolkit: AgentToolkitInstance, providers: T
         });
     }
 }
+
+// ─── LLMProvider → ToolProviders Bridge ───────────────────────
+
+/**
+ * Create a ToolProviders from any LLMProvider instance.
+ * This is the bridge that connects Google AI Studio (or any other
+ * AI provider) to the agent toolkit's tool registration system.
+ *
+ * Usage:
+ *   const providers = createToolProvidersFromLLM(googleBridge);
+ *   registerBuiltinTools(toolkit, providers);
+ *
+ * @param llm - Any object implementing generateText, generateStructured, generateEmbedding
+ * @param extras - Additional non-LLM providers (world state, navigation, etc.)
+ */
+export function createToolProvidersFromLLM(
+    llm: {
+        generateText: (system: string, user: string) => Promise<string>;
+        generateStructured: <T>(system: string, user: string, schema: Record<string, unknown>) => Promise<T>;
+        generateEmbedding: (text: string) => Promise<number[]>;
+    },
+    extras?: Omit<ToolProviders, 'generateText' | 'generateStructured' | 'embedText'>,
+): ToolProviders {
+    return {
+        generateText: llm.generateText.bind(llm),
+        generateStructured: llm.generateStructured.bind(llm),
+        embedText: llm.generateEmbedding.bind(llm),
+        ...extras,
+    };
+}
+
