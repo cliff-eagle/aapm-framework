@@ -1,0 +1,76 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Malta
+# ════════════════════════════════════════════════════════════════
+
+region: malta
+ports:
+
+  - id: loc_valletta
+    name: Valletta
+    country: Malta
+    coordinates: [35.90, 14.51]
+    languages: [Maltese, English]
+    marina: Grand Harbour Marina
+    cultural_highlight: "Knights Hospitaller fortress capital, Baroque masterpiece"
+    npcs:
+      - {name: Pawlu, role: harbor-master, language: Maltese/English, personality: "Grand Harbour veteran, guides ships past Fort St Elmo", cultural_note: "Grand Harbour is one of the world's finest natural harbors — Knights chose well"}
+      - {name: Carmen, role: pastizzeria-owner, language: Maltese, personality: "Serves pastizzi (ricotta pastries) since 4am daily", cultural_note: "Pastizzi cost €0.50 — locals eat 3-4 at a time with a Kinnie (local bitter orange drink)"}
+      - {name: Fr. Dominic, role: cathedral-guide, language: Maltese/English, personality: "St. John's Co-Cathedral docent, Caravaggio devotee", cultural_note: "Caravaggio painted 'The Beheading of St. John' here while on the run for murder"}
+      - {name: Maria, role: lace-maker, language: Maltese, personality: "Bizzilla (Maltese bobbin lace) artisan, patient teacher", cultural_note: "Maltese lace is centuries old — each village has its own patterns"}
+
+  - id: loc_marsaxlokk
+    name: Marsaxlokk
+    country: Malta
+    coordinates: [35.84, 14.54]
+    languages: [Maltese, English]
+    marina: Marsaxlokk Harbor
+    cultural_highlight: "Iconic painted luzzu fishing boats, Sunday fish market"
+    npcs:
+      - {name: Wistin, role: fisherman, language: Maltese, personality: "Third-generation luzzu captain, paints the Eye of Osiris", cultural_note: "The Eye of Osiris on every luzzu is Phoenician — protects the boat at sea"}
+      - {name: Tessie, role: market-vendor, language: Maltese/English, personality: "Sunday fish market queen, lampuki (mahi-mahi) season expert", cultural_note: "Lampuki season (Sept-Nov) is a national event — the fish practically leaps into boats"}
+      - {name: Ġużi, role: restaurant-owner, language: Maltese, personality: "Waterfront aljotta (fish soup) specialist", cultural_note: "Aljotta uses tomato and garlic, NOT bouillabaisse — don't compare them"}
+
+  - id: loc_gozo
+    name: Mġarr (Gozo)
+    country: Malta
+    coordinates: [36.03, 14.30]
+    languages: [Maltese, English]
+    marina: Mġarr Harbour
+    cultural_highlight: "Rural twin island, Calypso's Cave (Odyssey), Ġgantija temples"
+    npcs:
+      - {name: Toni, role: harbor-master, language: Gozitan Maltese, personality: "Mġarr ferry terminal manager, Gozo independence advocate", cultural_note: "Gozitans consider themselves separate from Malta — distinct accent, culture, pace"}
+      - {name: Ċeska, role: cheese-maker, language: Gozitan Maltese, personality: "Ġbejna (sheep's milk cheese) artisan, sunrise milking", cultural_note: "Ġbejna is Malta's signature cheese — fresh, sundried, or peppered versions"}
+      - {name: Alfred, role: guide, language: Maltese/English, personality: "Ġgantija temples expert — older than Stonehenge and Pyramids", cultural_note: "Ġgantija temples are 5,500 years old — the world's oldest freestanding structures"}
+
+  - id: loc_comino
+    name: Comino
+    country: Malta
+    coordinates: [36.01, 14.34]
+    languages: [Maltese, English]
+    marina: Blue Lagoon anchorage
+    cultural_highlight: "Virtually uninhabited, Blue Lagoon, crystal waters"
+    npcs:
+      - {name: Salvu, role: boat-operator, language: Maltese, personality: "Blue Lagoon boat taxi, sunrise-to-sunset schedule only", cultural_note: "Only 3 permanent residents on Comino — it's essentially a nature reserve"}
+      - {name: Dun Karm, role: chapel-keeper, language: Maltese, personality: "Santa Marija Chapel caretaker, walks the entire island daily", cultural_note: "You can walk the entire island in 2 hours — no cars, no roads, no shops"}
+
+  - id: loc_sliema
+    name: Sliema
+    country: Malta
+    coordinates: [35.91, 14.50]
+    languages: [Maltese, English]
+    marina: Sliema Ferries
+    cultural_highlight: "Promenade waterfront, Valletta skyline views, shopping district"
+    npcs:
+      - {name: Mark, role: dive-shop-owner, language: English/Maltese, personality: "Malta wreck diving specialist, HMS Maori expert", cultural_note: "Malta has some of the Med's best wreck dives — visibility 30m+, warm water year-round"}
+      - {name: Antoinette, role: cafe-server, language: Maltese/English, personality: "Exiles bar institution, watches the Three Cities ferry", cultural_note: "Maltese switch between English and Maltese mid-sentence — code-switching is the norm"}
+
+  - id: loc_birgu
+    name: Birgu (Vittoriosa)
+    country: Malta
+    coordinates: [35.89, 14.52]
+    languages: [Maltese, English]
+    marina: Vittoriosa Waterfront
+    cultural_highlight: "Original Knights' capital before Valletta, Maritime Museum"
+    npcs:
+      - {name: Joseph, role: museum-curator, language: Maltese/English, personality: "Maritime Museum guide, Great Siege of 1565 specialist", cultural_note: "The Great Siege is Malta's founding story — 9,000 Knights vs 40,000 Ottoman troops"}
+      - {name: Nina, role: restaurant-owner, language: Maltese, personality: "Waterfront terrace, rabbit stew (stuffat tal-fenek) master", cultural_note: "Rabbit is Malta's national dish — the Knights banned hunting, locals kept eating it in secret"}

@@ -1,0 +1,175 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Additional Ports (Gap Fill)
+# ════════════════════════════════════════════════════════════════
+# Ports that complete missing coverage across the Mediterranean.
+
+region: additional
+ports:
+
+  # ─── Italy (missing from main registry) ──────────────────────
+
+  - id: loc_positano
+    name: Positano
+    country: Italy
+    coordinates: [40.63, 14.48]
+    languages: [Italian]
+    marina: Positano anchorage (no marina — tender from yacht)
+    cultural_highlight: "Vertical village, Amalfi Coast jewel, Steinbeck's paradise"
+    npcs:
+      - {name: Roberto, role: water-taxi-captain, language: Italian, personality: "Shuttles from yacht anchorage to beach, knows every cove", cultural_note: "No marina — you anchor offshore and tender in, like old-school Mediterranean"}
+      - {name: Patrizia, role: sandal-maker, language: Italian, personality: "Hand-makes custom leather sandals while you wait", cultural_note: "Positano sandals are made-to-measure on the spot — a 30-minute tradition"}
+
+  - id: loc_sorrento
+    name: Sorrento
+    country: Italy
+    coordinates: [40.63, 14.38]
+    languages: [Italian]
+    marina: Marina Piccola
+    cultural_highlight: "Cliff-top town, limoncello origin, gateway to Capri"
+    npcs:
+      - {name: Alfonso, role: limoncello-maker, language: Italian, personality: "Family distillery since 1860, orchard tours", cultural_note: "Sorrento limoncello vs Amalfi limoncello — locals will argue for hours"}
+      - {name: Concetta, role: intarsia-artisan, language: Italian/Neapolitan, personality: "Marquetry wood inlay artist, generations of craft", cultural_note: "Sorrento intarsia (wood inlay) is centuries old — tiny workshops line Via San Cesareo"}
+
+  - id: loc_brindisi
+    name: Brindisi
+    country: Italy
+    coordinates: [40.64, 17.95]
+    languages: [Italian, Brindisino]
+    marina: Marina di Brindisi
+    cultural_highlight: "End of the Appian Way, Crusader departure point"
+    npcs:
+      - {name: Cosimo, role: harbor-master, language: Italian, personality: "Ancient port veteran — ships left for the Holy Land from here", cultural_note: "The Roman column marking the end of Via Appia still stands at the harbor"}
+      - {name: Addolorata, role: orecchiette-maker, language: Brindisino/Italian, personality: "Street pasta maker, tourists and locals queue together", cultural_note: "Pugliese nonnas make orecchiette in the street — it's performance art"}
+
+  - id: loc_tropea
+    name: Tropea
+    country: Italy
+    coordinates: [38.68, 15.90]
+    languages: [Italian, Calabrese]
+    marina: Porto di Tropea
+    cultural_highlight: "Calabria's pearl, red onion capital, cliff-top church"
+    npcs:
+      - {name: Peppino, role: onion-farmer, language: Calabrese/Italian, personality: "Cipolla rossa di Tropea DOP grower, sweet as an apple", cultural_note: "Tropea red onions are so sweet you can eat them like fruit — UNESCO-protected area"}
+      - {name: Stella, role: nduja-maker, language: Calabrese, personality: "Spilinga nduja specialist, spicy Calabrian salami", cultural_note: "Nduja is spreadable salami made with Calabrian chili — it burns beautifully"}
+
+  - id: loc_otranto
+    name: Otranto
+    country: Italy
+    coordinates: [40.15, 18.49]
+    languages: [Italian, Griko]
+    marina: Porto di Otranto
+    cultural_highlight: "Easternmost point of Italy, Griko-speaking minority"
+    npcs:
+      - {name: Vitale, role: cathedral-guide, language: Italian/Griko, personality: "Cathedral mosaic floor expert — the Tree of Life", cultural_note: "A Greek-speaking minority (Griko) has lived here since antiquity — not modern immigrants"}
+      - {name: Cesira, role: cafe-server, language: Italian, personality: "Lungomare sunset bar, Albania visible across the strait", cultural_note: "On clear days you can see Albania — 72km across the Strait of Otranto"}
+
+  # ─── Greece (additional islands) ─────────────────────────────
+
+  - id: loc_milos
+    name: Milos
+    country: Greece
+    coordinates: [36.74, 24.43]
+    languages: [Greek]
+    marina: Adamas Port
+    cultural_highlight: "Venus de Milo origin, volcanic beaches, 70+ beaches"
+    npcs:
+      - {name: Michalis, role: fisherman, language: Greek, personality: "Kleftiko cove by-boat-only guide, former sponge diver", cultural_note: "Kleftiko caves were pirate hideouts — accessible only by sea"}
+      - {name: Eirini, role: gallery-owner, language: Greek, personality: "Plaka hilltop gallery, Cycladic art specialist", cultural_note: "The Venus de Milo was found by a farmer in 1820 — France took it, Greece wants it back"}
+
+  - id: loc_samos
+    name: Samos
+    country: Greece
+    coordinates: [37.75, 26.97]
+    languages: [Greek]
+    marina: Pythagorion Harbor
+    cultural_highlight: "Pythagoras birthplace, sweet Muscat wine, 1km from Turkey"
+    npcs:
+      - {name: Pythagoras (nickname), role: math-teacher, language: Greek, personality: "Retired teacher who gives geometry tours of ancient ruins", cultural_note: "Pythagoras was born here — the harbor is named Pythagorion in his honor"}
+      - {name: Despina, role: winemaker, language: Greek, personality: "Samos Muscat wine producer, co-operative member", cultural_note: "Samos Muscat is one of the world's great dessert wines — co-operative since 1934"}
+
+  - id: loc_ithaca
+    name: Ithaca (Vathy)
+    country: Greece
+    coordinates: [38.37, 20.72]
+    languages: [Greek]
+    marina: Vathy Harbor
+    cultural_highlight: "Odysseus' homeland, literary pilgrimage, remote tranquility"
+    npcs:
+      - {name: Odysseas, role: fisherman, language: Greek, personality: "Named after THE Odysseus, philosophical about journeys", cultural_note: "Kavafis' poem 'Ithaka' — 'the journey is more important than the destination'"}
+      - {name: Penelope, role: weaver, language: Greek, personality: "Named after THE Penelope, traditional loom weaving", cultural_note: "Ithaca has no airport, no chain restaurants — intentionally preserved simplicity"}
+
+  - id: loc_ikaria
+    name: Ikaria
+    country: Greece
+    coordinates: [37.60, 26.15]
+    languages: [Greek]
+    marina: Agios Kirikos Port
+    cultural_highlight: "Blue Zone (longevity), anarchist traditions, Icarus myth"
+    npcs:
+      - {name: Thodoris, role: cafe-owner, language: Greek, personality: "Opens his café whenever he feels like it — no schedule", cultural_note: "Ikaria is a Blue Zone — people routinely live past 100, nobody uses alarm clocks"}
+      - {name: Koula, role: herbalist, language: Greek, personality: "Mountain herb gatherer, traditional remedies", cultural_note: "Ikarians drink mountain tea daily — studies link it to their extreme longevity"}
+
+  # ─── Libya ───────────────────────────────────────────────────
+
+  - id: loc_tripoli_libya
+    name: Tripoli
+    country: Libya
+    coordinates: [32.90, 13.18]
+    languages: [Arabic]
+    marina: Tripoli Old Port
+    cultural_highlight: "Roman Leptis Magna nearby, complex modern history"
+    npcs:
+      - {name: Tariq, role: port-agent, language: Arabic/English, personality: "Navigates complex permissions, essential fixer", cultural_note: "Libya requires advance visa arrangements — not a spontaneous stop"}
+      - {name: Fatima, role: guide, language: Arabic, personality: "Leptis Magna archaeologist, Roman ruins devotee", cultural_note: "Leptis Magna is the best-preserved Roman city in the world — a hidden treasure"}
+
+  # ─── Additional Turkey ──────────────────────────────────────
+
+  - id: loc_datca
+    name: Datça
+    country: Turkey
+    coordinates: [36.73, 27.69]
+    languages: [Turkish]
+    marina: Datça Marina
+    cultural_highlight: "Remote peninsula, ancient Knidos, wellness retreat"
+    npcs:
+      - {name: Bulent, role: olive-farmer, language: Turkish, personality: "Organic almond and olive producer, peninsula hermit", cultural_note: "Datça almond blossom festival in February — entire peninsula turns white"}
+      - {name: Sibel, role: yoga-teacher, language: Turkish/English, personality: "Runs retreats at ancient Knidos ruins", cultural_note: "Knidos had a famous Aphrodite statue — people sailed for days just to see it"}
+
+  # ─── Additional France ──────────────────────────────────────
+
+  - id: loc_sete
+    name: Sète
+    country: France
+    coordinates: [43.40, 3.70]
+    languages: [French, Occitan]
+    marina: Port de Sète
+    cultural_highlight: "Venice of Languedoc, jousting tournaments on water"
+    npcs:
+      - {name: Thierry, role: jouter, language: Occitan/French, personality: "Water jousting champion, traditional costume", cultural_note: "Water jousting (joutes nautiques) has been practiced since 1666 — lance fighting on boats"}
+      - {name: Magali, role: tielle-baker, language: French, personality: "Tielle octopus pie specialist, Italian-origin recipe", cultural_note: "Sète was built by Italian immigrants — the tielle is originally from Gaeta, Italy"}
+
+  # ─── Additional Spain ───────────────────────────────────────
+
+  - id: loc_formentera
+    name: Formentera
+    country: Spain
+    coordinates: [38.71, 1.43]
+    languages: [Spanish, Catalan]
+    marina: La Savina Port
+    cultural_highlight: "Car-free paradise, Caribbean-clear waters, hippie heritage"
+    npcs:
+      - {name: Xumeu, role: harbor-master, language: Catalan/Spanish, personality: "Manages the only port on the island, eco-conscious", cultural_note: "Formentera's Posidonia seagrass is UNESCO-protected — anchoring is restricted"}
+      - {name: Luna, role: market-vendor, language: Spanish, personality: "La Mola hippie market artisan, arrived in the 70s", cultural_note: "Bob Dylan and Pink Floyd came here in the 60s — the hippie community persists"}
+
+  # ─── Additional Croatia ─────────────────────────────────────
+
+  - id: loc_brac
+    name: Bol (Brač)
+    country: Croatia
+    coordinates: [43.26, 16.66]
+    languages: [Croatian]
+    marina: Bol Harbor
+    cultural_highlight: "Zlatni Rat (Golden Horn) beach, Brač stone (White House marble)"
+    npcs:
+      - {name: Mate, role: stone-carver, language: Croatian, personality: "Brač stone artisan — same stone as the White House", cultural_note: "Brač limestone built Diocletian's Palace AND the White House — locals are proud of both"}
+      - {name: Ivka, role: olive-oil-producer, language: Croatian, personality: "Award-winning Brač olive oil, 1500-year-old trees", cultural_note: "Some Brač olive trees are over 1,500 years old — they still produce oil"}
