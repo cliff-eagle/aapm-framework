@@ -225,6 +225,67 @@ async function handleMessage(
             handleScenarioStatus(ws, state, id);
             break;
 
+        // ── Unity Agent Telemetry ────────────────────────────
+        case 'agent/decision': {
+            const decision = payload as { agentType: string; decisionType: string; message: string };
+            console.log(`[Bridge] Agent decision: ${decision.agentType}/${decision.decisionType}: ${decision.message}`);
+            if (state.session) {
+                state.session.eventLog.push({
+                    eventId: `evt-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                    type: 'AGENT_DECISION',
+                    emittedAt: new Date().toISOString(),
+                    source: `unity:${decision.agentType}` as any,
+                    learnerId: state.session.learnerId,
+                    sessionId: state.session.sessionId,
+                    correlationId: id,
+                    payload: decision,
+                    schemaVersion: '1.0',
+                });
+            }
+            send(ws, 'agent/ack', { received: true }, id);
+            break;
+        }
+
+        case 'scenario/state': {
+            const scenarioState = payload as { portId: string; status: string; phases: unknown };
+            console.log(`[Bridge] Scenario state: ${scenarioState.portId} → ${scenarioState.status}`);
+            if (state.session) {
+                state.session.eventLog.push({
+                    eventId: `evt-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                    type: 'SCENARIO_STATE_CHANGED',
+                    emittedAt: new Date().toISOString(),
+                    source: 'unity:scenario_director',
+                    learnerId: state.session.learnerId,
+                    sessionId: state.session.sessionId,
+                    correlationId: id,
+                    payload: scenarioState,
+                    schemaVersion: '1.0',
+                });
+            }
+            send(ws, 'agent/ack', { received: true }, id);
+            break;
+        }
+
+        case 'evaluation/metrics': {
+            const metrics = payload as { portId: string; cefrLevel: string; overallAccuracy: number };
+            console.log(`[Bridge] Evaluation metrics: ${metrics.portId}, CEFR=${metrics.cefrLevel}, acc=${metrics.overallAccuracy}`);
+            if (state.session) {
+                state.session.eventLog.push({
+                    eventId: `evt-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                    type: 'EVALUATION_METRICS_RECEIVED',
+                    emittedAt: new Date().toISOString(),
+                    source: 'unity:progression_agent',
+                    learnerId: state.session.learnerId,
+                    sessionId: state.session.sessionId,
+                    correlationId: id,
+                    payload: metrics,
+                    schemaVersion: '1.0',
+                });
+            }
+            send(ws, 'agent/ack', { received: true }, id);
+            break;
+        }
+
         default:
             sendError(ws, 'unknown_type', `Unknown message type: ${type}`, id);
     }

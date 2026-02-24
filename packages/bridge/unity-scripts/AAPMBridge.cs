@@ -280,6 +280,28 @@ public class AAPMBridge : MonoBehaviour
     {
         Send("scenario/status", new EmptyPayload());
     }
+
+    /// <summary>Send a Unity agent's decision to the TypeScript brain</summary>
+    public void SendAgentDecision(string agentType, string decisionType, string message)
+    {
+        Send("agent/decision", new AgentDecisionPayload
+        {
+            agentType = agentType,
+            decisionType = decisionType,
+            message = message
+        });
+    }
+
+    /// <summary>Send scenario phase state to the TypeScript brain</summary>
+    public void SendScenarioState(string portId, string status, object phases)
+    {
+        Send("scenario/state", new ScenarioStatePayload
+        {
+            portId = portId,
+            status = status,
+            phases = phases
+        });
+    }
 }
 
 // ─── Serializable Message Types ───────────────────────────────
@@ -302,6 +324,8 @@ public class BridgeMessage
 [Serializable] public class ScenarioStartPayload { public string cityName; public string locationId; }
 [Serializable] public class ScenarioAdvancePayload { public bool skipOptional; }
 [Serializable] public class EmptyPayload { }
+[Serializable] public class AgentDecisionPayload { public string agentType; public string decisionType; public string message; }
+[Serializable] public class ScenarioStatePayload { public string portId; public string status; public object phases; }
 
 // ─── Scenario Chain Response Types ────────────────────────────
 

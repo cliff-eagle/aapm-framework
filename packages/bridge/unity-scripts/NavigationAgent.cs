@@ -317,7 +317,7 @@ public class NavigationAgent : MonoBehaviour
 
     // ─── Utility ──────────────────────────────────────────────
 
-    float GetDistanceToDestinationNM()
+    public float GetDistanceToDestinationNM()
     {
         if (YachtController.Instance == null) return float.MaxValue;
         float worldDistance = Vector3.Distance(

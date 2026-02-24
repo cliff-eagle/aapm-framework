@@ -252,6 +252,9 @@ public class YachtController : MonoBehaviour
 
     // ─── Public API ───────────────────────────────────────────
 
+    /// <summary>Get current speed in knots (convenience method for agents)</summary>
+    public float GetSpeed() => CurrentSpeedKnots;
+
     public void DropAnchor()
     {
         IsAnchored = true;

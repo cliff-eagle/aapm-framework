@@ -79,7 +79,7 @@ ports, walking through real-world landmarks, immersive NPC conversations.
 **Best For**: The patent's flagship product. Full *Cielos del Mediterráneo*
 game experience with realistic yacht physics and immersive environments.
 
-### Systems (21 scripts, ~7,200 lines)
+### Systems (26 scripts, ~9,500 lines)
 
 - **Yacht**: `YachtController`, `YachtInterior`, `SeaNavigator`
 - **Port Generation**: `RealisticPortGenerator`, `PortServicesGenerator`, `PortEnvironmentGenerator`
@@ -88,6 +88,14 @@ game experience with realistic yacht physics and immersive environments.
 - **UI**: `DialogueUI`, `ChartTableUI`, `VHFRadioUI`, `ScenarioChainUI`, `OnboardingUI`
 - **Systems**: `GameManager`, `WeatherSystem`, `ProgressionManager`, `PlayerController`
 - **Bridge**: `AAPMBridge`
+
+### Agents (5 scripts — mirror core TS agents on the Unity side)
+
+- **NavigationAgent** — Route planning, VHF auto-trigger, approach coaching, hazard warnings
+- **CrewAgent** — 3 persistent crew companions; cultural briefings, meal vocab, night watch stories
+- **ScenarioDirector** — Port phase sequencing, departure gating, time pressure, ambient events
+- **ProgressionAgent** — 16 achievements, CEFR difficulty scaling, per-language scoring, port summaries
+- **WeatherDirector** — Emergency VHF drills, shelter suggestions, weather vocabulary in 5 languages
 
 ## Data Flow
 

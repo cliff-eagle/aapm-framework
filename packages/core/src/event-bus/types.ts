@@ -27,7 +27,11 @@ export type AAPMEventType =
     | 'SESSION_STARTED'
     | 'SESSION_ENDED'
     | 'PIPELINE_PHASE_COMPLETED'
-    | 'SCAFFOLDING_ESCALATED';
+    | 'SCAFFOLDING_ESCALATED'
+    // Unity-side agent events
+    | 'AGENT_DECISION'
+    | 'SCENARIO_STATE_CHANGED'
+    | 'EVALUATION_METRICS_RECEIVED';
 
 // ─── Module Identifiers ───────────────────────────────────────────────────────
 
@@ -48,7 +52,13 @@ export type AAPMModuleId =
     | 'dialogue-engine'
     | 'session-orchestrator'
     | 'multimodal-router'
-    | 'curriculum-delivery-router';
+    | 'curriculum-delivery-router'
+    // Unity-side agents
+    | 'unity:navigation'
+    | 'unity:crew'
+    | 'unity:scenario_director'
+    | 'unity:progression_agent'
+    | 'unity:weather_director';
 
 // ─── Event Envelope ───────────────────────────────────────────────────────────
 

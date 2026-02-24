@@ -215,6 +215,39 @@ export interface ScenarioStatusRequest {
     // no payload needed
 }
 
+// ─── Unity Agent → Server ─────────────────────────────────────
+
+/** Unity agent reports a decision to the TypeScript brain */
+export interface AgentDecisionRequest {
+    /** Which agent made the decision (navigation, crew, scenario, progression, weather) */
+    agentType: string;
+    /** Decision type (e.g. 'coaching_tip', 'speak', 'achievement') */
+    decisionType: string;
+    /** Human-readable description */
+    message: string;
+}
+
+/** Unity ScenarioDirector reports phase state */
+export interface ScenarioStateRequest {
+    portId: string;
+    status: string; // 'started' | 'phase_changed' | 'ended'
+    phases: Array<{
+        id: string;
+        name: string;
+        state: string; // 'locked' | 'available' | 'active' | 'completed' | 'skipped'
+        required: boolean;
+    }>;
+}
+
+/** Unity ProgressionAgent reports evaluation metrics */
+export interface EvaluationMetricsRequest {
+    portId: string;
+    languageScores: Record<string, number>;
+    overallAccuracy: number;
+    totalVocabLearned: number;
+    cefrLevel: string;
+}
+
 /** Scenario chain status response */
 export interface ScenarioChainResponse {
     /** Is a scenario chain active? */
@@ -255,6 +288,9 @@ export type ClientMessageType =
     | 'scenario/start'
     | 'scenario/advance'
     | 'scenario/status'
+    | 'agent/decision'
+    | 'scenario/state'
+    | 'evaluation/metrics'
     | 'ping';
 
 /** All server → client message types */
@@ -268,6 +304,7 @@ export type ServerMessageType =
     | 'npcs/list'
     | 'locations/list'
     | 'scenario/chain'
+    | 'agent/ack'
     | 'error'
     | 'pong';
 

@@ -142,6 +142,28 @@ public class WeatherSystem : MonoBehaviour
         return $"Mediterranean {timeOfDay}. {windDesc} from {cardinal} at {CurrentWindSpeed:F0} kn. {seaDesc}.";
     }
 
+    /// <summary>Get Beaufort scale number from current wind speed</summary>
+    public float GetBeaufortScale()
+    {
+        float knots = CurrentWindSpeed;
+        if (knots < 1) return 0;  if (knots < 4) return 1;
+        if (knots < 7) return 2;  if (knots < 11) return 3;
+        if (knots < 17) return 4; if (knots < 22) return 5;
+        if (knots < 28) return 6; if (knots < 34) return 7;
+        if (knots < 41) return 8; if (knots < 48) return 9;
+        if (knots < 56) return 10; if (knots < 64) return 11;
+        return 12;
+    }
+
+    /// <summary>Get time of day as 0..1 fraction (0=midnight, 0.5=noon)</summary>
+    public float GetTimeOfDay() => CurrentHour / 24f;
+
+    /// <summary>Get current wind speed in knots</summary>
+    public float GetWindSpeed() => CurrentWindSpeed;
+
+    /// <summary>Get current wind direction in degrees (0=N, 90=E)</summary>
+    public float GetWindDirection() => CurrentWindDirection;
+
     // ─── Internal ─────────────────────────────────────────────
 
     void UpdateSun()
