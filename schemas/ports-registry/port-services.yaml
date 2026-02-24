@@ -1,0 +1,234 @@
+# ════════════════════════════════════════════════════════════════
+# Universal Port Services — Common buildings at every port
+# ════════════════════════════════════════════════════════════════
+# These services are auto-generated at every port, regardless of
+# whether landmark-specific data exists. Each service has:
+#   - A building with country-appropriate architecture
+#   - An NPC with a culturally appropriate name
+#   - Dialogue context for language learning scenarios
+#
+# NPC names are per-country defaults. If a port's YAML already
+# defines an NPC with a matching role, that NPC takes priority.
+
+services:
+
+  immigration:
+    building_type: official
+    icon: "🛂"
+    npc_role: immigration-officer
+    dialogue_scenarios:
+      - passport_check
+      - customs_declaration
+      - visa_question
+      - crew_list_review
+    names_by_country:
+      Spain: {name: "Agente García", lang: Spanish, personality: "Formal but warming up; appreciates when you try Spanish on forms"}
+      France: {name: "Agent Moreau", lang: French, personality: "Strictly by-the-book; insists all forms in French first"}
+      Monaco: {name: "Agent Beaumont", lang: French, personality: "Efficient, polite; sees the mega-yachts daily, unimpressed"}
+      Italy: {name: "Agente Ferrara", lang: Italian, personality: "Gesticulates while stamping passports; asks about your journey"}
+      Greece: {name: "Αξιωματικός Παπαδόπουλος (Papadopoulos)", lang: Greek, personality: "Relaxed pace; offers coffee while processing papers"}
+      Turkey: {name: "Memur Yıldız", lang: Turkish, personality: "Professional; explains Turkish e-visa process helpfully"}
+      Croatia: {name: "Službenik Horvat", lang: Croatian, personality: "Quick and efficient; proud of EU-era streamlined process"}
+      Montenegro: {name: "Službenik Petrović", lang: Montenegrin, personality: "Friendly, practices English; asks about your yacht"}
+      Malta: {name: "Uffiċjal Borg", lang: Maltese/English, personality: "Bilingual and breezy; Malta's small enough that he knows everyone"}
+      Morocco: {name: "موظف بنعلي (Benali)", lang: Arabic/French, personality: "Trilingual; helps in whatever language you're most comfortable with"}
+      Tunisia: {name: "موظف بن يوسف (Ben Youssef)", lang: Arabic/French, personality: "Patient; explains the entry stamp traditions"}
+      Algeria: {name: "موظف أمزيان (Ameziane)", lang: Arabic/French, personality: "Thorough but warm; curious about maritime routes"}
+      Egypt: {name: "موظف إبراهيم (Ibrahim)", lang: Arabic/English, personality: "Experienced; handles tourist visas with practiced ease"}
+      Libya: {name: "موظف الطرابلسي (Trabelsi)", lang: Arabic, personality: "Alert but welcoming; appreciates cultural sensitivity"}
+      Israel: {name: "פקיד לוי (Levi)", lang: Hebrew/English, personality: "Security-focused but approachable; curious questions about your route"}
+      Lebanon: {name: "موظف خوري (Khoury)", lang: Arabic/French, personality: "Charming; tells you which restaurants to visit while stamping"}
+      Cyprus: {name: "Υπάλληλος Χριστοδούλου (Christodoulou)", lang: Greek/English, personality: "Cheerful; warns you about the cats at the port"}
+      Albania: {name: "Nëpunës Hoxha", lang: Albanian, personality: "Warm welcome; excited to see yacht visitors"}
+      Slovenia: {name: "Uradnik Novak", lang: Slovenian, personality: "Precise and efficient; mentions Piran's beauty"}
+      Gibraltar (UK): {name: "Officer Williams", lang: English/Spanish, personality: "British efficiency with Mediterranean warmth"}
+
+  police:
+    building_type: official
+    icon: "👮"
+    npc_role: port-police
+    dialogue_scenarios:
+      - reporting_incident
+      - asking_directions
+      - maritime_regulations
+      - noise_complaint
+    names_by_country:
+      Spain: {name: "Guardia Martínez", lang: Spanish, personality: "Guardia Civil marina unit; strict on anchoring zones, softer on siesta hours"}
+      France: {name: "Gendarme Dubois", lang: French, personality: "Maritime gendarmerie; meticulous about safety equipment checks"}
+      Italy: {name: "Capitaneria Rossi", lang: Italian, personality: "Capitaneria di Porto; tells stories between inspections"}
+      Greece: {name: "Λιμενάρχης Δημητρίου (Dimitriou)", lang: Greek, personality: "Coast guard veteran; philosophical about the sea"}
+      Turkey: {name: "Sahil Güvenlik Demir", lang: Turkish, personality: "Coast guard; helpful navigational advice for local waters"}
+      Croatia: {name: "Lučki kapetan Marić", lang: Croatian, personality: "Knows every cove and hidden beach; shares local secrets"}
+      Morocco: {name: "ضابط حسني (Hasni)", lang: Arabic/French, personality: "Relaxed authority; emphasizes respect for local customs"}
+      Malta: {name: "Pulizija Camilleri", lang: Maltese/English, personality: "Everyone's uncle; knows the island's gossip"}
+
+  hospital:
+    building_type: medical
+    icon: "🏥"
+    npc_role: doctor
+    dialogue_scenarios:
+      - seasickness_remedy
+      - sunburn_treatment
+      - jellyfish_sting
+      - diving_decompression
+      - general_checkup
+    names_by_country:
+      Spain: {name: "Dra. Sánchez", lang: Spanish, personality: "Calm and thorough; explains everything in simple Spanish for learners"}
+      France: {name: "Dr. Laurent", lang: French, personality: "Measured and precise; insists on medical French terminology"}
+      Italy: {name: "Dott.ssa Bianchi", lang: Italian, personality: "Warm bedside manner; prescribes gelato for minor ailments"}
+      Greece: {name: "Δρ. Αλεξάνδρου (Dr. Alexandrou)", lang: Greek, personality: "References Hippocrates unironically; knows herbal remedies"}
+      Turkey: {name: "Dr. Özdemir", lang: Turkish, personality: "Modern and efficient; trained in Istanbul, practices at the port"}
+      Croatia: {name: "Dr. Kovačević", lang: Croatian, personality: "Practical; seen every sailing injury imaginable"}
+      Malta: {name: "Dr. Vella", lang: English/Maltese, personality: "British-trained; handles diving accidents from Blue Grotto regularly"}
+      Morocco: {name: "د. العلوي (Dr. Alaoui)", lang: Arabic/French, personality: "Combines modern medicine with traditional knowledge"}
+      Egypt: {name: "د. مصطفى (Dr. Mostafa)", lang: Arabic/English, personality: "Experienced with tourist health; knows the local pharmacies well"}
+
+  pharmacy:
+    building_type: commercial
+    icon: "💊"
+    npc_role: pharmacist
+    dialogue_scenarios:
+      - motion_sickness_pills
+      - sunscreen_advice
+      - local_remedies
+      - prescription_translation
+    names_by_country:
+      Spain: {name: "Farmacéutica López", lang: Spanish, personality: "Helpful; knows which sunscreens work for Mediterranean sun"}
+      France: {name: "Pharmacien Petit", lang: French, personality: "Green cross expert; recommends homeopathic options first"}
+      Italy: {name: "Farmacista Colombo", lang: Italian, personality: "Neighborhood authority; everyone comes for advice first"}
+      Greece: {name: "Φαρμακοποιός Νικολάου (Nikolaou)", lang: Greek, personality: "Suggests olive oil for everything; often right"}
+      Turkey: {name: "Eczacı Kaya", lang: Turkish, personality: "Modern pharmacy; helps translate international prescriptions"}
+      Malta: {name: "Spiżjar Zammit", lang: Maltese/English, personality: "Small-island pharmacist; knows everyone's medical history"}
+
+  grocery:
+    building_type: commercial
+    icon: "🛒"
+    npc_role: grocer
+    dialogue_scenarios:
+      - provisioning_yacht
+      - local_produce_explanation
+      - bargaining_practice
+      - recipe_suggestion
+    names_by_country:
+      Spain: {name: "Tendero Ruiz", lang: Spanish, personality: "Proud of local produce; teaches you the names of every fruit in Spanish"}
+      France: {name: "Épicier Bernard", lang: French, personality: "Curates his selection like an art gallery; judgmental about your cheese choices"}
+      Italy: {name: "Alimentari Gallo", lang: Italian, personality: "Family shop since 1952; gives you free samples of everything"}
+      Greece: {name: "Παντοπώλης Κωνσταντίνου (Konstantinou)", lang: Greek, personality: "Throws in extra olives; argues passionately about olive oil origins"}
+      Turkey: {name: "Bakkal Aydın", lang: Turkish, personality: "Neighborhood institution; knows what's fresh today from the farmers"}
+      Croatia: {name: "Trgovac Babić", lang: Croatian, personality: "Stocks local olive oil and wine; happy to explain each one"}
+      Morocco: {name: "بقال الحسني (Hassani)", lang: Arabic/French, personality: "Spice expert; teaches you to smell the difference between cumin varieties"}
+      Malta: {name: "Merċant Mifsud", lang: Maltese/English, personality: "Tiny shop, huge selection; knows which boat brought which fish today"}
+      Egypt: {name: "بقال عبد الله (Abdallah)", lang: Arabic, personality: "Warm and generous; always offers tea while you shop"}
+
+  restaurant:
+    building_type: hospitality
+    icon: "🍽️"
+    npc_role: restaurant-owner
+    dialogue_scenarios:
+      - ordering_food
+      - asking_about_specialties
+      - dietary_restrictions
+      - complimenting_the_chef
+      - asking_for_bill
+    names_by_country:
+      Spain: {name: "Mesón de Paco", owner: "Paco", lang: Spanish, personality: "Boisterous; insists you try the gambas al ajillo first"}
+      France: {name: "Chez Hélène", owner: "Hélène", lang: French, personality: "Exacting standards; sighs at ketchup requests but warms to genuine curiosity"}
+      Italy: {name: "Trattoria da Enzo", owner: "Enzo", lang: Italian, personality: "No menu — tells you what he cooked today; refuses to serve cappuccino after 11am"}
+      Greece: {name: "Ταβέρνα του Γιώργου (Yiorgos)", owner: "Yiorgos", lang: Greek, personality: "Brings dishes you didn't order; all delicious; charges fairly"}
+      Turkey: {name: "Lokanta Ahmet", owner: "Ahmet", lang: Turkish, personality: "Grills everything at the door; impossible to walk past without stopping"}
+      Croatia: {name: "Konoba Ante", owner: "Ante", lang: Croatian, personality: "Catches his own fish; shows you photos of today's catch before cooking"}
+      Morocco: {name: "مطعم فاطمة (Fatima)", owner: "Fatima", lang: Arabic/French, personality: "Tagine queen; teaches you to eat with bread properly"}
+      Malta: {name: "Ir-Ristorant ta' Mario", owner: "Mario", lang: Maltese/English, personality: "Serves rabbit stew and ftira; tells Knights of Malta stories between courses"}
+      Egypt: {name: "مطعم أبو خالد (Abu Khalid)", owner: "Abu Khalid", lang: Arabic, personality: "Legendary foul medames; generous portions; won't let you leave hungry"}
+      Lebanon: {name: "مطعم ناديا (Nadia)", owner: "Nadia", lang: Arabic/French, personality: "Meze spread rival to a feast; argues her hummus is Lebanon's best"}
+
+  boardwalk:
+    building_type: outdoor
+    icon: "🌊"
+    npc_role: promenade-vendor
+    dialogue_scenarios:
+      - buying_sunglasses
+      - asking_about_weather
+      - local_recommendations
+      - small_talk
+    names_by_country:
+      Spain: {name: "Vendedor Rafa", lang: Spanish, personality: "Sells sunglasses and cold drinks; knows everyone passing by; gossip central"}
+      France: {name: "Camelot André", lang: French, personality: "Sells crêpes from a cart; sings while cooking; knows the tide schedule"}
+      Italy: {name: "Ambulante Luca", lang: Italian, personality: "Sells gelato and postcards; tells you where the secret beach is"}
+      Greece: {name: "Πλανόδιος Σπύρος (Spyros)", lang: Greek, personality: "Sells cold water and sponges; old fisherman who retrained"}
+      Turkey: {name: "Seyyar Satıcı Ali", lang: Turkish, personality: "Sells simit and corn; knows every boat in the harbor by name"}
+      Croatia: {name: "Prodavač Ivana", lang: Croatian, personality: "Sells lavender sachets from Hvar; shares island stories"}
+      Morocco: {name: "بائع يونس (Younes)", lang: Arabic/French, personality: "Sells fresh orange juice; fastest squeezer on the Mediterranean"}
+      Malta: {name: "Bejjiegħ Noel", lang: Maltese/English, personality: "Sells ħobż biż-żejt (bread with oil); everyone's afternoon snack"}
+
+  bank:
+    building_type: commercial
+    icon: "🏦"
+    npc_role: bank-teller
+    dialogue_scenarios:
+      - currency_exchange
+      - atm_help
+      - wire_transfer
+      - explaining_local_currency
+    names_by_country:
+      Spain: {name: "Cajera Martín", lang: Spanish, personality: "Patient with exchange calculations; explains euro coins from each country"}
+      France: {name: "Caissière Dupont", lang: French, personality: "Efficient; corrects your French numbers above 70 (soixante-dix...)"}
+      Italy: {name: "Cassiere De Luca", lang: Italian, personality: "Friendly; warns about tourist-trap exchange rates nearby"}
+      Greece: {name: "Ταμίας Γεωργίου (Georgiou)", lang: Greek, personality: "Helps with bank vocabulary; offers financial Greek lesson"}
+      Turkey: {name: "Veznedar Şahin", lang: Turkish, personality: "Explains lira denominations; recommends best exchange spots"}
+      Morocco: {name: "صراف كريم (Karim)", lang: Arabic/French, personality: "Expert at dirham conversion; teaches you to count in Arabic"}
+      Egypt: {name: "صراف سامي (Sami)", lang: Arabic/English, personality: "Knows black market rates but only offers official ones; trustworthy"}
+
+  chandlery:
+    building_type: maritime
+    icon: "⚓"
+    npc_role: chandler
+    dialogue_scenarios:
+      - buying_rope_and_fenders
+      - chart_recommendations
+      - weather_forecast_discussion
+      - engine_parts_inquiry
+    names_by_country:
+      Spain: {name: "Náutica de Miguel", lang: Spanish, personality: "Old-school sailor; tests your knot knowledge before selling you rope"}
+      France: {name: "Shipchandler Girard", lang: French, personality: "Precise about specifications; knows every bolt on every engine"}
+      Italy: {name: "Fornitore Navale Conte", lang: Italian, personality: "Storyteller; each piece of equipment comes with a sailing tale"}
+      Greece: {name: "Ναυτιλιακά Αντώνης (Antonis)", lang: Greek, personality: "Descended from boatbuilders; knows wood like a sommelier knows wine"}
+      Turkey: {name: "Denizci Malzemeleri Osman", lang: Turkish, personality: "Sources parts for gulets; can fix anything with wire and ingenuity"}
+      Croatia: {name: "Brodska oprema Tomislav", lang: Croatian, personality: "Former merchant marine; advises on Adriatic weather patterns"}
+
+  tourist_info:
+    building_type: official
+    icon: "ℹ️"
+    npc_role: tourist-guide
+    dialogue_scenarios:
+      - asking_for_map
+      - museum_hours
+      - local_events
+      - transport_options
+      - booking_tours
+    names_by_country:
+      Spain: {name: "Guía Sofía", lang: Spanish/English, personality: "Enthusiastic; has a personal opinion about every monument; corrects guidebook errors"}
+      France: {name: "Guide Camille", lang: French/English, personality: "Elite knowledge; studied art history at the Sorbonne; mildly superior about it"}
+      Italy: {name: "Guida Francesca", lang: Italian/English, personality: "Passionate; cries a little when talking about Renaissance art; infectious enthusiasm"}
+      Greece: {name: "Ξεναγός Δήμητρα (Dimitra)", lang: Greek/English, personality: "Archaeologist by training; treats every ruin as a living story"}
+      Turkey: {name: "Rehber Elif", lang: Turkish/English, personality: "Bridge between East and West; explains layers of civilization patiently"}
+      Croatia: {name: "Vodičica Maja", lang: Croatian/English, personality: "Proud local; knows hidden viewpoints tourists never find"}
+      Morocco: {name: "مرشدة سلمى (Salma)", lang: Arabic/French/English, personality: "Navigates the medina blindfolded; protects tourists from aggressive vendors"}
+      Malta: {name: "Gwida Theresa", lang: Maltese/English, personality: "Traces every building to the Knights; endless historical anecdotes"}
+
+  taxi:
+    building_type: transport
+    icon: "🚕"
+    npc_role: taxi-driver
+    dialogue_scenarios:
+      - negotiating_fare
+      - asking_about_city
+      - getting_recommendations
+      - directions_practice
+    names_by_country:
+      Spain: {name: "Taxista Manolo", lang: Spanish, personality: "Radio always on; running commentary on the city; best restaurant tips"}
+      France: {name: "Chauffeur Pascal", lang: French, personality: "Opinionated about everything; the drive IS the tour; honks expressively"}
+      Italy: {name: "Tassista Giuseppe", lang: Italian, personality: "Drives like an artist; calls every passenger 'dottore'; knows every shortcut"}
+      Greece: {name: "Ταξιτζής Βαγγέλης (Vangelis)", lang: Greek, personality: "Plays bouzouki music; shares philosophy about life between lane changes"}
+      Turkey: {name: "Taksici Murat", lang: Turkish, personality: "Offers çay from a thermos; knows the best kebab joints by time of day"}
+      Morocco: {name: "سائق حميد (Hamid)", lang: Arabic/French, personality: "Negotiates with a smile; becomes your unofficial guide"}
