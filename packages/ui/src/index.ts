@@ -58,3 +58,20 @@ export type {
     TierState,
 } from './types';
 
+// ─── AI Provider Types ──────────────────────────────────────────
+// Mirrored from @aapm/core/ai-providers so UI consumers can import
+// without cross-package resolution. Source of truth: core/ai-providers.
+export {
+    AI_PROVIDER_CATALOG,
+    CAPABILITY_LABELS,
+    REQUIRED_CAPABILITIES,
+} from './ai-provider-types';
+export type {
+    AICapability,
+    AIProviderId,
+    AIModelOption,
+    AIProviderDefinition,
+    AIProviderEntry,
+    AIProviderConfig,
+} from './ai-provider-types';
+

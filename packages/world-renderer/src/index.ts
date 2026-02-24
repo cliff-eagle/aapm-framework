@@ -73,8 +73,23 @@ export type { NPCDefinition, NPCState, NPCEntityInstance } from './npc/NPCEntity
 export { createNPCManager } from './npc/NPCManager';
 export type { NPCManagerConfig, NPCManagerInstance } from './npc/NPCManager';
 
+export { schemaNPCsToDefinitions, updateNPCAvailability } from './npc/npc-schema-adapter';
+export type {
+    SchemaNPC, NPCWorldStateData, SchemaLocationData,
+    NPCPlacementConfig,
+} from './npc/npc-schema-adapter';
+
 // ─── Scene ────────────────────────────────────────────────────
 
 export { createSceneManager } from './scene/SceneManager';
 export type { SceneMode, SceneManagerConfig, SceneManagerInstance } from './scene/SceneManager';
+
+// ─── Core ↔ Renderer Bridge ──────────────────────────────────
+
+export { createWorldBridge } from './scene/WorldBridge';
+export type {
+    WorldBridgeConfig, WorldBridgeInstance, WorldBridgeState,
+    WorldStateSnapshot, SessionEvent, DialogueEvent as BridgeDialogueEvent,
+} from './scene/WorldBridge';
+
 
