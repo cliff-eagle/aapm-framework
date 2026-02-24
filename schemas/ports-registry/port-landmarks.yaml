@@ -1,0 +1,314 @@
+# ════════════════════════════════════════════════════════════════
+# Port Landmarks — Real-world places for procedural generation
+# ════════════════════════════════════════════════════════════════
+# Each port defines its actual landmarks with relative positions,
+# types, and the NPCs who inhabit them. The RealisticPortGenerator
+# reads this to build recognizable port environments.
+#
+# Position coordinates are relative to port center:
+#   x: east(+) / west(-) in meters
+#   z: north(+) / south(-) in meters
+#
+# Landmark types: marina, market, square, monument, religious,
+#   fortress, street, waterfront, museum, restaurant_row, park,
+#   beach, bazaar, gate, tower, theater, harbor, ruins
+
+ports:
+
+  # ─── SPAIN ──────────────────────────────────────────────────
+
+  loc_barcelona:
+    layout_style: grid_with_old_quarter
+    landmarks:
+      - {name: "Port Olímpic Marina", type: marina, pos: [0, 0], size: [80, 40], npc: "Jordi"}
+      - {name: "La Rambla", type: street, pos: [120, 80], size: [15, 300], note: "Tree-lined pedestrian boulevard from Plaça Catalunya to the port"}
+      - {name: "La Boqueria Market", type: market, pos: [130, 150], size: [50, 40], npc: "Montse"}
+      - {name: "Barri Gòtic (Gothic Quarter)", type: old_quarter, pos: [160, 100], size: [120, 120], note: "Medieval streets, Roman walls, cathedral"}
+      - {name: "Barceloneta Beach", type: beach, pos: [-30, -40], size: [200, 20]}
+      - {name: "Sagrada Família", type: religious, pos: [300, 400], size: [40, 60], note: "Gaudí's unfinished basilica — visible from the harbor"}
+      - {name: "Plaça Reial", type: square, pos: [140, 90], size: [30, 30], npc: "Carlos"}
+      - {name: "Palau de la Música", type: theater, pos: [200, 130], size: [25, 30]}
+
+  loc_ibiza:
+    layout_style: hilltop_fortress
+    landmarks:
+      - {name: "Marina Ibiza", type: marina, pos: [0, 0], size: [60, 30]}
+      - {name: "Dalt Vila (Old Town)", type: fortress, pos: [80, 60], size: [100, 100], note: "UNESCO fortified hilltop — Renaissance walls"}
+      - {name: "Mercat Vell", type: market, pos: [40, 30], size: [20, 20]}
+      - {name: "Vara de Rey Promenade", type: street, pos: [50, 10], size: [10, 80]}
+      - {name: "Talamanca Beach", type: beach, pos: [-60, 40], size: [120, 15]}
+
+  loc_cadiz:
+    layout_style: peninsula
+    landmarks:
+      - {name: "Puerto América", type: marina, pos: [0, 0], size: [50, 30], npc: "Curro"}
+      - {name: "Mercado Central", type: market, pos: [60, 40], size: [30, 30], npc: "Manolo"}
+      - {name: "Plaza de las Flores", type: square, pos: [70, 50], size: [20, 20]}
+      - {name: "Catedral de Cádiz", type: religious, pos: [90, 80], size: [35, 45], note: "Gold dome visible from sea"}
+      - {name: "Torre Tavira", type: tower, pos: [80, 60], size: [8, 8], note: "Camera obscura, highest watchtower"}
+      - {name: "Playa de la Caleta", type: beach, pos: [120, 100], size: [100, 15]}
+      - {name: "Barrio del Pópulo", type: old_quarter, pos: [85, 70], size: [60, 60]}
+
+  # ─── FRANCE ─────────────────────────────────────────────────
+
+  loc_nice:
+    layout_style: promenade_with_old_town
+    landmarks:
+      - {name: "Port de Nice", type: marina, pos: [0, 0], size: [60, 40], npc: "Jean-Pierre"}
+      - {name: "Promenade des Anglais", type: waterfront, pos: [-100, -30], size: [400, 10], note: "Iconic seafront avenue, 7km long"}
+      - {name: "Vieux Nice (Old Town)", type: old_quarter, pos: [40, 40], size: [100, 80], note: "Baroque alleys, pastel buildings"}
+      - {name: "Cours Saleya Market", type: market, pos: [50, 30], size: [60, 12], npc: "Marie"}
+      - {name: "Colline du Château", type: park, pos: [70, 70], size: [60, 50], note: "Castle Hill — panoramic views of the bay"}
+      - {name: "Place Masséna", type: square, pos: [-20, 20], size: [40, 40]}
+
+  loc_marseille:
+    layout_style: harbor_basin
+    landmarks:
+      - {name: "Vieux-Port", type: marina, pos: [0, 0], size: [100, 50], npc: "Rachid"}
+      - {name: "Le Panier (Old Quarter)", type: old_quarter, pos: [30, 60], size: [80, 80], note: "Oldest part of Marseille, street art, artisan shops"}
+      - {name: "Notre-Dame de la Garde", type: religious, pos: [80, -60], size: [30, 30], note: "Hilltop basilica — 'La Bonne Mère', visible from everywhere"}
+      - {name: "Quai des Belges Fish Market", type: market, pos: [10, 10], size: [30, 8], npc: "Rachid"}
+      - {name: "MuCEM", type: museum, pos: [-40, 30], size: [40, 40], note: "Museum of European and Mediterranean Civilisations"}
+      - {name: "Fort Saint-Jean", type: fortress, pos: [-30, 40], size: [30, 30]}
+      - {name: "La Canebière", type: street, pos: [20, -20], size: [12, 150]}
+
+  loc_monaco:
+    layout_style: cliff_terrace
+    landmarks:
+      - {name: "Port Hercules", type: marina, pos: [0, 0], size: [80, 50], npc: "François"}
+      - {name: "Casino de Monte-Carlo", type: monument, pos: [60, 80], size: [40, 30], note: "Belle Époque casino, James Bond territory"}
+      - {name: "Prince's Palace", type: fortress, pos: [-60, 100], size: [50, 40], note: "Grimaldi family seat since 1297"}
+      - {name: "Formula 1 Circuit", type: street, pos: [30, 20], size: [10, 200], note: "The harbour chicane is RIGHT HERE"}
+      - {name: "Oceanographic Museum", type: museum, pos: [-70, 120], size: [30, 20], note: "Cliff-edge aquarium, Jacques Cousteau directed it"}
+      - {name: "Café de Paris", type: restaurant_row, pos: [55, 75], size: [15, 10], npc: "François"}
+
+  loc_st_tropez:
+    layout_style: harbor_village
+    landmarks:
+      - {name: "Vieux Port", type: marina, pos: [0, 0], size: [50, 30]}
+      - {name: "Place des Lices", type: square, pos: [60, 40], size: [30, 30], npc: "Brigitte", note: "Morning market, afternoon pétanque — Bardot's hangout"}
+      - {name: "Citadelle", type: fortress, pos: [30, 80], size: [40, 40]}
+      - {name: "Quai Jean Jaurès", type: waterfront, pos: [0, -5], size: [80, 6], note: "The yacht-watching promenade"}
+      - {name: "Plage de Pampelonne", type: beach, pos: [-200, -100], size: [300, 20]}
+
+  # ─── ITALY ──────────────────────────────────────────────────
+
+  loc_naples:
+    layout_style: bay_amphitheater
+    landmarks:
+      - {name: "Marina di Napoli", type: marina, pos: [0, 0], size: [60, 30], npc: "Gennaro"}
+      - {name: "Spaccanapoli", type: street, pos: [100, 80], size: [8, 250], note: "The street that 'splits Naples' — Greco-Roman grid, alive 2,500 years"}
+      - {name: "Piazza del Plebiscito", type: square, pos: [50, 30], size: [50, 30]}
+      - {name: "Castel dell'Ovo", type: fortress, pos: [-30, -20], size: [40, 30], note: "Egg Castle on its own islet — legend says destroying the egg destroys Naples"}
+      - {name: "Via dei Tribunali (Pizza Alley)", type: restaurant_row, pos: [110, 90], size: [8, 120], npc: "Salvatore"}
+      - {name: "Cappella Sansevero", type: museum, pos: [120, 100], size: [15, 15], note: "Veiled Christ — most beautiful sculpture in the world"}
+      - {name: "Naples Underground", type: ruins, pos: [105, 85], size: [30, 30]}
+      - {name: "Vesuvius", type: monument, pos: [400, 200], size: [80, 80], note: "The volcano looms over everything — visible from the harbor"}
+
+  loc_venice:
+    layout_style: canal_network
+    landmarks:
+      - {name: "Marina Sant'Elena", type: marina, pos: [0, 0], size: [40, 30]}
+      - {name: "Piazza San Marco", type: square, pos: [-100, 60], size: [50, 30], note: "St. Mark's Square — 'the drawing room of Europe'"}
+      - {name: "Basilica di San Marco", type: religious, pos: [-100, 75], size: [30, 25]}
+      - {name: "Rialto Bridge & Market", type: market, pos: [-60, 80], size: [30, 20], npc: "Marco"}
+      - {name: "Grand Canal", type: waterfront, pos: [-80, 50], size: [10, 200], note: "S-shaped main waterway"}
+      - {name: "Doge's Palace", type: fortress, pos: [-100, 55], size: [40, 30]}
+      - {name: "Murano Glass Island", type: market, pos: [-30, 150], size: [40, 40]}
+      - {name: "Harry's Bar", type: restaurant_row, pos: [-95, 40], size: [8, 8], note: "Where Bellini cocktail was invented"}
+
+  loc_amalfi:
+    layout_style: cliff_cascade
+    landmarks:
+      - {name: "Porto di Amalfi", type: marina, pos: [0, 0], size: [30, 20]}
+      - {name: "Duomo di Amalfi", type: religious, pos: [20, 30], size: [20, 25], note: "62-step staircase, Arab-Norman cathedral"}
+      - {name: "Piazza del Duomo", type: square, pos: [15, 25], size: [15, 15]}
+      - {name: "Paper Museum", type: museum, pos: [40, 60], size: [15, 10], note: "Amalfi invented European paper — water mills in the valley"}
+      - {name: "Valle dei Mulini", type: ruins, pos: [50, 80], size: [20, 40], note: "Abandoned paper mill valley — overgrown ruins"}
+
+  loc_portofino:
+    layout_style: harbor_village
+    landmarks:
+      - {name: "Porto di Portofino", type: marina, pos: [0, 0], size: [25, 15]}
+      - {name: "Piazzetta", type: square, pos: [10, 5], size: [10, 10], note: "The famous tiny square — cafés cost €15 for espresso"}
+      - {name: "Castello Brown", type: fortress, pos: [20, 30], size: [15, 15], note: "Hilltop castle with panoramic views"}
+      - {name: "Chiesa di San Giorgio", type: religious, pos: [15, 25], size: [10, 10]}
+      - {name: "Paraggi Beach", type: beach, pos: [-40, -20], size: [30, 8]}
+
+  # ─── GREECE ─────────────────────────────────────────────────
+
+  loc_athens:
+    layout_style: urban_ancient
+    landmarks:
+      - {name: "Zea Marina", type: marina, pos: [0, 0], size: [60, 40], npc: "Nikos"}
+      - {name: "Acropolis", type: ruins, pos: [200, 300], size: [60, 40], note: "Parthenon and Erechtheion — visible from the harbor"}
+      - {name: "Plaka District", type: old_quarter, pos: [180, 250], size: [80, 80], npc: "Eleni", note: "Oldest neighborhood, under the Acropolis"}
+      - {name: "Monastiraki Flea Market", type: market, pos: [190, 240], size: [40, 20]}
+      - {name: "Ancient Agora", type: ruins, pos: [195, 260], size: [50, 50]}
+      - {name: "Syntagma Square", type: square, pos: [220, 270], size: [30, 30], note: "Parliament, changing of the Evzone guard"}
+      - {name: "Temple of Poseidon (Sounion)", type: ruins, pos: [500, -200], size: [20, 20], note: "Cape Sounion — sunset temple, visible by boat"}
+
+  loc_santorini:
+    layout_style: caldera_cliff
+    landmarks:
+      - {name: "Vlychada Marina", type: marina, pos: [0, 0], size: [30, 20], npc: "Manolis"}
+      - {name: "Oia Sunset Point", type: waterfront, pos: [-100, 200], size: [20, 10], npc: "Katerina", note: "THE sunset spot — arrive 2 hours early for position"}
+      - {name: "Fira (Thera Town)", type: old_quarter, pos: [-50, 100], size: [60, 40], note: "Caldera-edge town, donkey stairs"}
+      - {name: "Akrotiri Ruins", type: ruins, pos: [30, -40], size: [30, 30], note: "Minoan Pompeii — preserved under volcanic ash"}
+      - {name: "Red Beach", type: beach, pos: [20, -50], size: [30, 10]}
+      - {name: "Santo Wines Winery", type: restaurant_row, pos: [-40, 80], size: [15, 10], note: "Caldera-view wine tasting"}
+
+  loc_mykonos:
+    layout_style: harbor_village
+    landmarks:
+      - {name: "New Port (Tourlos)", type: marina, pos: [0, 0], size: [40, 25]}
+      - {name: "Little Venice", type: waterfront, pos: [60, 30], size: [30, 8], note: "Houses hanging over the water — sunset cocktails"}
+      - {name: "Windmills (Kato Mili)", type: monument, pos: [65, 25], size: [20, 10], npc: "Petros", note: "Iconic row of 16th-century windmills"}
+      - {name: "Matoyianni Street", type: street, pos: [50, 35], size: [6, 60], npc: "Despina", note: "Main shopping street — jewelry and fashion"}
+      - {name: "Paraportiani Church", type: religious, pos: [55, 28], size: [8, 8], note: "Most photographed church in Greece — 5 chapels merged"}
+      - {name: "Paradise Beach", type: beach, pos: [-80, -60], size: [60, 12]}
+
+  loc_rhodes:
+    layout_style: fortress_medieval
+    landmarks:
+      - {name: "Mandraki Harbor", type: marina, pos: [0, 0], size: [50, 30], npc: "Stavros"}
+      - {name: "Street of the Knights", type: street, pos: [40, 50], size: [8, 80], npc: "Kostas", note: "Best-preserved medieval street in Europe"}
+      - {name: "Palace of the Grand Master", type: fortress, pos: [50, 80], size: [40, 40]}
+      - {name: "Colossus Site", type: monument, pos: [5, 5], size: [10, 10], note: "Where it allegedly stood — deer statues now"}
+      - {name: "Old Town Walls", type: fortress, pos: [35, 40], size: [120, 120]}
+      - {name: "Turkish Quarter", type: old_quarter, pos: [60, 60], size: [50, 50], npc: "Fatma"}
+      - {name: "Lindos Acropolis", type: ruins, pos: [300, -200], size: [30, 20], note: "Clifftop ancient acropolis — boat trip from Rhodes"}
+
+  loc_crete_heraklion:
+    layout_style: fortress_harbor
+    landmarks:
+      - {name: "Heraklion Marina", type: marina, pos: [0, 0], size: [50, 30]}
+      - {name: "Knossos Palace", type: ruins, pos: [200, 300], size: [60, 60], npc: "Michalis", note: "Minoan palace — throne room, bull frescoes, labyrinth myth"}
+      - {name: "Koules Fortress", type: fortress, pos: [-10, 10], size: [25, 20], note: "Venetian sea fortress guarding the harbor"}
+      - {name: "Lion Square (Pl. Venizelou)", type: square, pos: [40, 40], size: [20, 20], note: "Morosini Fountain — lions spouting water"}
+      - {name: "1866 Street Market", type: market, pos: [50, 50], size: [8, 60], npc: "Maria", note: "Named after Cretan revolt — herbs, raki, cheese"}
+      - {name: "Historical Museum", type: museum, pos: [30, 20], size: [15, 15], note: "Only El Greco in Crete"}
+
+  # ─── TURKEY ─────────────────────────────────────────────────
+
+  loc_istanbul:
+    layout_style: bosphorus_metropolis
+    landmarks:
+      - {name: "Kalamış Marina", type: marina, pos: [0, 0], size: [60, 40], npc: "Hasan"}
+      - {name: "Grand Bazaar", type: bazaar, pos: [300, 200], size: [80, 60], npc: "Ayşe", note: "4,000+ shops, 60 streets — world's oldest covered market"}
+      - {name: "Hagia Sophia", type: religious, pos: [280, 250], size: [40, 40], note: "Church→mosque→museum→mosque — 1,500 years of layers"}
+      - {name: "Blue Mosque", type: religious, pos: [275, 240], size: [35, 35], note: "6 minarets — sultan had to add a 7th to Mecca's mosque to resolve the scandal"}
+      - {name: "Topkapı Palace", type: fortress, pos: [290, 260], size: [50, 40], note: "Ottoman sultans' seat — Harem, treasury, Bosphorus views"}
+      - {name: "Galata Tower", type: tower, pos: [250, 180], size: [10, 10], note: "Medieval Genoese tower — 360° views"}
+      - {name: "Spice Bazaar", type: bazaar, pos: [270, 220], size: [30, 20]}
+      - {name: "Bosphorus Strait", type: waterfront, pos: [200, 100], size: [20, 300], npc: "Mehmet", note: "20-minute ferry between Europe and Asia"}
+      - {name: "İstiklal Caddesi", type: street, pos: [240, 170], size: [8, 150], note: "Pedestrian avenue — nostalgic tram, 3 million daily walkers"}
+
+  loc_bodrum:
+    layout_style: harbor_fortress
+    landmarks:
+      - {name: "Milta Bodrum Marina", type: marina, pos: [0, 0], size: [50, 30], npc: "Cengiz"}
+      - {name: "Bodrum Castle", type: fortress, pos: [20, 20], size: [40, 40], note: "Castle of St. Peter — Crusader fortress, now underwater archaeology museum"}
+      - {name: "Mausoleum Site", type: ruins, pos: [60, 50], size: [20, 20], note: "Ancient Wonder of the World — only foundations remain"}
+      - {name: "Bar Street", type: restaurant_row, pos: [40, 10], size: [8, 60], npc: "Deniz", note: "Cumhuriyet Caddesi — transforms after dark"}
+      - {name: "Tuesday Market", type: market, pos: [80, 70], size: [40, 30], npc: "Selma"}
+      - {name: "Gulet Shipyard", type: harbor, pos: [-30, 5], size: [30, 20], note: "Traditional wooden boat building"}
+
+  loc_antalya:
+    layout_style: cliff_old_town
+    landmarks:
+      - {name: "Kaleiçi Marina", type: marina, pos: [0, 0], size: [30, 20], npc: "Kemal"}
+      - {name: "Hadrian's Gate", type: monument, pos: [30, 40], size: [10, 5], note: "Roman triumphal arch from 130 AD — walkthrough to old town"}
+      - {name: "Kaleiçi Old Town", type: old_quarter, pos: [40, 60], size: [80, 80], npc: "Burak"}
+      - {name: "Yivli Minare (Fluted Minaret)", type: religious, pos: [35, 50], size: [5, 5], note: "Seljuk minaret — Antalya's symbol"}
+      - {name: "Clock Tower", type: tower, pos: [25, 35], size: [5, 5]}
+      - {name: "Konyaaltı Beach", type: beach, pos: [-100, -30], size: [200, 15]}
+      - {name: "Ice Cream Stand", type: restaurant_row, pos: [20, 30], size: [3, 3], npc: "Serap", note: "Dondurma performance — the stretchy ice cream tricks"}
+
+  # ─── ADRIATIC ───────────────────────────────────────────────
+
+  loc_dubrovnik:
+    layout_style: fortress_peninsula
+    landmarks:
+      - {name: "ACI Marina Dubrovnik", type: marina, pos: [0, 0], size: [40, 25]}
+      - {name: "Stradun (Placa)", type: street, pos: [80, 50], size: [8, 120], npc: "Ana", note: "Polished limestone main street — runs the length of old town"}
+      - {name: "City Walls Walk", type: fortress, pos: [75, 45], size: [130, 90], note: "2km walkable walls — some of the finest medieval fortifications"}
+      - {name: "Pile Gate", type: gate, pos: [70, 40], size: [8, 8], note: "Main entrance, drawbridge, Onofrio's Fountain"}
+      - {name: "Rector's Palace", type: museum, pos: [85, 55], size: [15, 15]}
+      - {name: "Fort Lovrijenac", type: fortress, pos: [50, 30], size: [20, 15], note: "Gibraltar of Dubrovnik — Red Keep in Game of Thrones"}
+      - {name: "Buža Bar", type: restaurant_row, pos: [95, 60], size: [8, 5], note: "Cliff bar outside the walls — drinks served on rocks"}
+
+  loc_kotor:
+    layout_style: fjord_fortress
+    landmarks:
+      - {name: "Marina Kotor", type: marina, pos: [0, 0], size: [30, 20], npc: "Dragan"}
+      - {name: "Old Town Square", type: square, pos: [20, 20], size: [15, 15], note: "St. Tryphon Cathedral, clock tower"}
+      - {name: "City Walls to Fortress", type: fortress, pos: [30, 40], size: [60, 80], note: "1,350 steps to San Giovanni fortress — 260m above the bay"}
+      - {name: "Cat Museum Square", type: square, pos: [25, 25], size: [8, 8], npc: "Milica", note: "Kotor is famous for its cats — there's a cat museum"}
+      - {name: "Maritime Museum", type: museum, pos: [22, 22], size: [10, 8]}
+
+  # ─── MALTA ──────────────────────────────────────────────────
+
+  loc_valletta:
+    layout_style: grid_fortress
+    landmarks:
+      - {name: "Grand Harbour Marina", type: marina, pos: [0, 0], size: [80, 40], npc: "Pawlu"}
+      - {name: "St. John's Co-Cathedral", type: religious, pos: [50, 60], size: [25, 35], npc: "Fr. Dominic", note: "Caravaggio's Beheading of St. John — only painting he signed"}
+      - {name: "Republic Street", type: street, pos: [45, 40], size: [8, 150], note: "Main artery — runs the entire length of the peninsula"}
+      - {name: "Upper Barrakka Gardens", type: park, pos: [30, 30], size: [20, 15], note: "Noon cannon salute, panoramic Grand Harbour views"}
+      - {name: "Fort St Elmo", type: fortress, pos: [60, 120], size: [30, 30], note: "Tip of the peninsula — Great Siege of 1565"}
+      - {name: "Strait Street", type: restaurant_row, pos: [48, 70], size: [5, 40], note: "Former red-light district, now bar street — 'The Gut'"}
+      - {name: "Pastizzeria ta' Crystal", type: restaurant_row, pos: [40, 50], size: [4, 4], npc: "Carmen", note: "Most famous pastizzi in Malta"}
+
+  loc_marsaxlokk:
+    layout_style: fishing_village
+    landmarks:
+      - {name: "Marsaxlokk Harbor", type: marina, pos: [0, 0], size: [40, 20], npc: "Wistin"}
+      - {name: "Sunday Fish Market", type: market, pos: [10, 5], size: [50, 8], npc: "Tessie", note: "Entire waterfront becomes a fish market on Sundays"}
+      - {name: "Luzzu Boat Row", type: waterfront, pos: [0, -5], size: [60, 5], note: "Painted fishing boats with Eye of Osiris"}
+      - {name: "Church of Our Lady of Pompei", type: religious, pos: [30, 20], size: [15, 15]}
+      - {name: "Waterfront Restaurants", type: restaurant_row, pos: [5, -3], size: [40, 5], npc: "Ġużi"}
+
+  # ─── NORTH AFRICA / EASTERN MED ────────────────────────────
+
+  loc_tangier:
+    layout_style: medina_hilltop
+    landmarks:
+      - {name: "Tanja Marina Bay", type: marina, pos: [0, 0], size: [60, 30], npc: "Youssef"}
+      - {name: "Kasbah", type: fortress, pos: [60, 100], size: [50, 50], note: "Hilltop citadel — panoramic Strait of Gibraltar views"}
+      - {name: "Petit Socco", type: square, pos: [50, 70], size: [10, 10], note: "Tiny square — Bowles, Burroughs, Kerouac all drank coffee here"}
+      - {name: "Grand Socco", type: square, pos: [40, 50], size: [20, 20], npc: "Amina"}
+      - {name: "Medina", type: bazaar, pos: [55, 80], size: [80, 80], note: "Labyrinthine — getting lost is the point"}
+      - {name: "Café Hafa", type: restaurant_row, pos: [80, 120], size: [10, 8], npc: "Driss", note: "Cliff-edge terrace — Rolling Stones, Beatles all sat here"}
+      - {name: "Caves of Hercules", type: ruins, pos: [-100, 60], size: [15, 15], note: "Sea cave with Africa-shaped opening"}
+
+  loc_tel_aviv:
+    layout_style: promenade_with_old_town
+    landmarks:
+      - {name: "Tel Aviv Marina", type: marina, pos: [0, 0], size: [50, 30], npc: "Yael"}
+      - {name: "Old Jaffa Port", type: harbor, pos: [-80, -30], size: [30, 20], note: "One of the world's oldest ports — 7,000 years"}
+      - {name: "Jaffa Flea Market", type: market, pos: [-70, -20], size: [30, 20], npc: "Omar"}
+      - {name: "Rothschild Boulevard", type: street, pos: [60, 40], size: [10, 120], npc: "Avi", note: "Bauhaus boulevard, startup cafés, Independence Hall"}
+      - {name: "Carmel Market (Shuk HaCarmel)", type: market, pos: [40, 30], size: [8, 60]}
+      - {name: "White City (Bauhaus)", type: old_quarter, pos: [50, 50], size: [100, 80], note: "4,000 Bauhaus buildings — UNESCO World Heritage"}
+      - {name: "Tayelet (Beach Promenade)", type: waterfront, pos: [-20, -10], size: [200, 6]}
+
+  loc_beirut:
+    layout_style: waterfront_divided
+    landmarks:
+      - {name: "Zaitunay Bay Marina", type: marina, pos: [0, 0], size: [50, 30], npc: "Rami"}
+      - {name: "Mar Mikhael (Bar District)", type: restaurant_row, pos: [60, 40], size: [8, 60], npc: "Layla", note: "Restored Armenian quarter — Beirut's best bars and restaurants"}
+      - {name: "Pigeon Rocks (Raouché)", type: monument, pos: [-100, 30], size: [15, 15], note: "Natural sea arches — iconic Beirut photo spot"}
+      - {name: "Corniche", type: waterfront, pos: [-50, 10], size: [200, 6], note: "Seaside promenade — joggers, fishermen, hookah cafés"}
+      - {name: "Downtown (Solidere)", type: square, pos: [40, 30], size: [40, 40], note: "Rebuilt after civil war — controversial luxury reconstruction"}
+      - {name: "National Museum", type: museum, pos: [80, 60], size: [20, 15], note: "Green Line — museum sat on the civil war front line"}
+
+  loc_alexandria:
+    layout_style: coastal_boulevard
+    landmarks:
+      - {name: "El-Montazah Marina", type: marina, pos: [0, 0], size: [50, 30], npc: "Hassan"}
+      - {name: "Bibliotheca Alexandrina", type: museum, pos: [100, 40], size: [40, 40], npc: "Dr. Amira", note: "Modern rebuild of the Great Library — disc-shaped, holds 8 million books"}
+      - {name: "Corniche", type: waterfront, pos: [50, 0], size: [300, 8], note: "20km seafront promenade"}
+      - {name: "Qaitbay Citadel", type: fortress, pos: [150, 50], size: [30, 25], note: "Built on the exact site of the ancient Lighthouse (Pharos)"}
+      - {name: "Attarine Souk", type: bazaar, pos: [120, 60], size: [30, 30], npc: "Fatima", note: "Spice market — same location since Ptolemaic era"}
+      - {name: "Catacombs of Kom el-Shoqafa", type: ruins, pos: [130, 80], size: [15, 15], note: "Roman-Egyptian fusion burial chambers"}
