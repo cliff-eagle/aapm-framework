@@ -84,6 +84,47 @@ export type * from './module-hooks';
 export { createAgentHook } from './agent-hook';
 export type { AgentHookConfig } from './agent-hook';
 
+// Module wiring — bridges all disconnected modules into the session lifecycle
+export {
+    routeByModality,
+    selectDeliveryFormat,
+    evaluateTierGate,
+    evaluateTierProgression,
+    scheduleRetentionItems,
+    analyzeCulturalViolations,
+    buildRefractionRequest,
+    validatePersonaSchema,
+    composePrompt,
+    initPromptRegistry,
+    InMemoryPromptRegistry,
+    PROMPT_TO_SCHEMA_MAPPING,
+    RETENTION_TO_FORMAT,
+    FORMAT_CAPABILITIES,
+} from './module-wiring';
+export type {
+    ModuleWiringConfig,
+    LoadedPersonaSchema,
+    InputModality,
+    ModalityRoutingResult,
+    DeliveryFormat,
+    DeliveryContext,
+    // TierType omitted — exported from root ./types to avoid collision
+    TierSystemState,
+    TierReadiness,
+    RetentionEngineState,
+    ChurnRiskAssessment,
+    StudentCohort,
+    InstructorDashboard,
+    CulturalIntelligenceProfile,
+    CulturalViolation,
+    IHEForwardInjectionSpec,
+    NPCBehaviorResolution,
+    TransferResolution,
+    RefractionRequest,
+    Refraction,
+    PromptRegistry,
+} from './module-wiring';
+
 // ─── Session State ────────────────────────────────────────────
 
 export interface SimulationSession {
