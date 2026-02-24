@@ -1,0 +1,95 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — France Expansion
+# ════════════════════════════════════════════════════════════════
+# Additional French ports beyond the 9 in france-monaco-corsica.yaml
+
+region: france_expanded
+ports:
+
+  - id: loc_menton
+    name: Menton
+    country: France
+    coordinates: [43.78, 7.50]
+    languages: [French, Mentonasque]
+    marina: Port de Menton Garavan
+    cultural_highlight: "Lemon capital, last French town before Italy, Cocteau museum"
+    npcs:
+      - {name: Gérard, role: citrus-grower, language: French, personality: "Fête du Citron organizer, 80 tons of citrus sculptures", cultural_note: "The Lemon Festival uses 145 tons of citrus to build giant sculptures — February carnival"}
+      - {name: Simone, role: cafe-server, language: Mentonasque/French, personality: "Serves barbajuan (fried ravioli) on the promenade", cultural_note: "Mentonasque is a Ligurian dialect — Menton was Italian until 1860"}
+
+  - id: loc_villefranche
+    name: Villefranche-sur-Mer
+    country: France
+    coordinates: [43.70, 7.31]
+    languages: [French]
+    marina: Port de la Darse
+    cultural_highlight: "Deepest natural harbor on the Riviera, Cocteau chapel"
+    npcs:
+      - {name: Étienne, role: harbor-master, language: French, personality: "Medieval Darse port guardian, quiet authority", cultural_note: "Villefranche has been a naval anchorage since 130 BC — the depth is extraordinary"}
+      - {name: Marie-Claire, role: gallery-owner, language: French, personality: "Chapelle Saint-Pierre (Cocteau) docent", cultural_note: "Jean Cocteau decorated the fishermen's chapel — surrealist meets sacred"}
+
+  - id: loc_cassis
+    name: Cassis
+    country: France
+    coordinates: [43.21, 5.54]
+    languages: [French, Provençal]
+    marina: Port de Cassis
+    cultural_highlight: "Calanques fjords, white wine, cliff diving"
+    npcs:
+      - {name: Frédéric, role: winemaker, language: Provençal/French, personality: "Cassis white wine AOC producer, limestone terroir", cultural_note: "Cassis white wine was the first AOC in France (1936) — even before Champagne"}
+      - {name: Brigitte, role: calanque-guide, language: French, personality: "Calanques National Park kayak guide", cultural_note: "The Calanques are limestone fjords — permit required in summer to control crowds"}
+
+  - id: loc_bandol
+    name: Bandol
+    country: France
+    coordinates: [43.14, 5.75]
+    languages: [French]
+    marina: Port de Bandol
+    cultural_highlight: "France's finest rosé, Mourvèdre grape kingdom"
+    npcs:
+      - {name: Philippe, role: sommelier, language: French, personality: "Bandol AOC rosé ambassador, age-worthy wines", cultural_note: "Bandol rosé is NOT Provençal rosé — it ages 10+ years, made from Mourvèdre"}
+      - {name: Sandrine, role: market-vendor, language: French, personality: "Tuesday/Sunday market seafood specialist", cultural_note: "Rouget (red mullet) grilled whole is Bandol's signature — head on, no negotiation"}
+
+  - id: loc_hyeres
+    name: Hyères / Porquerolles
+    country: France
+    coordinates: [43.08, 6.13]
+    languages: [French]
+    marina: Port de Hyères / Port de Porquerolles
+    cultural_highlight: "Golden Islands, car-free Porquerolles, salt pans"
+    npcs:
+      - {name: Jean-Marc, role: park-ranger, language: French, personality: "Port-Cros National Park (France's oldest marine park)", cultural_note: "Port-Cros has no cars, no camping — France's strictest nature protection"}
+      - {name: Camille, role: bicycle-renter, language: French, personality: "Porquerolles island bike tours, beach connoisseur", cultural_note: "Porquerolles has Caribbean-white beaches — no cars allowed, bikes only"}
+
+  - id: loc_collioure
+    name: Collioure
+    country: France
+    coordinates: [42.53, 3.08]
+    languages: [French, Catalan]
+    marina: Port d'Avall
+    cultural_highlight: "Fauvism birthplace (Matisse/Derain), Catalan France"
+    npcs:
+      - {name: Jordi, role: anchovy-curer, language: Catalan/French, personality: "Collioure anchovy tradition since the Middle Ages", cultural_note: "Collioure anchovies are salt-cured for 3 months minimum — the real delicacy"}
+      - {name: Magali, role: gallery-owner, language: French, personality: "Chemin du Fauvisme walking tour guide", cultural_note: "Matisse and Derain invented Fauvism here in 1905 — the wild colors match the landscape"}
+
+  - id: loc_calvi
+    name: Calvi
+    country: France (Corsica)
+    coordinates: [42.57, 8.76]
+    languages: [French, Corsican]
+    marina: Port de Calvi
+    cultural_highlight: "Citadel over turquoise bay, claims Columbus birthplace"
+    npcs:
+      - {name: Santu, role: citadel-guide, language: Corsican/French, personality: "Insists Columbus was born in Calvi, not Genoa", cultural_note: "Calvi's claim to Columbus is tenuous but passionate — a plaque marks 'his' house"}
+      - {name: Vannina, role: chestnut-producer, language: Corsican, personality: "Corsican chestnut flour specialist, pulenta and beignets", cultural_note: "Corsican chestnut flour makes polenta, beer, and pastries — the tree of life"}
+
+  - id: loc_porto_vecchio
+    name: Porto-Vecchio
+    country: France (Corsica)
+    coordinates: [41.59, 9.28]
+    languages: [French, Corsican]
+    marina: Port de Porto-Vecchio
+    cultural_highlight: "Corsica's Saint-Tropez, Palombaggia beach, cork oaks"
+    npcs:
+      - {name: Petru-Santu, role: cork-harvester, language: Corsican, personality: "Traditional cork oak harvester, 9-year cycle", cultural_note: "Cork oaks can only be harvested every 9 years — the bark grows back naturally"}
+      - {name: Léa, role: beach-bar-owner, language: French, personality: "Palombaggia beach paillote (beach restaurant)", cultural_note: "Palombaggia is consistently ranked France's most beautiful beach"}

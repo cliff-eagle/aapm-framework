@@ -1,0 +1,96 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Turkey Expansion
+# ════════════════════════════════════════════════════════════════
+# Additional Turkish ports beyond turkey.yaml
+
+region: turkey_expanded
+ports:
+
+  - id: loc_alanya
+    name: Alanya
+    country: Turkey
+    coordinates: [36.54, 31.99]
+    languages: [Turkish]
+    marina: Alanya Marina
+    cultural_highlight: "Seljuk fortress on cliff, Red Tower, Cleopatra Beach"
+    npcs:
+      - {name: Hüseyin, role: fortress-guide, language: Turkish, personality: "Seljuk shipyard (Tersane) historian, underground tunnels", cultural_note: "The Seljuk shipyard from 1228 is the only surviving medieval Islamic naval base"}
+      - {name: Aysel, role: banana-farmer, language: Turkish, personality: "Alanya is Turkey's banana capital — subtropical microclimate", cultural_note: "Yes, Turkey grows bananas — Alanya's coast is warm enough for tropical fruit"}
+
+  - id: loc_side
+    name: Side
+    country: Turkey
+    coordinates: [36.77, 31.39]
+    languages: [Turkish]
+    marina: Side Harbor
+    cultural_highlight: "Roman ruins amid beach resort, Temple of Apollo at sunset"
+    npcs:
+      - {name: Serdar, role: archaeologist, language: Turkish/English, personality: "Open-air museum guide, slave market historian", cultural_note: "Side was ancient Pamphylia's main slave market — the ruins of the agora remain"}
+      - {name: Fatma, role: jewelry-maker, language: Turkish, personality: "Pomegranate and evil eye (nazar) pendant artisan", cultural_note: "Side means 'pomegranate' in ancient Anatolian — the symbol is everywhere"}
+
+  - id: loc_kemer
+    name: Kemer
+    country: Turkey
+    coordinates: [36.60, 30.56]
+    languages: [Turkish, Russian]
+    marina: Kemer Marina
+    cultural_highlight: "Pine-scented coast, Phaselis ruins, flame of Chimera"
+    npcs:
+      - {name: Volkan, role: guide, language: Turkish, personality: "Chimera (Yanartaş) flame guide — natural eternal fire", cultural_note: "The Chimera flames have burned for 2,500+ years — natural gas seeps through rock"}
+      - {name: Svetlana, role: hotel-manager, language: Russian/Turkish, personality: "Massive Russian tourist community coordinator", cultural_note: "Kemer has more Russian speakers than any Turkish city — menus are bilingual"}
+
+  - id: loc_ayvalik
+    name: Ayvalık
+    country: Turkey
+    coordinates: [39.31, 26.69]
+    languages: [Turkish]
+    marina: Ayvalık Marina
+    cultural_highlight: "Ottoman-Greek exchange town, olive oil capital, Cunda Island"
+    npcs:
+      - {name: İbrahim, role: olive-oil-producer, language: Turkish, personality: "Ayvalık olive oil rivals Italian — buttery, golden, ancient trees", cultural_note: "After the 1923 Greek-Turkish population exchange, Greeks left their olive groves to Turkish families"}
+      - {name: Yasemin, role: cafe-server, language: Turkish, personality: "Cunda Island (Alibey) waterfront, fish and raki specialist", cultural_note: "Tost (Turkish grilled cheese with ayvalık toast bread) is the local breakfast institution"}
+
+  - id: loc_canakkale
+    name: Çanakkale
+    country: Turkey
+    coordinates: [40.15, 26.41]
+    languages: [Turkish]
+    marina: Çanakkale Harbor
+    cultural_highlight: "Troy archaeological site, Gallipoli straits, Dardanelles"
+    npcs:
+      - {name: Profesör Kemal, role: archaeologist, language: Turkish/English, personality: "Troy excavation guide, Schliemann critic", cultural_note: "Heinrich Schliemann found Troy but also looted it — Turkish archaeologists are still annoyed"}
+      - {name: Ozge, role: ceramics-artisan, language: Turkish, personality: "Traditional Çanakkale pottery, centuries-old kilns", cultural_note: "Çanakkale ceramics are famous — the giant replica Trojan horse in the town center is ceramic too"}
+      - {name: Recep, role: ferry-captain, language: Turkish, personality: "Dardanelles crossing, Gallipoli memorial respectful", cultural_note: "Gallipoli is sacred to Turks, Australians, and New Zealanders — treat it with deep respect"}
+
+  - id: loc_sinop
+    name: Sinop
+    country: Turkey
+    coordinates: [42.03, 35.15]
+    languages: [Turkish]
+    marina: Sinop Marina
+    cultural_highlight: "Turkey's northernmost point, Black Sea gateway, Diogenes' birthplace"
+    npcs:
+      - {name: Diogenes (nickname), role: philosopher-guide, language: Turkish, personality: "Named after the city's famous cynic philosopher", cultural_note: "Diogenes of Sinope invented cynicism here — 'I am a citizen of the world' was his line"}
+      - {name: Havva, role: hamsi-seller, language: Turkish, personality: "Black Sea anchovy (hamsi) specialist — 40+ recipes", cultural_note: "Hamsi is the Black Sea religion — they make hamsi dessert, hamsi bread, hamsi everything"}
+
+  - id: loc_mersin
+    name: Mersin
+    country: Turkey
+    coordinates: [36.80, 34.63]
+    languages: [Turkish, Arabic]
+    marina: Mersin Marina
+    cultural_highlight: "Cilicia coast, diverse cuisine, gateway to Tarsus (St. Paul's city)"
+    npcs:
+      - {name: Ali Rıza, role: tantuni-maker, language: Turkish, personality: "Mersin tantuni (spiced beef wrap) street food master", cultural_note: "Tantuni was invented in Mersin — thin lavash, minced beef, onion, tomato, eaten standing up"}
+      - {name: Meryem, role: guide, language: Turkish/Arabic, personality: "Tarsus historian — St. Paul, Cleopatra's gate", cultural_note: "Tarsus (30min from Mersin) is where Cleopatra met Mark Antony — the gate still stands"}
+
+  - id: loc_iskenderun
+    name: İskenderun
+    country: Turkey
+    coordinates: [36.59, 36.17]
+    languages: [Turkish, Arabic]
+    marina: İskenderun Harbor
+    cultural_highlight: "Alexander the Great's city (Alexandretta), Hatay cuisine"
+    npcs:
+      - {name: Hasan, role: künefe-maker, language: Arabic/Turkish, personality: "Hatay künefe (cheese pastry) master, pulls the kadayıf by hand", cultural_note: "Hatay was Antioch — Alexander the Great named İskenderun after himself"}
+      - {name: Zehra, role: market-vendor, language: Arabic/Turkish, personality: "Hatay spice market, Syrian-Turkish border cuisine", cultural_note: "Hatay cuisine is unique in Turkey — heavy Arabic/Syrian influence, different from Istanbul"}

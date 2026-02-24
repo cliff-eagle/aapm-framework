@@ -1,0 +1,107 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Greece Expansion
+# ════════════════════════════════════════════════════════════════
+# Additional Greek ports beyond greece-islands.yaml
+
+region: greece_expanded
+ports:
+
+  - id: loc_thessaloniki
+    name: Thessaloniki
+    country: Greece
+    coordinates: [40.63, 22.94]
+    languages: [Greek]
+    marina: Thessaloniki Marina
+    cultural_highlight: "Greece's second city, Ottoman heritage, bohemian energy"
+    npcs:
+      - {name: Thanasis, role: bougatsa-seller, language: Greek, personality: "5am bougatsa queue at Bantis — cream or cheese, choose wisely", cultural_note: "Thessaloniki's bougatsa rivalry is intense — Bantis vs Serrikon, choose a side"}
+      - {name: Elli, role: guide, language: Greek, personality: "White Tower and Byzantine walls historian", cultural_note: "Thessaloniki was 50% Jewish before WWII — the Sephardic heritage shaped the city"}
+      - {name: Dimitris, role: bar-owner, language: Greek, personality: "Ladadika district nightlife veteran", cultural_note: "Thessaloniki has more cafés per capita than anywhere in Europe — coffee is identity"}
+
+  - id: loc_volos
+    name: Volos
+    country: Greece
+    coordinates: [39.36, 22.94]
+    languages: [Greek]
+    marina: Volos Port
+    cultural_highlight: "Gateway to Pelion (centaur homeland), tsipouradika culture"
+    npcs:
+      - {name: Kostas, role: tsipouradiko-owner, language: Greek, personality: "Free mezedes with every round of tsipouro — the Volos way", cultural_note: "Tsipouradika give free food with drinks — you order drinks, food keeps coming"}
+      - {name: Argyro, role: herbalist, language: Greek, personality: "Pelion mountain herb gatherer, ancient remedies", cultural_note: "Pelion was where centaurs taught Achilles — the mountains are still magical"}
+
+  - id: loc_rethymno
+    name: Rethymno
+    country: Greece (Crete)
+    coordinates: [35.37, 24.47]
+    languages: [Greek, Cretan]
+    marina: Venetian Harbor
+    cultural_highlight: "Venetian-Ottoman old town, Fortezza citadel"
+    npcs:
+      - {name: Manolis, role: lyra-player, language: Cretan Greek, personality: "Cretan lyra musician, mantinades poet", cultural_note: "Cretan lyra is the island's soul instrument — mantinades are improvised rhyming couplets"}
+      - {name: Eleftheria, role: cafe-server, language: Greek, personality: "Venetian harbor sunset specialist, raki included", cultural_note: "Rethymno's old town is the best-preserved Venetian-Ottoman hybrid in Greece"}
+
+  - id: loc_kalymnos
+    name: Kalymnos
+    country: Greece
+    coordinates: [36.95, 26.98]
+    languages: [Greek]
+    marina: Pothia Port
+    cultural_highlight: "Sponge-diving heritage, world-class rock climbing"
+    npcs:
+      - {name: Mihalis, role: sponge-diver, language: Greek, personality: "Last traditional sponge diver, scarred hands", cultural_note: "Kalymnian sponge divers went as far as Florida — many died from the bends"}
+      - {name: Ioanna, role: climbing-guide, language: Greek/English, personality: "Kalymnos climbing festival organizer", cultural_note: "Kalymnos has 3,500+ climbing routes — the limestone is perfect, routes are bolted"}
+
+  - id: loc_chios
+    name: Chios
+    country: Greece
+    coordinates: [38.37, 26.14]
+    languages: [Greek]
+    marina: Chios Port
+    cultural_highlight: "Mastic island — the tree that cries, medieval villages"
+    npcs:
+      - {name: Panayiotis, role: mastic-farmer, language: Greek, personality: "Mastichochoria village mastic harvester", cultural_note: "Mastic only grows on southern Chios — nobody knows why, it refuses to grow elsewhere"}
+      - {name: Despina, role: guide, language: Greek, personality: "Pyrgi geometric village decorator", cultural_note: "Pyrgi houses are decorated with black-and-white sgraffito patterns — nowhere else in the world"}
+
+  - id: loc_lesbos
+    name: Lesbos (Mytilene)
+    country: Greece
+    coordinates: [39.10, 26.55]
+    languages: [Greek]
+    marina: Mytilene Port
+    cultural_highlight: "Ouzo capital of Greece, Sappho's island, olive groves"
+    npcs:
+      - {name: Stratis, role: ouzo-distiller, language: Greek, personality: "Plomari ouzo producer, anise sourcing specialist", cultural_note: "Lesbos produces the best ouzo in Greece — Plomari is the undisputed capital"}
+      - {name: Sappho (nickname), role: poet, language: Greek, personality: "Women's literary collective organizer, Sappho heritage", cultural_note: "Sappho was born here ~630 BC — the word 'lesbian' comes from this island"}
+
+  - id: loc_karpathos
+    name: Karpathos
+    country: Greece
+    coordinates: [35.63, 27.15]
+    languages: [Greek]
+    marina: Pigadia Port
+    cultural_highlight: "Living traditions, Olympos village frozen in time"
+    npcs:
+      - {name: Irini, role: weaver, language: Karpathian Greek, personality: "Olympos village traditional costume weaver", cultural_note: "Olympos village still wears traditional costume daily — not for tourists, for life"}
+      - {name: Manolis, role: baker, language: Greek, personality: "Wood-fired bread baker, festival bread sculptor", cultural_note: "Karpathian women inherit property — matrilineal tradition unique in Greece"}
+
+  - id: loc_thassos
+    name: Thassos
+    country: Greece
+    coordinates: [40.78, 24.71]
+    languages: [Greek]
+    marina: Limenas Port
+    cultural_highlight: "Emerald island, white marble, ancient gold mines"
+    npcs:
+      - {name: Yiannis, role: beekeeper, language: Greek, personality: "Thassos pine honey producer, mountain apiaries", cultural_note: "Thassos honey is among Greece's finest — pine trees give it a distinctive resinous flavor"}
+      - {name: Olga, role: olive-oil-producer, language: Greek, personality: "Throuba olive specialist — wrinkled, oil-cured on the tree", cultural_note: "Throuba olives cure naturally on the tree — unique to Thassos, no processing needed"}
+
+  - id: loc_spetses
+    name: Spetses
+    country: Greece
+    coordinates: [37.26, 23.15]
+    languages: [Greek]
+    marina: Dapia Port
+    cultural_highlight: "Naval heroine Bouboulina, car-free elegance, pine forests"
+    npcs:
+      - {name: Laskarina, role: museum-guide, language: Greek, personality: "Bouboulina museum curator, Greek independence hero", cultural_note: "Bouboulina was a female admiral who fought the Ottomans — her house is now a museum"}
+      - {name: Nikos, role: horse-carriage-driver, language: Greek, personality: "No cars on Spetses — horse carriages and boats only", cultural_note: "Like Hydra, Spetses banned cars — but horse carriages are the signature here"}

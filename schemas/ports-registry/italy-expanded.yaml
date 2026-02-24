@@ -1,0 +1,139 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Italy Expansion
+# ════════════════════════════════════════════════════════════════
+# Additional Italian ports beyond italy-sardinia-sicily.yaml
+
+region: italy_expanded
+ports:
+
+  - id: loc_sanremo
+    name: Sanremo
+    country: Italy
+    coordinates: [43.82, 7.78]
+    languages: [Italian, Ligurian]
+    marina: Porto Vecchio di Sanremo
+    cultural_highlight: "Music festival city, flower market, casino"
+    npcs:
+      - {name: Luciana, role: flower-seller, language: Ligurian/Italian, personality: "Sanremo flower market veteran, dawn deliveries", cultural_note: "Sanremo supplies most of Europe's cut flowers — the market runs at 3am"}
+      - {name: Enzo, role: casino-host, language: Italian, personality: "Casino di Sanremo regular, Tchaikovsky played here", cultural_note: "The music festival (Festival di Sanremo) launched careers of every Italian pop star"}
+
+  - id: loc_la_spezia
+    name: La Spezia
+    country: Italy
+    coordinates: [44.10, 9.82]
+    languages: [Italian, Ligurian]
+    marina: Marina del Canaletto
+    cultural_highlight: "Cinque Terre gateway, naval base, Gulf of Poets"
+    npcs:
+      - {name: Roberto, role: train-station-attendant, language: Italian, personality: "Cinque Terre rail ticket expert, crowd management veteran", cultural_note: "Cinque Terre Card includes train + trails — mandatory since overtourism crisis"}
+      - {name: Annamaria, role: pesto-maker, language: Ligurian/Italian, personality: "Basil DOP from Prà, marble mortar only", cultural_note: "The World Pesto Championship is held in Genoa — competitors from 30+ countries"}
+
+  - id: loc_elba
+    name: Portoferraio (Elba)
+    country: Italy
+    coordinates: [42.81, 10.32]
+    languages: [Italian]
+    marina: Marina di Portoferraio
+    cultural_highlight: "Napoleon's exile island, mineral beaches, Tuscan archipelago"
+    npcs:
+      - {name: Napoleone (nickname), role: guide, language: Italian, personality: "Napoleon's villa curator, imperial exile enthusiast", cultural_note: "Napoleon was exiled here 1814-15 and escaped — 'able was I ere I saw Elba'"}
+      - {name: Cristina, role: winemaker, language: Italian, personality: "Aleatico dessert wine producer, iron-rich terroir", cultural_note: "Elba's mineral-rich soil produces unique wines — the Romans mined iron here"}
+
+  - id: loc_livorno
+    name: Livorno
+    country: Italy
+    coordinates: [43.55, 10.31]
+    languages: [Italian]
+    marina: Porto Mediceo
+    cultural_highlight: "Medici free port, multicultural heritage, cacciucco"
+    npcs:
+      - {name: Massimo, role: restaurant-owner, language: Italian, personality: "Cacciucco (fish stew) fundamentalist — minimum 5 fish species", cultural_note: "Cacciucco has strict rules — one 'c' for each type of fish (at least 5)"}
+      - {name: Sharona, role: guide, language: Italian/Hebrew, personality: "Jewish Livorno historian, synagogue tours", cultural_note: "Livorno was a haven for Sephardic Jews expelled from Spain — unique multicultural history"}
+
+  - id: loc_ravenna
+    name: Ravenna
+    country: Italy
+    coordinates: [44.42, 12.20]
+    languages: [Italian, Romagnolo]
+    marina: Marina di Ravenna
+    cultural_highlight: "Byzantine mosaics capital (UNESCO), 8 World Heritage sites"
+    npcs:
+      - {name: don Claudio, role: basilica-guide, language: Italian, personality: "San Vitale mosaics expert, breathless about gold tesserae", cultural_note: "Ravenna's mosaics are considered the finest Byzantine art outside Constantinople"}
+      - {name: Laura, role: piadina-maker, language: Romagnolo/Italian, personality: "Piadina romagnola artisan, stuffed to order", cultural_note: "Piadina is the Romagna flatbread — squacquerone cheese and rocket is the classic filling"}
+
+  - id: loc_ancona
+    name: Ancona
+    country: Italy
+    coordinates: [43.62, 13.51]
+    languages: [Italian]
+    marina: Marina Dorica
+    cultural_highlight: "Trajan's Arch, Adriatic ferry hub, Conero Riviera"
+    npcs:
+      - {name: Fabio, role: harbor-master, language: Italian, personality: "Ferry terminal coordinator, Greece/Croatia routes", cultural_note: "Ancona is Italy's main Adriatic ferry port — overnight boats to Patras, Split, Zadar"}
+      - {name: Stella, role: restaurant-owner, language: Italian, personality: "Brodetto all'anconetana (fish soup) specialist", cultural_note: "Ancona's brodetto uses 13 types of fish — each restaurant guards its recipe"}
+
+  - id: loc_vieste
+    name: Vieste
+    country: Italy
+    coordinates: [41.88, 16.18]
+    languages: [Italian]
+    marina: Porto di Vieste
+    cultural_highlight: "Gargano sea stacks, Tremiti Islands gateway"
+    npcs:
+      - {name: Michele, role: trabucco-keeper, language: Italian, personality: "Ancient fishing machine (trabucco) operator", cultural_note: "Trabucchi are giant wooden fishing machines on stilts — some are now restaurants"}
+      - {name: Rosetta, role: olive-oil-producer, language: Italian, personality: "Gargano peranzana olive oil, ancient groves", cultural_note: "Gargano is called 'the spur of Italy's boot' — million-year-old olive trees grow here"}
+
+  - id: loc_gallipoli
+    name: Gallipoli
+    country: Italy
+    coordinates: [40.06, 17.98]
+    languages: [Italian, Salentino]
+    marina: Porto di Gallipoli
+    cultural_highlight: "Island old town, Salento nightlife, baroque churches"
+    npcs:
+      - {name: Salvatore, role: fisherman, language: Salentino/Italian, personality: "Sponge diver turned artisanal fisherman", cultural_note: "Gallipoli means 'beautiful city' in Greek — founded by the Greeks, of course"}
+      - {name: Valentina, role: bar-owner, language: Italian, personality: "Salento nightlife queen, taranta dance teacher", cultural_note: "Pizzica/taranta is the dance of Salento — born from spider-bite exorcism rituals"}
+
+  - id: loc_lipari
+    name: Lipari (Aeolian Islands)
+    country: Italy
+    coordinates: [38.47, 14.95]
+    languages: [Italian, Eoliano]
+    marina: Marina Corta
+    cultural_highlight: "Volcanic archipelago (UNESCO), obsidian trade since Neolithic"
+    npcs:
+      - {name: Bartolo, role: pumice-harvester, language: Eoliano/Italian, personality: "Last pumice worker — the quarry closed in 2007", cultural_note: "Lipari pumice was exported worldwide — white beaches are pumice sand"}
+      - {name: Concettina, role: caper-farmer, language: Italian, personality: "Salina island caper producer, hand-picked daily", cultural_note: "Salina capers are the Med's finest — hand-picked one by one, salt-cured for months"}
+
+  - id: loc_cefalu
+    name: Cefalù
+    country: Italy (Sicily)
+    coordinates: [38.04, 14.02]
+    languages: [Italian, Sicilian]
+    marina: Porto di Cefalù
+    cultural_highlight: "Norman cathedral cliff, Cinema Paradiso town"
+    npcs:
+      - {name: Don Tano, role: cathedral-guide, language: Sicilian/Italian, personality: "Norman-Arab mosaic specialist, Christ Pantocrator devotee", cultural_note: "The Christ Pantocrator mosaic in the apse is the most powerful in all of Sicily"}
+      - {name: Rosalia, role: cafe-server, language: Italian, personality: "Corso Ruggero promenade, Cinema Paradiso nostalgia", cultural_note: "Cefalù was the setting for Cinema Paradiso — the projected cinema wall is still there"}
+
+  - id: loc_taormina
+    name: Taormina
+    country: Italy (Sicily)
+    coordinates: [37.85, 15.29]
+    languages: [Italian, Sicilian]
+    marina: Giardini Naxos Marina (below Taormina)
+    cultural_highlight: "Greek theater with Etna views, Grand Tour destination"
+    npcs:
+      - {name: Ignazio, role: theater-guide, language: Italian, personality: "Greek Theater director, summer opera/concert organizer", cultural_note: "The Greek Theater's backdrop is Etna — sunrise performances are transcendent"}
+      - {name: Graziella, role: granita-maker, language: Sicilian/Italian, personality: "Genuine granita con panna e brioche, no shortcuts", cultural_note: "Taormina granita at Bam Bar is a pilgrimage — almond or pistachio, never both"}
+
+  - id: loc_lampedusa
+    name: Lampedusa
+    country: Italy
+    coordinates: [35.50, 12.60]
+    languages: [Italian, Lampedusano]
+    marina: Porto di Lampedusa
+    cultural_highlight: "Italy's southernmost point (closer to Tunisia), Rabbit Beach"
+    npcs:
+      - {name: Totò, role: fisherman, language: Lampedusano/Italian, personality: "Traditional lampara night-fishing, migration witness", cultural_note: "Lampedusa is Europe's front door for migration — the island bears witness daily"}
+      - {name: Giuseppina, role: restaurant-owner, language: Italian, personality: "Couscous alla trapanese specialist — Sicilian-North African fusion", cultural_note: "Lampedusa is closer to Tunisia than Sicily — the food reflects this perfectly"}

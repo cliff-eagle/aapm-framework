@@ -1,0 +1,84 @@
+# ════════════════════════════════════════════════════════════════
+# Mediterranean Port Registry — Spain Expansion
+# ════════════════════════════════════════════════════════════════
+# Additional Spanish ports beyond the 10 in spain-gibraltar.yaml
+
+region: spain_expanded
+ports:
+
+  - id: loc_tarragona
+    name: Tarragona
+    country: Spain
+    coordinates: [41.12, 1.25]
+    languages: [Spanish, Catalan]
+    marina: Port Tarraco
+    cultural_highlight: "Roman Tarraco (UNESCO), amphitheater on the sea"
+    npcs:
+      - {name: Núria, role: guide, language: Catalan/Spanish, personality: "Roman amphitheater specialist, living history performer", cultural_note: "Tarraco was Roman Spain's capital — the amphitheater sits directly on the Mediterranean"}
+      - {name: Pere, role: vermouth-maker, language: Catalan, personality: "Reus vermouth tradition, Sunday ritual specialist", cultural_note: "Vermouth hour (hora del vermut) is sacred — Sunday noon, always with olives and anchovies"}
+
+  - id: loc_denia
+    name: Dénia
+    country: Spain
+    coordinates: [38.84, 0.11]
+    languages: [Spanish, Valencian]
+    marina: Marina de Dénia
+    cultural_highlight: "UNESCO Creative City of Gastronomy, red prawn capital"
+    npcs:
+      - {name: Quique, role: chef, language: Spanish, personality: "Gamba roja (red prawn) evangelist, Michelin ambitions", cultural_note: "Dénia's red prawns are the most expensive in Spain — €80/kg, worth every cent"}
+      - {name: Amelia, role: market-vendor, language: Valencian/Spanish, personality: "Municipal market dried fruit and nut specialist", cultural_note: "Dénia was the raisin export capital of Europe in the 19th century"}
+
+  - id: loc_almeria
+    name: Almería
+    country: Spain
+    coordinates: [36.84, -2.47]
+    languages: [Spanish]
+    marina: Club de Mar Almería
+    cultural_highlight: "Moorish Alcazaba, spaghetti western filming, plastic sea"
+    npcs:
+      - {name: Mohamed, role: market-vendor, language: Spanish/Arabic, personality: "Central market produce from the greenhouses", cultural_note: "The 'sea of plastic' greenhouses produce most of Europe's winter vegetables"}
+      - {name: Inma, role: tapas-server, language: Andalusian Spanish, personality: "Free tapas with every drink — Almería tradition", cultural_note: "Almería gives free tapas by law — you order a drink, food appears"}
+
+  - id: loc_cadiz
+    name: Cádiz
+    country: Spain
+    coordinates: [36.53, -6.29]
+    languages: [Spanish]
+    marina: Puerto América
+    cultural_highlight: "Oldest city in Western Europe (~1100 BC), carnival capital"
+    npcs:
+      - {name: Manolo, role: fishmonger, language: Andalusian Spanish, personality: "Central market fried fish (pescaíto frito) authority", cultural_note: "Cádiz invented fried fish — the British got fish & chips from here via Sephardic Jews"}
+      - {name: Loli, role: carnival-singer, language: Spanish, personality: "Writes carnival chirigotas (satirical songs)", cultural_note: "Cádiz carnival rivals Rio — the satirical songwriting competition is high art"}
+      - {name: Curro, role: sherry-guide, language: Spanish, personality: "Jerez sherry bodega tours from the port", cultural_note: "Sherry comes from Jerez (30min away) — fino with tapas is the correct pairing"}
+
+  - id: loc_ceuta
+    name: Ceuta
+    country: Spain (North Africa)
+    coordinates: [35.89, -5.31]
+    languages: [Spanish, Arabic]
+    marina: Marina Hércules
+    cultural_highlight: "Spanish enclave in Africa, Pillars of Hercules"
+    npcs:
+      - {name: Hassan, role: border-guide, language: Spanish/Arabic, personality: "Navigates the Spain-Morocco cultural frontier daily", cultural_note: "Ceuta is Spain but in Africa — the border with Morocco is the EU's only land border with Africa"}
+      - {name: Pilar, role: cafe-server, language: Spanish, personality: "Plaza de África terrace, cross-cultural observer", cultural_note: "Unique cultural mix — Ramadan and Christmas celebrated by the same neighborhoods"}
+
+  - id: loc_aguadulce
+    name: Aguadulce
+    country: Spain
+    coordinates: [36.81, -2.56]
+    languages: [Spanish]
+    marina: Puerto Deportivo de Aguadulce
+    cultural_highlight: "Andalusian sailing base, gateway to Cabo de Gata"
+    npcs:
+      - {name: Jesús, role: diving-instructor, language: Spanish, personality: "Cabo de Gata marine reserve guide", cultural_note: "Cabo de Gata is Spain's driest region — looks like Mars meets the Mediterranean"}
+
+  - id: loc_estepona
+    name: Estepona
+    country: Spain
+    coordinates: [36.43, -5.15]
+    languages: [Spanish]
+    marina: Puerto Deportivo de Estepona
+    cultural_highlight: "Mural town, orchid house, authentic Costa del Sol"
+    npcs:
+      - {name: Antonio, role: muralist, language: Spanish, personality: "Coordinates the town's 60+ building murals", cultural_note: "Estepona painted murals on every building — turned a sleepy town into an outdoor gallery"}
+      - {name: Rosario, role: flower-seller, language: Spanish, personality: "Orchidarium volunteer, 1,300 species", cultural_note: "The orchid house is free and has three waterfalls inside — hidden gem"}
