@@ -50,6 +50,9 @@ export type { OnboardingWizardProps, OnboardingData } from './components/Onboard
 export { AIProviderSettings } from './components/AIProviderSettings';
 export type { AIProviderSettingsProps } from './components/AIProviderSettings';
 
+export { APIKeyGate } from './components/APIKeyGate';
+export type { APIKeyGateProps } from './components/APIKeyGate';
+
 // ─── Shared Types ───────────────────────────────────────────────
 export type {
     RefractionLevel,
