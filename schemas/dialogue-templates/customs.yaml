@@ -1,0 +1,111 @@
+# ════════════════════════════════════════════════════════════════
+# Customs & Immigration Dialogue Templates
+# ════════════════════════════════════════════════════════════════
+# Structured Q&A flows for customs clearance at different port types.
+
+id: customs-templates
+type: dialogue-template
+
+# ─── EU Schengen Port ──────────────────────────────────────────
+
+eu_schengen:
+  step_id: customs-clearance
+  context: "Player arrives at an EU Schengen port. Customs inspection is lighter — spot checks for non-Schengen crew, routine document verification."
+  register: formal
+  vocabulary_focus: [customs, documentation, nationalities, numbers]
+  applies_to: [Barcelona, Nice, Marseille, Naples, Athens, Split, Dubrovnik, Palma, Valletta]
+
+  question_tree:
+    - question: "Good [morning/afternoon]. Passports and ship papers, please."
+      expected_answer_type: action
+      teaching_note: "Hand over documents. Say 'Here you are' or 'Aquí tiene' etc."
+
+    - question: "How many crew on board?"
+      expected_answer_type: number
+      follow_up: "And their nationalities?"
+      teaching_note: "Practice numbers and nationality adjectives in target language."
+
+    - question: "What is your last port of call?"
+      expected_answer_type: city_name
+      teaching_note: "Names of cities may differ in the target language (e.g., Napoli, Athènes)."
+
+    - question: "How long do you plan to stay?"
+      expected_answer_type: duration
+      example_answers: ["Three days.", "Until Friday.", "One week."]
+      teaching_note: "Practice time expressions and days of the week."
+
+    - question: "Any goods to declare?"
+      expected_answer_type: yes_no
+      if_yes: "What goods?"
+      teaching_note: "Food items, alcohol over limits, cash over €10,000."
+
+    - question: "Everything is in order. Welcome to {city}."
+      expected_answer_type: acknowledgment
+      teaching_note: "Say thank you formally. Good opportunity for polite register practice."
+
+# ─── Non-EU Port ───────────────────────────────────────────────
+
+non_eu:
+  step_id: customs-clearance
+  context: "Player arrives at a non-EU port. More thorough inspection — passport stamps, currency declaration, possible vessel search."
+  register: formal
+  vocabulary_focus: [customs, documentation, nationalities, numbers, currency]
+  applies_to: [Istanbul, Alexandria, Tangier, Tunis]
+
+  question_tree:
+    - question: "All passports and ship's registration, please."
+      expected_answer_type: action
+      teaching_note: "In some countries, an agent (simsar) may help with paperwork."
+
+    - question: "Purpose of your visit?"
+      expected_answer_type: purpose
+      example_answers: ["Tourism and provisioning.", "Transit to {next_port}.", "Cultural visit."]
+
+    - question: "How many people on board? Names and nationalities?"
+      expected_answer_type: crew_list
+      teaching_note: "Have the crew manifest ready. Practice spelling names."
+
+    - question: "Are you carrying any foreign currency? How much?"
+      expected_answer_type: currency_amount
+      teaching_note: "Many non-EU countries require currency declarations above a threshold."
+
+    - question: "Any firearms, medication, or restricted items?"
+      expected_answer_type: yes_no
+      if_yes: "Please show me the documentation."
+      teaching_note: "Medication with prescription is usually fine. Be honest."
+
+    - question: "Do you have insurance for the vessel?"
+      expected_answer_type: yes_no
+      follow_up: "May I see the certificate?"
+
+    - question: "Your visa is stamped. Enjoy your stay."
+      expected_answer_type: acknowledgment
+      cultural_notes:
+        Turkey: "In Turkish, 'Teşekkür ederim' (formal thanks) is appropriate."
+        Egypt: "Bakshish (small tip) may be expected to 'expedite' processing."
+        Morocco: "French 'Merci beaucoup' works well. Arabic 'Shukran' is appreciated."
+        Tunisia: "French-Arabic mix is standard. 'Merci, choukran' is common."
+
+# ─── Emergency/Irregular ──────────────────────────────────────
+
+emergency:
+  context: "Non-standard situations that require customs interaction."
+
+  scenarios:
+    - id: crew_visa_issue
+      trigger: "One crew member's visa has expired or is missing"
+      npc_behavior: "Stern but procedural. May require the crew member to stay aboard."
+      resolution: "Contact embassy or arrange online extension."
+      language_practice: "Formal apology, explaining situations, conditional tense."
+
+    - id: medication_question
+      trigger: "Crew member has prescription medication"
+      npc_behavior: "Request documentation. Common in Turkish and Egyptian customs."
+      resolution: "Show prescription with doctor's name and dosage."
+      language_practice: "Medical vocabulary, explaining prescriptions."
+
+    - id: suspicious_goods
+      trigger: "NPC notices unusual items in the galley"
+      npc_behavior: "Questions about large quantities of alcohol or food."
+      resolution: "Explain yacht provisioning. Show receipts if available."
+      language_practice: "Quantity words, explaining purposes, provisioning vocabulary."

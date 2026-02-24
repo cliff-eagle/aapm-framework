@@ -1,0 +1,87 @@
+# ════════════════════════════════════════════════════════════════
+# VHF Radio Dialogue Templates
+# ════════════════════════════════════════════════════════════════
+# Standard maritime VHF radio protocol templates for port scenarios.
+# These are injected into the AI prompt as context for NPC behavior.
+
+id: vhf-radio-templates
+type: dialogue-template
+
+# ─── Arrival Protocol ──────────────────────────────────────────
+
+arrival:
+  step_id: vhf-radio-call
+  context: "Player is approaching a Mediterranean port by yacht. They must contact port control via VHF radio Channel 16 (international calling) and request permission to enter."
+  register: formal
+  vocabulary_focus: [maritime, radio-protocol, numbers, directions]
+
+  expected_flow:
+    - player_action: "Initial call on CH16"
+      example: "{Port} Control, {Port} Control, this is Motor Yacht Cielos, Motor Yacht Cielos, over."
+      npc_response_template: "Motor Yacht Cielos, this is {Port} Control. Switch to Channel {working_channel}, over."
+      teaching_note: "Maritime calls repeat both names twice. 'Over' means expecting a reply."
+
+    - player_action: "Switch to working channel and re-establish"
+      example: "{Port} Control, Motor Yacht Cielos on Channel {working_channel}, over."
+      npc_response_template: "Motor Yacht Cielos, go ahead."
+      teaching_note: "Working channels vary by port (usually 9, 12, or 14)."
+
+    - player_action: "Request berth and provide details"
+      example: "Requesting permission to enter port. Motor yacht, {length} meters, draft {draft} meters, {crew_count} persons on board. Request berth assignment, over."
+      npc_response_template: "Motor Yacht Cielos, permission granted. Proceed to berth {berth_number} on {quay_name}. Port speed limit {speed} knots. Report when alongside, over."
+      teaching_note: "Numbers in maritime radio should be spoken digit-by-digit: 'one-five' not 'fifteen'."
+
+    - player_action: "Acknowledge and confirm"
+      example: "Roger, proceeding to berth {berth_number}, {quay_name}. Motor Yacht Cielos, out."
+      npc_response_template: "{Port} Control, out."
+      teaching_note: "'Out' means transmission complete, no reply expected. Never say 'over and out'."
+
+  nato_phonetic_reference:
+    A: Alpha
+    B: Bravo
+    C: Charlie
+    D: Delta
+    E: Echo
+    F: Foxtrot
+    G: Golf
+    H: Hotel
+    I: India
+    J: Juliet
+    K: Kilo
+    L: Lima
+    M: Mike
+    N: November
+    O: Oscar
+    P: Papa
+    Q: Quebec
+    R: Romeo
+    S: Sierra
+    T: Tango
+    U: Uniform
+    V: Victor
+    W: Whiskey
+    X: X-ray
+    Y: Yankee
+    Z: Zulu
+
+# ─── Departure Protocol ──────────────────────────────────────
+
+departure:
+  step_id: departure
+  context: "Player is preparing to depart a Mediterranean port. They must contact port control for departure clearance and weather information."
+  register: formal
+  vocabulary_focus: [maritime, radio-protocol, weather, directions]
+
+  expected_flow:
+    - player_action: "Request departure clearance"
+      example: "{Port} Control, Motor Yacht Cielos, request permission to depart berth {berth_number}, over."
+      npc_response_template: "Motor Yacht Cielos, departure approved. Destination?"
+
+    - player_action: "State destination and request weather"
+      example: "Destination {next_port}. Request current weather and sea state for departure route, over."
+      npc_response_template: "Wind {direction} {speed} knots, sea state {state}, visibility {visibility}. Fair conditions for departure. Proceed when ready, over."
+      teaching_note: "Beaufort scale: 0-3 calm/light, 4-5 moderate, 6+ strong/gale."
+
+    - player_action: "Acknowledge and depart"
+      example: "Roger, departing {Port}. Thank you for your assistance. Motor Yacht Cielos, out."
+      npc_response_template: "Fair winds, Motor Yacht Cielos. {Port} Control, out."

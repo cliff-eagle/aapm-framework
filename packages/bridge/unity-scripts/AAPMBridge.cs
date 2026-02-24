@@ -262,6 +262,24 @@ public class AAPMBridge : MonoBehaviour
     {
         Send("navigate", new NavigatePayload { targetLocationId = targetLocationId });
     }
+
+    /// <summary>Start a port arrival scenario chain</summary>
+    public void StartScenario(string cityName, string locationId)
+    {
+        Send("scenario/start", new ScenarioStartPayload { cityName = cityName, locationId = locationId });
+    }
+
+    /// <summary>Advance to the next step in the scenario chain</summary>
+    public void AdvanceScenario(bool skipOptional = false)
+    {
+        Send("scenario/advance", new ScenarioAdvancePayload { skipOptional = skipOptional });
+    }
+
+    /// <summary>Query current scenario status</summary>
+    public void GetScenarioStatus()
+    {
+        Send("scenario/status", new EmptyPayload());
+    }
 }
 
 // ─── Serializable Message Types ───────────────────────────────
@@ -281,3 +299,33 @@ public class BridgeMessage
 [Serializable] public class DialogueTurnPayload { public string text; public string audioBase64; }
 [Serializable] public class DialogueEndPayload { public bool goalAchieved; }
 [Serializable] public class NavigatePayload { public string targetLocationId; }
+[Serializable] public class ScenarioStartPayload { public string cityName; public string locationId; }
+[Serializable] public class ScenarioAdvancePayload { public bool skipOptional; }
+[Serializable] public class EmptyPayload { }
+
+// ─── Scenario Chain Response Types ────────────────────────────
+
+[Serializable]
+public class ScenarioChainData
+{
+    public bool active;
+    public string cityName;
+    public ScenarioStepData currentStep;
+    public string[] completedSteps;
+    public int totalSteps;
+    public bool allRequiredComplete;
+}
+
+[Serializable]
+public class ScenarioStepData
+{
+    public string id;
+    public int step;
+    public string name;
+    public string npcRole;
+    public string register;
+    public string goal;
+    public bool required;
+    public string phase;
+}
+
