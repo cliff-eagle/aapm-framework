@@ -22,6 +22,28 @@ export {
     CAPABILITY_LABELS,
 } from './types';
 
+// Google AI Studio provider — Interactions API + LLMProvider
+export type {
+    GoogleAIStudioConfig,
+    InteractionSession,
+    InteractionTurn,
+    ToolCall,
+    ToolResult,
+    MCPToolDeclaration,
+    GoogleAIStudioProviderInstance,
+} from './google-ai-studio';
+export {
+    createGoogleAIStudioProvider,
+    DEFAULT_CONFIG as GOOGLE_AI_STUDIO_DEFAULTS,
+} from './google-ai-studio';
+
+// Agent ↔ Interactions API bridge
+export type {
+    InteractionsBridgeConfig,
+    InteractionsBridgeInstance,
+} from './interactions-bridge';
+export { createInteractionsBridge } from './interactions-bridge';
+
 import type { AIProviderConfig, AICapability, AIProviderId } from './types';
 import { AI_PROVIDER_CATALOG, REQUIRED_CAPABILITIES } from './types';
 

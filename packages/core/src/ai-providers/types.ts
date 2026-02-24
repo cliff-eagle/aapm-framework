@@ -215,23 +215,23 @@ export const AI_PROVIDER_CATALOG: readonly AIProviderDefinition[] = [
     // ── Google ───────────────────────────────────────────────
     {
         id: 'google',
-        name: 'Google AI',
-        description: 'Gemini models with built-in multimodal capabilities and long context.',
+        name: 'Google AI Studio',
+        description: 'Gemini 3 models with Interactions API for agentic sessions, 2M context, and built-in multimodal.',
         apiKeyUrl: 'https://aistudio.google.com/apikey',
         logoEmoji: '🔵',
         capabilities: ['llm', 'embedding', 'asr', 'tts', 'video'],
         models: [
             // LLM
-            { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash', capability: 'llm', isDefault: true, costTier: 'budget', description: 'Fastest Gemini model, excellent cost-efficiency.', contextWindow: 1000000, supportsStructuredOutput: true },
-            { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro', capability: 'llm', isDefault: false, costTier: 'standard', description: 'Most capable Gemini with 1M context window.', contextWindow: 2000000, supportsStructuredOutput: true },
+            { id: 'gemini-3-flash', name: 'Gemini 3 Flash', capability: 'llm', isDefault: true, costTier: 'budget', description: 'Fastest Gemini 3 model — ideal for NPC dialogue and reactive agent reasoning.', contextWindow: 1000000, supportsStructuredOutput: true },
+            { id: 'gemini-3-pro', name: 'Gemini 3 Pro', capability: 'llm', isDefault: false, costTier: 'standard', description: 'Most capable Gemini 3 model with 2M context — best for Tutor and Evaluation agents.', contextWindow: 2000000, supportsStructuredOutput: true },
             // Embedding
-            { id: 'text-embedding-004', name: 'Gecko Embedding', capability: 'embedding', isDefault: true, costTier: 'budget', description: 'Google embedding model for semantic search.' },
+            { id: 'text-embedding-005', name: 'Text Embedding 005', capability: 'embedding', isDefault: true, costTier: 'budget', description: 'Latest Google embedding model for semantic memory and episodic recall.' },
             // ASR
             { id: 'google-cloud-speech-v2', name: 'Cloud Speech-to-Text', capability: 'asr', isDefault: true, costTier: 'standard', description: 'Google Cloud multilingual speech recognition.' },
             // TTS
             { id: 'google-cloud-tts', name: 'Cloud Text-to-Speech', capability: 'tts', isDefault: true, costTier: 'standard', description: 'Natural-sounding voices in 40+ languages.' },
             // Video
-            { id: 'veo-2', name: 'Veo 2', capability: 'video', isDefault: true, costTier: 'premium', description: 'Google video generation for scenario content.' },
+            { id: 'veo-3', name: 'Veo 3', capability: 'video', isDefault: true, costTier: 'premium', description: 'Google video generation for immersive scenario content.' },
         ],
     },
 
