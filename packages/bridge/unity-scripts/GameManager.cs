@@ -23,6 +23,13 @@
  *   - PortServicesGenerator (universal service buildings)
  *   - NPCSpawner (populate port with NPCs)
  *   - ProgressionManager (track visits, crew bonds)
+ *
+ * AGENTS MANAGED:
+ *   - NavigationAgent (route planning, approach coaching, VHF triggers)
+ *   - CrewAgent (proactive crew conversations, cultural briefings)
+ *   - ScenarioDirector (phase sequencing, time pressure, events)
+ *   - ProgressionAgent (skill tracking, achievements, difficulty)
+ *   - WeatherDirector (weather-gated language scenarios)
  */
 
 using System;
@@ -107,6 +114,9 @@ public class GameManager : MonoBehaviour
             AAPMBridge.Instance.OnConnectionChanged += OnBridgeConnectionChanged;
         }
 
+        // Subscribe to agent decisions
+        SubscribeToAgents();
+
         // Ensure all systems are present
         ValidateSystems();
     }
@@ -162,13 +172,16 @@ public class GameManager : MonoBehaviour
         AAPMBridge.Instance?.Navigate(locationId);
 
         // Set destination on SeaNavigator
+        Vector3 portPos = Vector3.zero;
         if (SeaNavigator.Instance != null)
         {
-            var (lat, lon) = SeaNavigator.Instance.WorldToGPS(
-                SeaNavigator.Instance.GetPortWorldPosition(locationId)
-            );
+            portPos = SeaNavigator.Instance.GetPortWorldPosition(locationId);
+            var (lat, lon) = SeaNavigator.Instance.WorldToGPS(portPos);
             SeaNavigator.Instance.SetDestination(cityName, lat, lon);
         }
+
+        // ─── NavigationAgent: set destination for approach detection ──
+        NavigationAgent.Instance?.SetDestination(locationId, cityName, portPos);
 
         SetState(GameState.Sailing);
     }
@@ -251,12 +264,23 @@ public class GameManager : MonoBehaviour
         // ─── 6. Start the scenario chain ─────────────────────
         AAPMBridge.Instance?.StartScenario(CurrentCity, CurrentLocationId);
 
-        // ─── 7. Transition to Docked ─────────────────────────
+        // ─── 7. ScenarioDirector: sequence port phases ───────
+        ScenarioDirector.Instance?.StartScenario(
+            CurrentLocationId, portData.name, portData.country
+        );
+
+        // ─── 8. NavigationAgent: clear destination (we've arrived) ──
+        NavigationAgent.Instance?.ClearDestination();
+
+        // ─── 9. Transition to Docked ─────────────────────────
         IsExploringPort = true;
         SetState(GameState.Docked);
 
-        // Record visit in progression
+        // ─── 10. Record visit in both progression systems ────
         ProgressionManager.Instance?.RecordPortVisit(
+            CurrentCity, CurrentLocationId, CurrentCountry
+        );
+        ProgressionAgent.Instance?.RecordPortVisit(
             CurrentCity, CurrentLocationId, CurrentCountry
         );
 
@@ -276,10 +300,29 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void DepartPort()
     {
+        // ─── Check departure gate ─────────────────────────────
+        if (ScenarioDirector.Instance != null && !ScenarioDirector.Instance.CanDepart())
+        {
+            Debug.Log($"[GameManager] 🚫 Cannot depart — required phases incomplete");
+            return;
+        }
+
         Debug.Log($"[GameManager] ⚓ Departing {CurrentCity}...");
 
         PortsVisited++;
         IsExploringPort = false;
+
+        // ─── ScenarioDirector: end scenario + get stats ──────
+        ScenarioDirector.Instance?.EndScenario();
+
+        // ─── ProgressionAgent: record completion ─────────────
+        var phases = ScenarioDirector.Instance?.GetPhaseStatusList();
+        int phasesCompleted = phases?.Count(p => p.state == ScenarioDirector.PhaseState.Completed) ?? 0;
+        int totalPhases = phases?.Count ?? 0;
+        ProgressionAgent.Instance?.RecordScenarioCompletion(
+            CurrentLocationId, CurrentCity, CurrentCountry,
+            phasesCompleted, totalPhases, 0.7f, 0.6f, 0 // defaults; real metrics from bridge
+        );
 
         // ─── Clean up port environment ───────────────────────
         RealisticPortGenerator.Instance?.ClearPort();
@@ -385,28 +428,129 @@ public class GameManager : MonoBehaviour
 
     void ValidateSystems()
     {
-        string[] systems = {
+        string[] coreSystems = {
             "AAPMBridge", "SeaNavigator", "YachtController", "WeatherSystem",
             "PortRegistryLoader", "RealisticPortGenerator", "PortServicesGenerator",
             "NPCSpawner", "ProgressionManager"
         };
 
-        int found = 0;
-        foreach (var sys in systems)
-        {
-            var obj = GameObject.Find(sys) ?? FindObjectOfType(Type.GetType(sys)) as GameObject;
-            bool exists = FindObjectOfType(Type.GetType(sys) ?? typeof(MonoBehaviour)) != null;
+        string[] agents = {
+            "NavigationAgent", "CrewAgent", "ScenarioDirector",
+            "ProgressionAgent", "WeatherDirector"
+        };
 
-            // Simplified check — just count what has Instance
-            found++;
-        }
-
-        Debug.Log($"[GameManager] ✅ System validation complete");
+        Debug.Log($"[GameManager] ✅ Core systems: {coreSystems.Length}");
+        Debug.Log($"[GameManager] 🤖 Agents: {agents.Length}");
 
         // Log weather on start
         if (WeatherSystem.Instance != null)
         {
             Debug.Log($"[GameManager] 🌤️ {WeatherSystem.Instance.GetWeatherDescription()}");
+        }
+
+        // Log agent readiness
+        Debug.Log($"[GameManager] 🧭 NavigationAgent: {(NavigationAgent.Instance != null ? "ready" : "missing")}");
+        Debug.Log($"[GameManager] 👥 CrewAgent: {(CrewAgent.Instance != null ? "ready" : "missing")}");
+        Debug.Log($"[GameManager] 🎬 ScenarioDirector: {(ScenarioDirector.Instance != null ? "ready" : "missing")}");
+        Debug.Log($"[GameManager] 📈 ProgressionAgent: {(ProgressionAgent.Instance != null ? "ready" : "missing")}");
+        Debug.Log($"[GameManager] 🌊 WeatherDirector: {(WeatherDirector.Instance != null ? "ready" : "missing")}");
+    }
+
+    void SubscribeToAgents()
+    {
+        // NavigationAgent: handle VHF trigger and approach
+        if (NavigationAgent.Instance != null)
+        {
+            NavigationAgent.Instance.OnApproachStarted += (portId) =>
+            {
+                if (CurrentState == GameState.Sailing)
+                {
+                    SetState(GameState.PortApproach);
+                    // Trigger cultural briefing from crew
+                    PortData port = PortRegistryLoader.Instance?.GetPortById(portId);
+                    if (port != null)
+                    {
+                        CrewAgent.Instance?.TriggerCulturalBriefing(
+                            port.name, port.country, port.language ?? port.country
+                        );
+                    }
+                }
+            };
+
+            NavigationAgent.Instance.OnVHFRequired += () =>
+            {
+                Debug.Log("[GameManager] 📻 VHF radio contact required");
+                // Could open VHF UI here
+            };
+
+            NavigationAgent.Instance.OnDecision += (decision) =>
+            {
+                // Forward to UI for display
+                AAPMBridge.Instance?.SendAgentDecision(
+                    "navigation", decision.type.ToString(), decision.message
+                );
+            };
+        }
+
+        // CrewAgent: relay crew speech to bridge for AI response
+        if (CrewAgent.Instance != null)
+        {
+            CrewAgent.Instance.OnCrewSpeaks += (member, text) =>
+            {
+                AAPMBridge.Instance?.SendAgentDecision(
+                    "crew", "speak", $"{member.name}: {text}"
+                );
+            };
+        }
+
+        // ScenarioDirector: handle phase changes and departure gating
+        if (ScenarioDirector.Instance != null)
+        {
+            ScenarioDirector.Instance.OnAllRequiredComplete += () =>
+            {
+                Debug.Log("[GameManager] 🏁 All required phases complete — departure unlocked");
+            };
+
+            ScenarioDirector.Instance.OnAmbientEvent += (description) =>
+            {
+                AAPMBridge.Instance?.SendAgentDecision(
+                    "scenario", "ambient_event", description
+                );
+            };
+        }
+
+        // ProgressionAgent: handle achievements and difficulty changes
+        if (ProgressionAgent.Instance != null)
+        {
+            ProgressionAgent.Instance.OnAchievementEarned += (achievement) =>
+            {
+                Debug.Log($"[GameManager] 🏆 {achievement.icon} {achievement.title}");
+                AAPMBridge.Instance?.SendAgentDecision(
+                    "progression", "achievement", $"{achievement.icon} {achievement.title}"
+                );
+            };
+
+            ProgressionAgent.Instance.OnDifficultyChanged += (newLevel) =>
+            {
+                cefrLevel = newLevel;
+                Debug.Log($"[GameManager] 📊 Difficulty adjusted to {newLevel}");
+            };
+        }
+
+        // WeatherDirector: handle emergency drills and shelter suggestions
+        if (WeatherDirector.Instance != null)
+        {
+            WeatherDirector.Instance.OnEmergencyDrillStarted += () =>
+            {
+                Debug.Log("[GameManager] ⚠️ Emergency VHF drill triggered by weather");
+            };
+
+            WeatherDirector.Instance.OnWeatherDecision += (decision) =>
+            {
+                AAPMBridge.Instance?.SendAgentDecision(
+                    "weather", decision.type.ToString(), decision.message
+                );
+            };
         }
     }
 }
