@@ -215,8 +215,8 @@ function handleSessionInit(
         const response: SessionInitResponse = {
             sessionId: state.session.sessionId,
             worldState: {
-                currentLocation: state.session.worldState.learnerPosition,
-                timeOfDay: state.session.worldState.timeOfDay,
+                currentLocation: state.session.worldState.learnerLocation,
+                timeOfDay: state.session.worldState.timeSystem.enabled ? 12 : 0,
                 locations: locations.map(l => ({
                     id: l.id,
                     name: l.name.en || l.name.es || l.id,
@@ -224,12 +224,12 @@ function handleSessionInit(
                 })),
             },
             availableNPCs: visibleNPCs.map(npc => ({
-                id: npc.npcState.id,
+                id: npc.npcState.npcId,
                 name: npc.definition.name,
                 role: npc.definition.role,
-                mood: npc.npcState.mood.state,
-                moodValence: npc.npcState.mood.valence,
-                reputation: npc.npcState.reputation,
+                mood: npc.npcState.mood,
+                moodValence: 0,
+                reputation: npc.npcState.reputationWithLearner,
                 locationId: npc.npcState.currentLocation,
                 personality: npc.definition.personality,
                 register: npc.definition.register,
@@ -252,19 +252,19 @@ function handleNPCApproach(
     if (!state.session) return sendError(ws, 'no_session', 'No active session', msgId);
 
     const visibleNPCs = getVisibleNPCs(state.session);
-    const npc = visibleNPCs.find(n => n.npcState.id === req.npcId);
+    const npc = visibleNPCs.find(n => n.npcState.npcId === req.npcId);
 
     if (!npc) {
         return sendError(ws, 'npc_not_found', `NPC ${req.npcId} not visible`, msgId);
     }
 
     const info: NPCInfo = {
-        id: npc.npcState.id,
+        id: npc.npcState.npcId,
         name: npc.definition.name,
         role: npc.definition.role,
-        mood: npc.npcState.mood.state,
-        moodValence: npc.npcState.mood.valence,
-        reputation: npc.npcState.reputation,
+        mood: npc.npcState.mood,
+        moodValence: 0,
+        reputation: npc.npcState.reputationWithLearner,
         locationId: npc.npcState.currentLocation,
         personality: npc.definition.personality,
         register: npc.definition.register,
@@ -297,15 +297,15 @@ function handleDialogueStart(
 
     const dialogue = state.session.activeDialogue!;
     const visibleNPCs = getVisibleNPCs(state.session);
-    const npcDef = visibleNPCs.find(n => n.npcState.id === req.npcId);
+    const npcDef = visibleNPCs.find(n => n.npcState.npcId === req.npcId);
 
     const response: DialogueStartResponse = {
         dialogueId: dialogue.sessionId,
         npcId: req.npcId,
         npcName: npcDef?.definition.name || req.npcId,
-        npcMood: dialogue.npcMood.state,
+        npcMood: state.session.worldState.npcStates[req.npcId]?.mood ?? 'neutral',
         npcGreeting: `[NPC ${req.npcId} greets the player]`, // In production: LLM generates this
-        npcRegister: dialogue.registerStrictness > 0.7 ? 'formal' : 'informal',
+        npcRegister: dialogue.npcBehavior.registerStrictness > 0.7 ? 'formal' : 'informal',
         goal: req.goal,
     };
 
@@ -337,12 +337,12 @@ function handleDialogueTurn(
     // Analyze for cultural violations
     const culturalAlert = analyzeCulturalViolations(
         req.text,
-        dialogue.registerStrictness > 0.7 ? 'formal' : 'informal',
+        dialogue.npcBehavior.registerStrictness > 0.7 ? 'formal' : 'informal',
     );
 
     const response: DialogueTurnResponse = {
         npcText: `[NPC responds to: "${req.text}"]`, // In production: LLM generates this
-        npcMood: dialogue.npcMood.state,
+        npcMood: state.session.worldState.npcStates[dialogue.npcId]?.mood ?? 'neutral',
         frictionEvents: lastTurn?.frictionEvents?.map(e => ({
             type: e.type,
             description: e.description,
@@ -397,7 +397,7 @@ function handleDialogueEnd(
             reputationDelta: outcome.reputationDelta,
             frictionCount: outcome.frictionEvents.length,
             registerAccuracy: outcome.registerAccuracy,
-            finalMood: outcome.finalMood.state,
+            finalMood: typeof outcome.finalMood === 'string' ? outcome.finalMood : 'neutral',
         },
         retentionItems: retention.newItems,
         tierProgression: tierProg ? {
@@ -432,15 +432,15 @@ function handleNavigate(
 
     const response: NavigateResponse = {
         success: true,
-        newLocationId: state.session.worldState.learnerPosition,
+        newLocationId: state.session.worldState.learnerLocation,
         newLocationName: req.targetLocationId,
         availableNPCs: npcs.map(n => ({
-            id: n.npcState.id,
+            id: n.npcState.npcId,
             name: n.definition.name,
             role: n.definition.role,
-            mood: n.npcState.mood.state,
-            moodValence: n.npcState.mood.valence,
-            reputation: n.npcState.reputation,
+            mood: n.npcState.mood,
+            moodValence: 0,
+            reputation: n.npcState.reputationWithLearner,
             locationId: n.npcState.currentLocation,
             personality: n.definition.personality,
             register: n.definition.register,
@@ -462,12 +462,12 @@ function handleGetNPCs(ws: WebSocket, state: ClientState, msgId: string) {
     const npcs = getVisibleNPCs(state.session);
     send(ws, 'npcs/list', {
         npcs: npcs.map(n => ({
-            id: n.npcState.id,
+            id: n.npcState.npcId,
             name: n.definition.name,
             role: n.definition.role,
-            mood: n.npcState.mood.state,
-            moodValence: n.npcState.mood.valence,
-            reputation: n.npcState.reputation,
+            mood: n.npcState.mood,
+            moodValence: 0,
+            reputation: n.npcState.reputationWithLearner,
             locationId: n.npcState.currentLocation,
             personality: n.definition.personality,
             register: n.definition.register,
